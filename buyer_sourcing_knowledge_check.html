@@ -772,6 +772,15 @@ function saveScore(elapsed) {
   });
 }
 
+// ── PRE-FILL ON LOAD ──
+window.addEventListener('DOMContentLoaded', function() {
+  var saved = localStorage.getItem('rebuilt_email');
+  if (saved) {
+    var el = document.getElementById('inputEmail');
+    if (el) el.value = saved;
+  }
+});
+
 // ── UTILS ──
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
