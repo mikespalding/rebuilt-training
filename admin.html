@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Rebuilt Training — Admin Dashboard</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjQ0MCAwIDU1MCA4OTAiPgogIDxwYXRoIGQ9Im0gMzMzNy45OSwzNTQ0LjgzIDExNzkuNzksMTA3Ni43MiB2IDE5MzguMSBMIDMzMzcuOTksNTU5MC42IFYgMzU0NC44MyIgZmlsbD0iIzRlYTllMiIgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIi8+CiAgPHBhdGggZD0iTSA2MTY5LjQ4LDk5OTUuMDEgViA0NjIxLjU1IGwgMTE3OS44LC0xMDc2LjcyIHYgNTQ5MS4yOSBsIC0xMTc5LjgsOTU4Ljg5IiBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz4KICA8cGF0aCBkPSJNIDQ3NTMuNzQsNzc0NC4wNSBWIDQ4MzYuODkgbCA1ODkuODksNTM4LjM3IDU4OS45LC01MzguMzcgNC4zNywzOTczLjcyIC0xMTg0LjE2LC0xMDY2LjU2IiBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz4KICA8cGF0aCBkPSJtIDQ4MDIuMjEsMzQyNS4xOSBoIDQzMC42OSB2IDQzMC42OCBoIC00MzAuNjkgdiAtNDMwLjY4IiBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz4KICA8cGF0aCBkPSJtIDU0NDguMjQsMzQyNS4xOSBoIDQzMC43IHYgNDMwLjY4IGggLTQzMC43IHYgLTQzMC42OCIgZmlsbD0iIzRlYTllMiIgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIi8+CiAgPHBhdGggZD0ibSA1MjMyLjksNDUwMS45MSBoIC00MzAuNjkgdiAtNDMwLjY5IGggNDMwLjY5IHYgNDMwLjY5IiBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz4KICA8cGF0aCBkPSJtIDU0NDguMjQsNDUwMS45MSB2IC00MzAuNjkgaCA0MzAuNyB2IDQzMC42OSBoIC00MzAuNyIgZmlsbD0iIzRlYTllMiIgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIi8+Cjwvc3ZnPg=="/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --blue:      #21a9e1;
+  --teal-dark: #0f696e;
+  --orange:    #f5831f;
+  --navy:      #1f3540;
+  --off-white: #efedeb;
+  --white:     #ffffff;
+  --muted:     #5a7888;
+  --border:    rgba(31,53,64,0.10);
+  --pass:      #2ecc71;
+  --fail:      #e74c3c;
+  --font:      'Montserrat', sans-serif;
+}
+body { font-family: var(--font); background: var(--off-white); color: var(--navy); min-height: 100vh; }
+
+/* ── HEADER ── */
+.site-header {
+  background: var(--navy); height: 72px; padding: 0 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.22);
+}
+.header-logo { display: flex; align-items: center; gap: 16px; }
+.header-logo img { height: 34px; width: auto; }
+.header-divider { width: 1px; height: 32px; background: rgba(255,255,255,0.15); }
+.header-title { display: flex; flex-direction: column; gap: 1px; }
+.header-title-main { font-size: 15px; font-weight: 800; color: white; line-height: 1; }
+.header-title-sub { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.40); letter-spacing: 0.12em; text-transform: uppercase; line-height: 1; }
+.header-right { display: flex; align-items: center; gap: 12px; }
+.admin-badge { font-size: 10px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; background: rgba(245,131,31,0.2); color: var(--orange); }
+.btn-refresh {
+  font-size: 11px; font-weight: 700; padding: 7px 14px;
+  background: rgba(33,169,225,0.15); border: 1px solid rgba(33,169,225,0.3);
+  border-radius: 6px; color: var(--blue); cursor: pointer;
+  font-family: var(--font); transition: background 0.2s;
+}
+.btn-refresh:hover { background: rgba(33,169,225,0.25); }
+
+/* ── MAIN ── */
+.main-wrap { max-width: 1400px; margin: 0 auto; padding: 36px 24px 80px; }
+
+/* ── SUMMARY STATS ── */
+.summary-bar {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px; margin-bottom: 32px;
+}
+.summary-card {
+  background: var(--navy); border-radius: 10px; padding: 18px 20px;
+}
+.summary-value { font-size: 28px; font-weight: 900; color: white; line-height: 1; margin-bottom: 4px; }
+.summary-value.blue   { color: var(--blue); }
+.summary-value.green  { color: var(--pass); }
+.summary-value.orange { color: var(--orange); }
+.summary-label { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+
+/* ── CONTROLS ── */
+.controls {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 20px; flex-wrap: wrap;
+}
+.filter-group { display: flex; align-items: center; gap: 8px; }
+.filter-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.filter-btn {
+  font-size: 10px; font-weight: 700; padding: 5px 12px;
+  border-radius: 20px; border: 1.5px solid var(--border);
+  background: var(--white); cursor: pointer; font-family: var(--font);
+  color: var(--muted); transition: all 0.15s;
+}
+.filter-btn.active-all   { border-color: var(--navy);  background: var(--navy);  color: white; }
+.filter-btn.active-acq   { border-color: var(--blue);  background: var(--blue);  color: white; }
+.filter-btn.active-dispo { border-color: var(--orange); background: var(--orange); color: white; }
+.search-input {
+  padding: 7px 12px; border: 1.5px solid var(--border); border-radius: 8px;
+  font-family: var(--font); font-size: 12px; color: var(--navy);
+  outline: none; width: 200px; transition: border-color 0.2s;
+}
+.search-input:focus { border-color: var(--blue); }
+.sort-select {
+  padding: 7px 12px; border: 1.5px solid var(--border); border-radius: 8px;
+  font-family: var(--font); font-size: 12px; color: var(--navy);
+  outline: none; background: var(--white); cursor: pointer;
+}
+.controls-right { margin-left: auto; font-size: 11px; color: var(--muted); font-weight: 600; }
+
+/* ── TABLE WRAPPER ── */
+.table-wrap {
+  background: var(--white); border-radius: 12px;
+  border: 1px solid var(--border); overflow: auto;
+}
+table { width: 100%; border-collapse: collapse; font-size: 11px; }
+
+/* ── COLUMN HEADERS ── */
+thead tr { background: var(--navy); }
+th {
+  padding: 10px 12px; text-align: left;
+  font-size: 9px; font-weight: 800; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(255,255,255,0.6);
+  white-space: nowrap; position: sticky; top: 0;
+}
+th.rep-col { color: white; min-width: 180px; }
+th.mod-col { text-align: center; min-width: 80px; max-width: 100px; cursor: pointer; }
+th.mod-col:hover { color: rgba(255,255,255,0.9); }
+
+/* module header color by type */
+th.kc-header  { border-top: 3px solid var(--teal-dark); }
+th.olt-header { border-top: 3px solid var(--orange); }
+
+/* ── ROWS ── */
+tbody tr { border-bottom: 1px solid rgba(31,53,64,0.06); transition: background 0.12s; }
+tbody tr:hover { background: rgba(33,169,225,0.04); }
+tbody tr:last-child { border-bottom: none; }
+
+td { padding: 10px 12px; vertical-align: middle; }
+td.rep-cell { min-width: 180px; }
+
+.rep-name { font-size: 12px; font-weight: 700; color: var(--navy); }
+.rep-email { font-size: 10px; color: var(--muted); font-weight: 500; margin-top: 1px; }
+.rep-role {
+  display: inline-block; font-size: 8px; font-weight: 800;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 2px 7px; border-radius: 10px; margin-top: 3px;
+}
+.rep-role.acq  { background: rgba(33,169,225,0.12); color: #1487b8; }
+.rep-role.dispo{ background: rgba(245,131,31,0.12);  color: #c4640a; }
+
+/* progress bar cell */
+.prog-cell { min-width: 120px; }
+.prog-bar-wrap {
+  height: 6px; background: rgba(31,53,64,0.08);
+  border-radius: 99px; overflow: hidden; margin-bottom: 3px;
+}
+.prog-bar-fill { height: 100%; border-radius: 99px; background: var(--blue); }
+.prog-text { font-size: 10px; font-weight: 700; color: var(--muted); }
+
+/* module cell */
+td.mod-cell { text-align: center; padding: 8px 6px; }
+.cell-pass {
+  display: inline-flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 1px;
+  width: 54px; height: 40px; border-radius: 6px;
+  background: rgba(46,204,113,0.10); border: 1px solid rgba(46,204,113,0.25);
+}
+.cell-fail {
+  display: inline-flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 1px;
+  width: 54px; height: 40px; border-radius: 6px;
+  background: rgba(231,76,60,0.08); border: 1px solid rgba(231,76,60,0.2);
+}
+.cell-none {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 54px; height: 40px; border-radius: 6px;
+  background: rgba(31,53,64,0.04); border: 1px solid rgba(31,53,64,0.08);
+  color: var(--muted); font-size: 14px;
+}
+.cell-score { font-size: 11px; font-weight: 800; }
+.cell-pass .cell-score  { color: #18924d; }
+.cell-fail .cell-score  { color: var(--fail); }
+.cell-check { font-size: 9px; }
+.cell-pass .cell-check  { color: rgba(46,204,113,0.7); }
+.cell-fail .cell-check  { color: rgba(231,76,60,0.6); }
+
+/* ── LOADING / EMPTY ── */
+.state-msg {
+  text-align: center; padding: 60px 24px;
+  font-size: 13px; color: var(--muted); font-style: italic;
+}
+.spinner-wrap { display: flex; align-items: center; justify-content: center; gap: 10px; }
+.spinner {
+  width: 20px; height: 20px; border: 2px solid rgba(31,53,64,0.15);
+  border-top-color: var(--blue); border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── LAST UPDATED ── */
+.last-updated { font-size: 10px; color: var(--muted); text-align: right; margin-top: 10px; }
+
+/* ── FOOTER ── */
+.site-footer { text-align: center; padding: 24px; font-size: 11px; color: var(--muted); border-top: 1px solid var(--border); }
+
+@media (max-width: 700px) {
+  .main-wrap { padding: 16px 10px 60px; }
+  .site-header { padding: 0 16px; }
+  .header-title-sub { display: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-logo">
+    <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgoKPHN2ZwogICB2ZXJzaW9uPSIxLjEiCiAgIGlkPSJzdmcxIgogICB3aWR0aD0iMTQyNC45NzMzIgogICBoZWlnaHQ9IjEzMzIuNjY2NyIKICAgdmlld0JveD0iMCAwIDE0MjQuOTczMyAxMzMyLjY2NjciCiAgIHNvZGlwb2RpOmRvY25hbWU9IkxvZ28gU3RhY2tlZC5lcHMiCiAgIHhtbG5zOmlua3NjYXBlPSJodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy9uYW1lc3BhY2VzL2lua3NjYXBlIgogICB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiCiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnMKICAgICBpZD0iZGVmczEiIC8+CiAgPHNvZGlwb2RpOm5hbWVkdmlldwogICAgIGlkPSJuYW1lZHZpZXcxIgogICAgIHBhZ2Vjb2xvcj0iI2ZmZmZmZiIKICAgICBib3JkZXJjb2xvcj0iIzAwMDAwMCIKICAgICBib3JkZXJvcGFjaXR5PSIwLjI1IgogICAgIGlua3NjYXBlOnNob3dwYWdlc2hhZG93PSIyIgogICAgIGlua3NjYXBlOnBhZ2VvcGFjaXR5PSIwLjAiCiAgICAgaW5rc2NhcGU6cGFnZWNoZWNrZXJib2FyZD0iMCIKICAgICBpbmtzY2FwZTpkZXNrY29sb3I9IiNkMWQxZDEiPgogICAgPGlua3NjYXBlOnBhZ2UKICAgICAgIHg9IjAiCiAgICAgICB5PSIwIgogICAgICAgaW5rc2NhcGU6bGFiZWw9IjEiCiAgICAgICBpZD0icGFnZTEiCiAgICAgICB3aWR0aD0iMTQyNC45NzMzIgogICAgICAgaGVpZ2h0PSIxMzMyLjY2NjciCiAgICAgICBtYXJnaW49IjAiCiAgICAgICBibGVlZD0iMCIgLz4KICA8L3NvZGlwb2RpOm5hbWVkdmlldz4KICA8ZwogICAgIGlkPSJnMSIKICAgICBpbmtzY2FwZTpncm91cG1vZGU9ImxheWVyIgogICAgIGlua3NjYXBlOmxhYmVsPSIxIj4KICAgIDxnCiAgICAgICBpZD0iZ3JvdXAtUjUiPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDIiCiAgICAgICAgIGQ9Ik0gMCw0Mi4zMzk4IFYgMTkwNS4xMiBIIDQyNi44OTUgViAxNDg1LjMgYyAxMzEuNjkxLDMxNy41MSAzNTEuNTkzLDQ2OS4yMiA2NTkuNzM1LDQ1NS4xIHYgLTQ1MS41OCBoIC0yNC42OSBjIC0xOTIuODc3LDAgLTM0Ni45NiwtNjIuOTUgLTQ2Mi4xNzQsLTE4OC43NSBDIDQ4NC41MDQsMTE3NC4yMiA0MjYuODk1LDk5MS4zNzEgNDI2Ljg5NSw3NTEuNDY5IFYgNDIuMzM5OCBIIDAiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgzIgogICAgICAgICBkPSJtIDE2ODQuMjUsMTEwNC4yNiBoIDk1Ni4xIGMgLTE0LjEyLDE0My40NCAtNjIuMzUsMjYxLjA4IC0xNDQuNjcsMzUyLjggLTgyLjM0LDkxLjczIC0xOTEuNzEsMTM3LjYgLTMyOC4wOCwxMzcuNiAtMTI5LjQsMCAtMjM3LjYxLC00NS4zMSAtMzI0LjU5LC0xMzUuODMgLTg3LjA0LC05MC41NiAtMTM5Ljk1LC0yMDguNzYgLTE1OC43NiwtMzU0LjU3IHogTSAyMjE2Ljk5LDAgQyAxOTQ0LjExLDAgMTcxNi41NSw4OS45NjA5IDE1MzQuMzIsMjY5Ljg5MSAxMzUyLjAxLDQ0OS44MiAxMjYwLjg5LDY4Mi4wNTkgMTI2MC44OSw5NjYuNjcyIHYgNy4wNTggYyAwLDI3MC40NCA4NS44Myw0OTkuNzcgMjU3LjU1LDY4Ny45NiAxNzEuNjYsMTg4LjE0IDM4OS4yMywyODIuMjUgNjUyLjY3LDI4Mi4yNSAyODIuMjYsMCA1MDEuNTMsLTk1Ljg3IDY1Ny45NywtMjg3LjU0IDE1Ni40LC0xOTEuNzMgMjM0LjYzLC00MjkuODYgMjM0LjYzLC03MTQuNDIgMCwtMjMuNTM5IC0yLjM4LC02My41MTEgLTcuMDYsLTExOS45NiBIIDE2ODcuNzggYyAyMy40OSwtMTQ4LjE2OCA4My40NiwtMjY0LjA1MSAxNzkuOTQsLTM0Ny41IDk2LjQsLTgzLjUyIDIxNS4yLC0xMjUuMjM5IDM1Ni4zMiwtMTI1LjIzOSAxODMuNDUsMCAzNTEuNTgsNzQuMDc4IDUwNC41MSwyMjIuMjU4IEwgMjk3OS4wMywzNDkuMjgxIEMgMjc4Ni4xNSwxMTYuNDIyIDI1MzIuMTMsMCAyMjE2Ljk5LDAiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg0IgogICAgICAgICBkPSJtIDQzODYuMywzNzMuOTY5IGMgMTUwLjUsMCAyNzYuOTUsNTQuNjgzIDM3OS4yOCwxNjQuMDYyIDEwMi4zLDEwOS4zNzEgMTUzLjQ2LDI1My4zOTkgMTUzLjQ2LDQzMi4xNjggdiA3LjA2MyBjIDAsMTc2LjM5OCAtNTEuNzcsMzE5LjgyOCAtMTU1LjIzLDQzMC40MTggLTEwMy41NCwxMTAuNTMgLTIyOS4zMywxNjUuODEgLTM3Ny41MSwxNjUuODEgLTE0OC4xNiwwIC0yNzUuNzgsLTU1LjkgLTM4Mi43OCwtMTY3LjU4IC0xMDcuMDUsLTExMS43NCAtMTYwLjUzLC0yNTQuNjMgLTE2MC41MywtNDI4LjY0OCB2IC03LjA2MyBjIDAsLTE3NC4wNzggNTMuNDgsLTMxNi45NTcgMTYwLjUzLC00MjguNjQ4IDEwNywtMTExLjc0MiAyMzQuNjIsLTE2Ny41ODIgMzgyLjc4LC0xNjcuNTgyIHogTSA0NDg1LjA5LDMuNTM5MDYgYyAtMjU2LjM5LDAgLTQ2Ni45MSwxMDkuMzU4OTQgLTYzMS41MSwzMjguMDgxOTQgViA0Mi4zMzk4IGggLTQyNi45IFYgMjYxNy43OSBoIDQyNi45IFYgMTU5NC42NiBjIDE2NC42LDIzMi44NCAzNzUuMTIsMzQ5LjI4IDYzMS41MSwzNDkuMjggMjM1LjE3LDAgNDM4LjYzLC04Ny42NiA2MTAuMzQsLTI2Mi44NCAxNzEuNjcsLTE3NS4yNSAyNTcuNTUsLTQwOS44NiAyNTcuNTUsLTcwMy44MzggdiAtNy4wNjMgYyAwLC0yOTQuMDI3IC04NS44OCwtNTI4LjYzNiAtMjU3LjU1LC03MDMuODI4IEMgNDkyMy43Miw5MS4xMjExIDQ3MjAuMjYsMy41MzkwNiA0NDg1LjA5LDMuNTM5MDYiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg1IgogICAgICAgICBkPSJtIDYzNjguMzQsMy41MzkwNiBjIC0yMDcsMCAtMzY5LjMsNjQuNjUyMzQgLTQ4Ni44NiwxOTQuMDMwOTQgLTExNy42NSwxMjkuMzIxIC0xNzYuNDEsMzAzLjQxIC0xNzYuNDEsNTIyLjE0MSBWIDE5MDUuMTIgaCA0MjYuODkgViA4NDYuNzE5IGMgMCwtMTQ1Ljg2IDM0LjY3LC0yNTguMTYgMTA0LjA4LC0zMzYuOTE4IDY5LjMzLC03OC44MjEgMTY3LjU3LC0xMTguMTkyIDI5NC42LC0xMTguMTkyIDEyNC42MiwwIDIyNS43OCw0MS4xMjEgMzAzLjM5LDEyMy40ODEgNzcuNjIsODIuMzEyIDExNi40MiwxOTUuMTk5IDExNi40MiwzMzguNjggdiAxMDUxLjM1IGggNDI2LjkgViA0Mi4zMzk4IGggLTQyNi45IFYgMzMxLjYyMSBDIDY4MDIuMjksMTEyLjg5OCA2NjA4LjIzLDMuNTM5MDYgNjM2OC4zNCwzLjUzOTA2IgogICAgICAgICBzdHlsZT0iZmlsbDojMjEzMDNiO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lIgogICAgICAgICB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiIC8+CiAgICAgIDxwYXRoCiAgICAgICAgIGlkPSJwYXRoNiIKICAgICAgICAgZD0iTSA3ODU1LjM3LDQyLjMzOTggViAxOTA1LjEyIGggNDI2Ljg5IFYgNDIuMzM5OCBaIE0gNzgzNy43MywyMTkwLjg5IHYgNDA1LjcyIGggNDU4LjY0IHYgLTQwNS43MiBoIC00NTguNjQiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg3IgogICAgICAgICBkPSJNIDg3NzIuMyw0Mi4zMzk4IFYgMjYxNy43OSBoIDQyNi44NyBWIDQyLjMzOTggSCA4NzcyLjMiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg4IgogICAgICAgICBkPSJtIDEwMjk1LjcsMTAuNTg5OCBjIC0zNTcuNTgsMCAtNTM2LjMsMTgyLjI1MDIgLTUzNi4zLDU0Ni44NDAyIHYgOTgwLjc4IGggLTIzNi4zNiB2IDM2Ni45MSBoIDIzNi4zNiB2IDUxMS41NiBoIDQyNi45IHYgLTUxMS41NiBoIDUwMSB2IC0zNjYuOTEgaCAtNTAxIFYgNjI0LjQ2MSBjIDAsLTE1NS4yMzEgNzYuNCwtMjMyLjg1MiAyMjkuMywtMjMyLjg1MiA5MS43LDAgMTc5LjksMjEuMTggMjY0LjYsNjMuNTEyIFYgMTA1Ljg0IGMgLTExMi45LC02My41MDAyIC0yNDEuMSwtOTUuMjUwMiAtMzg0LjUsLTk1LjI1MDIiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg5IgogICAgICAgICBkPSJtIDMzMzcuOTksMzU0NC44MyAxMTc5Ljc5LDEwNzYuNzIgdiAxOTM4LjEgTCAzMzM3Ljk5LDU1OTAuNiBWIDM1NDQuODMiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgxMCIKICAgICAgICAgZD0iTSA2MTY5LjQ4LDk5OTUuMDEgViA0NjIxLjU1IGwgMTE3OS44LC0xMDc2LjcyIHYgNTQ5MS4yOSBsIC0xMTc5LjgsOTU4Ljg5IgogICAgICAgICBzdHlsZT0iZmlsbDojNGVhOWUyO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lIgogICAgICAgICB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiIC8+CiAgICAgIDxwYXRoCiAgICAgICAgIGlkPSJwYXRoMTEiCiAgICAgICAgIGQ9Ik0gNDc1My43NCw3NzQ0LjA1IFYgNDgzNi44OSBsIDU4OS44OSw1MzguMzcgNTg5LjksLTUzOC4zNyA0LjM3LDM5NzMuNzIgLTExODQuMTYsLTEwNjYuNTYiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgxMiIKICAgICAgICAgZD0ibSA0ODAyLjIxLDM0MjUuMTkgaCA0MzAuNjkgdiA0MzAuNjggaCAtNDMwLjY5IHYgLTQzMC42OCIKICAgICAgICAgc3R5bGU9ImZpbGw6IzRlYTllMjtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZSIKICAgICAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIiAvPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDEzIgogICAgICAgICBkPSJtIDU0NDguMjQsMzQyNS4xOSBoIDQzMC43IHYgNDMwLjY4IGggLTQzMC43IHYgLTQzMC42OCIKICAgICAgICAgc3R5bGU9ImZpbGw6IzRlYTllMjtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZSIKICAgICAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIiAvPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDE0IgogICAgICAgICBkPSJtIDUyMzIuOSw0NTAxLjkxIGggLTQzMC42OSB2IC00MzAuNjkgaCA0MzAuNjkgdiA0MzAuNjkiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgxNSIKICAgICAgICAgZD0ibSA1NDQ4LjI0LDQ1MDEuOTEgdiAtNDMwLjY5IGggNDMwLjcgdiA0MzAuNjkgaCAtNDMwLjciCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=" alt="Rebuilt"/>
+    <div class="header-divider"></div>
+    <div class="header-title">
+      <span class="header-title-main">Admin Dashboard</span>
+      <span class="header-title-sub">Rep Completion Tracking</span>
+    </div>
+  </div>
+  <div class="header-right">
+    <span class="admin-badge">Admin</span>
+    <button class="btn-refresh" onclick="loadData()">↻ Refresh</button>
+  </div>
+</header>
+
+<main class="main-wrap">
+
+  <!-- SUMMARY -->
+  <div class="summary-bar" id="summary-bar">
+    <div class="summary-card"><div class="summary-value blue" id="s-reps">—</div><div class="summary-label">Total Reps</div></div>
+    <div class="summary-card"><div class="summary-value" id="s-completions">—</div><div class="summary-label">Completions</div></div>
+    <div class="summary-card"><div class="summary-value green" id="s-passes">—</div><div class="summary-label">Passed</div></div>
+    <div class="summary-card"><div class="summary-value orange" id="s-avg">—</div><div class="summary-label">Avg Score</div></div>
+    <div class="summary-card"><div class="summary-value blue" id="s-full">—</div><div class="summary-label">100% Complete</div></div>
+  </div>
+
+  <!-- CONTROLS -->
+  <div class="controls">
+    <div class="filter-group">
+      <span class="filter-label">Role</span>
+      <button class="filter-btn active-all" id="f-all"   onclick="setFilter('all')">All</button>
+      <button class="filter-btn" id="f-acq"              onclick="setFilter('acq')">Acquisition</button>
+      <button class="filter-btn" id="f-dispo"            onclick="setFilter('dispo')">Disposition</button>
+    </div>
+    <input class="search-input" id="search-input" type="text" placeholder="Search by name or email…" oninput="renderTable()"/>
+    <select class="sort-select" id="sort-select" onchange="renderTable()">
+      <option value="name">Sort: Name A–Z</option>
+      <option value="pct-desc">Sort: Most Complete</option>
+      <option value="pct-asc">Sort: Least Complete</option>
+    </select>
+    <span class="controls-right" id="rep-count"></span>
+  </div>
+
+  <!-- TABLE -->
+  <div class="table-wrap">
+    <div id="table-container">
+      <div class="state-msg">
+        <div class="spinner-wrap"><div class="spinner"></div><span>Loading completion data…</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="last-updated" id="last-updated"></div>
+
+</main>
+
+<footer class="site-footer">
+  © Rebuilt Offers, LLC · Admin Dashboard · Data from Google Sheets
+</footer>
+
+<script>
+const APPS_URL = 'https://script.google.com/macros/s/AKfycbyRSuUKBjwlPZiY8E7IZZUEQ8u-uwwuTXZnQ0nTPqtfk-bu3zyAa6RKZYw7687arJVs/exec';
+
+// ── MODULE REGISTRY ──────────────────────────────────────────
+const ALL_MODULES = [
+  // OLTs first
+  { id:'olt_sales_talk',    name:'Sales Talk',       type:'OLT', roles:['acq'] },
+  { id:'olt_ab_contract',   name:'AB Contract',      type:'OLT', roles:['acq'] },
+  { id:'olt_five9',         name:'Five9',            type:'OLT', roles:['acq'] },
+  // KCs
+  { id:'kc_intro',          name:'Intro to Rebuilt', type:'KC',  roles:['acq','dispo'] },
+  { id:'kc_core_values',    name:'Core Values',      type:'KC',  roles:['acq','dispo'] },
+  { id:'kc_marketing',      name:'Marketing',        type:'KC',  roles:['acq','dispo'] },
+  { id:'kc_dispo_intro',    name:'Intro to Dispo',   type:'KC',  roles:['dispo'] },
+  { id:'kc_ur_to_mktg',     name:'UR to Mktg',       type:'KC',  roles:['dispo'] },
+  { id:'kc_buyer_sourcing', name:'Buyer Sourcing',   type:'KC',  roles:['dispo'] },
+  { id:'kc_buyer_processes',name:'Buyer Processes',  type:'KC',  roles:['dispo'] },
+  { id:'kc_c2c_nts',        name:'C2C + NTS',        type:'KC',  roles:['dispo'] },
+];
+
+// ── STATE ────────────────────────────────────────────────────
+var allData       = [];   // raw completions from sheet
+var repMap        = {};  // email → { name, role, completions: {mod_id: record} }
+var currentFilter = 'all';
+
+// ── LOAD ─────────────────────────────────────────────────────
+function loadData() {
+  document.getElementById('table-container').innerHTML =
+    '<div class="state-msg"><div class="spinner-wrap"><div class="spinner"></div><span>Loading…</span></div></div>';
+
+  var cbName = 'adm_cb_' + Date.now();
+  var timer  = setTimeout(function() {
+    delete window[cbName];
+    var s = document.getElementById('s_' + cbName);
+    if (s) s.remove();
+    document.getElementById('table-container').innerHTML =
+      '<div class="state-msg">Could not load data — check Apps Script deployment.</div>';
+  }, 10000);
+
+  window[cbName] = function(data) {
+    clearTimeout(timer);
+    delete window[cbName];
+    var s = document.getElementById('s_' + cbName);
+    if (s) s.remove();
+    processData(data);
+  };
+
+  var tag  = document.createElement('script');
+  tag.id   = 's_' + cbName;
+  tag.src  = APPS_URL + '?mode=admin&callback=' + cbName;
+  tag.onerror = function() {
+    clearTimeout(timer);
+    delete window[cbName];
+    document.getElementById('table-container').innerHTML =
+      '<div class="state-msg">Failed to reach Apps Script.</div>';
+  };
+  document.head.appendChild(tag);
+}
+
+// ── PROCESS DATA ─────────────────────────────────────────────
+function processData(data) {
+  allData = (data && data.completions) ? data.completions : [];
+  repMap  = {};
+
+  allData.forEach(function(c) {
+    var email = (c.email || '').toLowerCase().trim();
+    if (!email) return;
+
+    if (!repMap[email]) {
+      var namePart = email.split('@')[0].replace(/[._]/g,' ')
+        .replace(/(^\w|\s\w)/g, function(m) { return m.toUpperCase(); });
+      // Infer role from which modules they've attempted
+      repMap[email] = { name: namePart, email: email, role: '', completions: {} };
+    }
+
+    var rec = repMap[email];
+    // Keep best score per module
+    if (!rec.completions[c.module_id] || c.score_pct > rec.completions[c.module_id].score_pct) {
+      rec.completions[c.module_id] = c;
+    }
+  });
+
+  // Infer role: if they have any dispo-only modules → dispo, else acq
+  Object.values(repMap).forEach(function(rep) {
+    var dispoMods = ['kc_dispo_intro','kc_ur_to_mktg','kc_buyer_sourcing','kc_buyer_processes','kc_c2c_nts'];
+    var acqMods   = ['olt_sales_talk','olt_ab_contract','olt_five9'];
+    var hasDispoOnly = dispoMods.some(function(id) { return rep.completions[id]; });
+    var hasAcqOnly   = acqMods.some(function(id)   { return rep.completions[id]; });
+    if (hasDispoOnly && !hasAcqOnly) rep.role = 'dispo';
+    else rep.role = 'acq'; // default to acq if ambiguous or only shared modules
+  });
+
+  document.getElementById('last-updated').textContent =
+    'Last refreshed: ' + new Date().toLocaleTimeString();
+
+  updateSummary();
+  renderTable();
+}
+
+// ── SUMMARY STATS ────────────────────────────────────────────
+function updateSummary() {
+  var reps     = Object.values(repMap);
+  var total    = reps.length;
+  var allComps = 0, allPasses = 0, scoreSum = 0, scoreCount = 0, fullCount = 0;
+
+  reps.forEach(function(rep) {
+    var myMods = ALL_MODULES.filter(function(m) { return m.roles.includes(rep.role || 'acq'); });
+    var comp   = Object.values(rep.completions).length;
+    var passed = Object.values(rep.completions).filter(function(c) { return c.passed; }).length;
+    allComps  += comp;
+    allPasses += passed;
+    Object.values(rep.completions).forEach(function(c) {
+      if (c.score_pct > 0) { scoreSum += parseFloat(c.score_pct); scoreCount++; }
+    });
+    if (comp >= myMods.length && myMods.length > 0) fullCount++;
+  });
+
+  document.getElementById('s-reps').textContent        = total;
+  document.getElementById('s-completions').textContent = allComps;
+  document.getElementById('s-passes').textContent      = allPasses;
+  document.getElementById('s-avg').textContent         = scoreCount > 0 ? Math.round(scoreSum/scoreCount) + '%' : '—';
+  document.getElementById('s-full').textContent        = fullCount;
+}
+
+// ── FILTER ───────────────────────────────────────────────────
+function setFilter(f) {
+  currentFilter = f;
+  ['all','acq','dispo'].forEach(function(x) {
+    var btn = document.getElementById('f-' + x);
+    btn.className = 'filter-btn' + (x === f ? ' active-' + f : '');
+  });
+  renderTable();
+}
+
+// ── RENDER TABLE ─────────────────────────────────────────────
+function renderTable() {
+  var search = (document.getElementById('search-input').value || '').toLowerCase();
+  var sort   = document.getElementById('sort-select').value;
+
+  var reps = Object.values(repMap).filter(function(rep) {
+    if (currentFilter !== 'all' && rep.role !== currentFilter) return false;
+    if (search && !rep.name.toLowerCase().includes(search) && !rep.email.includes(search)) return false;
+    return true;
+  });
+
+  // Sort
+  reps.sort(function(a, b) {
+    if (sort === 'name') return a.name.localeCompare(b.name);
+    var pctA = getCompPct(a), pctB = getCompPct(b);
+    return sort === 'pct-desc' ? pctB - pctA : pctA - pctB;
+  });
+
+  document.getElementById('rep-count').textContent = reps.length + ' rep' + (reps.length !== 1 ? 's' : '');
+
+  if (reps.length === 0) {
+    document.getElementById('table-container').innerHTML =
+      '<div class="state-msg">No reps found' + (allData.length === 0 ? ' — no data in sheet yet.' : '.') + '</div>';
+    return;
+  }
+
+  // Determine which modules to show based on active filter
+  var visibleMods = ALL_MODULES.filter(function(m) {
+    if (currentFilter === 'acq')   return m.roles.includes('acq');
+    if (currentFilter === 'dispo') return m.roles.includes('dispo');
+    return true;
+  });
+
+  // Build header
+  var thead = '<thead><tr><th class="rep-col">Rep</th><th>Progress</th>';
+  visibleMods.forEach(function(m) {
+    var cls = m.type === 'OLT' ? 'olt-header' : 'kc-header';
+    thead += '<th class="mod-col ' + cls + '">' + m.name + '</th>';
+  });
+  thead += '</tr></thead>';
+
+  // Build rows
+  var tbody = '<tbody>';
+  reps.forEach(function(rep) {
+    var myMods = ALL_MODULES.filter(function(m) { return m.roles.includes(rep.role || 'acq'); });
+    var compCount = myMods.filter(function(m) { return rep.completions[m.id] && rep.completions[m.id].passed; }).length;
+    var pct = myMods.length > 0 ? Math.round((compCount / myMods.length) * 100) : 0;
+
+    tbody += '<tr>';
+    tbody += '<td class="rep-cell">';
+    tbody += '<div class="rep-name">' + rep.name + '</div>';
+    tbody += '<div class="rep-email">' + rep.email + '</div>';
+    tbody += '<span class="rep-role ' + rep.role + '">' + (rep.role === 'acq' ? 'Acquisition' : 'Disposition') + '</span>';
+    tbody += '</td>';
+
+    // Progress bar
+    tbody += '<td class="prog-cell">';
+    tbody += '<div class="prog-bar-wrap"><div class="prog-bar-fill" style="width:' + pct + '%"></div></div>';
+    tbody += '<div class="prog-text">' + compCount + ' / ' + myMods.length + ' passed (' + pct + '%)</div>';
+    tbody += '</td>';
+
+    // Module cells
+    visibleMods.forEach(function(m) {
+      var c = rep.completions[m.id];
+      // Only show cell if this module is relevant to rep's role
+      if (!m.roles.includes(rep.role || 'acq')) {
+        tbody += '<td class="mod-cell"><span class="cell-none" style="opacity:0.3">—</span></td>';
+        return;
+      }
+      if (!c) {
+        tbody += '<td class="mod-cell"><span class="cell-none">—</span></td>';
+      } else if (c.passed) {
+        tbody += '<td class="mod-cell"><span class="cell-pass"><span class="cell-score">' + Math.round(c.score_pct) + '%</span><span class="cell-check">✓ Pass</span></span></td>';
+      } else {
+        tbody += '<td class="mod-cell"><span class="cell-fail"><span class="cell-score">' + Math.round(c.score_pct) + '%</span><span class="cell-check">✗ Retry</span></span></td>';
+      }
+    });
+
+    tbody += '</tr>';
+  });
+  tbody += '</tbody>';
+
+  document.getElementById('table-container').innerHTML =
+    '<table>' + thead + tbody + '</table>';
+}
+
+function getCompPct(rep) {
+  var myMods = ALL_MODULES.filter(function(m) { return m.roles.includes(rep.role || 'acq'); });
+  if (!myMods.length) return 0;
+  var passed = myMods.filter(function(m) { return rep.completions[m.id] && rep.completions[m.id].passed; }).length;
+  return Math.round((passed / myMods.length) * 100);
+}
+
+// ── INIT ─────────────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', loadData);
+</script>
+</body>
+</html>
