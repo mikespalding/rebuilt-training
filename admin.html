@@ -109,25 +109,29 @@ th {
 }
 th.rep-col { color: white; min-width: 180px; }
 th.mod-col {
-  text-align: center;
-  min-width: 54px;
-  max-width: 70px;
-  width: 62px;
-  cursor: pointer;
+  text-align: left;
+  width: 36px;
+  min-width: 36px;
+  max-width: 36px;
+  padding: 0;
   vertical-align: bottom;
-  padding-bottom: 8px;
+  height: 120px;
+  cursor: pointer;
+  position: relative;
 }
 th.mod-col:hover { color: rgba(255,255,255,0.9); }
 th.mod-col .col-label {
-  display: block;
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
   white-space: nowrap;
-  font-size: 8px;
-  letter-spacing: 0.08em;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  transform-origin: left bottom;
+  transform: translateX(-50%) rotate(-55deg);
+  display: block;
   line-height: 1;
-  max-height: 80px;
-  overflow: hidden;
 }
 
 /* module header color by type */
@@ -162,22 +166,22 @@ td.rep-cell { min-width: 180px; }
 .prog-text { font-size: 10px; font-weight: 700; color: var(--muted); }
 
 /* module cell */
-td.mod-cell { text-align: center; padding: 8px 6px; }
+td.mod-cell { text-align: center; padding: 8px 2px; }
 .cell-pass {
   display: inline-flex; align-items: center; justify-content: center;
   flex-direction: column; gap: 1px;
-  width: 54px; height: 40px; border-radius: 6px;
+  width: 32px; height: 40px; border-radius: 6px;
   background: rgba(46,204,113,0.10); border: 1px solid rgba(46,204,113,0.25);
 }
 .cell-fail {
   display: inline-flex; align-items: center; justify-content: center;
   flex-direction: column; gap: 1px;
-  width: 54px; height: 40px; border-radius: 6px;
+  width: 32px; height: 40px; border-radius: 6px;
   background: rgba(231,76,60,0.08); border: 1px solid rgba(231,76,60,0.2);
 }
 .cell-none {
   display: inline-flex; align-items: center; justify-content: center;
-  width: 54px; height: 40px; border-radius: 6px;
+  width: 32px; height: 40px; border-radius: 6px;
   background: rgba(31,53,64,0.04); border: 1px solid rgba(31,53,64,0.08);
   color: var(--muted); font-size: 14px;
 }
