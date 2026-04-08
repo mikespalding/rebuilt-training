@@ -479,11 +479,6 @@ body {
       <div class="meta-item"><div class="meta-icon">📊</div>Score Tracked</div>
     </div>
     <div class="form-group">
-      <label>Full Name</label>
-      <input type="text" id="inputName" placeholder="Your full name" autocomplete="name"/>
-      <div class="gate-error" id="errorName">Please enter your name.</div>
-    </div>
-    <div class="form-group">
       <label>Rebuilt Email</label>
       <input type="text" id="inputEmail" placeholder="you@rebuilt.com" autocomplete="email"/>
       <div class="gate-error" id="errorEmail">Please enter a valid @rebuilt.com email.</div>
@@ -547,14 +542,9 @@ const PASS_THRESHOLD = 0.70;
 // ── PRE-FILL FROM HUB SESSION ──
 (function() {
   const savedEmail = localStorage.getItem('rebuilt_email');
-  const savedName  = localStorage.getItem('rebuilt_name');
   if (savedEmail) {
     const el = document.getElementById('inputEmail');
     if (el) el.value = savedEmail;
-  }
-  if (savedName) {
-    const el = document.getElementById('inputName');
-    if (el) el.value = savedName;
   }
 })();
 
@@ -661,18 +651,15 @@ function validateEmail(email) {
 
 // ── START QUIZ ──
 function startQuiz() {
-  userName  = document.getElementById('inputName').value.trim();
   userEmail = document.getElementById('inputEmail').value.trim();
+  userName  = userEmail.split('@')[0].replace(/[._]/g,' ').replace(/(^\w|\s\w)/g, m => m.toUpperCase());
   let valid = true;
-  document.getElementById('errorName').style.display  = 'none';
   document.getElementById('errorEmail').style.display = 'none';
-  if (!userName) { document.getElementById('errorName').style.display = 'block'; valid = false; }
   if (!validateEmail(userEmail)) { document.getElementById('errorEmail').style.display = 'block'; valid = false; }
   if (!valid) return;
   startTime = Date.now();
   // Persist name/email for hub pre-fill
   localStorage.setItem('rebuilt_email', userEmail.toLowerCase().trim());
-  localStorage.setItem('rebuilt_name',  userName);
   showScreen('screenQuiz');
   renderQuestion();
 }
