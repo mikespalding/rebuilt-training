@@ -37,7 +37,7 @@ body { font-family: var(--font); background: var(--off-white); color: var(--navy
 .header-title-main { font-size: 15px; font-weight: 800; color: white; line-height: 1; }
 .header-title-sub { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.40); letter-spacing: 0.12em; text-transform: uppercase; line-height: 1; }
 .header-right { display: flex; align-items: center; gap: 12px; }
-.admin-badge { font-size: 10px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; background: rgba(245,131,31,0.2); color: var(--orange); }
+.admin-badge { font-size: 10px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; background: rgba(220,38,38,0.15); color: #dc2626; }
 .btn-refresh {
   font-size: 11px; font-weight: 700; padding: 7px 14px;
   background: rgba(33,169,225,0.15); border: 1px solid rgba(33,169,225,0.3);
@@ -108,8 +108,27 @@ th {
   white-space: nowrap; position: sticky; top: 0;
 }
 th.rep-col { color: white; min-width: 180px; }
-th.mod-col { text-align: center; min-width: 80px; max-width: 100px; cursor: pointer; }
+th.mod-col {
+  text-align: center;
+  min-width: 54px;
+  max-width: 70px;
+  width: 62px;
+  cursor: pointer;
+  vertical-align: bottom;
+  padding-bottom: 8px;
+}
 th.mod-col:hover { color: rgba(255,255,255,0.9); }
+th.mod-col .col-label {
+  display: block;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: nowrap;
+  font-size: 8px;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  max-height: 80px;
+  overflow: hidden;
+}
 
 /* module header color by type */
 th.kc-header  { border-top: 3px solid var(--teal-dark); }
@@ -203,7 +222,7 @@ td.mod-cell { text-align: center; padding: 8px 6px; }
     <div class="header-divider"></div>
     <div class="header-title">
       <span class="header-title-main">Admin Dashboard</span>
-      <span class="header-title-sub">Rep Completion Tracking</span>
+      <span class="header-title-sub">Associate Completion Tracking</span>
     </div>
   </div>
   <div class="header-right">
@@ -231,7 +250,13 @@ td.mod-cell { text-align: center; padding: 8px 6px; }
       <button class="filter-btn" id="f-acq"              onclick="setFilter('acq')">Acquisition</button>
       <button class="filter-btn" id="f-dispo"            onclick="setFilter('dispo')">Disposition</button>
     </div>
-    <input class="search-input" id="search-input" type="text" placeholder="Search by name or email…" oninput="renderTable()"/>
+    <select class="sort-select" id="assoc-select" onchange="onAssocSelect()" style="min-width:180px;">
+      <option value="">All Associates</option>
+    </select>
+    <input class="search-input" id="search-input" type="text" placeholder="Search by name or email…" oninput="onSearchInput()"/>
+    <select class="sort-select" id="assoc-filter" onchange="renderTable()" style="min-width:170px;">
+      <option value="">All Associates</option>
+    </select>
     <select class="sort-select" id="sort-select" onchange="renderTable()">
       <option value="name">Sort: Name A–Z</option>
       <option value="pct-desc">Sort: Most Complete</option>
@@ -360,11 +385,24 @@ function processData(data) {
     }
   });
 
+  // Populate assoc dropdown
+  var assocSel = document.getElementById('assoc-filter');
+  var current  = assocSel.value;
+  assocSel.innerHTML = '<option value="">All Associates</option>';
+  Object.values(repMap).sort(function(a,b){ return a.name.localeCompare(b.name); }).forEach(function(rep) {
+    var opt = document.createElement('option');
+    opt.value = rep.email;
+    opt.textContent = rep.name;
+    if (rep.email === current) opt.selected = true;
+    assocSel.appendChild(opt);
+  });
+
   document.getElementById('last-updated').textContent =
     'Last refreshed: ' + new Date().toLocaleTimeString();
 
   updateSummary();
   renderTable();
+  populateAssocDropdown();
 }
 
 // ── SUMMARY STATS ────────────────────────────────────────────
@@ -404,12 +442,14 @@ function setFilter(f) {
 
 // ── RENDER TABLE ─────────────────────────────────────────────
 function renderTable() {
-  var search = (document.getElementById('search-input').value || '').toLowerCase();
+  var search     = (document.getElementById('search-input').value || '').toLowerCase();
+  var assocPick  = document.getElementById('assoc-filter').value;
   var sort   = document.getElementById('sort-select').value;
 
   var reps = Object.values(repMap).filter(function(rep) {
     if (currentFilter !== 'all' && rep.role !== currentFilter) return false;
     if (search && !rep.name.toLowerCase().includes(search) && !rep.email.includes(search)) return false;
+    if (assocPick && rep.email !== assocPick) return false;
     return true;
   });
 
@@ -436,10 +476,10 @@ function renderTable() {
   });
 
   // Build header
-  var thead = '<thead><tr><th class="rep-col">Rep</th><th>Progress</th>';
+  var thead = '<thead><tr><th class="rep-col">Associate</th><th>Progress</th>';
   visibleMods.forEach(function(m) {
     var cls = m.type === 'OLT' ? 'olt-header' : 'kc-header';
-    thead += '<th class="mod-col ' + cls + '">' + m.name + '</th>';
+    thead += '<th class="mod-col ' + cls + '"><span class="mod-header-inner">' + m.name + '</span></th>';
   });
   thead += '</tr></thead>';
 
@@ -493,6 +533,40 @@ function getCompPct(rep) {
   if (!myMods.length) return 0;
   var passed = myMods.filter(function(m) { return rep.completions[m.id] && rep.completions[m.id].passed; }).length;
   return Math.round((passed / myMods.length) * 100);
+}
+
+function populateAssocDropdown() {
+  var sel = document.getElementById('assoc-select');
+  var current = sel.value;
+  // Keep first "All Associates" option
+  while (sel.options.length > 1) sel.remove(1);
+  var reps = Object.values(repMap).sort(function(a,b) { return a.name.localeCompare(b.name); });
+  reps.forEach(function(rep) {
+    var opt = document.createElement('option');
+    opt.value = rep.email;
+    opt.textContent = rep.name;
+    sel.appendChild(opt);
+  });
+  if (current) sel.value = current;
+}
+
+function onAssocSelect() {
+  // When an assoc is selected from dropdown, sync search field and re-render
+  var sel = document.getElementById('assoc-select');
+  var searchEl = document.getElementById('search-input');
+  if (sel.value) {
+    searchEl.value = sel.value; // filter by email
+  } else {
+    searchEl.value = '';
+  }
+  renderTable();
+}
+
+function onSearchInput() {
+  // When typing in search, reset dropdown to "All"
+  var sel = document.getElementById('assoc-select');
+  sel.value = '';
+  renderTable();
 }
 
 // ── INIT ─────────────────────────────────────────────────────
