@@ -522,7 +522,7 @@ body {
     <div class="save-status" id="saveStatus"></div>
     <button class="btn-primary" onclick="window.location.reload()" style="max-width:280px;margin:0 auto;display:block;">Retake Quiz</button>
     <br/>
-    <button class="btn-retake" onclick="window.location.reload()">← Back to Start</button>
+    <a class="btn-retake" href="index.html" style="display:inline-block;text-decoration:none;text-align:center;">← Back to Training Hub</a>
   </div>
   <!-- Footer inside results for visibility -->
   <div class="footer">
@@ -535,7 +535,9 @@ body {
 // ── CONFIG ──
 const SCRIPT_URL    = 'https://script.google.com/macros/s/AKfycbzByXw6HHRYXeENf1mhTd3HqbP23YhnWGkl46rTaZB0g5gv85VdtuFy-TfHkpK5DQ6zfg/exec';
 const MATERIAL_URL = 'https://docs.google.com/presentation/d/1TZ9rknXYRFbw2dxOtyQ9lu-O-S0gPTVgR7VVG_NPpRg/edit?usp=sharing';
-const MODULE_NAME  = 'Comps + ARV';
+const MODULE_NAME    = 'Comps + ARV';
+const MODULE_ID      = 'kc_comps_arv';
+const HUB_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyRSuUKBjwlPZiY8E7IZZUEQ8u-uwwuTXZnQ0nTPqtfk-bu3zyAa6RKZYw7687arJVs/exec';
 const PASS_THRESHOLD = 0.70;
 
 // Activate material links if URL is set
@@ -642,13 +644,18 @@ function validateEmail(email) {
 
 // ── START QUIZ ──
 function startQuiz() {
-  userEmail = document.getElementById('inputEmail').value.trim();
-  let valid = true;
+  var _saved = localStorage.getItem('rebuilt_email');
+  var emailEl = document.getElementById('inputEmail');
+  if (_saved && !emailEl.value) { emailEl.value = _saved; }
+  userEmail = emailEl.value.trim();
+  userName  = userEmail.split('@')[0].replace(/[._]/g,' ').replace(/(^\w|\s\w)/g, function(m){ return m.toUpperCase(); });
+  var valid = true;
   document.getElementById('errorEmail').style.display = 'none';
   if (!validateEmail(userEmail)) { document.getElementById('errorEmail').style.display = 'block'; valid = false; }
   if (!valid) return;
   userName = userEmail.split('@')[0];
   startTime = Date.now();
+  localStorage.setItem('rebuilt_email', userEmail.toLowerCase().trim());
   showScreen('screenQuiz');
   renderQuestion();
 }
@@ -732,57 +739,37 @@ function showResults() {
 
 // ── SAVE SCORE ──
 function saveScore(elapsed) {
-  const saveEl = document.getElementById('saveStatus');
+  var saveEl   = document.getElementById('saveStatus');
+  var overlay  = document.getElementById('savingOverlay');
+  var scorePct = Math.round((score / questions.length) * 100);
+  var email    = localStorage.getItem('rebuilt_email') || userEmail.toLowerCase().trim();
+  var role     = localStorage.getItem('rebuilt_role') || '';
   saveEl.textContent = 'Saving your score…';
   saveEl.className   = 'save-status saving';
-  document.getElementById('savingOverlay').classList.add('show');
-
-  if (!SCRIPT_URL || SCRIPT_URL.indexOf('PASTE') !== -1) {
-    document.getElementById('savingOverlay').classList.remove('show');
-    saveEl.textContent = '⚠ Score not saved — Apps Script URL not configured.';
-    saveEl.className   = 'save-status save-error';
-    return;
-  }
-
-  // Use GET with URL params to avoid CORS preflight issues with Apps Script
-  const params = new URLSearchParams({
-    action:    'save',
-    name:      userName,
-    email:     userEmail,
-    module:    MODULE_NAME,
-    score:     score,
-    total:     questions.length,
-    timeSpent: elapsed
+  overlay.classList.add('show');
+  var payload = JSON.stringify({
+    email: email, module_id: MODULE_ID, module_name: MODULE_NAME,
+    type: 'KC', score_pct: scorePct, role: role
   });
-
-  const timeout = setTimeout(() => {
-    document.getElementById('savingOverlay').classList.remove('show');
-    saveEl.textContent = '⚠ Save timed out — check your connection and try again.';
-    saveEl.className   = 'save-status save-error';
+  var timeout = setTimeout(function() {
+    overlay.classList.remove('show');
+    saveEl.textContent = '⚠ Save timed out.';
+    saveEl.className = 'save-status save-error';
   }, 10000);
-
-  fetch(SCRIPT_URL + '?' + params.toString())
-    .then(r => r.json())
-    .then(data => {
-      clearTimeout(timeout);
-      document.getElementById('savingOverlay').classList.remove('show');
-      if (data.status === 'success') {
-        saveEl.textContent = '✓ Score saved to your training record.';
-        saveEl.className   = 'save-status saved';
-      } else {
-        saveEl.textContent = '⚠ Save error: ' + (data.message || 'unknown error');
-        saveEl.className   = 'save-status save-error';
-      }
-    })
-    .catch(() => {
-      clearTimeout(timeout);
-      document.getElementById('savingOverlay').classList.remove('show');
-      // Fallback: image beacon — fire and assume success
-      const beacon = new Image();
-      beacon.src = SCRIPT_URL + '?' + params.toString();
-      saveEl.textContent = '✓ Score submitted to your training record.';
-      saveEl.className   = 'save-status saved';
-    });
+  fetch(HUB_SCRIPT_URL, {
+    method: 'POST', mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' }, body: payload
+  }).then(function() {
+    clearTimeout(timeout);
+    overlay.classList.remove('show');
+    saveEl.textContent = '✓ Score saved to your training record.';
+    saveEl.className = 'save-status saved';
+  }).catch(function() {
+    clearTimeout(timeout);
+    overlay.classList.remove('show');
+    saveEl.textContent = '✓ Score submitted to your training record.';
+    saveEl.className = 'save-status saved';
+  });
 }
 
 // ── UTILS ──

@@ -2,158 +2,708 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjQ0MCAwIDU1MCA4OTAiPgogIDxwYXRoIGQ9Im0gMzMzNy45OSwzNTQ0LjgzIDExNzkuNzksMTA3Ni43MiB2IDE5MzguMSBMIDMzMzcuOTksNTU5MC42IFYgMzU0NC44MyIKICAgICAgICBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz4KICA8cGF0aCBkPSJNIDYxNjkuNDgsOTk5NS4wMSBWIDQ2MjEuNTUgbCAxMTc5LjgsLTEwNzYuNzIgdiA1NDkxLjI5IGwgLTExNzkuOCw5NTguODkiCiAgICAgICAgZmlsbD0iIzRlYTllMiIgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIi8+CiAgPHBhdGggZD0iTSA0NzUzLjc0LDc3NDQuMDUgViA0ODM2Ljg5IGwgNTg5Ljg5LDUzOC4zNyA1ODkuOSwtNTM4LjM3IDQuMzcsMzk3My43MiAtMTE4NC4xNiwtMTA2Ni41NiIKICAgICAgICBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz4KICA8cGF0aCBkPSJtIDQ4MDIuMjEsMzQyNS4xOSBoIDQzMC42OSB2IDQzMC42OCBoIC00MzAuNjkgdiAtNDMwLjY4IgogICAgICAgIGZpbGw9IiM0ZWE5ZTIiIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIvPgogIDxwYXRoIGQ9Im0gNTQ0OC4yNCwzNDI1LjE5IGggNDMwLjcgdiA0MzAuNjggaCAtNDMwLjcgdiAtNDMwLjY4IgogICAgICAgIGZpbGw9IiM0ZWE5ZTIiIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIvPgogIDxwYXRoIGQ9Im0gNTIzMi45LDQ1MDEuOTEgaCAtNDMwLjY5IHYgLTQzMC42OSBoIDQzMC42OSB2IDQzMC42OSIKICAgICAgICBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz4KICA8cGF0aCBkPSJtIDU0NDguMjQsNDUwMS45MSB2IC00MzAuNjkgaCA0MzAuNyB2IDQzMC42OSBoIC00MzAuNyIKICAgICAgICBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz4KPC9zdmc+"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Onboarding Knowledge Checks &mdash; Rebuilt</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgoKPHN2ZwogICB2ZXJzaW9uPSIxLjEiCiAgIGlkPSJzdmcxIgogICB3aWR0aD0iMTQyNC45NzMzIgogICBoZWlnaHQ9IjEzMzIuNjY2NyIKICAgdmlld0JveD0iMCAwIDE0MjQuOTczMyAxMzMyLjY2NjciCiAgIHNvZGlwb2RpOmRvY25hbWU9IkxvZ28gU3RhY2tlZC5lcHMiCiAgIHhtbG5zOmlua3NjYXBlPSJodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy9uYW1lc3BhY2VzL2lua3NjYXBlIgogICB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiCiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnMKICAgICBpZD0iZGVmczEiIC8+CiAgPHNvZGlwb2RpOm5hbWVkdmlldwogICAgIGlkPSJuYW1lZHZpZXcxIgogICAgIHBhZ2Vjb2xvcj0iI2ZmZmZmZiIKICAgICBib3JkZXJjb2xvcj0iIzAwMDAwMCIKICAgICBib3JkZXJvcGFjaXR5PSIwLjI1IgogICAgIGlua3NjYXBlOnNob3dwYWdlc2hhZG93PSIyIgogICAgIGlua3NjYXBlOnBhZ2VvcGFjaXR5PSIwLjAiCiAgICAgaW5rc2NhcGU6cGFnZWNoZWNrZXJib2FyZD0iMCIKICAgICBpbmtzY2FwZTpkZXNrY29sb3I9IiNkMWQxZDEiPgogICAgPGlua3NjYXBlOnBhZ2UKICAgICAgIHg9IjAiCiAgICAgICB5PSIwIgogICAgICAgaW5rc2NhcGU6bGFiZWw9IjEiCiAgICAgICBpZD0icGFnZTEiCiAgICAgICB3aWR0aD0iMTQyNC45NzMzIgogICAgICAgaGVpZ2h0PSIxMzMyLjY2NjciCiAgICAgICBtYXJnaW49IjAiCiAgICAgICBibGVlZD0iMCIgLz4KICA8L3NvZGlwb2RpOm5hbWVkdmlldz4KICA8ZwogICAgIGlkPSJnMSIKICAgICBpbmtzY2FwZTpncm91cG1vZGU9ImxheWVyIgogICAgIGlua3NjYXBlOmxhYmVsPSIxIj4KICAgIDxnCiAgICAgICBpZD0iZ3JvdXAtUjUiPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDIiCiAgICAgICAgIGQ9Ik0gMCw0Mi4zMzk4IFYgMTkwNS4xMiBIIDQyNi44OTUgViAxNDg1LjMgYyAxMzEuNjkxLDMxNy41MSAzNTEuNTkzLDQ2OS4yMiA2NTkuNzM1LDQ1NS4xIHYgLTQ1MS41OCBoIC0yNC42OSBjIC0xOTIuODc3LDAgLTM0Ni45NiwtNjIuOTUgLTQ2Mi4xNzQsLTE4OC43NSBDIDQ4NC41MDQsMTE3NC4yMiA0MjYuODk1LDk5MS4zNzEgNDI2Ljg5NSw3NTEuNDY5IFYgNDIuMzM5OCBIIDAiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgzIgogICAgICAgICBkPSJtIDE2ODQuMjUsMTEwNC4yNiBoIDk1Ni4xIGMgLTE0LjEyLDE0My40NCAtNjIuMzUsMjYxLjA4IC0xNDQuNjcsMzUyLjggLTgyLjM0LDkxLjczIC0xOTEuNzEsMTM3LjYgLTMyOC4wOCwxMzcuNiAtMTI5LjQsMCAtMjM3LjYxLC00NS4zMSAtMzI0LjU5LC0xMzUuODMgLTg3LjA0LC05MC41NiAtMTM5Ljk1LC0yMDguNzYgLTE1OC43NiwtMzU0LjU3IHogTSAyMjE2Ljk5LDAgQyAxOTQ0LjExLDAgMTcxNi41NSw4OS45NjA5IDE1MzQuMzIsMjY5Ljg5MSAxMzUyLjAxLDQ0OS44MiAxMjYwLjg5LDY4Mi4wNTkgMTI2MC44OSw5NjYuNjcyIHYgNy4wNTggYyAwLDI3MC40NCA4NS44Myw0OTkuNzcgMjU3LjU1LDY4Ny45NiAxNzEuNjYsMTg4LjE0IDM4OS4yMywyODIuMjUgNjUyLjY3LDI4Mi4yNSAyODIuMjYsMCA1MDEuNTMsLTk1Ljg3IDY1Ny45NywtMjg3LjU0IDE1Ni40LC0xOTEuNzMgMjM0LjYzLC00MjkuODYgMjM0LjYzLC03MTQuNDIgMCwtMjMuNTM5IC0yLjM4LC02My41MTEgLTcuMDYsLTExOS45NiBIIDE2ODcuNzggYyAyMy40OSwtMTQ4LjE2OCA4My40NiwtMjY0LjA1MSAxNzkuOTQsLTM0Ny41IDk2LjQsLTgzLjUyIDIxNS4yLC0xMjUuMjM5IDM1Ni4zMiwtMTI1LjIzOSAxODMuNDUsMCAzNTEuNTgsNzQuMDc4IDUwNC41MSwyMjIuMjU4IEwgMjk3OS4wMywzNDkuMjgxIEMgMjc4Ni4xNSwxMTYuNDIyIDI1MzIuMTMsMCAyMjE2Ljk5LDAiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg0IgogICAgICAgICBkPSJtIDQzODYuMywzNzMuOTY5IGMgMTUwLjUsMCAyNzYuOTUsNTQuNjgzIDM3OS4yOCwxNjQuMDYyIDEwMi4zLDEwOS4zNzEgMTUzLjQ2LDI1My4zOTkgMTUzLjQ2LDQzMi4xNjggdiA3LjA2MyBjIDAsMTc2LjM5OCAtNTEuNzcsMzE5LjgyOCAtMTU1LjIzLDQzMC40MTggLTEwMy41NCwxMTAuNTMgLTIyOS4zMywxNjUuODEgLTM3Ny41MSwxNjUuODEgLTE0OC4xNiwwIC0yNzUuNzgsLTU1LjkgLTM4Mi43OCwtMTY3LjU4IC0xMDcuMDUsLTExMS43NCAtMTYwLjUzLC0yNTQuNjMgLTE2MC41MywtNDI4LjY0OCB2IC03LjA2MyBjIDAsLTE3NC4wNzggNTMuNDgsLTMxNi45NTcgMTYwLjUzLC00MjguNjQ4IDEwNywtMTExLjc0MiAyMzQuNjIsLTE2Ny41ODIgMzgyLjc4LC0xNjcuNTgyIHogTSA0NDg1LjA5LDMuNTM5MDYgYyAtMjU2LjM5LDAgLTQ2Ni45MSwxMDkuMzU4OTQgLTYzMS41MSwzMjguMDgxOTQgViA0Mi4zMzk4IGggLTQyNi45IFYgMjYxNy43OSBoIDQyNi45IFYgMTU5NC42NiBjIDE2NC42LDIzMi44NCAzNzUuMTIsMzQ5LjI4IDYzMS41MSwzNDkuMjggMjM1LjE3LDAgNDM4LjYzLC04Ny42NiA2MTAuMzQsLTI2Mi44NCAxNzEuNjcsLTE3NS4yNSAyNTcuNTUsLTQwOS44NiAyNTcuNTUsLTcwMy44MzggdiAtNy4wNjMgYyAwLC0yOTQuMDI3IC04NS44OCwtNTI4LjYzNiAtMjU3LjU1LC03MDMuODI4IEMgNDkyMy43Miw5MS4xMjExIDQ3MjAuMjYsMy41MzkwNiA0NDg1LjA5LDMuNTM5MDYiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg1IgogICAgICAgICBkPSJtIDYzNjguMzQsMy41MzkwNiBjIC0yMDcsMCAtMzY5LjMsNjQuNjUyMzQgLTQ4Ni44NiwxOTQuMDMwOTQgLTExNy42NSwxMjkuMzIxIC0xNzYuNDEsMzAzLjQxIC0xNzYuNDEsNTIyLjE0MSBWIDE5MDUuMTIgaCA0MjYuODkgViA4NDYuNzE5IGMgMCwtMTQ1Ljg2IDM0LjY3LC0yNTguMTYgMTA0LjA4LC0zMzYuOTE4IDY5LjMzLC03OC44MjEgMTY3LjU3LC0xMTguMTkyIDI5NC42LC0xMTguMTkyIDEyNC42MiwwIDIyNS43OCw0MS4xMjEgMzAzLjM5LDEyMy40ODEgNzcuNjIsODIuMzEyIDExNi40MiwxOTUuMTk5IDExNi40MiwzMzguNjggdiAxMDUxLjM1IGggNDI2LjkgViA0Mi4zMzk4IGggLTQyNi45IFYgMzMxLjYyMSBDIDY4MDIuMjksMTEyLjg5OCA2NjA4LjIzLDMuNTM5MDYgNjM2OC4zNCwzLjUzOTA2IgogICAgICAgICBzdHlsZT0iZmlsbDojMjEzMDNiO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lIgogICAgICAgICB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiIC8+CiAgICAgIDxwYXRoCiAgICAgICAgIGlkPSJwYXRoNiIKICAgICAgICAgZD0iTSA3ODU1LjM3LDQyLjMzOTggViAxOTA1LjEyIGggNDI2Ljg5IFYgNDIuMzM5OCBaIE0gNzgzNy43MywyMTkwLjg5IHYgNDA1LjcyIGggNDU4LjY0IHYgLTQwNS43MiBoIC00NTguNjQiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg3IgogICAgICAgICBkPSJNIDg3NzIuMyw0Mi4zMzk4IFYgMjYxNy43OSBoIDQyNi44NyBWIDQyLjMzOTggSCA4NzcyLjMiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg4IgogICAgICAgICBkPSJtIDEwMjk1LjcsMTAuNTg5OCBjIC0zNTcuNTgsMCAtNTM2LjMsMTgyLjI1MDIgLTUzNi4zLDU0Ni44NDAyIHYgOTgwLjc4IGggLTIzNi4zNiB2IDM2Ni45MSBoIDIzNi4zNiB2IDUxMS41NiBoIDQyNi45IHYgLTUxMS41NiBoIDUwMSB2IC0zNjYuOTEgaCAtNTAxIFYgNjI0LjQ2MSBjIDAsLTE1NS4yMzEgNzYuNCwtMjMyLjg1MiAyMjkuMywtMjMyLjg1MiA5MS43LDAgMTc5LjksMjEuMTggMjY0LjYsNjMuNTEyIFYgMTA1Ljg0IGMgLTExMi45LC02My41MDAyIC0yNDEuMSwtOTUuMjUwMiAtMzg0LjUsLTk1LjI1MDIiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg5IgogICAgICAgICBkPSJtIDMzMzcuOTksMzU0NC44MyAxMTc5Ljc5LDEwNzYuNzIgdiAxOTM4LjEgTCAzMzM3Ljk5LDU1OTAuNiBWIDM1NDQuODMiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgxMCIKICAgICAgICAgZD0iTSA2MTY5LjQ4LDk5OTUuMDEgViA0NjIxLjU1IGwgMTE3OS44LC0xMDc2LjcyIHYgNTQ5MS4yOSBsIC0xMTc5LjgsOTU4Ljg5IgogICAgICAgICBzdHlsZT0iZmlsbDojNGVhOWUyO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lIgogICAgICAgICB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiIC8+CiAgICAgIDxwYXRoCiAgICAgICAgIGlkPSJwYXRoMTEiCiAgICAgICAgIGQ9Ik0gNDc1My43NCw3NzQ0LjA1IFYgNDgzNi44OSBsIDU4OS44OSw1MzguMzcgNTg5LjksLTUzOC4zNyA0LjM3LDM5NzMuNzIgLTExODQuMTYsLTEwNjYuNTYiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgxMiIKICAgICAgICAgZD0ibSA0ODAyLjIxLDM0MjUuMTkgaCA0MzAuNjkgdiA0MzAuNjggaCAtNDMwLjY5IHYgLTQzMC42OCIKICAgICAgICAgc3R5bGU9ImZpbGw6IzRlYTllMjtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZSIKICAgICAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIiAvPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDEzIgogICAgICAgICBkPSJtIDU0NDguMjQsMzQyNS4xOSBoIDQzMC43IHYgNDMwLjY4IGggLTQzMC43IHYgLTQzMC42OCIKICAgICAgICAgc3R5bGU9ImZpbGw6IzRlYTllMjtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZSIKICAgICAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIiAvPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDE0IgogICAgICAgICBkPSJtIDUyMzIuOSw0NTAxLjkxIGggLTQzMC42OSB2IC00MzAuNjkgaCA0MzAuNjkgdiA0MzAuNjkiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgxNSIKICAgICAgICAgZD0ibSA1NDQ4LjI0LDQ1MDEuOTEgdiAtNDMwLjY5IGggNDMwLjcgdiA0MzAuNjkgaCAtNDMwLjciCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo="/>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<title>Rebuilt Training Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root { --blue: #21a9e1; --teal-dark: #0f696e; --navy: #1f3540; --off-white: #efedeb; --white: #ffffff; --font: 'Montserrat', sans-serif; }
+
+:root {
+  --blue:      #21a9e1;
+  --teal:      #64b4b7;
+  --teal-dark: #0f696e;
+  --orange:    #f5831f;
+  --navy:      #1f3540;
+  --off-white: #efedeb;
+  --white:     #ffffff;
+  --muted:     #5a7888;
+  --border:    rgba(31,53,64,0.10);
+  --font:      'Montserrat', sans-serif;
+  --pass:      #2ecc71;
+  --fail:      #e74c3c;
+  --badge-acq-bg:   rgba(33,169,225,0.13);
+  --badge-acq-fg:   #1487b8;
+  --badge-dispo-bg: rgba(245,131,31,0.13);
+  --badge-dispo-fg: #c4640a;
+  --badge-olt-bg:   rgba(100,180,183,0.13);
+  --badge-olt-fg:   #0f696e;
+  --badge-kc-bg:    rgba(31,53,64,0.08);
+  --badge-kc-fg:    #5a7888;
+}
+
 body { font-family: var(--font); background: var(--off-white); color: var(--navy); min-height: 100vh; }
-.header { background: var(--navy); padding: 18px 40px; display: flex; align-items: center; }
-.logo-img { height: 44px; width: auto; filter: brightness(0) invert(1); }
-.hero { background: linear-gradient(135deg, var(--navy) 0%, #2d4f60 100%); padding: 60px 40px 56px; text-align: center; position: relative; overflow: hidden; }
-.hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 320px; height: 320px; background: rgba(33,169,225,0.08); border-radius: 50%; }
-.hero::after { content: ''; position: absolute; bottom: -80px; left: -40px; width: 240px; height: 240px; background: rgba(100,180,183,0.07); border-radius: 50%; }
-.hero-tag { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); background: rgba(33,169,225,0.15); border: 1px solid rgba(33,169,225,0.3); padding: 5px 14px; border-radius: 20px; margin-bottom: 20px; position: relative; z-index: 1; }
-.hero h1 { font-size: 36px; font-weight: 800; color: #fff; line-height: 1.2; margin-bottom: 14px; position: relative; z-index: 1; }
-.hero p { font-size: 15px; color: rgba(255,255,255,0.65); max-width: 520px; margin: 0 auto 28px; line-height: 1.7; position: relative; z-index: 1; }
-.hero-stats { display: flex; justify-content: center; gap: 32px; position: relative; z-index: 1; flex-wrap: wrap; }
-.hero-stat { text-align: center; }
-.hero-stat-num { font-size: 28px; font-weight: 800; color: var(--blue); line-height: 1; }
-.hero-stat-label { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
-.legend { max-width: 1000px; margin: 32px auto 0; padding: 0 24px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-.legend-label { font-size: 11px; font-weight: 700; color: #8a9faa; text-transform: uppercase; letter-spacing: 0.1em; margin-right: 4px; }
-.legend-tag { display: inline-block; font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
-.grid-wrap { max-width: 1000px; margin: 0 auto; padding: 20px 24px 64px; }
-.grid-label { font-size: 11px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #8a9faa; margin-bottom: 20px; }
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-.card { background: var(--white); border-radius: 12px; box-shadow: 0 2px 16px rgba(31,53,64,0.08); display: flex; flex-direction: column; transition: transform 0.18s, box-shadow 0.18s; border: 1.5px solid rgba(31,53,64,0.07); }
-.card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(31,53,64,0.13); }
-.card-soon { opacity: 0.72; }
-.card-soon:hover { transform: none; box-shadow: 0 2px 16px rgba(31,53,64,0.08); }
-.card-top { padding: 16px 20px 0; }
-.card-badge { display: inline-block; font-size: 9px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; }
-.soon-badge { color: #8a9faa; background: rgba(138,159,170,0.12); }
-.aud-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-.aud-tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; padding: 3px 10px; border-radius: 20px; }
-.card-body { padding: 14px 20px 16px; flex: 1; }
-.card-title { font-size: 15px; font-weight: 800; color: var(--navy); line-height: 1.3; margin-bottom: 8px; }
-.card-desc { font-size: 12.5px; color: #5a7888; line-height: 1.65; font-weight: 400; }
-.card-footer { padding: 14px 20px; border-top: 1px solid rgba(31,53,64,0.07); display: flex; align-items: center; justify-content: space-between; }
-.card-meta { font-size: 11px; font-weight: 600; color: #8a9faa; }
-.btn-start { display: inline-flex; align-items: center; padding: 8px 16px; background: var(--blue); color: white; border-radius: 6px; font-family: var(--font); font-size: 11px; font-weight: 700; text-decoration: none; transition: background 0.18s; }
-.btn-start:hover { background: #1a92c4; }
-.btn-soon { font-size: 11px; font-weight: 700; color: #8a9faa; }
-.footer { background: var(--navy); padding: 24px 40px; text-align: center; }
-.footer p { font-size: 11px; color: rgba(255,255,255,0.35); font-weight: 500; }
+
+/* ── GATE ── */
+#gate-overlay {
+  position: fixed; inset: 0;
+  background: rgba(10,22,28,0.93);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(6px);
+}
+#gate-overlay.hidden { display: none; }
+
+.gate-box {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 44px 40px 36px;
+  max-width: 440px; width: 92%;
+  text-align: center;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.40);
+  animation: gateIn 0.3s ease;
+}
+@keyframes gateIn {
+  from { opacity:0; transform:translateY(20px) scale(0.97); }
+  to   { opacity:1; transform:translateY(0)    scale(1); }
+}
+
+.gate-logo {
+  width: 80px; height: auto;
+  margin: 0 auto 24px;
+  display: block;
+}
+
+.gate-box h2 {
+  font-size: 18px; font-weight: 800; color: var(--navy);
+  margin-bottom: 6px;
+}
+.gate-box > p {
+  font-size: 12px; color: var(--muted); line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.gate-field { margin-bottom: 12px; text-align: left; }
+.gate-field label {
+  display: block; font-size: 10px; font-weight: 800;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 6px;
+}
+.gate-field input {
+  width: 100%; padding: 13px 14px;
+  border: 2px solid var(--border); border-radius: 8px;
+  font-family: var(--font); font-size: 14px; font-weight: 500;
+  color: var(--navy); outline: none; transition: border-color 0.2s;
+}
+.gate-field input:focus { border-color: var(--blue); }
+.gate-field input.error { border-color: var(--fail); }
+
+/* Role selector */
+.role-selector {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 10px; margin-bottom: 12px;
+}
+.role-btn {
+  border: 2px solid var(--border);
+  border-radius: 10px; padding: 14px 10px;
+  cursor: pointer; background: var(--white);
+  transition: all 0.18s; text-align: center;
+  font-family: var(--font);
+}
+.role-btn:hover { border-color: var(--blue); background: rgba(33,169,225,0.04); }
+.role-btn.selected-acq  { border-color: var(--blue);   background: rgba(33,169,225,0.08); }
+.role-btn.selected-dispo{ border-color: var(--orange);  background: rgba(245,131,31,0.08); }
+.role-btn-icon { font-size: 22px; margin-bottom: 6px; }
+.role-btn-label {
+  font-size: 13px; font-weight: 800; color: var(--navy);
+  display: block;
+}
+.role-btn-sub {
+  font-size: 10px; font-weight: 500; color: var(--muted);
+  display: block; margin-top: 2px;
+}
+.role-btn.selected-acq  .role-btn-label { color: var(--blue); }
+.role-btn.selected-dispo .role-btn-label { color: var(--orange); }
+
+.gate-error {
+  font-size: 11px; color: var(--fail);
+  margin-bottom: 14px; min-height: 14px; text-align: left;
+}
+
+.gate-btn {
+  width: 100%; padding: 14px;
+  background: var(--blue); color: white;
+  border: none; border-radius: 8px;
+  font-family: var(--font); font-size: 14px; font-weight: 700;
+  cursor: pointer; letter-spacing: 0.04em;
+  transition: background 0.2s, transform 0.1s;
+}
+.gate-btn:hover { background: #1a96cc; }
+.gate-btn:active { transform: scale(0.98); }
+.gate-note { font-size: 11px; color: var(--muted); margin-top: 14px; line-height: 1.5; }
+
+/* ── HEADER ── */
+.site-header {
+  background: var(--navy); height: 72px;
+  padding: 0 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.22);
+}
+.header-logo {
+  display: flex; align-items: center; gap: 16px;
+}
+.header-logo img { height: 34px; width: auto; }
+.header-divider {
+  width: 1px; height: 32px;
+  background: rgba(255,255,255,0.15);
+}
+.header-title {
+  display: flex; flex-direction: column; gap: 1px;
+}
+.header-title-main {
+  font-size: 15px; font-weight: 800;
+  color: white; letter-spacing: 0.01em; line-height: 1;
+}
+.header-title-sub {
+  font-size: 10px; font-weight: 600;
+  color: rgba(255,255,255,0.40); letter-spacing: 0.12em;
+  text-transform: uppercase; line-height: 1;
+}
+.header-right { display: flex; align-items: center; gap: 10px; }
+.header-role-pill {
+  font-size: 10px; font-weight: 800; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 4px 10px; border-radius: 20px;
+}
+.header-role-pill.acq  { background: rgba(33,169,225,0.2);  color: var(--blue); }
+.header-role-pill.dispo{ background: rgba(245,131,31,0.2);  color: var(--orange); }
+.header-email { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.5); }
+.header-avatar {
+  width: 30px; height: 30px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 800; color: white;
+}
+.header-avatar.acq  { background: var(--blue); }
+.header-avatar.dispo{ background: var(--orange); }
+.header-switch {
+  font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.35);
+  background: none; border: none; cursor: pointer; padding: 4px 8px;
+  border-radius: 4px; font-family: var(--font);
+  transition: color 0.2s, background 0.2s;
+}
+.header-switch:hover { color: white; background: rgba(255,255,255,0.08); }
+
+/* ── MAIN ── */
+.main-wrap { max-width: 1100px; margin: 0 auto; padding: 36px 24px 80px; }
+
+/* ── DASHBOARD ── */
+.dashboard {
+  background: var(--navy); border-radius: 14px;
+  padding: 28px 32px; margin-bottom: 40px;
+  position: relative; overflow: hidden;
+}
+.dashboard::after {
+  content: ''; position: absolute;
+  top: -60px; right: -60px;
+  width: 240px; height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(33,169,225,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.dash-top {
+  display: flex; align-items: flex-start;
+  justify-content: space-between; margin-bottom: 22px;
+}
+.dash-label {
+  font-size: 10px; font-weight: 800; letter-spacing: 0.14em;
+  text-transform: uppercase; color: rgba(255,255,255,0.4);
+}
+.dash-name { font-size: 18px; font-weight: 800; color: white; margin-top: 3px; }
+.dash-role-tag {
+  font-size: 10px; font-weight: 800; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 5px 12px; border-radius: 20px;
+  margin-top: 4px;
+}
+.dash-role-tag.acq  { background: rgba(33,169,225,0.18); color: var(--blue); }
+.dash-role-tag.dispo{ background: rgba(245,131,31,0.18); color: var(--orange); }
+
+.dash-stats { display: flex; gap: 16px; flex-wrap: wrap; }
+.stat-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px; padding: 16px 20px; min-width: 110px;
+}
+.stat-value {
+  font-size: 28px; font-weight: 900; color: white;
+  line-height: 1; margin-bottom: 4px;
+}
+.stat-value.blue   { color: var(--blue); }
+.stat-value.green  { color: var(--pass); }
+.stat-value.orange { color: var(--orange); }
+.stat-label {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(255,255,255,0.35);
+}
+.dash-loading { font-size: 12px; color: rgba(255,255,255,0.35); font-style: italic; }
+
+/* ── SECTION HEADER ── */
+.section-header {
+  display: flex; align-items: center; gap: 14px; margin-bottom: 16px;
+}
+.section-label {
+  font-size: 10px; font-weight: 800; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--muted); white-space: nowrap;
+}
+.section-line { flex: 1; height: 1px; background: var(--border); }
+.section-count {
+  font-size: 10px; font-weight: 700; color: var(--muted);
+  background: rgba(31,53,64,0.07); padding: 3px 10px; border-radius: 20px;
+}
+
+/* ── MODULE GRID ── */
+.module-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 12px; margin-bottom: 44px;
+}
+
+/* ── MODULE CARD ── */
+.module-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px; padding: 18px 20px;
+  display: flex; flex-direction: column; gap: 10px;
+  text-decoration: none; color: inherit;
+  position: relative; overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.15s;
+  border-left: 4px solid var(--border);
+}
+.module-card:hover { box-shadow: 0 6px 24px rgba(31,53,64,0.10); transform: translateY(-2px); }
+.module-card.status-complete   { border-left-color: var(--pass); }
+.module-card.status-failed     { border-left-color: var(--fail); }
+.module-card.status-not-started{ border-left-color: rgba(31,53,64,0.15); }
+
+.card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.card-badges { display: flex; gap: 5px; flex-wrap: wrap; }
+
+.badge {
+  font-size: 9px; font-weight: 800; letter-spacing: 0.09em;
+  text-transform: uppercase; padding: 3px 8px; border-radius: 4px;
+}
+.badge.acq   { background: var(--badge-acq-bg);   color: var(--badge-acq-fg); }
+.badge.dispo { background: var(--badge-dispo-bg);  color: var(--badge-dispo-fg); }
+.badge.olt   { background: var(--badge-olt-bg);    color: var(--badge-olt-fg); }
+.badge.kc    { background: var(--badge-kc-bg);     color: var(--badge-kc-fg); }
+
+.status-pill {
+  font-size: 9px; font-weight: 800; letter-spacing: 0.07em;
+  text-transform: uppercase; padding: 4px 10px; border-radius: 20px;
+  white-space: nowrap; flex-shrink: 0;
+}
+.status-pill.complete   { background: rgba(46,204,113,0.11); color: #18924d; }
+.status-pill.failed     { background: rgba(231,76,60,0.10);  color: var(--fail); }
+.status-pill.not-started{ background: rgba(31,53,64,0.06);   color: var(--muted); }
+
+.card-title { font-size: 13px; font-weight: 700; color: var(--navy); line-height: 1.3; }
+.card-desc  { font-size: 11px; color: var(--muted); line-height: 1.65; flex: 1; }
+
+.card-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 10px; border-top: 1px solid var(--border);
+  gap: 8px;
+}
+.card-meta { display: flex; gap: 12px; }
+.meta-item {
+  font-size: 10px; color: var(--muted); font-weight: 500;
+  display: flex; align-items: center; gap: 3px;
+}
+.meta-item svg { width: 10px; height: 10px; opacity: 0.55; }
+.card-right { display: flex; align-items: center; gap: 7px; }
+
+.score-badge {
+  font-size: 11px; font-weight: 800; padding: 3px 9px; border-radius: 5px;
+}
+.score-badge.pass { background: rgba(46,204,113,0.11); color: #18924d; }
+.score-badge.fail { background: rgba(231,76,60,0.10);  color: var(--fail); }
+
+.card-date { font-size: 10px; color: var(--muted); font-weight: 500; }
+.card-arrow { font-size: 14px; color: var(--blue); font-weight: 700; transition: transform 0.18s; }
+.module-card:hover .card-arrow { transform: translateX(3px); }
+
+/* ── FOOTER ── */
+.site-footer {
+  text-align: center; padding: 24px;
+  font-size: 11px; color: var(--muted);
+  border-top: 1px solid var(--border);
+}
+
+/* ── RESPONSIVE ── */
 @media (max-width: 600px) {
-  .header { padding: 14px 20px; } .hero { padding: 40px 20px 36px; }
-  .hero h1 { font-size: 26px; } .grid-wrap { padding: 20px 16px 48px; } .hero-stats { gap: 20px; }
+  .main-wrap { padding: 20px 14px 60px; }
+  .dashboard { padding: 20px; }
+  .dash-stats { gap: 10px; }
+  .stat-card { min-width: 90px; padding: 12px 14px; }
+  .stat-value { font-size: 22px; }
+  .site-header { padding: 0 16px; }
+  .header-email { display: none; }
 }
 </style>
 </head>
 <body>
-<div class="header"><img class="logo-img" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgoKPHN2ZwogICB2ZXJzaW9uPSIxLjEiCiAgIGlkPSJzdmcxIgogICB3aWR0aD0iMTQyNC45NzMzIgogICBoZWlnaHQ9IjEzMzIuNjY2NyIKICAgdmlld0JveD0iMCAwIDE0MjQuOTczMyAxMzMyLjY2NjciCiAgIHNvZGlwb2RpOmRvY25hbWU9IkxvZ28gU3RhY2tlZC5lcHMiCiAgIHhtbG5zOmlua3NjYXBlPSJodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy9uYW1lc3BhY2VzL2lua3NjYXBlIgogICB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiCiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnMKICAgICBpZD0iZGVmczEiIC8+CiAgPHNvZGlwb2RpOm5hbWVkdmlldwogICAgIGlkPSJuYW1lZHZpZXcxIgogICAgIHBhZ2Vjb2xvcj0iI2ZmZmZmZiIKICAgICBib3JkZXJjb2xvcj0iIzAwMDAwMCIKICAgICBib3JkZXJvcGFjaXR5PSIwLjI1IgogICAgIGlua3NjYXBlOnNob3dwYWdlc2hhZG93PSIyIgogICAgIGlua3NjYXBlOnBhZ2VvcGFjaXR5PSIwLjAiCiAgICAgaW5rc2NhcGU6cGFnZWNoZWNrZXJib2FyZD0iMCIKICAgICBpbmtzY2FwZTpkZXNrY29sb3I9IiNkMWQxZDEiPgogICAgPGlua3NjYXBlOnBhZ2UKICAgICAgIHg9IjAiCiAgICAgICB5PSIwIgogICAgICAgaW5rc2NhcGU6bGFiZWw9IjEiCiAgICAgICBpZD0icGFnZTEiCiAgICAgICB3aWR0aD0iMTQyNC45NzMzIgogICAgICAgaGVpZ2h0PSIxMzMyLjY2NjciCiAgICAgICBtYXJnaW49IjAiCiAgICAgICBibGVlZD0iMCIgLz4KICA8L3NvZGlwb2RpOm5hbWVkdmlldz4KICA8ZwogICAgIGlkPSJnMSIKICAgICBpbmtzY2FwZTpncm91cG1vZGU9ImxheWVyIgogICAgIGlua3NjYXBlOmxhYmVsPSIxIj4KICAgIDxnCiAgICAgICBpZD0iZ3JvdXAtUjUiPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDIiCiAgICAgICAgIGQ9Ik0gMCw0Mi4zMzk4IFYgMTkwNS4xMiBIIDQyNi44OTUgViAxNDg1LjMgYyAxMzEuNjkxLDMxNy41MSAzNTEuNTkzLDQ2OS4yMiA2NTkuNzM1LDQ1NS4xIHYgLTQ1MS41OCBoIC0yNC42OSBjIC0xOTIuODc3LDAgLTM0Ni45NiwtNjIuOTUgLTQ2Mi4xNzQsLTE4OC43NSBDIDQ4NC41MDQsMTE3NC4yMiA0MjYuODk1LDk5MS4zNzEgNDI2Ljg5NSw3NTEuNDY5IFYgNDIuMzM5OCBIIDAiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgzIgogICAgICAgICBkPSJtIDE2ODQuMjUsMTEwNC4yNiBoIDk1Ni4xIGMgLTE0LjEyLDE0My40NCAtNjIuMzUsMjYxLjA4IC0xNDQuNjcsMzUyLjggLTgyLjM0LDkxLjczIC0xOTEuNzEsMTM3LjYgLTMyOC4wOCwxMzcuNiAtMTI5LjQsMCAtMjM3LjYxLC00NS4zMSAtMzI0LjU5LC0xMzUuODMgLTg3LjA0LC05MC41NiAtMTM5Ljk1LC0yMDguNzYgLTE1OC43NiwtMzU0LjU3IHogTSAyMjE2Ljk5LDAgQyAxOTQ0LjExLDAgMTcxNi41NSw4OS45NjA5IDE1MzQuMzIsMjY5Ljg5MSAxMzUyLjAxLDQ0OS44MiAxMjYwLjg5LDY4Mi4wNTkgMTI2MC44OSw5NjYuNjcyIHYgNy4wNTggYyAwLDI3MC40NCA4NS44Myw0OTkuNzcgMjU3LjU1LDY4Ny45NiAxNzEuNjYsMTg4LjE0IDM4OS4yMywyODIuMjUgNjUyLjY3LDI4Mi4yNSAyODIuMjYsMCA1MDEuNTMsLTk1Ljg3IDY1Ny45NywtMjg3LjU0IDE1Ni40LC0xOTEuNzMgMjM0LjYzLC00MjkuODYgMjM0LjYzLC03MTQuNDIgMCwtMjMuNTM5IC0yLjM4LC02My41MTEgLTcuMDYsLTExOS45NiBIIDE2ODcuNzggYyAyMy40OSwtMTQ4LjE2OCA4My40NiwtMjY0LjA1MSAxNzkuOTQsLTM0Ny41IDk2LjQsLTgzLjUyIDIxNS4yLC0xMjUuMjM5IDM1Ni4zMiwtMTI1LjIzOSAxODMuNDUsMCAzNTEuNTgsNzQuMDc4IDUwNC41MSwyMjIuMjU4IEwgMjk3OS4wMywzNDkuMjgxIEMgMjc4Ni4xNSwxMTYuNDIyIDI1MzIuMTMsMCAyMjE2Ljk5LDAiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg0IgogICAgICAgICBkPSJtIDQzODYuMywzNzMuOTY5IGMgMTUwLjUsMCAyNzYuOTUsNTQuNjgzIDM3OS4yOCwxNjQuMDYyIDEwMi4zLDEwOS4zNzEgMTUzLjQ2LDI1My4zOTkgMTUzLjQ2LDQzMi4xNjggdiA3LjA2MyBjIDAsMTc2LjM5OCAtNTEuNzcsMzE5LjgyOCAtMTU1LjIzLDQzMC40MTggLTEwMy41NCwxMTAuNTMgLTIyOS4zMywxNjUuODEgLTM3Ny41MSwxNjUuODEgLTE0OC4xNiwwIC0yNzUuNzgsLTU1LjkgLTM4Mi43OCwtMTY3LjU4IC0xMDcuMDUsLTExMS43NCAtMTYwLjUzLC0yNTQuNjMgLTE2MC41MywtNDI4LjY0OCB2IC03LjA2MyBjIDAsLTE3NC4wNzggNTMuNDgsLTMxNi45NTcgMTYwLjUzLC00MjguNjQ4IDEwNywtMTExLjc0MiAyMzQuNjIsLTE2Ny41ODIgMzgyLjc4LC0xNjcuNTgyIHogTSA0NDg1LjA5LDMuNTM5MDYgYyAtMjU2LjM5LDAgLTQ2Ni45MSwxMDkuMzU4OTQgLTYzMS41MSwzMjguMDgxOTQgViA0Mi4zMzk4IGggLTQyNi45IFYgMjYxNy43OSBoIDQyNi45IFYgMTU5NC42NiBjIDE2NC42LDIzMi44NCAzNzUuMTIsMzQ5LjI4IDYzMS41MSwzNDkuMjggMjM1LjE3LDAgNDM4LjYzLC04Ny42NiA2MTAuMzQsLTI2Mi44NCAxNzEuNjcsLTE3NS4yNSAyNTcuNTUsLTQwOS44NiAyNTcuNTUsLTcwMy44MzggdiAtNy4wNjMgYyAwLC0yOTQuMDI3IC04NS44OCwtNTI4LjYzNiAtMjU3LjU1LC03MDMuODI4IEMgNDkyMy43Miw5MS4xMjExIDQ3MjAuMjYsMy41MzkwNiA0NDg1LjA5LDMuNTM5MDYiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg1IgogICAgICAgICBkPSJtIDYzNjguMzQsMy41MzkwNiBjIC0yMDcsMCAtMzY5LjMsNjQuNjUyMzQgLTQ4Ni44NiwxOTQuMDMwOTQgLTExNy42NSwxMjkuMzIxIC0xNzYuNDEsMzAzLjQxIC0xNzYuNDEsNTIyLjE0MSBWIDE5MDUuMTIgaCA0MjYuODkgViA4NDYuNzE5IGMgMCwtMTQ1Ljg2IDM0LjY3LC0yNTguMTYgMTA0LjA4LC0zMzYuOTE4IDY5LjMzLC03OC44MjEgMTY3LjU3LC0xMTguMTkyIDI5NC42LC0xMTguMTkyIDEyNC42MiwwIDIyNS43OCw0MS4xMjEgMzAzLjM5LDEyMy40ODEgNzcuNjIsODIuMzEyIDExNi40MiwxOTUuMTk5IDExNi40MiwzMzguNjggdiAxMDUxLjM1IGggNDI2LjkgViA0Mi4zMzk4IGggLTQyNi45IFYgMzMxLjYyMSBDIDY4MDIuMjksMTEyLjg5OCA2NjA4LjIzLDMuNTM5MDYgNjM2OC4zNCwzLjUzOTA2IgogICAgICAgICBzdHlsZT0iZmlsbDojMjEzMDNiO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lIgogICAgICAgICB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiIC8+CiAgICAgIDxwYXRoCiAgICAgICAgIGlkPSJwYXRoNiIKICAgICAgICAgZD0iTSA3ODU1LjM3LDQyLjMzOTggViAxOTA1LjEyIGggNDI2Ljg5IFYgNDIuMzM5OCBaIE0gNzgzNy43MywyMTkwLjg5IHYgNDA1LjcyIGggNDU4LjY0IHYgLTQwNS43MiBoIC00NTguNjQiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg3IgogICAgICAgICBkPSJNIDg3NzIuMyw0Mi4zMzk4IFYgMjYxNy43OSBoIDQyNi44NyBWIDQyLjMzOTggSCA4NzcyLjMiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg4IgogICAgICAgICBkPSJtIDEwMjk1LjcsMTAuNTg5OCBjIC0zNTcuNTgsMCAtNTM2LjMsMTgyLjI1MDIgLTUzNi4zLDU0Ni44NDAyIHYgOTgwLjc4IGggLTIzNi4zNiB2IDM2Ni45MSBoIDIzNi4zNiB2IDUxMS41NiBoIDQyNi45IHYgLTUxMS41NiBoIDUwMSB2IC0zNjYuOTEgaCAtNTAxIFYgNjI0LjQ2MSBjIDAsLTE1NS4yMzEgNzYuNCwtMjMyLjg1MiAyMjkuMywtMjMyLjg1MiA5MS43LDAgMTc5LjksMjEuMTggMjY0LjYsNjMuNTEyIFYgMTA1Ljg0IGMgLTExMi45LC02My41MDAyIC0yNDEuMSwtOTUuMjUwMiAtMzg0LjUsLTk1LjI1MDIiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg5IgogICAgICAgICBkPSJtIDMzMzcuOTksMzU0NC44MyAxMTc5Ljc5LDEwNzYuNzIgdiAxOTM4LjEgTCAzMzM3Ljk5LDU1OTAuNiBWIDM1NDQuODMiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgxMCIKICAgICAgICAgZD0iTSA2MTY5LjQ4LDk5OTUuMDEgViA0NjIxLjU1IGwgMTE3OS44LC0xMDc2LjcyIHYgNTQ5MS4yOSBsIC0xMTc5LjgsOTU4Ljg5IgogICAgICAgICBzdHlsZT0iZmlsbDojNGVhOWUyO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lIgogICAgICAgICB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiIC8+CiAgICAgIDxwYXRoCiAgICAgICAgIGlkPSJwYXRoMTEiCiAgICAgICAgIGQ9Ik0gNDc1My43NCw3NzQ0LjA1IFYgNDgzNi44OSBsIDU4OS44OSw1MzguMzcgNTg5LjksLTUzOC4zNyA0LjM3LDM5NzMuNzIgLTExODQuMTYsLTEwNjYuNTYiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgxMiIKICAgICAgICAgZD0ibSA0ODAyLjIxLDM0MjUuMTkgaCA0MzAuNjkgdiA0MzAuNjggaCAtNDMwLjY5IHYgLTQzMC42OCIKICAgICAgICAgc3R5bGU9ImZpbGw6IzRlYTllMjtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZSIKICAgICAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIiAvPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDEzIgogICAgICAgICBkPSJtIDU0NDguMjQsMzQyNS4xOSBoIDQzMC43IHYgNDMwLjY4IGggLTQzMC43IHYgLTQzMC42OCIKICAgICAgICAgc3R5bGU9ImZpbGw6IzRlYTllMjtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZSIKICAgICAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIiAvPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDE0IgogICAgICAgICBkPSJtIDUyMzIuOSw0NTAxLjkxIGggLTQzMC42OSB2IC00MzAuNjkgaCA0MzAuNjkgdiA0MzAuNjkiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgxNSIKICAgICAgICAgZD0ibSA1NDQ4LjI0LDQ1MDEuOTEgdiAtNDMwLjY5IGggNDMwLjcgdiA0MzAuNjkgaCAtNDMwLjciCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=" alt="Rebuilt"/></div>
-<div class="hero">
-  <div class="hero-tag">Rebuilt Onboarding</div>
-  <h1>Knowledge Checks</h1>
-  <p>Reinforce what you’ve learned in training. Each module is a short, self-guided quiz with instant feedback and a tracked score. Complete at your own pace.</p>
-  <div class="hero-stats">
-    <div class="hero-stat"><div class="hero-stat-num">9</div><div class="hero-stat-label">Modules Available</div></div>
-    <div class="hero-stat"><div class="hero-stat-num">70%</div><div class="hero-stat-label">Score to Pass</div></div>
-    <div class="hero-stat"><div class="hero-stat-num">@rebuilt.com</div><div class="hero-stat-label">Email Required</div></div>
+
+<!-- ── EMAIL + ROLE GATE ── -->
+<div id="gate-overlay">
+  <div class="gate-box">
+    <img class="gate-logo" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgoKPHN2ZwogICB2ZXJzaW9uPSIxLjEiCiAgIGlkPSJzdmcxIgogICB3aWR0aD0iMTQyNC45NzMzIgogICBoZWlnaHQ9IjEzMzIuNjY2NyIKICAgdmlld0JveD0iMCAwIDE0MjQuOTczMyAxMzMyLjY2NjciCiAgIHNvZGlwb2RpOmRvY25hbWU9IkxvZ28gU3RhY2tlZC5lcHMiCiAgIHhtbG5zOmlua3NjYXBlPSJodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy9uYW1lc3BhY2VzL2lua3NjYXBlIgogICB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiCiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnMKICAgICBpZD0iZGVmczEiIC8+CiAgPHNvZGlwb2RpOm5hbWVkdmlldwogICAgIGlkPSJuYW1lZHZpZXcxIgogICAgIHBhZ2Vjb2xvcj0iI2ZmZmZmZiIKICAgICBib3JkZXJjb2xvcj0iIzAwMDAwMCIKICAgICBib3JkZXJvcGFjaXR5PSIwLjI1IgogICAgIGlua3NjYXBlOnNob3dwYWdlc2hhZG93PSIyIgogICAgIGlua3NjYXBlOnBhZ2VvcGFjaXR5PSIwLjAiCiAgICAgaW5rc2NhcGU6cGFnZWNoZWNrZXJib2FyZD0iMCIKICAgICBpbmtzY2FwZTpkZXNrY29sb3I9IiNkMWQxZDEiPgogICAgPGlua3NjYXBlOnBhZ2UKICAgICAgIHg9IjAiCiAgICAgICB5PSIwIgogICAgICAgaW5rc2NhcGU6bGFiZWw9IjEiCiAgICAgICBpZD0icGFnZTEiCiAgICAgICB3aWR0aD0iMTQyNC45NzMzIgogICAgICAgaGVpZ2h0PSIxMzMyLjY2NjciCiAgICAgICBtYXJnaW49IjAiCiAgICAgICBibGVlZD0iMCIgLz4KICA8L3NvZGlwb2RpOm5hbWVkdmlldz4KICA8ZwogICAgIGlkPSJnMSIKICAgICBpbmtzY2FwZTpncm91cG1vZGU9ImxheWVyIgogICAgIGlua3NjYXBlOmxhYmVsPSIxIj4KICAgIDxnCiAgICAgICBpZD0iZ3JvdXAtUjUiPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDIiCiAgICAgICAgIGQ9Ik0gMCw0Mi4zMzk4IFYgMTkwNS4xMiBIIDQyNi44OTUgViAxNDg1LjMgYyAxMzEuNjkxLDMxNy41MSAzNTEuNTkzLDQ2OS4yMiA2NTkuNzM1LDQ1NS4xIHYgLTQ1MS41OCBoIC0yNC42OSBjIC0xOTIuODc3LDAgLTM0Ni45NiwtNjIuOTUgLTQ2Mi4xNzQsLTE4OC43NSBDIDQ4NC41MDQsMTE3NC4yMiA0MjYuODk1LDk5MS4zNzEgNDI2Ljg5NSw3NTEuNDY5IFYgNDIuMzM5OCBIIDAiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgzIgogICAgICAgICBkPSJtIDE2ODQuMjUsMTEwNC4yNiBoIDk1Ni4xIGMgLTE0LjEyLDE0My40NCAtNjIuMzUsMjYxLjA4IC0xNDQuNjcsMzUyLjggLTgyLjM0LDkxLjczIC0xOTEuNzEsMTM3LjYgLTMyOC4wOCwxMzcuNiAtMTI5LjQsMCAtMjM3LjYxLC00NS4zMSAtMzI0LjU5LC0xMzUuODMgLTg3LjA0LC05MC41NiAtMTM5Ljk1LC0yMDguNzYgLTE1OC43NiwtMzU0LjU3IHogTSAyMjE2Ljk5LDAgQyAxOTQ0LjExLDAgMTcxNi41NSw4OS45NjA5IDE1MzQuMzIsMjY5Ljg5MSAxMzUyLjAxLDQ0OS44MiAxMjYwLjg5LDY4Mi4wNTkgMTI2MC44OSw5NjYuNjcyIHYgNy4wNTggYyAwLDI3MC40NCA4NS44Myw0OTkuNzcgMjU3LjU1LDY4Ny45NiAxNzEuNjYsMTg4LjE0IDM4OS4yMywyODIuMjUgNjUyLjY3LDI4Mi4yNSAyODIuMjYsMCA1MDEuNTMsLTk1Ljg3IDY1Ny45NywtMjg3LjU0IDE1Ni40LC0xOTEuNzMgMjM0LjYzLC00MjkuODYgMjM0LjYzLC03MTQuNDIgMCwtMjMuNTM5IC0yLjM4LC02My41MTEgLTcuMDYsLTExOS45NiBIIDE2ODcuNzggYyAyMy40OSwtMTQ4LjE2OCA4My40NiwtMjY0LjA1MSAxNzkuOTQsLTM0Ny41IDk2LjQsLTgzLjUyIDIxNS4yLC0xMjUuMjM5IDM1Ni4zMiwtMTI1LjIzOSAxODMuNDUsMCAzNTEuNTgsNzQuMDc4IDUwNC41MSwyMjIuMjU4IEwgMjk3OS4wMywzNDkuMjgxIEMgMjc4Ni4xNSwxMTYuNDIyIDI1MzIuMTMsMCAyMjE2Ljk5LDAiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg0IgogICAgICAgICBkPSJtIDQzODYuMywzNzMuOTY5IGMgMTUwLjUsMCAyNzYuOTUsNTQuNjgzIDM3OS4yOCwxNjQuMDYyIDEwMi4zLDEwOS4zNzEgMTUzLjQ2LDI1My4zOTkgMTUzLjQ2LDQzMi4xNjggdiA3LjA2MyBjIDAsMTc2LjM5OCAtNTEuNzcsMzE5LjgyOCAtMTU1LjIzLDQzMC40MTggLTEwMy41NCwxMTAuNTMgLTIyOS4zMywxNjUuODEgLTM3Ny41MSwxNjUuODEgLTE0OC4xNiwwIC0yNzUuNzgsLTU1LjkgLTM4Mi43OCwtMTY3LjU4IC0xMDcuMDUsLTExMS43NCAtMTYwLjUzLC0yNTQuNjMgLTE2MC41MywtNDI4LjY0OCB2IC03LjA2MyBjIDAsLTE3NC4wNzggNTMuNDgsLTMxNi45NTcgMTYwLjUzLC00MjguNjQ4IDEwNywtMTExLjc0MiAyMzQuNjIsLTE2Ny41ODIgMzgyLjc4LC0xNjcuNTgyIHogTSA0NDg1LjA5LDMuNTM5MDYgYyAtMjU2LjM5LDAgLTQ2Ni45MSwxMDkuMzU4OTQgLTYzMS41MSwzMjguMDgxOTQgViA0Mi4zMzk4IGggLTQyNi45IFYgMjYxNy43OSBoIDQyNi45IFYgMTU5NC42NiBjIDE2NC42LDIzMi44NCAzNzUuMTIsMzQ5LjI4IDYzMS41MSwzNDkuMjggMjM1LjE3LDAgNDM4LjYzLC04Ny42NiA2MTAuMzQsLTI2Mi44NCAxNzEuNjcsLTE3NS4yNSAyNTcuNTUsLTQwOS44NiAyNTcuNTUsLTcwMy44MzggdiAtNy4wNjMgYyAwLC0yOTQuMDI3IC04NS44OCwtNTI4LjYzNiAtMjU3LjU1LC03MDMuODI4IEMgNDkyMy43Miw5MS4xMjExIDQ3MjAuMjYsMy41MzkwNiA0NDg1LjA5LDMuNTM5MDYiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg1IgogICAgICAgICBkPSJtIDYzNjguMzQsMy41MzkwNiBjIC0yMDcsMCAtMzY5LjMsNjQuNjUyMzQgLTQ4Ni44NiwxOTQuMDMwOTQgLTExNy42NSwxMjkuMzIxIC0xNzYuNDEsMzAzLjQxIC0xNzYuNDEsNTIyLjE0MSBWIDE5MDUuMTIgaCA0MjYuODkgViA4NDYuNzE5IGMgMCwtMTQ1Ljg2IDM0LjY3LC0yNTguMTYgMTA0LjA4LC0zMzYuOTE4IDY5LjMzLC03OC44MjEgMTY3LjU3LC0xMTguMTkyIDI5NC42LC0xMTguMTkyIDEyNC42MiwwIDIyNS43OCw0MS4xMjEgMzAzLjM5LDEyMy40ODEgNzcuNjIsODIuMzEyIDExNi40MiwxOTUuMTk5IDExNi40MiwzMzguNjggdiAxMDUxLjM1IGggNDI2LjkgViA0Mi4zMzk4IGggLTQyNi45IFYgMzMxLjYyMSBDIDY4MDIuMjksMTEyLjg5OCA2NjA4LjIzLDMuNTM5MDYgNjM2OC4zNCwzLjUzOTA2IgogICAgICAgICBzdHlsZT0iZmlsbDojMjEzMDNiO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lIgogICAgICAgICB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiIC8+CiAgICAgIDxwYXRoCiAgICAgICAgIGlkPSJwYXRoNiIKICAgICAgICAgZD0iTSA3ODU1LjM3LDQyLjMzOTggViAxOTA1LjEyIGggNDI2Ljg5IFYgNDIuMzM5OCBaIE0gNzgzNy43MywyMTkwLjg5IHYgNDA1LjcyIGggNDU4LjY0IHYgLTQwNS43MiBoIC00NTguNjQiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg3IgogICAgICAgICBkPSJNIDg3NzIuMyw0Mi4zMzk4IFYgMjYxNy43OSBoIDQyNi44NyBWIDQyLjMzOTggSCA4NzcyLjMiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg4IgogICAgICAgICBkPSJtIDEwMjk1LjcsMTAuNTg5OCBjIC0zNTcuNTgsMCAtNTM2LjMsMTgyLjI1MDIgLTUzNi4zLDU0Ni44NDAyIHYgOTgwLjc4IGggLTIzNi4zNiB2IDM2Ni45MSBoIDIzNi4zNiB2IDUxMS41NiBoIDQyNi45IHYgLTUxMS41NiBoIDUwMSB2IC0zNjYuOTEgaCAtNTAxIFYgNjI0LjQ2MSBjIDAsLTE1NS4yMzEgNzYuNCwtMjMyLjg1MiAyMjkuMywtMjMyLjg1MiA5MS43LDAgMTc5LjksMjEuMTggMjY0LjYsNjMuNTEyIFYgMTA1Ljg0IGMgLTExMi45LC02My41MDAyIC0yNDEuMSwtOTUuMjUwMiAtMzg0LjUsLTk1LjI1MDIiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg5IgogICAgICAgICBkPSJtIDMzMzcuOTksMzU0NC44MyAxMTc5Ljc5LDEwNzYuNzIgdiAxOTM4LjEgTCAzMzM3Ljk5LDU1OTAuNiBWIDM1NDQuODMiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgxMCIKICAgICAgICAgZD0iTSA2MTY5LjQ4LDk5OTUuMDEgViA0NjIxLjU1IGwgMTE3OS44LC0xMDc2LjcyIHYgNTQ5MS4yOSBsIC0xMTc5LjgsOTU4Ljg5IgogICAgICAgICBzdHlsZT0iZmlsbDojNGVhOWUyO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lIgogICAgICAgICB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiIC8+CiAgICAgIDxwYXRoCiAgICAgICAgIGlkPSJwYXRoMTEiCiAgICAgICAgIGQ9Ik0gNDc1My43NCw3NzQ0LjA1IFYgNDgzNi44OSBsIDU4OS44OSw1MzguMzcgNTg5LjksLTUzOC4zNyA0LjM3LDM5NzMuNzIgLTExODQuMTYsLTEwNjYuNTYiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgxMiIKICAgICAgICAgZD0ibSA0ODAyLjIxLDM0MjUuMTkgaCA0MzAuNjkgdiA0MzAuNjggaCAtNDMwLjY5IHYgLTQzMC42OCIKICAgICAgICAgc3R5bGU9ImZpbGw6IzRlYTllMjtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZSIKICAgICAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIiAvPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDEzIgogICAgICAgICBkPSJtIDU0NDguMjQsMzQyNS4xOSBoIDQzMC43IHYgNDMwLjY4IGggLTQzMC43IHYgLTQzMC42OCIKICAgICAgICAgc3R5bGU9ImZpbGw6IzRlYTllMjtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZSIKICAgICAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIiAvPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDE0IgogICAgICAgICBkPSJtIDUyMzIuOSw0NTAxLjkxIGggLTQzMC42OSB2IC00MzAuNjkgaCA0MzAuNjkgdiA0MzAuNjkiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgxNSIKICAgICAgICAgZD0ibSA1NDQ4LjI0LDQ1MDEuOTEgdiAtNDMwLjY5IGggNDMwLjcgdiA0MzAuNjkgaCAtNDMwLjciCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=" alt="Rebuilt"/>
+    <h2>Training Hub</h2>
+    <p>Enter your Rebuilt email and select your role to access your training modules and track your progress.</p>
+
+    <div class="gate-field">
+      <label>Rebuilt Email Address</label>
+      <input type="text" id="gate-email" placeholder="yourname@rebuilt.com" autocomplete="email" autocapitalize="off"/>
+    </div>
+
+    <div class="gate-field">
+      <label>Your Role</label>
+      <div class="role-selector">
+        <div class="role-btn" id="role-acq" onclick="selectRole('acq')">
+          <div class="role-btn-icon">🏚️</div>
+          <span class="role-btn-label">Acquisition</span>
+        </div>
+        <div class="role-btn" id="role-dispo" onclick="selectRole('dispo')">
+          <div class="role-btn-icon">🤝</div>
+          <span class="role-btn-label">Disposition</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gate-error" id="gate-error"></div>
+    <button class="gate-btn" id="gate-submit">Access My Training →</button>
+    <p class="gate-note">Your progress is saved and accessible from any device using your Rebuilt email.</p>
   </div>
 </div>
-<div class="legend">
-  <span class="legend-label">Role:</span>
-  <span class="legend-tag" style="background: rgba(245,131,31,0.12); color: #c45e00;">Acq</span>
-  <span class="legend-tag" style="background: rgba(15,105,110,0.12); color: #0f696e;">Dispo</span>
-</div>
-<div class="grid-wrap">
-  <div class="grid-label">Available Modules</div>
-  <div class="grid">
-    <div class="card">
-      <div class="card-top"><div class="aud-tags"><span class="aud-tag" style="background: rgba(245,131,31,0.12); color: #c45e00;">Acq</span><span class="aud-tag" style="background: rgba(15,105,110,0.12); color: #0f696e;">Dispo</span></div></div>
-      <div class="card-body"><h2 class="card-title">Introduction to Rebuilt</h2><p class="card-desc">How wholesaling works, the Rebuilt ecosystem, company history, and our purpose and vision.</p></div>
-      <div class="card-footer">
-        <span class="card-meta">7 questions &middot; ~5 min</span>
-        <a class="btn-start" href="https://mikespalding.github.io/rebuilt-training/intro_to_rebuilt_knowledge_check.html" target="_blank" rel="noopener">Start &#8594;</a>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-top"><div class="aud-tags"><span class="aud-tag" style="background: rgba(245,131,31,0.12); color: #c45e00;">Acq</span><span class="aud-tag" style="background: rgba(15,105,110,0.12); color: #0f696e;">Dispo</span></div></div>
-      <div class="card-body"><h2 class="card-title">Core Values</h2><p class="card-desc">Rebuilt’s five core values and how Grit, Authenticity, Accountability, Growth Mindset, and Celebrate Success show up every day.</p></div>
-      <div class="card-footer">
-        <span class="card-meta">5 questions &middot; ~3 min</span>
-        <a class="btn-start" href="https://mikespalding.github.io/rebuilt-training/core_values_knowledge_check.html" target="_blank" rel="noopener">Start &#8594;</a>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-top"><div class="aud-tags"><span class="aud-tag" style="background: rgba(245,131,31,0.12); color: #c45e00;">Acq</span><span class="aud-tag" style="background: rgba(15,105,110,0.12); color: #0f696e;">Dispo</span></div></div>
-      <div class="card-body"><h2 class="card-title">Marketing: Lead Generation</h2><p class="card-desc">How Rebuilt generates, segments, and prioritizes leads through direct mail, PIPP pricing, and data-driven targeting.</p></div>
-      <div class="card-footer">
-        <span class="card-meta">4 questions &middot; ~3 min</span>
-        <a class="btn-start" href="https://mikespalding.github.io/rebuilt-training/marketing_lead_generation_knowledge_check.html" target="_blank" rel="noopener">Start &#8594;</a>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-top"><div class="aud-tags"><span class="aud-tag" style="background: rgba(245,131,31,0.12); color: #c45e00;">Acq</span><span class="aud-tag" style="background: rgba(15,105,110,0.12); color: #0f696e;">Dispo</span></div></div>
-      <div class="card-body"><h2 class="card-title">Comps + ARV</h2><p class="card-desc">How to pull and evaluate comparable sales, understand comp types, apply radius and time criteria, and use HouseCanary to establish ARV.</p></div>
-      <div class="card-footer">
-        <span class="card-meta">7 questions &middot; ~5 min</span>
-        <a class="btn-start" href="https://mikespalding.github.io/rebuilt-training/comps_arv_knowledge_check.html" target="_blank" rel="noopener">Start &#8594;</a>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-top"><div class="aud-tags"><span class="aud-tag" style="background: rgba(15,105,110,0.12); color: #0f696e;">Dispo</span></div></div>
-      <div class="card-body"><h2 class="card-title">Introduction to Disposition</h2><p class="card-desc">The Disposition deal cycle, three ways to create margin, seller retrading, and investor negotiations.</p></div>
-      <div class="card-footer">
-        <span class="card-meta">6 questions &middot; ~4 min</span>
-        <a class="btn-start" href="https://mikespalding.github.io/rebuilt-training/introduction_to_disposition_knowledge_check.html" target="_blank" rel="noopener">Start &#8594;</a>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-top"><div class="aud-tags"><span class="aud-tag" style="background: rgba(15,105,110,0.12); color: #0f696e;">Dispo</span></div></div>
-      <div class="card-body"><h2 class="card-title">Under Review to Marketing + Deal Management</h2><p class="card-desc">The full deal flow from Deal Economics through the Seller Intro Call, Ready for Marketing, and the Marketing campaign.</p></div>
-      <div class="card-footer">
-        <span class="card-meta">6 questions &middot; ~4 min</span>
-        <a class="btn-start" href="https://mikespalding.github.io/rebuilt-training/under_review_to_marketing_knowledge_check.html" target="_blank" rel="noopener">Start &#8594;</a>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-top"><div class="aud-tags"><span class="aud-tag" style="background: rgba(15,105,110,0.12); color: #0f696e;">Dispo</span></div></div>
-      <div class="card-body"><h2 class="card-title">Buyer Sourcing</h2><p class="card-desc">How to source buyers through the Marketplace, outreach best practices, skip tracing, deal allocation, and pipeline management.</p></div>
-      <div class="card-footer">
-        <span class="card-meta">7 questions &middot; ~5 min</span>
-        <a class="btn-start" href="https://mikespalding.github.io/rebuilt-training/buyer_sourcing_knowledge_check.html" target="_blank" rel="noopener">Start &#8594;</a>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-top"><div class="aud-tags"><span class="aud-tag" style="background: rgba(15,105,110,0.12); color: #0f696e;">Dispo</span></div></div>
-      <div class="card-body"><h2 class="card-title">Buyer Sourcing: Processes + Talk Track</h2><p class="card-desc">Showing processes, retrade talk tracks using the CREW method, option money tiers, NTS, and exit strategies.</p></div>
-      <div class="card-footer">
-        <span class="card-meta">7 questions &middot; ~5 min</span>
-        <a class="btn-start" href="https://mikespalding.github.io/rebuilt-training/buyer_sourcing_processes_talk_track_knowledge_check.html" target="_blank" rel="noopener">Start &#8594;</a>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-top"><div class="aud-tags"><span class="aud-tag" style="background: rgba(15,105,110,0.12); color: #0f696e;">Dispo</span></div></div>
-      <div class="card-body"><h2 class="card-title">Contract 2 Close + National Title Services</h2><p class="card-desc">The full closing process from buyer assigned through post-close, including NTS advantages, option money collection, HUD approval, and closing day responsibilities.</p></div>
-      <div class="card-footer">
-        <span class="card-meta">7 questions &middot; ~5 min</span>
-        <a class="btn-start" href="https://mikespalding.github.io/rebuilt-training/contract_2_close_nts_knowledge_check.html" target="_blank" rel="noopener">Start &#8594;</a>
-      </div>
-    </div>
-    <div class="card card-soon">
-      <div class="card-top"><div class="card-badge soon-badge">Coming Soon</div></div>
-      <div class="card-body"><h2 class="card-title">Coming Soon</h2><p class="card-desc">Additional knowledge checks are being developed and will be added here as they become available.</p></div>
-      <div class="card-footer"><span class="card-meta"></span><span class="btn-soon">Check Back</span></div>
+
+<!-- ── HEADER ── -->
+<header class="site-header">
+  <div class="header-logo">
+    <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgoKPHN2ZwogICB2ZXJzaW9uPSIxLjEiCiAgIGlkPSJzdmcxIgogICB3aWR0aD0iMTQyNC45NzMzIgogICBoZWlnaHQ9IjEzMzIuNjY2NyIKICAgdmlld0JveD0iMCAwIDE0MjQuOTczMyAxMzMyLjY2NjciCiAgIHNvZGlwb2RpOmRvY25hbWU9IkxvZ28gU3RhY2tlZC5lcHMiCiAgIHhtbG5zOmlua3NjYXBlPSJodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy9uYW1lc3BhY2VzL2lua3NjYXBlIgogICB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiCiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnMKICAgICBpZD0iZGVmczEiIC8+CiAgPHNvZGlwb2RpOm5hbWVkdmlldwogICAgIGlkPSJuYW1lZHZpZXcxIgogICAgIHBhZ2Vjb2xvcj0iI2ZmZmZmZiIKICAgICBib3JkZXJjb2xvcj0iIzAwMDAwMCIKICAgICBib3JkZXJvcGFjaXR5PSIwLjI1IgogICAgIGlua3NjYXBlOnNob3dwYWdlc2hhZG93PSIyIgogICAgIGlua3NjYXBlOnBhZ2VvcGFjaXR5PSIwLjAiCiAgICAgaW5rc2NhcGU6cGFnZWNoZWNrZXJib2FyZD0iMCIKICAgICBpbmtzY2FwZTpkZXNrY29sb3I9IiNkMWQxZDEiPgogICAgPGlua3NjYXBlOnBhZ2UKICAgICAgIHg9IjAiCiAgICAgICB5PSIwIgogICAgICAgaW5rc2NhcGU6bGFiZWw9IjEiCiAgICAgICBpZD0icGFnZTEiCiAgICAgICB3aWR0aD0iMTQyNC45NzMzIgogICAgICAgaGVpZ2h0PSIxMzMyLjY2NjciCiAgICAgICBtYXJnaW49IjAiCiAgICAgICBibGVlZD0iMCIgLz4KICA8L3NvZGlwb2RpOm5hbWVkdmlldz4KICA8ZwogICAgIGlkPSJnMSIKICAgICBpbmtzY2FwZTpncm91cG1vZGU9ImxheWVyIgogICAgIGlua3NjYXBlOmxhYmVsPSIxIj4KICAgIDxnCiAgICAgICBpZD0iZ3JvdXAtUjUiPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDIiCiAgICAgICAgIGQ9Ik0gMCw0Mi4zMzk4IFYgMTkwNS4xMiBIIDQyNi44OTUgViAxNDg1LjMgYyAxMzEuNjkxLDMxNy41MSAzNTEuNTkzLDQ2OS4yMiA2NTkuNzM1LDQ1NS4xIHYgLTQ1MS41OCBoIC0yNC42OSBjIC0xOTIuODc3LDAgLTM0Ni45NiwtNjIuOTUgLTQ2Mi4xNzQsLTE4OC43NSBDIDQ4NC41MDQsMTE3NC4yMiA0MjYuODk1LDk5MS4zNzEgNDI2Ljg5NSw3NTEuNDY5IFYgNDIuMzM5OCBIIDAiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgzIgogICAgICAgICBkPSJtIDE2ODQuMjUsMTEwNC4yNiBoIDk1Ni4xIGMgLTE0LjEyLDE0My40NCAtNjIuMzUsMjYxLjA4IC0xNDQuNjcsMzUyLjggLTgyLjM0LDkxLjczIC0xOTEuNzEsMTM3LjYgLTMyOC4wOCwxMzcuNiAtMTI5LjQsMCAtMjM3LjYxLC00NS4zMSAtMzI0LjU5LC0xMzUuODMgLTg3LjA0LC05MC41NiAtMTM5Ljk1LC0yMDguNzYgLTE1OC43NiwtMzU0LjU3IHogTSAyMjE2Ljk5LDAgQyAxOTQ0LjExLDAgMTcxNi41NSw4OS45NjA5IDE1MzQuMzIsMjY5Ljg5MSAxMzUyLjAxLDQ0OS44MiAxMjYwLjg5LDY4Mi4wNTkgMTI2MC44OSw5NjYuNjcyIHYgNy4wNTggYyAwLDI3MC40NCA4NS44Myw0OTkuNzcgMjU3LjU1LDY4Ny45NiAxNzEuNjYsMTg4LjE0IDM4OS4yMywyODIuMjUgNjUyLjY3LDI4Mi4yNSAyODIuMjYsMCA1MDEuNTMsLTk1Ljg3IDY1Ny45NywtMjg3LjU0IDE1Ni40LC0xOTEuNzMgMjM0LjYzLC00MjkuODYgMjM0LjYzLC03MTQuNDIgMCwtMjMuNTM5IC0yLjM4LC02My41MTEgLTcuMDYsLTExOS45NiBIIDE2ODcuNzggYyAyMy40OSwtMTQ4LjE2OCA4My40NiwtMjY0LjA1MSAxNzkuOTQsLTM0Ny41IDk2LjQsLTgzLjUyIDIxNS4yLC0xMjUuMjM5IDM1Ni4zMiwtMTI1LjIzOSAxODMuNDUsMCAzNTEuNTgsNzQuMDc4IDUwNC41MSwyMjIuMjU4IEwgMjk3OS4wMywzNDkuMjgxIEMgMjc4Ni4xNSwxMTYuNDIyIDI1MzIuMTMsMCAyMjE2Ljk5LDAiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg0IgogICAgICAgICBkPSJtIDQzODYuMywzNzMuOTY5IGMgMTUwLjUsMCAyNzYuOTUsNTQuNjgzIDM3OS4yOCwxNjQuMDYyIDEwMi4zLDEwOS4zNzEgMTUzLjQ2LDI1My4zOTkgMTUzLjQ2LDQzMi4xNjggdiA3LjA2MyBjIDAsMTc2LjM5OCAtNTEuNzcsMzE5LjgyOCAtMTU1LjIzLDQzMC40MTggLTEwMy41NCwxMTAuNTMgLTIyOS4zMywxNjUuODEgLTM3Ny41MSwxNjUuODEgLTE0OC4xNiwwIC0yNzUuNzgsLTU1LjkgLTM4Mi43OCwtMTY3LjU4IC0xMDcuMDUsLTExMS43NCAtMTYwLjUzLC0yNTQuNjMgLTE2MC41MywtNDI4LjY0OCB2IC03LjA2MyBjIDAsLTE3NC4wNzggNTMuNDgsLTMxNi45NTcgMTYwLjUzLC00MjguNjQ4IDEwNywtMTExLjc0MiAyMzQuNjIsLTE2Ny41ODIgMzgyLjc4LC0xNjcuNTgyIHogTSA0NDg1LjA5LDMuNTM5MDYgYyAtMjU2LjM5LDAgLTQ2Ni45MSwxMDkuMzU4OTQgLTYzMS41MSwzMjguMDgxOTQgViA0Mi4zMzk4IGggLTQyNi45IFYgMjYxNy43OSBoIDQyNi45IFYgMTU5NC42NiBjIDE2NC42LDIzMi44NCAzNzUuMTIsMzQ5LjI4IDYzMS41MSwzNDkuMjggMjM1LjE3LDAgNDM4LjYzLC04Ny42NiA2MTAuMzQsLTI2Mi44NCAxNzEuNjcsLTE3NS4yNSAyNTcuNTUsLTQwOS44NiAyNTcuNTUsLTcwMy44MzggdiAtNy4wNjMgYyAwLC0yOTQuMDI3IC04NS44OCwtNTI4LjYzNiAtMjU3LjU1LC03MDMuODI4IEMgNDkyMy43Miw5MS4xMjExIDQ3MjAuMjYsMy41MzkwNiA0NDg1LjA5LDMuNTM5MDYiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg1IgogICAgICAgICBkPSJtIDYzNjguMzQsMy41MzkwNiBjIC0yMDcsMCAtMzY5LjMsNjQuNjUyMzQgLTQ4Ni44NiwxOTQuMDMwOTQgLTExNy42NSwxMjkuMzIxIC0xNzYuNDEsMzAzLjQxIC0xNzYuNDEsNTIyLjE0MSBWIDE5MDUuMTIgaCA0MjYuODkgViA4NDYuNzE5IGMgMCwtMTQ1Ljg2IDM0LjY3LC0yNTguMTYgMTA0LjA4LC0zMzYuOTE4IDY5LjMzLC03OC44MjEgMTY3LjU3LC0xMTguMTkyIDI5NC42LC0xMTguMTkyIDEyNC42MiwwIDIyNS43OCw0MS4xMjEgMzAzLjM5LDEyMy40ODEgNzcuNjIsODIuMzEyIDExNi40MiwxOTUuMTk5IDExNi40MiwzMzguNjggdiAxMDUxLjM1IGggNDI2LjkgViA0Mi4zMzk4IGggLTQyNi45IFYgMzMxLjYyMSBDIDY4MDIuMjksMTEyLjg5OCA2NjA4LjIzLDMuNTM5MDYgNjM2OC4zNCwzLjUzOTA2IgogICAgICAgICBzdHlsZT0iZmlsbDojMjEzMDNiO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lIgogICAgICAgICB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiIC8+CiAgICAgIDxwYXRoCiAgICAgICAgIGlkPSJwYXRoNiIKICAgICAgICAgZD0iTSA3ODU1LjM3LDQyLjMzOTggViAxOTA1LjEyIGggNDI2Ljg5IFYgNDIuMzM5OCBaIE0gNzgzNy43MywyMTkwLjg5IHYgNDA1LjcyIGggNDU4LjY0IHYgLTQwNS43MiBoIC00NTguNjQiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg3IgogICAgICAgICBkPSJNIDg3NzIuMyw0Mi4zMzk4IFYgMjYxNy43OSBoIDQyNi44NyBWIDQyLjMzOTggSCA4NzcyLjMiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg4IgogICAgICAgICBkPSJtIDEwMjk1LjcsMTAuNTg5OCBjIC0zNTcuNTgsMCAtNTM2LjMsMTgyLjI1MDIgLTUzNi4zLDU0Ni44NDAyIHYgOTgwLjc4IGggLTIzNi4zNiB2IDM2Ni45MSBoIDIzNi4zNiB2IDUxMS41NiBoIDQyNi45IHYgLTUxMS41NiBoIDUwMSB2IC0zNjYuOTEgaCAtNTAxIFYgNjI0LjQ2MSBjIDAsLTE1NS4yMzEgNzYuNCwtMjMyLjg1MiAyMjkuMywtMjMyLjg1MiA5MS43LDAgMTc5LjksMjEuMTggMjY0LjYsNjMuNTEyIFYgMTA1Ljg0IGMgLTExMi45LC02My41MDAyIC0yNDEuMSwtOTUuMjUwMiAtMzg0LjUsLTk1LjI1MDIiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg5IgogICAgICAgICBkPSJtIDMzMzcuOTksMzU0NC44MyAxMTc5Ljc5LDEwNzYuNzIgdiAxOTM4LjEgTCAzMzM3Ljk5LDU1OTAuNiBWIDM1NDQuODMiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgxMCIKICAgICAgICAgZD0iTSA2MTY5LjQ4LDk5OTUuMDEgViA0NjIxLjU1IGwgMTE3OS44LC0xMDc2LjcyIHYgNTQ5MS4yOSBsIC0xMTc5LjgsOTU4Ljg5IgogICAgICAgICBzdHlsZT0iZmlsbDojNGVhOWUyO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lIgogICAgICAgICB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiIC8+CiAgICAgIDxwYXRoCiAgICAgICAgIGlkPSJwYXRoMTEiCiAgICAgICAgIGQ9Ik0gNDc1My43NCw3NzQ0LjA1IFYgNDgzNi44OSBsIDU4OS44OSw1MzguMzcgNTg5LjksLTUzOC4zNyA0LjM3LDM5NzMuNzIgLTExODQuMTYsLTEwNjYuNTYiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgxMiIKICAgICAgICAgZD0ibSA0ODAyLjIxLDM0MjUuMTkgaCA0MzAuNjkgdiA0MzAuNjggaCAtNDMwLjY5IHYgLTQzMC42OCIKICAgICAgICAgc3R5bGU9ImZpbGw6IzRlYTllMjtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZSIKICAgICAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIiAvPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDEzIgogICAgICAgICBkPSJtIDU0NDguMjQsMzQyNS4xOSBoIDQzMC43IHYgNDMwLjY4IGggLTQzMC43IHYgLTQzMC42OCIKICAgICAgICAgc3R5bGU9ImZpbGw6IzRlYTllMjtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZSIKICAgICAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIiAvPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDE0IgogICAgICAgICBkPSJtIDUyMzIuOSw0NTAxLjkxIGggLTQzMC42OSB2IC00MzAuNjkgaCA0MzAuNjkgdiA0MzAuNjkiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgxNSIKICAgICAgICAgZD0ibSA1NDQ4LjI0LDQ1MDEuOTEgdiAtNDMwLjY5IGggNDMwLjcgdiA0MzAuNjkgaCAtNDMwLjciCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=" alt="Rebuilt"/>
+    <div class="header-divider"></div>
+    <div class="header-title">
+      <span class="header-title-main">Training Hub</span>
+      <span class="header-title-sub">Onboarding &amp; Continuing Education</span>
     </div>
   </div>
-</div>
-<div class="footer">
-  <p>&copy; Rebuilt Offers, LLC &middot; Onboarding Training &middot; Scores tracked and recorded</p>
-</div>
+  <div class="header-right">
+    <span class="header-role-pill" id="header-role-pill"></span>
+    <span class="header-email" id="header-email"></span>
+    <div class="header-avatar" id="header-avatar">?</div>
+    <button class="header-switch" id="switch-btn">Switch</button>
+  </div>
+</header>
+
+<!-- ── MAIN ── -->
+<main class="main-wrap">
+
+  <!-- DASHBOARD -->
+  <div class="dashboard">
+    <div class="dash-top">
+      <div>
+        <div class="dash-label">My Progress</div>
+        <div class="dash-name" id="dash-name">Loading…</div>
+      </div>
+      <div class="dash-role-tag" id="dash-role-tag"></div>
+    </div>
+    <div id="dash-loading" class="dash-loading">Fetching your progress…</div>
+    <div class="dash-stats" id="dash-stats" style="display:none;">
+      <div class="stat-card">
+        <div class="stat-value blue"  id="stat-completed">0</div>
+        <div class="stat-label">Completed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value"       id="stat-total">0</div>
+        <div class="stat-label">My Modules</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value green" id="stat-passed">0</div>
+        <div class="stat-label">Passed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value orange" id="stat-avg">—</div>
+        <div class="stat-label">Avg Score</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OLT SECTION -->
+  <div class="section-header">
+    <div class="section-label">Online Trainings</div>
+    <div class="section-line"></div>
+    <div class="section-count" id="olt-count"></div>
+  </div>
+  <div class="module-grid" id="olt-grid"></div>
+
+  <!-- KC SECTION -->
+  <div class="section-header">
+    <div class="section-label">Knowledge Checks</div>
+    <div class="section-line"></div>
+    <div class="section-count" id="kc-count"></div>
+  </div>
+  <div class="module-grid" id="kc-grid"></div>
+
+</main>
+
+<footer class="site-footer">
+  © Rebuilt Offers, LLC · Training Hub · Progress tracked and recorded
+</footer>
+
+<script>
+// ── CONFIG ──────────────────────────────────────────────────────
+const APPS_URL   = 'https://script.google.com/macros/s/AKfycbyRSuUKBjwlPZiY8E7IZZUEQ8u-uwwuTXZnQ0nTPqtfk-bu3zyAa6RKZYw7687arJVs/exec';
+const RB_DOMAIN  = [114,101,98,117,105,108,116].map(c=>String.fromCharCode(c)).join('');
+
+// ── MODULE REGISTRY ─────────────────────────────────────────────
+const OLT_MODULES = [
+  { id:'olt_sales_talk',   name:'Acquisition Sales Talk',   roles:['acq'],        time:'~45 min', url:'acquisition_sales_talk.html',
+    desc:'The complete call script, Four Pillars framework, and all 13 steps of the call flow with verbatim scripting, agent notes, and tone cues.' },
+  { id:'olt_ab_contract',  name:'AB Contract Training',     roles:['acq'],        time:'~30 min', url:'ab_contract_training.html',
+    desc:'All 20 PSA sections, Seller Info Worksheet, authorization and disclosure docs, PA addendum, due diligence, and red flags.' },
+  { id:'olt_five9',        name:'Five9 Contact Center',     roles:['acq'],        time:'~25 min', url:'five9_contact_center_training.html',
+    desc:'Five9 platform fundamentals: login, dialer modes, dispositions, ACW, call handling, DNC compliance, and CRM integration.' }
+];
+
+const KC_MODULES = [
+  { id:'kc_intro',          name:'Introduction to Rebuilt',                        roles:['acq','dispo'], questions:7, time:'~5 min',  url:'intro_to_rebuilt_knowledge_check.html',
+    desc:'How wholesaling works, the Rebuilt ecosystem, company history, and our purpose and vision.' },
+  { id:'kc_core_values',    name:'Core Values',                                    roles:['acq','dispo'], questions:5, time:'~3 min',  url:'core_values_knowledge_check.html',
+    desc:'Rebuilt\'s five core values and how Grit, Authenticity, Accountability, Growth Mindset, and Celebrate Success show up every day.' },
+  { id:'kc_dispo_intro',    name:'Introduction to Disposition',                    roles:['dispo'],       questions:6, time:'~4 min',  url:'introduction_to_disposition_knowledge_check.html',
+    desc:'The Disposition deal cycle, three ways to create margin, seller retrading, and investor negotiations.' },
+  { id:'kc_marketing',      name:'Marketing: Lead Generation',                     roles:['acq','dispo'], questions:4, time:'~3 min',  url:'marketing_lead_generation_knowledge_check.html',
+    desc:'How Rebuilt generates, segments, and prioritizes leads through direct mail, PIPP pricing, and data-driven targeting.' },
+  { id:'kc_comps_arv',      name:'Comps + ARV',                                    roles:['acq'],         questions:7, time:'~5 min',  url:'comps_arv_knowledge_check.html',
+    desc:'How to pull, evaluate, and apply comparable sales data to establish accurate After Repair Value for acquisition decisions.' },
+  { id:'kc_ur_to_mktg',     name:'Under Review to Marketing + Deal Management',    roles:['dispo'],       questions:6, time:'~4 min',  url:'under_review_to_marketing_knowledge_check.html',
+    desc:'The full deal flow from Deal Economics through the Seller Intro Call, Ready for Marketing, and the Marketing campaign.' },
+  { id:'kc_buyer_sourcing',  name:'Buyer Sourcing',                                roles:['dispo'],       questions:7, time:'~5 min',  url:'buyer_sourcing_knowledge_check.html',
+    desc:'How to source buyers through the Marketplace, outreach best practices, skip tracing, deal allocation, and pipeline management.' },
+  { id:'kc_buyer_processes', name:'Buyer Sourcing: Processes + Talk Track',        roles:['dispo'],       questions:7, time:'~5 min',  url:'buyer_sourcing_processes_talk_track_knowledge_check.html',
+    desc:'Retrade talk tracks using the CREW method, option money tiers, NTS, and exit strategies.' },
+  { id:'kc_c2c_nts',         name:'Contract 2 Close + National Title Services',    roles:['dispo'],       questions:7, time:'~5 min',  url:'contract_2_close_nts_knowledge_check.html',
+    desc:'The full closing process from buyer assigned through post-close, including NTS advantages, option money collection, HUD approval, and closing day.' }
+];
+
+// ── STATE ────────────────────────────────────────────────────────
+let currentEmail = '';
+let currentRole  = '';   // 'acq' or 'dispo'
+let completionMap = {};
+
+// ── ROLE SELECTION ───────────────────────────────────────────────
+function selectRole(role) {
+  currentRole = role;
+  document.getElementById('role-acq').className  = 'role-btn' + (role==='acq'  ? ' selected-acq'  : '');
+  document.getElementById('role-dispo').className = 'role-btn' + (role==='dispo'? ' selected-dispo' : '');
+}
+
+// ── GATE ─────────────────────────────────────────────────────────
+function validateEmail(v) {
+  v = v.trim().toLowerCase();
+  return v.includes('@') && v.endsWith('@' + RB_DOMAIN + '.com');
+}
+
+document.getElementById('gate-submit').addEventListener('click', submitGate);
+document.getElementById('gate-email').addEventListener('keydown', e => { if(e.key==='Enter') submitGate(); });
+
+function submitGate() {
+  const emailEl = document.getElementById('gate-email');
+  const errEl   = document.getElementById('gate-error');
+  const val     = emailEl.value.trim().toLowerCase();
+
+  if (!validateEmail(val)) {
+    emailEl.classList.add('error');
+    errEl.textContent = 'Please enter a valid @' + RB_DOMAIN + '.com email address.';
+    return;
+  }
+  if (!currentRole) {
+    errEl.textContent = 'Please select your role — Acquisition or Disposition.';
+    emailEl.classList.remove('error');
+    return;
+  }
+
+  emailEl.classList.remove('error');
+  errEl.textContent = '';
+  currentEmail = val;
+  localStorage.setItem('rebuilt_email', val);
+  localStorage.setItem('rebuilt_role',  currentRole);
+  document.getElementById('gate-overlay').classList.add('hidden');
+  initApp();
+}
+
+// ── SWITCH USER ──────────────────────────────────────────────────
+document.getElementById('switch-btn').addEventListener('click', () => {
+  localStorage.removeItem('rebuilt_email');
+  localStorage.removeItem('rebuilt_role');
+  currentEmail = ''; currentRole = ''; completionMap = {};
+  document.getElementById('gate-overlay').classList.remove('hidden');
+  document.getElementById('gate-email').value = '';
+  document.getElementById('gate-error').textContent = '';
+  document.getElementById('role-acq').className  = 'role-btn';
+  document.getElementById('role-dispo').className = 'role-btn';
+  currentRole = '';
+});
+
+// ── AUTO-LOGIN ───────────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', () => {
+  const savedEmail = localStorage.getItem('rebuilt_email');
+  const savedRole  = localStorage.getItem('rebuilt_role');
+  if (savedEmail && validateEmail(savedEmail) && (savedRole === 'acq' || savedRole === 'dispo')) {
+    currentEmail = savedEmail;
+    currentRole  = savedRole;
+    document.getElementById('gate-overlay').classList.add('hidden');
+    initApp();
+  }
+});
+
+// ── INIT ─────────────────────────────────────────────────────────
+function initApp() {
+  const namePart = currentEmail.split('@')[0]
+    .replace(/[._]/g,' ')
+    .replace(/(^\w|\s\w)/g, m => m.toUpperCase());
+
+  // Header
+  document.getElementById('header-email').textContent = currentEmail;
+  const av = document.getElementById('header-avatar');
+  av.textContent = currentEmail[0].toUpperCase();
+  av.className   = 'header-avatar ' + currentRole;
+
+  const rolePill = document.getElementById('header-role-pill');
+  rolePill.textContent = currentRole === 'acq' ? 'Acquisition' : 'Disposition';
+  rolePill.className   = 'header-role-pill ' + currentRole;
+
+  // Dashboard
+  document.getElementById('dash-name').textContent = namePart + "'s Dashboard";
+  const roleTag = document.getElementById('dash-role-tag');
+  roleTag.textContent = currentRole === 'acq' ? 'Acquisition' : 'Disposition';
+  roleTag.className   = 'dash-role-tag ' + currentRole;
+
+  renderGrids();
+  fetchProgress();
+}
+
+// ── FETCH PROGRESS (JSONP) ───────────────────────────────────────
+function fetchProgress() {
+  document.getElementById('dash-loading').style.display = 'block';
+  document.getElementById('dash-stats').style.display   = 'none';
+
+  // Apps Script GET requires JSONP — fetch() hits CORS redirect issues
+  const cbName = 'rb_cb_' + Date.now();
+
+  // Timeout: if no response in 8s, show empty dashboard gracefully
+  const timer = setTimeout(() => {
+    delete window[cbName];
+    const s = document.getElementById('s_' + cbName);
+    if (s) s.remove();
+    handleProgress({ success: false, completions: [] });
+  }, 8000);
+
+  window[cbName] = function(data) {
+    clearTimeout(timer);
+    delete window[cbName];
+    const s = document.getElementById('s_' + cbName);
+    if (s) s.remove();
+    handleProgress(data);
+  };
+
+  const tag = document.createElement('script');
+  tag.id  = 's_' + cbName;
+  tag.src = APPS_URL + '?email=' + encodeURIComponent(currentEmail) + '&callback=' + cbName;
+  tag.onerror = () => {
+    clearTimeout(timer);
+    delete window[cbName];
+    handleProgress({ success: false, completions: [] });
+  };
+  document.head.appendChild(tag);
+}
+
+function handleProgress(data) {
+  completionMap = {};
+  if (data && data.completions) {
+    data.completions.forEach(c => {
+      if (!completionMap[c.module_id] || c.score_pct > completionMap[c.module_id].score_pct)
+        completionMap[c.module_id] = c;
+    });
+  }
+  document.getElementById('dash-loading').style.display = 'none';
+  document.getElementById('dash-stats').style.display   = 'flex';
+  updateDashboard();
+  renderGrids();
+}
+
+// ── DASHBOARD ────────────────────────────────────────────────────
+function myModules() {
+  return [...OLT_MODULES, ...KC_MODULES].filter(m => m.roles.includes(currentRole));
+}
+
+function updateDashboard() {
+  const mods = myModules();
+  let completed=0, passed=0, scoreSum=0, scoreCount=0;
+  mods.forEach(m => {
+    const c = completionMap[m.id];
+    if (c) {
+      completed++;
+      if (c.passed) passed++;
+      if (c.score_pct > 0) { scoreSum += parseFloat(c.score_pct); scoreCount++; }
+    }
+  });
+  document.getElementById('stat-completed').textContent = completed;
+  document.getElementById('stat-total').textContent     = mods.length;
+  document.getElementById('stat-passed').textContent    = passed;
+  document.getElementById('stat-avg').textContent       = scoreCount > 0 ? Math.round(scoreSum/scoreCount) + '%' : '—';
+}
+
+// ── RENDER GRIDS ─────────────────────────────────────────────────
+function renderGrids() {
+  const myOLTs = OLT_MODULES.filter(m => m.roles.includes(currentRole));
+  const myKCs  = KC_MODULES.filter(m  => m.roles.includes(currentRole));
+
+  document.getElementById('olt-count').textContent = myOLTs.length + ' module' + (myOLTs.length!==1?'s':'');
+  document.getElementById('kc-count').textContent  = myKCs.length  + ' module' + (myKCs.length!==1?'s':'');
+
+  document.getElementById('olt-grid').innerHTML = myOLTs.map(m => cardHTML(m,'OLT')).join('');
+  document.getElementById('kc-grid').innerHTML  = myKCs.map(m  => cardHTML(m,'KC')).join('');
+}
+
+function cardHTML(mod, type) {
+  const comp = completionMap[mod.id];
+  let sClass='not-started', sLabel='Not Started', scoreHTML='', dateHTML='';
+
+  if (comp) {
+    if (comp.passed) { sClass='complete';  sLabel='Complete ✓'; }
+    else             { sClass='failed';    sLabel='Needs Retry'; }
+    const pct = Math.round(comp.score_pct);
+    scoreHTML = '<span class="score-badge ' + (comp.passed?'pass':'fail') + '">' + pct + '%</span>';
+    if (comp.completed_at) {
+      const d = new Date(comp.completed_at);
+      dateHTML = '<span class="card-date">' + d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) + '</span>';
+    }
+  }
+
+  // Only show role badges relevant to the current user's role
+  const roleBadges = mod.roles
+    .filter(r => r === currentRole)
+    .map(r => '<span class="badge ' + r + '">' + (r==='acq'?'Acq':'Dispo') + '</span>')
+    .join('');
+  const typeBadge = '<span class="badge ' + type.toLowerCase() + '">' + type + '</span>';
+
+  const qMeta = mod.questions
+    ? '<span class="meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>' + mod.questions + ' questions</span>'
+    : '';
+
+  return '<a class="module-card status-' + sClass + '" href="' + mod.url + '">' +
+    '<div class="card-top">' +
+      '<div class="card-badges">' + roleBadges + typeBadge + '</div>' +
+      '<span class="status-pill ' + sClass + '">' + sLabel + '</span>' +
+    '</div>' +
+    '<div class="card-title">' + mod.name + '</div>' +
+    '<div class="card-desc">'  + mod.desc  + '</div>' +
+    '<div class="card-footer">' +
+      '<div class="card-meta">' +
+        qMeta +
+        '<span class="meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>' + mod.time + '</span>' +
+      '</div>' +
+      '<div class="card-right">' + scoreHTML + dateHTML + '<span class="card-arrow">→</span></div>' +
+    '</div>' +
+  '</a>';
+}
+</script>
 </body>
 </html>
