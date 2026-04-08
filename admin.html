@@ -327,8 +327,9 @@ function processData(data) {
     if (!repMap[email]) {
       var namePart = email.split('@')[0].replace(/[._]/g,' ')
         .replace(/(^\w|\s\w)/g, function(m) { return m.toUpperCase(); });
-      // Infer role from which modules they've attempted
-      repMap[email] = { name: namePart, email: email, role: '', completions: {} };
+      repMap[email] = { name: namePart, email: email, role: c.role || '', completions: {} };
+    } else if (c.role && !repMap[email].role) {
+      repMap[email].role = c.role;
     }
 
     var rec = repMap[email];
@@ -338,14 +339,25 @@ function processData(data) {
     }
   });
 
-  // Infer role: if they have any dispo-only modules → dispo, else acq
+  // Role: read directly from sheet data (column H), fallback to inference
   Object.values(repMap).forEach(function(rep) {
-    var dispoMods = ['kc_dispo_intro','kc_ur_to_mktg','kc_buyer_sourcing','kc_buyer_processes','kc_c2c_nts'];
-    var acqMods   = ['olt_sales_talk','olt_ab_contract','olt_five9'];
-    var hasDispoOnly = dispoMods.some(function(id) { return rep.completions[id]; });
-    var hasAcqOnly   = acqMods.some(function(id)   { return rep.completions[id]; });
-    if (hasDispoOnly && !hasAcqOnly) rep.role = 'dispo';
-    else rep.role = 'acq'; // default to acq if ambiguous or only shared modules
+    // If any completion row has a role set, use it
+    var roleFromSheet = '';
+    allData.forEach(function(c) {
+      if ((c.email || '').toLowerCase().trim() === rep.email && c.role) {
+        roleFromSheet = c.role;
+      }
+    });
+    if (roleFromSheet === 'acq' || roleFromSheet === 'dispo') {
+      rep.role = roleFromSheet;
+    } else {
+      // Fallback inference for rows without role column populated
+      var dispoMods = ['kc_dispo_intro','kc_ur_to_mktg','kc_buyer_sourcing','kc_buyer_processes','kc_c2c_nts'];
+      var acqMods   = ['olt_sales_talk','olt_ab_contract','olt_five9'];
+      var hasDispoOnly = dispoMods.some(function(id) { return rep.completions[id]; });
+      var hasAcqOnly   = acqMods.some(function(id)   { return rep.completions[id]; });
+      rep.role = (hasDispoOnly && !hasAcqOnly) ? 'dispo' : 'acq';
+    }
   });
 
   document.getElementById('last-updated').textContent =

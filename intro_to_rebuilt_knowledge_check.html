@@ -754,12 +754,14 @@ function saveScore(elapsed) {
   saveEl.className   = 'save-status saving';
   overlay.classList.add('show');
 
+  var role      = localStorage.getItem('rebuilt_role') || '';
   const payload = JSON.stringify({
     email:       email,
     module_id:   MODULE_ID,
     module_name: MODULE_NAME,
     type:        'KC',
-    score_pct:   scorePct
+    score_pct:   scorePct,
+    role:        role
   });
 
   const timeout = setTimeout(() => {
