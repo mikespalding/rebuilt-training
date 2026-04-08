@@ -1622,8 +1622,38 @@ function checkModuleQuiz(qid) {
     if (!passed) btn.classList.add('low-score');
     // Update scorecard
     updateScorecard();
+    // Report running score to hub after each module quiz
+    reportRunningScore();
     return;
   }
+}
+
+function reportRunningScore() {
+  // Calculate cumulative score across all completed module quizzes so far
+  let totalCorrect = 0, totalPossible = 0;
+  for (const [mod, cfg] of Object.entries(QUIZ_CONFIG)) {
+    const allAnswered = cfg.qids.every(q => quizState[q]);
+    if (!allAnswered) continue;
+    totalCorrect  += cfg.qids.filter(q => quizState[q]==='correct').length;
+    totalPossible += cfg.qids.length;
+  }
+  if (totalPossible === 0) return;
+  const scorePct = Math.round((totalCorrect / totalPossible) * 100);
+  const email    = localStorage.getItem('rebuilt_email') || userEmail;
+  const role     = localStorage.getItem('rebuilt_role') || '';
+  if (!email) return;
+  fetch(HUB_SCRIPT_URL, {
+    method: 'POST', mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      email:       email,
+      module_id:   'olt_sales_talk',
+      module_name: 'Acquisition Sales Talk',
+      type:        'OLT',
+      score_pct:   scorePct,
+      role:        role
+    })
+  }).catch(function() {});
 }
 
 // ── Scorecard ──────────────────────────────────────────────────────────────
