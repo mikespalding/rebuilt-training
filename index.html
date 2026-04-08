@@ -581,27 +581,34 @@ function fetchProgress() {
   document.getElementById('dash-loading').style.display = 'block';
   document.getElementById('dash-stats').style.display   = 'none';
 
-  // Primary: fetch with redirect follow (works for Apps Script)
-  fetch(APPS_URL + '?email=' + encodeURIComponent(currentEmail), {
-    method: 'GET', redirect: 'follow'
-  })
-  .then(r => r.json())
-  .then(data => handleProgress(data))
-  .catch(() => {
-    // Fallback: JSONP
-    const cbName = 'rb_cb_' + Date.now();
-    window[cbName] = function(data) {
-      delete window[cbName];
-      const s = document.getElementById('s_' + cbName);
-      if (s) s.remove();
-      handleProgress(data);
-    };
-    const tag = document.createElement('script');
-    tag.id  = 's_' + cbName;
-    tag.src = APPS_URL + '?email=' + encodeURIComponent(currentEmail) + '&callback=' + cbName;
-    tag.onerror = () => { delete window[cbName]; handleProgress({ success:false, completions:[] }); };
-    document.head.appendChild(tag);
-  });
+  // Apps Script GET requires JSONP — fetch() hits CORS redirect issues
+  const cbName = 'rb_cb_' + Date.now();
+
+  // Timeout: if no response in 8s, show empty dashboard gracefully
+  const timer = setTimeout(() => {
+    delete window[cbName];
+    const s = document.getElementById('s_' + cbName);
+    if (s) s.remove();
+    handleProgress({ success: false, completions: [] });
+  }, 8000);
+
+  window[cbName] = function(data) {
+    clearTimeout(timer);
+    delete window[cbName];
+    const s = document.getElementById('s_' + cbName);
+    if (s) s.remove();
+    handleProgress(data);
+  };
+
+  const tag = document.createElement('script');
+  tag.id  = 's_' + cbName;
+  tag.src = APPS_URL + '?email=' + encodeURIComponent(currentEmail) + '&callback=' + cbName;
+  tag.onerror = () => {
+    clearTimeout(timer);
+    delete window[cbName];
+    handleProgress({ success: false, completions: [] });
+  };
+  document.head.appendChild(tag);
 }
 
 function handleProgress(data) {
