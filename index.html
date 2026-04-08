@@ -581,18 +581,27 @@ function fetchProgress() {
   document.getElementById('dash-loading').style.display = 'block';
   document.getElementById('dash-stats').style.display   = 'none';
 
-  const cbName = 'rb_cb_' + Date.now();
-  window[cbName] = function(data) {
-    delete window[cbName];
-    const s = document.getElementById('s_' + cbName);
-    if (s) s.remove();
-    handleProgress(data);
-  };
-  const tag = document.createElement('script');
-  tag.id  = 's_' + cbName;
-  tag.src = APPS_URL + '?email=' + encodeURIComponent(currentEmail) + '&callback=' + cbName;
-  tag.onerror = () => { delete window[cbName]; handleProgress({ success:false, completions:[] }); };
-  document.head.appendChild(tag);
+  // Primary: fetch with redirect follow (works for Apps Script)
+  fetch(APPS_URL + '?email=' + encodeURIComponent(currentEmail), {
+    method: 'GET', redirect: 'follow'
+  })
+  .then(r => r.json())
+  .then(data => handleProgress(data))
+  .catch(() => {
+    // Fallback: JSONP
+    const cbName = 'rb_cb_' + Date.now();
+    window[cbName] = function(data) {
+      delete window[cbName];
+      const s = document.getElementById('s_' + cbName);
+      if (s) s.remove();
+      handleProgress(data);
+    };
+    const tag = document.createElement('script');
+    tag.id  = 's_' + cbName;
+    tag.src = APPS_URL + '?email=' + encodeURIComponent(currentEmail) + '&callback=' + cbName;
+    tag.onerror = () => { delete window[cbName]; handleProgress({ success:false, completions:[] }); };
+    document.head.appendChild(tag);
+  });
 }
 
 function handleProgress(data) {
@@ -658,9 +667,11 @@ function cardHTML(mod, type) {
     }
   }
 
-  const roleBadges = mod.roles.map(r =>
-    '<span class="badge ' + r + '">' + (r==='acq'?'Acq':'Dispo') + '</span>'
-  ).join('');
+  // Only show role badges relevant to the current user's role
+  const roleBadges = mod.roles
+    .filter(r => r === currentRole)
+    .map(r => '<span class="badge ' + r + '">' + (r==='acq'?'Acq':'Dispo') + '</span>')
+    .join('');
   const typeBadge = '<span class="badge ' + type.toLowerCase() + '">' + type + '</span>';
 
   const qMeta = mod.questions
