@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjQ0MCAwIDU1MCA4OTAiPjxwYXRoIGQ9Im0gMzMzNy45OSwzNTQ0LjgzIDExNzkuNzksMTA3Ni43MiB2IDE5MzguMSBMIDMzMzcuOTksNTU5MC42IFYgMzU0NC44MyIgZmlsbD0iIzRlYTllMiIgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIi8+PHBhdGggZD0iTSA2MTY5LjQ4LDk5OTUuMDEgViA0NjIxLjU1IGwgMTE3OS44LC0xMDc2LjcyIHYgNTQ5MS4yOSBsIC0xMTc5LjgsOTU4Ljg5IiBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz48cGF0aCBkPSJNIDQ3NTMuNzQsNzc0NC4wNSBWIDQ4MzYuODkgbCA1ODkuODksNTM4LjM3IDU4OS45LC01MzguMzcgNC4zNywzOTczLjcyIC0xMTg0LjE2LC0xMDY2LjU2IiBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz48cGF0aCBkPSJtIDQ4MDIuMjEsMzQyNS4xOSBoIDQzMC42OSB2IDQzMC42OCBoIC00MzAuNjkgdiAtNDMwLjY4IiBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz48cGF0aCBkPSJtIDU0NDguMjQsMzQyNS4xOSBoIDQzMC43IHYgNDMwLjY4IGggLTQzMC43IHYgLTQzMC42OCIgZmlsbD0iIzRlYTllMiIgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIi8+PHBhdGggZD0ibSA1MjMyLjksNDUwMS45MSBoIC00MzAuNjkgdiAtNDMwLjY5IGggNDMwLjY5IHYgNDMwLjY5IiBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz48cGF0aCBkPSJtIDU0NDguMjQsNDUwMS45MSB2IC00MzAuNjkgaCA0MzAuNyB2IDQzMC42OSBoIC00MzAuNyIgZmlsbD0iIzRlYTllMiIgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIi8+PC9zdmc+"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AB Contract Training — Rebuilt Training</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --navy:#1f3540;--blue:#21a9e1;--mid:#21a9e1;--sky:#64b4b7;--light:#e8f6fd;
+  --orange:#f5831f;--red:#c0392b;--green:#1A7A4A;
+  --warn-bg:#FEF2F2;--note-bg:#EFF8FF;--tip-bg:#F0FDF4;
+  --gray-50:#efedeb;--gray-100:#e8e6e4;--gray-200:rgba(31,53,64,0.12);
+  --gray-400:#5a7888;--gray-600:#5a7888;--gray-900:#1f3540;
+  --sidebar:270px;--radius:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Montserrat',sans-serif;background:var(--gray-50);color:var(--gray-900);display:flex;min-height:100vh;font-size:15px;line-height:1.65;}
+#sidebar{width:var(--sidebar);background:var(--navy);position:fixed;top:0;left:0;height:100vh;overflow-y:auto;z-index:200;display:flex;flex-direction:column;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.15) transparent;}
+.sb-brand{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.08);}
+.sb-brand .eyebrow{font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--sky);margin-bottom:6px;}
+.sb-brand h1{font-family:'Montserrat',sans-serif;font-size:17px;font-weight:800;color:#fff;line-height:1.25;}
+.sb-brand p{font-size:11px;color:rgba(255,255,255,.4);margin-top:4px;}
+.sb-progress{padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.08);}
+.sb-progress-label{font-size:10px;color:rgba(255,255,255,.4);display:flex;justify-content:space-between;margin-bottom:6px;}
+.sb-progress-track{background:rgba(255,255,255,.1);border-radius:4px;height:4px;}
+.sb-progress-fill{background:linear-gradient(90deg,var(--mid),var(--sky));height:4px;border-radius:4px;transition:width .5s ease;width:0%;}
+.sb-section-label{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.25);padding:14px 20px 4px;font-family:'Montserrat',sans-serif;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:10px 20px;cursor:pointer;font-size:12.5px;color:rgba(255,255,255,.6);border-left:3px solid transparent;transition:all .15s;}
+.nav-item:hover{background:rgba(255,255,255,.05);color:#fff;}
+.nav-item.active{background:rgba(0,150,199,.18);color:#fff;border-left-color:var(--sky);font-weight:600;}
+.nav-item .nav-icon{font-size:14px;width:18px;text-align:center;flex-shrink:0;}
+.nav-item .nav-check{margin-left:auto;width:16px;height:16px;border-radius:50%;border:1.5px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0;transition:all .3s;}
+.nav-item.completed .nav-check{background:var(--green);border-color:var(--green);color:#fff;}
+.nav-item .nav-badge{margin-left:auto;background:var(--orange);color:#fff;font-size:9px;padding:1px 6px;border-radius:8px;font-weight:700;font-family:'Montserrat',sans-serif;}
+#main{margin-left:var(--sidebar);flex:1;min-height:100vh;}
+.module-page{display:none;padding:48px 56px 100px;max-width:820px;animation:fadeIn .3s ease;}
+.module-page.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.module-header{margin-bottom:36px;}
+.module-eyebrow{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--mid);margin-bottom:10px;}
+.module-title{font-family:'Montserrat',sans-serif;font-size:34px;font-weight:800;color:var(--navy);line-height:1.15;margin-bottom:12px;}
+.module-desc{font-size:15.5px;color:var(--gray-600);max-width:640px;border-left:3px solid var(--sky);padding-left:16px;}
+h2.sh{font-family:'Montserrat',sans-serif;font-size:20px;font-weight:700;color:var(--navy);margin:36px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--gray-200);}
+h3.sh{font-family:'Montserrat',sans-serif;font-size:15px;font-weight:700;color:var(--blue);margin:24px 0 8px;}
+p{margin-bottom:12px;color:var(--gray-600);}
+ul,ol{padding-left:22px;margin-bottom:12px;}
+li{margin-bottom:6px;color:var(--gray-600);}
+.callout{border-radius:var(--radius);padding:14px 18px;margin:16px 0;border-left:4px solid;font-size:14px;}
+.callout strong{display:block;margin-bottom:4px;font-size:11px;letter-spacing:1px;text-transform:uppercase;font-family:'Montserrat',sans-serif;}
+.callout.warn{background:var(--warn-bg);border-color:var(--red);color:#7F1D1D;}
+.callout.warn strong{color:var(--red);}
+.callout.note{background:var(--note-bg);border-color:var(--blue);color:#1E3A5F;}
+.callout.note strong{color:var(--blue);}
+.callout.tip{background:var(--tip-bg);border-color:var(--green);color:#14532D;}
+.callout.tip strong{color:var(--green);}
+.data-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13.5px;border-radius:var(--radius);overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+.data-table th{background:var(--navy);color:#fff;padding:10px 14px;text-align:left;font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;}
+.data-table td{padding:10px 14px;border-bottom:1px solid var(--gray-200);vertical-align:top;color:var(--gray-600);}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table tr:nth-child(even) td{background:var(--gray-50);}
+.by{background:#DCFCE7;color:#166534;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700;font-family:'Montserrat',sans-serif;}
+.bc{background:#FEF9C3;color:#854D0E;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700;font-family:'Montserrat',sans-serif;}
+.bm{background:#DBEAFE;color:#1E40AF;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700;font-family:'Montserrat',sans-serif;}
+.br{background:#FEE2E2;color:#991B1B;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700;font-family:'Montserrat',sans-serif;}
+.talking-card{background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius);margin:12px 0;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05);}
+.talking-card-header{background:var(--light);padding:8px 16px;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;color:var(--blue);letter-spacing:.5px;text-transform:uppercase;}
+.talking-card-body{padding:12px 16px;font-size:14px;color:var(--navy);font-style:italic;line-height:1.6;}
+.nav-buttons{display:flex;gap:12px;margin-top:48px;padding-top:24px;border-top:1px solid var(--gray-200);}
+.btn{padding:11px 24px;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;cursor:pointer;border:none;transition:all .2s;}
+.btn-primary{background:var(--blue);color:#fff;}
+.btn-primary:hover{background:var(--navy);transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,119,182,.3);}
+.btn-secondary{background:var(--gray-100);color:var(--gray-600);}
+.btn-secondary:hover{background:var(--gray-200);}
+.quiz-question{background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius);padding:20px 22px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.05);}
+.quiz-q-text{font-weight:600;color:var(--navy);margin-bottom:14px;font-size:15px;line-height:1.5;}
+.quiz-q-num{font-family:'Montserrat',sans-serif;font-size:11px;color:var(--mid);margin-bottom:6px;letter-spacing:1px;text-transform:uppercase;}
+.quiz-options{display:flex;flex-direction:column;gap:8px;}
+.quiz-option{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;border-radius:8px;border:1.5px solid var(--gray-200);cursor:pointer;transition:all .15s;font-size:14px;color:var(--gray-600);background:var(--gray-50);}
+.quiz-option:hover:not(.locked){border-color:var(--mid);background:var(--note-bg);color:var(--navy);}
+.quiz-option input[type=radio]{margin-top:2px;accent-color:var(--blue);flex-shrink:0;}
+.quiz-option.correct{border-color:var(--green);background:var(--tip-bg);color:#14532D;font-weight:500;}
+.quiz-option.incorrect{border-color:var(--red);background:var(--warn-bg);color:#7F1D1D;}
+.quiz-option.locked{cursor:default;}
+.quiz-feedback{display:none;margin-top:10px;padding:10px 14px;border-radius:8px;font-size:13.5px;line-height:1.5;}
+.quiz-feedback.show{display:block;}
+.quiz-feedback.correct-fb{background:var(--tip-bg);color:#14532D;border-left:3px solid var(--green);}
+.quiz-feedback.incorrect-fb{background:var(--warn-bg);color:#7F1D1D;border-left:3px solid var(--red);}
+.quiz-submit-btn{background:var(--blue);color:#fff;border:none;padding:10px 22px;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;cursor:pointer;margin-top:12px;transition:all .2s;}
+.quiz-submit-btn:hover{background:var(--navy);}
+.quiz-submit-btn:disabled{opacity:.4;cursor:default;}
+.quiz-score-bar{background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius);padding:20px 24px;margin:20px 0;display:none;text-align:center;}
+.quiz-score-bar.show{display:block;}
+.quiz-score-big{font-family:'Montserrat',sans-serif;font-size:48px;font-weight:800;color:var(--navy);}
+.quiz-score-label{color:var(--gray-400);font-size:13px;margin-top:4px;}
+.quiz-score-msg{margin-top:10px;font-size:14px;color:var(--gray-600);}
+.cover-page{display:flex;flex-direction:column;justify-content:center;min-height:100vh;padding:64px 56px;max-width:820px;}
+.cover-eyebrow{font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--mid);margin-bottom:20px;}
+.cover-title{font-family:'Montserrat',sans-serif;font-size:52px;font-weight:800;color:var(--navy);line-height:1.1;margin-bottom:16px;}
+.cover-title span{color:var(--blue);}
+.cover-sub{font-size:18px;color:var(--gray-600);max-width:520px;margin-bottom:40px;}
+.cover-stats{display:flex;gap:32px;margin-bottom:40px;}
+.cover-stat-num{font-family:'Montserrat',sans-serif;font-size:32px;font-weight:800;color:var(--blue);}
+.cover-stat-label{font-size:12px;color:var(--gray-400);}
+.cover-modules{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:40px;}
+.cover-module-chip{background:#fff;border:1px solid var(--gray-200);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--navy);display:flex;align-items:center;gap:8px;}
+.start-btn{background:var(--blue);color:#fff;border:none;padding:16px 36px;border-radius:10px;font-family:'Montserrat',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:10px;}
+.start-btn:hover{background:var(--navy);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,119,182,.3);}
+.scenario-card{background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius);overflow:hidden;margin:12px 0;box-shadow:0 1px 3px rgba(0,0,0,.05);}
+.scenario-header{background:var(--navy);color:#fff;padding:12px 18px;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:1px;}
+.scenario-body{padding:14px 18px;font-size:14px;color:var(--gray-600);}
+.scenario-expand{padding:10px 18px 14px;display:none;}
+.scenario-expand.open{display:block;}
+.scenario-expand-btn{background:none;border:1px solid var(--gray-200);border-radius:6px;padding:7px 14px;font-size:12px;font-family:'Montserrat',sans-serif;font-weight:600;color:var(--blue);cursor:pointer;margin:0 18px 14px;transition:all .15s;}
+.scenario-expand-btn:hover{background:var(--note-bg);border-color:var(--blue);}
+.scenario-answer{background:var(--tip-bg);border-left:3px solid var(--green);border-radius:6px;padding:12px 14px;font-size:13.5px;color:#14532D;line-height:1.6;}
+.checklist{list-style:none;padding:0;}
+.checklist li{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--gray-100);font-size:14px;color:var(--gray-600);}
+.checklist li:last-child{border-bottom:none;}
+.checklist-check{width:20px;height:20px;border:1.5px solid var(--gray-200);border-radius:5px;cursor:pointer;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:12px;transition:all .2s;user-select:none;}
+.checklist-check.checked{background:var(--green);border-color:var(--green);color:#fff;}
+.completion-banner{background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;border-radius:14px;padding:32px 36px;text-align:center;margin:24px 0;}
+.completion-banner h2{font-family:'Montserrat',sans-serif;font-size:28px;font-weight:800;margin-bottom:10px;}
+.completion-banner p{color:rgba(255,255,255,.75);font-size:15px;}
+
+/* Name prompt modal */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(3,4,94,.6);backdrop-filter:blur(4px);z-index:1000;align-items:center;justify-content:center;}
+.modal-overlay.show{display:flex;}
+.modal-box{background:#fff;border-radius:16px;padding:40px 44px;max-width:480px;width:90%;text-align:center;box-shadow:0 24px 64px rgba(0,0,0,.2);animation:fadeIn .3s ease;}
+.modal-box h2{font-family:'Montserrat',sans-serif;font-size:24px;font-weight:800;color:var(--navy);margin-bottom:10px;}
+.modal-box p{color:var(--gray-600);font-size:14px;margin-bottom:24px;}
+.modal-input{width:100%;padding:12px 16px;border:2px solid var(--gray-200);border-radius:8px;font-family:'Montserrat',sans-serif;font-size:16px;color:var(--gray-900);outline:none;transition:border .2s;margin-bottom:16px;}
+.modal-input:focus{border-color:var(--blue);}
+.modal-btn{background:var(--blue);color:#fff;border:none;padding:13px 32px;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;cursor:pointer;width:100%;transition:all .2s;}
+.modal-btn:hover{background:var(--navy);}
+
+/* Certificate overlay */
+.cert-overlay{display:none;position:fixed;inset:0;background:rgba(3,4,94,.85);backdrop-filter:blur(6px);z-index:2000;align-items:center;justify-content:center;padding:20px;}
+.cert-overlay.show{display:flex;}
+.cert-wrap{position:relative;max-width:780px;width:100%;}
+.cert-close{position:absolute;top:-40px;right:0;background:rgba(255,255,255,.15);border:none;color:#fff;font-size:13px;font-family:'Montserrat',sans-serif;font-weight:700;padding:6px 14px;border-radius:6px;cursor:pointer;letter-spacing:1px;}
+.cert-close:hover{background:rgba(255,255,255,.25);}
+.cert-print-btn{position:absolute;top:-40px;left:0;background:var(--sky);border:none;color:var(--navy);font-size:13px;font-family:'Montserrat',sans-serif;font-weight:700;padding:6px 14px;border-radius:6px;cursor:pointer;letter-spacing:1px;}
+.cert-print-btn:hover{background:#fff;}
+
+/* The certificate itself */
+.certificate{background:#fff;border-radius:4px;padding:0;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.4);position:relative;}
+.cert-border{position:absolute;inset:12px;border:2px solid var(--light);border-radius:2px;pointer-events:none;z-index:1;}
+.cert-inner{padding:48px 56px;position:relative;z-index:2;}
+.cert-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;padding-bottom:20px;border-bottom:1px solid var(--gray-200);}
+.cert-logo-text{font-family:'Montserrat',sans-serif;font-weight:800;font-size:22px;color:var(--navy);}
+.cert-logo-text span{color:var(--blue);}
+.cert-logo-sub{font-size:10px;color:var(--gray-400);letter-spacing:2px;text-transform:uppercase;margin-top:2px;}
+.cert-seal{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--blue));display:flex;align-items:center;justify-content:center;font-size:28px;}
+.cert-body{text-align:center;padding:20px 0 28px;}
+.cert-presents{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gray-400);font-family:'Montserrat',sans-serif;margin-bottom:8px;}
+.cert-title-text{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:var(--mid);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;}
+.cert-name{font-family:'Montserrat',sans-serif;font-size:42px;font-weight:800;color:var(--navy);line-height:1.1;margin-bottom:20px;border-bottom:2px solid var(--light);padding-bottom:16px;}
+.cert-desc{font-size:14px;color:var(--gray-600);max-width:480px;margin:0 auto 28px;line-height:1.6;}
+.cert-badges{display:flex;justify-content:center;gap:24px;margin-bottom:28px;}
+.cert-badge{text-align:center;}
+.cert-badge-num{font-family:'Montserrat',sans-serif;font-size:22px;font-weight:800;color:var(--blue);}
+.cert-badge-label{font-size:10px;color:var(--gray-400);text-transform:uppercase;letter-spacing:1px;}
+.cert-footer{display:flex;align-items:flex-end;justify-content:space-between;padding-top:24px;border-top:1px solid var(--gray-200);}
+.cert-sig-block{text-align:center;}
+.cert-sig-name{font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);}
+.cert-sig-title{font-size:11px;color:var(--gray-400);margin-top:2px;}
+.cert-sig-line{width:160px;height:1px;background:var(--gray-200);margin:10px auto 6px;}
+.cert-date-block{text-align:right;}
+.cert-date-label{font-size:10px;color:var(--gray-400);letter-spacing:1px;text-transform:uppercase;}
+.cert-date-val{font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);margin-top:4px;}
+.cert-watermark{position:absolute;bottom:60px;left:50%;transform:translateX(-50%);font-family:'Montserrat',sans-serif;font-size:80px;font-weight:800;color:rgba(0,119,182,.04);letter-spacing:-4px;pointer-events:none;white-space:nowrap;}
+
+/* Unlock button on checklist */
+.cert-unlock-btn{display:none;margin-top:32px;background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;border:none;padding:16px 32px;border-radius:10px;font-family:'Montserrat',sans-serif;font-size:15px;font-weight:700;cursor:pointer;width:100%;transition:all .2s;letter-spacing:.5px;}
+.cert-unlock-btn.show{display:block;}
+.cert-unlock-btn:hover{opacity:.9;transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,119,182,.35);}
+
+@media print{
+  #sidebar,#main .nav-buttons,.cert-close,.cert-print-btn{display:none!important;}
+  .cert-overlay{position:static!important;background:none!important;backdrop-filter:none!important;padding:0!important;}
+  .cert-wrap{max-width:100%!important;}
+  .certificate{box-shadow:none!important;}
+}
+</style>
+</head>
+<body>
+
+<!-- EMAIL GATE -->
+<div id="email-gate" style="position:fixed;inset:0;background:rgba(10,22,28,0.93);z-index:9999;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);">
+  <div style="background:#fff;border-radius:14px;padding:44px 40px 36px;max-width:420px;width:92%;text-align:center;box-shadow:0 40px 100px rgba(0,0,0,0.4);font-family:Montserrat,sans-serif;">
+    <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgoKPHN2ZwogICB2ZXJzaW9uPSIxLjEiCiAgIGlkPSJzdmcxIgogICB3aWR0aD0iMTQyNC45NzMzIgogICBoZWlnaHQ9IjEzMzIuNjY2NyIKICAgdmlld0JveD0iMCAwIDE0MjQuOTczMyAxMzMyLjY2NjciCiAgIHNvZGlwb2RpOmRvY25hbWU9IkxvZ28gU3RhY2tlZC5lcHMiCiAgIHhtbG5zOmlua3NjYXBlPSJodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy9uYW1lc3BhY2VzL2lua3NjYXBlIgogICB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiCiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnMKICAgICBpZD0iZGVmczEiIC8+CiAgPHNvZGlwb2RpOm5hbWVkdmlldwogICAgIGlkPSJuYW1lZHZpZXcxIgogICAgIHBhZ2Vjb2xvcj0iI2ZmZmZmZiIKICAgICBib3JkZXJjb2xvcj0iIzAwMDAwMCIKICAgICBib3JkZXJvcGFjaXR5PSIwLjI1IgogICAgIGlua3NjYXBlOnNob3dwYWdlc2hhZG93PSIyIgogICAgIGlua3NjYXBlOnBhZ2VvcGFjaXR5PSIwLjAiCiAgICAgaW5rc2NhcGU6cGFnZWNoZWNrZXJib2FyZD0iMCIKICAgICBpbmtzY2FwZTpkZXNrY29sb3I9IiNkMWQxZDEiPgogICAgPGlua3NjYXBlOnBhZ2UKICAgICAgIHg9IjAiCiAgICAgICB5PSIwIgogICAgICAgaW5rc2NhcGU6bGFiZWw9IjEiCiAgICAgICBpZD0icGFnZTEiCiAgICAgICB3aWR0aD0iMTQyNC45NzMzIgogICAgICAgaGVpZ2h0PSIxMzMyLjY2NjciCiAgICAgICBtYXJnaW49IjAiCiAgICAgICBibGVlZD0iMCIgLz4KICA8L3NvZGlwb2RpOm5hbWVkdmlldz4KICA8ZwogICAgIGlkPSJnMSIKICAgICBpbmtzY2FwZTpncm91cG1vZGU9ImxheWVyIgogICAgIGlua3NjYXBlOmxhYmVsPSIxIj4KICAgIDxnCiAgICAgICBpZD0iZ3JvdXAtUjUiPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDIiCiAgICAgICAgIGQ9Ik0gMCw0Mi4zMzk4IFYgMTkwNS4xMiBIIDQyNi44OTUgViAxNDg1LjMgYyAxMzEuNjkxLDMxNy41MSAzNTEuNTkzLDQ2OS4yMiA2NTkuNzM1LDQ1NS4xIHYgLTQ1MS41OCBoIC0yNC42OSBjIC0xOTIuODc3LDAgLTM0Ni45NiwtNjIuOTUgLTQ2Mi4xNzQsLTE4OC43NSBDIDQ4NC41MDQsMTE3NC4yMiA0MjYuODk1LDk5MS4zNzEgNDI2Ljg5NSw3NTEuNDY5IFYgNDIuMzM5OCBIIDAiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgzIgogICAgICAgICBkPSJtIDE2ODQuMjUsMTEwNC4yNiBoIDk1Ni4xIGMgLTE0LjEyLDE0My40NCAtNjIuMzUsMjYxLjA4IC0xNDQuNjcsMzUyLjggLTgyLjM0LDkxLjczIC0xOTEuNzEsMTM3LjYgLTMyOC4wOCwxMzcuNiAtMTI5LjQsMCAtMjM3LjYxLC00NS4zMSAtMzI0LjU5LC0xMzUuODMgLTg3LjA0LC05MC41NiAtMTM5Ljk1LC0yMDguNzYgLTE1OC43NiwtMzU0LjU3IHogTSAyMjE2Ljk5LDAgQyAxOTQ0LjExLDAgMTcxNi41NSw4OS45NjA5IDE1MzQuMzIsMjY5Ljg5MSAxMzUyLjAxLDQ0OS44MiAxMjYwLjg5LDY4Mi4wNTkgMTI2MC44OSw5NjYuNjcyIHYgNy4wNTggYyAwLDI3MC40NCA4NS44Myw0OTkuNzcgMjU3LjU1LDY4Ny45NiAxNzEuNjYsMTg4LjE0IDM4OS4yMywyODIuMjUgNjUyLjY3LDI4Mi4yNSAyODIuMjYsMCA1MDEuNTMsLTk1Ljg3IDY1Ny45NywtMjg3LjU0IDE1Ni40LC0xOTEuNzMgMjM0LjYzLC00MjkuODYgMjM0LjYzLC03MTQuNDIgMCwtMjMuNTM5IC0yLjM4LC02My41MTEgLTcuMDYsLTExOS45NiBIIDE2ODcuNzggYyAyMy40OSwtMTQ4LjE2OCA4My40NiwtMjY0LjA1MSAxNzkuOTQsLTM0Ny41IDk2LjQsLTgzLjUyIDIxNS4yLC0xMjUuMjM5IDM1Ni4zMiwtMTI1LjIzOSAxODMuNDUsMCAzNTEuNTgsNzQuMDc4IDUwNC41MSwyMjIuMjU4IEwgMjk3OS4wMywzNDkuMjgxIEMgMjc4Ni4xNSwxMTYuNDIyIDI1MzIuMTMsMCAyMjE2Ljk5LDAiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg0IgogICAgICAgICBkPSJtIDQzODYuMywzNzMuOTY5IGMgMTUwLjUsMCAyNzYuOTUsNTQuNjgzIDM3OS4yOCwxNjQuMDYyIDEwMi4zLDEwOS4zNzEgMTUzLjQ2LDI1My4zOTkgMTUzLjQ2LDQzMi4xNjggdiA3LjA2MyBjIDAsMTc2LjM5OCAtNTEuNzcsMzE5LjgyOCAtMTU1LjIzLDQzMC40MTggLTEwMy41NCwxMTAuNTMgLTIyOS4zMywxNjUuODEgLTM3Ny41MSwxNjUuODEgLTE0OC4xNiwwIC0yNzUuNzgsLTU1LjkgLTM4Mi43OCwtMTY3LjU4IC0xMDcuMDUsLTExMS43NCAtMTYwLjUzLC0yNTQuNjMgLTE2MC41MywtNDI4LjY0OCB2IC03LjA2MyBjIDAsLTE3NC4wNzggNTMuNDgsLTMxNi45NTcgMTYwLjUzLC00MjguNjQ4IDEwNywtMTExLjc0MiAyMzQuNjIsLTE2Ny41ODIgMzgyLjc4LC0xNjcuNTgyIHogTSA0NDg1LjA5LDMuNTM5MDYgYyAtMjU2LjM5LDAgLTQ2Ni45MSwxMDkuMzU4OTQgLTYzMS41MSwzMjguMDgxOTQgViA0Mi4zMzk4IGggLTQyNi45IFYgMjYxNy43OSBoIDQyNi45IFYgMTU5NC42NiBjIDE2NC42LDIzMi44NCAzNzUuMTIsMzQ5LjI4IDYzMS41MSwzNDkuMjggMjM1LjE3LDAgNDM4LjYzLC04Ny42NiA2MTAuMzQsLTI2Mi44NCAxNzEuNjcsLTE3NS4yNSAyNTcuNTUsLTQwOS44NiAyNTcuNTUsLTcwMy44MzggdiAtNy4wNjMgYyAwLC0yOTQuMDI3IC04NS44OCwtNTI4LjYzNiAtMjU3LjU1LC03MDMuODI4IEMgNDkyMy43Miw5MS4xMjExIDQ3MjAuMjYsMy41MzkwNiA0NDg1LjA5LDMuNTM5MDYiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg1IgogICAgICAgICBkPSJtIDYzNjguMzQsMy41MzkwNiBjIC0yMDcsMCAtMzY5LjMsNjQuNjUyMzQgLTQ4Ni44NiwxOTQuMDMwOTQgLTExNy42NSwxMjkuMzIxIC0xNzYuNDEsMzAzLjQxIC0xNzYuNDEsNTIyLjE0MSBWIDE5MDUuMTIgaCA0MjYuODkgViA4NDYuNzE5IGMgMCwtMTQ1Ljg2IDM0LjY3LC0yNTguMTYgMTA0LjA4LC0zMzYuOTE4IDY5LjMzLC03OC44MjEgMTY3LjU3LC0xMTguMTkyIDI5NC42LC0xMTguMTkyIDEyNC42MiwwIDIyNS43OCw0MS4xMjEgMzAzLjM5LDEyMy40ODEgNzcuNjIsODIuMzEyIDExNi40MiwxOTUuMTk5IDExNi40MiwzMzguNjggdiAxMDUxLjM1IGggNDI2LjkgViA0Mi4zMzk4IGggLTQyNi45IFYgMzMxLjYyMSBDIDY4MDIuMjksMTEyLjg5OCA2NjA4LjIzLDMuNTM5MDYgNjM2OC4zNCwzLjUzOTA2IgogICAgICAgICBzdHlsZT0iZmlsbDojMjEzMDNiO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lIgogICAgICAgICB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiIC8+CiAgICAgIDxwYXRoCiAgICAgICAgIGlkPSJwYXRoNiIKICAgICAgICAgZD0iTSA3ODU1LjM3LDQyLjMzOTggViAxOTA1LjEyIGggNDI2Ljg5IFYgNDIuMzM5OCBaIE0gNzgzNy43MywyMTkwLjg5IHYgNDA1LjcyIGggNDU4LjY0IHYgLTQwNS43MiBoIC00NTguNjQiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg3IgogICAgICAgICBkPSJNIDg3NzIuMyw0Mi4zMzk4IFYgMjYxNy43OSBoIDQyNi44NyBWIDQyLjMzOTggSCA4NzcyLjMiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg4IgogICAgICAgICBkPSJtIDEwMjk1LjcsMTAuNTg5OCBjIC0zNTcuNTgsMCAtNTM2LjMsMTgyLjI1MDIgLTUzNi4zLDU0Ni44NDAyIHYgOTgwLjc4IGggLTIzNi4zNiB2IDM2Ni45MSBoIDIzNi4zNiB2IDUxMS41NiBoIDQyNi45IHYgLTUxMS41NiBoIDUwMSB2IC0zNjYuOTEgaCAtNTAxIFYgNjI0LjQ2MSBjIDAsLTE1NS4yMzEgNzYuNCwtMjMyLjg1MiAyMjkuMywtMjMyLjg1MiA5MS43LDAgMTc5LjksMjEuMTggMjY0LjYsNjMuNTEyIFYgMTA1Ljg0IGMgLTExMi45LC02My41MDAyIC0yNDEuMSwtOTUuMjUwMiAtMzg0LjUsLTk1LjI1MDIiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg5IgogICAgICAgICBkPSJtIDMzMzcuOTksMzU0NC44MyAxMTc5Ljc5LDEwNzYuNzIgdiAxOTM4LjEgTCAzMzM3Ljk5LDU1OTAuNiBWIDM1NDQuODMiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgxMCIKICAgICAgICAgZD0iTSA2MTY5LjQ4LDk5OTUuMDEgViA0NjIxLjU1IGwgMTE3OS44LC0xMDc2LjcyIHYgNTQ5MS4yOSBsIC0xMTc5LjgsOTU4Ljg5IgogICAgICAgICBzdHlsZT0iZmlsbDojNGVhOWUyO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lIgogICAgICAgICB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiIC8+CiAgICAgIDxwYXRoCiAgICAgICAgIGlkPSJwYXRoMTEiCiAgICAgICAgIGQ9Ik0gNDc1My43NCw3NzQ0LjA1IFYgNDgzNi44OSBsIDU4OS44OSw1MzguMzcgNTg5LjksLTUzOC4zNyA0LjM3LDM5NzMuNzIgLTExODQuMTYsLTEwNjYuNTYiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgxMiIKICAgICAgICAgZD0ibSA0ODAyLjIxLDM0MjUuMTkgaCA0MzAuNjkgdiA0MzAuNjggaCAtNDMwLjY5IHYgLTQzMC42OCIKICAgICAgICAgc3R5bGU9ImZpbGw6IzRlYTllMjtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZSIKICAgICAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIiAvPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDEzIgogICAgICAgICBkPSJtIDU0NDguMjQsMzQyNS4xOSBoIDQzMC43IHYgNDMwLjY4IGggLTQzMC43IHYgLTQzMC42OCIKICAgICAgICAgc3R5bGU9ImZpbGw6IzRlYTllMjtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZSIKICAgICAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIiAvPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDE0IgogICAgICAgICBkPSJtIDUyMzIuOSw0NTAxLjkxIGggLTQzMC42OSB2IC00MzAuNjkgaCA0MzAuNjkgdiA0MzAuNjkiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgxNSIKICAgICAgICAgZD0ibSA1NDQ4LjI0LDQ1MDEuOTEgdiAtNDMwLjY5IGggNDMwLjcgdiA0MzAuNjkgaCAtNDMwLjciCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=" alt="Rebuilt" style="height:56px;width:auto;margin:0 auto 20px;display:block;"/>
+    <h2 style="font-size:18px;font-weight:800;color:#1f3540;margin-bottom:6px;">AB Contract Training</h2>
+    <p style="font-size:12px;color:#5a7888;line-height:1.6;margin-bottom:24px;">Enter your Rebuilt email to access this training and track your progress.</p>
+    <div style="text-align:left;margin-bottom:8px;">
+      <label style="display:block;font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#5a7888;margin-bottom:6px;">Rebuilt Email Address</label>
+      <input type="text" id="gate-email" placeholder="yourname@rebuilt.com"
+        style="width:100%;padding:13px 14px;border:2px solid rgba(31,53,64,0.15);border-radius:8px;font-family:Montserrat,sans-serif;font-size:14px;font-weight:500;color:#1f3540;outline:none;"
+        autocomplete="email" autocapitalize="off"/>
+    </div>
+    <div id="gate-error" style="font-size:11px;color:#c0392b;text-align:left;margin-bottom:12px;min-height:14px;"></div>
+    <button onclick="submitGate()" style="width:100%;padding:14px;background:#21a9e1;color:white;border:none;border-radius:8px;font-family:Montserrat,sans-serif;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:0.04em;">Access Training →</button>
+    <p style="font-size:11px;color:#5a7888;margin-top:14px;">Progress is tracked and recorded to your Training Hub dashboard.</p>
+  </div>
+</div>
+
+<!-- COMPLETION SCREEN -->
+<div id="completion-screen" style="display:none;position:fixed;inset:0;background:rgba(10,22,28,0.93);z-index:9999;align-items:center;justify-content:center;backdrop-filter:blur(6px);">
+  <div style="background:#fff;border-radius:14px;padding:48px 40px 40px;max-width:460px;width:90%;text-align:center;box-shadow:0 32px 80px rgba(0,0,0,0.35);font-family:Montserrat,sans-serif;">
+    <div style="width:64px;height:64px;background:#2ecc71;border-radius:50%;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;font-size:28px;color:white;">✓</div>
+    <h2 style="font-size:22px;font-weight:800;color:#1f3540;margin-bottom:8px;">Training Complete!</h2>
+    <p style="font-size:13px;color:#5a7888;margin-bottom:4px;">You've successfully completed</p>
+    <p style="font-size:13px;color:#5a7888;margin-bottom:4px;"><strong>AB Contract Training</strong></p>
+    <div id="cs-score" style="font-size:42px;font-weight:900;color:#21a9e1;margin:16px 0 4px;line-height:1;">—</div>
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#5a7888;margin-bottom:24px;">Overall Score</div>
+    <p style="font-size:12px;color:#5a7888;margin-bottom:24px;">Your completion has been recorded on your Training Hub dashboard.</p>
+    <a href="index.html" style="display:inline-block;padding:14px 32px;background:#21a9e1;color:white;font-weight:700;font-size:14px;text-decoration:none;border-radius:8px;font-family:Montserrat,sans-serif;letter-spacing:0.04em;">← Back to Training Hub</a>
+    <div id="cs-date" style="font-size:11px;color:#95a5a6;margin-top:14px;"></div>
+  </div>
+</div>
+
+<nav id="sidebar">
+  <div class="sb-brand">
+    <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgoKPHN2ZwogICB2ZXJzaW9uPSIxLjEiCiAgIGlkPSJzdmcxIgogICB3aWR0aD0iMTQyNC45NzMzIgogICBoZWlnaHQ9IjEzMzIuNjY2NyIKICAgdmlld0JveD0iMCAwIDE0MjQuOTczMyAxMzMyLjY2NjciCiAgIHNvZGlwb2RpOmRvY25hbWU9IkxvZ28gU3RhY2tlZC5lcHMiCiAgIHhtbG5zOmlua3NjYXBlPSJodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy9uYW1lc3BhY2VzL2lua3NjYXBlIgogICB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiCiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnMKICAgICBpZD0iZGVmczEiIC8+CiAgPHNvZGlwb2RpOm5hbWVkdmlldwogICAgIGlkPSJuYW1lZHZpZXcxIgogICAgIHBhZ2Vjb2xvcj0iI2ZmZmZmZiIKICAgICBib3JkZXJjb2xvcj0iIzAwMDAwMCIKICAgICBib3JkZXJvcGFjaXR5PSIwLjI1IgogICAgIGlua3NjYXBlOnNob3dwYWdlc2hhZG93PSIyIgogICAgIGlua3NjYXBlOnBhZ2VvcGFjaXR5PSIwLjAiCiAgICAgaW5rc2NhcGU6cGFnZWNoZWNrZXJib2FyZD0iMCIKICAgICBpbmtzY2FwZTpkZXNrY29sb3I9IiNkMWQxZDEiPgogICAgPGlua3NjYXBlOnBhZ2UKICAgICAgIHg9IjAiCiAgICAgICB5PSIwIgogICAgICAgaW5rc2NhcGU6bGFiZWw9IjEiCiAgICAgICBpZD0icGFnZTEiCiAgICAgICB3aWR0aD0iMTQyNC45NzMzIgogICAgICAgaGVpZ2h0PSIxMzMyLjY2NjciCiAgICAgICBtYXJnaW49IjAiCiAgICAgICBibGVlZD0iMCIgLz4KICA8L3NvZGlwb2RpOm5hbWVkdmlldz4KICA8ZwogICAgIGlkPSJnMSIKICAgICBpbmtzY2FwZTpncm91cG1vZGU9ImxheWVyIgogICAgIGlua3NjYXBlOmxhYmVsPSIxIj4KICAgIDxnCiAgICAgICBpZD0iZ3JvdXAtUjUiPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDIiCiAgICAgICAgIGQ9Ik0gMCw0Mi4zMzk4IFYgMTkwNS4xMiBIIDQyNi44OTUgViAxNDg1LjMgYyAxMzEuNjkxLDMxNy41MSAzNTEuNTkzLDQ2OS4yMiA2NTkuNzM1LDQ1NS4xIHYgLTQ1MS41OCBoIC0yNC42OSBjIC0xOTIuODc3LDAgLTM0Ni45NiwtNjIuOTUgLTQ2Mi4xNzQsLTE4OC43NSBDIDQ4NC41MDQsMTE3NC4yMiA0MjYuODk1LDk5MS4zNzEgNDI2Ljg5NSw3NTEuNDY5IFYgNDIuMzM5OCBIIDAiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgzIgogICAgICAgICBkPSJtIDE2ODQuMjUsMTEwNC4yNiBoIDk1Ni4xIGMgLTE0LjEyLDE0My40NCAtNjIuMzUsMjYxLjA4IC0xNDQuNjcsMzUyLjggLTgyLjM0LDkxLjczIC0xOTEuNzEsMTM3LjYgLTMyOC4wOCwxMzcuNiAtMTI5LjQsMCAtMjM3LjYxLC00NS4zMSAtMzI0LjU5LC0xMzUuODMgLTg3LjA0LC05MC41NiAtMTM5Ljk1LC0yMDguNzYgLTE1OC43NiwtMzU0LjU3IHogTSAyMjE2Ljk5LDAgQyAxOTQ0LjExLDAgMTcxNi41NSw4OS45NjA5IDE1MzQuMzIsMjY5Ljg5MSAxMzUyLjAxLDQ0OS44MiAxMjYwLjg5LDY4Mi4wNTkgMTI2MC44OSw5NjYuNjcyIHYgNy4wNTggYyAwLDI3MC40NCA4NS44Myw0OTkuNzcgMjU3LjU1LDY4Ny45NiAxNzEuNjYsMTg4LjE0IDM4OS4yMywyODIuMjUgNjUyLjY3LDI4Mi4yNSAyODIuMjYsMCA1MDEuNTMsLTk1Ljg3IDY1Ny45NywtMjg3LjU0IDE1Ni40LC0xOTEuNzMgMjM0LjYzLC00MjkuODYgMjM0LjYzLC03MTQuNDIgMCwtMjMuNTM5IC0yLjM4LC02My41MTEgLTcuMDYsLTExOS45NiBIIDE2ODcuNzggYyAyMy40OSwtMTQ4LjE2OCA4My40NiwtMjY0LjA1MSAxNzkuOTQsLTM0Ny41IDk2LjQsLTgzLjUyIDIxNS4yLC0xMjUuMjM5IDM1Ni4zMiwtMTI1LjIzOSAxODMuNDUsMCAzNTEuNTgsNzQuMDc4IDUwNC41MSwyMjIuMjU4IEwgMjk3OS4wMywzNDkuMjgxIEMgMjc4Ni4xNSwxMTYuNDIyIDI1MzIuMTMsMCAyMjE2Ljk5LDAiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg0IgogICAgICAgICBkPSJtIDQzODYuMywzNzMuOTY5IGMgMTUwLjUsMCAyNzYuOTUsNTQuNjgzIDM3OS4yOCwxNjQuMDYyIDEwMi4zLDEwOS4zNzEgMTUzLjQ2LDI1My4zOTkgMTUzLjQ2LDQzMi4xNjggdiA3LjA2MyBjIDAsMTc2LjM5OCAtNTEuNzcsMzE5LjgyOCAtMTU1LjIzLDQzMC40MTggLTEwMy41NCwxMTAuNTMgLTIyOS4zMywxNjUuODEgLTM3Ny41MSwxNjUuODEgLTE0OC4xNiwwIC0yNzUuNzgsLTU1LjkgLTM4Mi43OCwtMTY3LjU4IC0xMDcuMDUsLTExMS43NCAtMTYwLjUzLC0yNTQuNjMgLTE2MC41MywtNDI4LjY0OCB2IC03LjA2MyBjIDAsLTE3NC4wNzggNTMuNDgsLTMxNi45NTcgMTYwLjUzLC00MjguNjQ4IDEwNywtMTExLjc0MiAyMzQuNjIsLTE2Ny41ODIgMzgyLjc4LC0xNjcuNTgyIHogTSA0NDg1LjA5LDMuNTM5MDYgYyAtMjU2LjM5LDAgLTQ2Ni45MSwxMDkuMzU4OTQgLTYzMS41MSwzMjguMDgxOTQgViA0Mi4zMzk4IGggLTQyNi45IFYgMjYxNy43OSBoIDQyNi45IFYgMTU5NC42NiBjIDE2NC42LDIzMi44NCAzNzUuMTIsMzQ5LjI4IDYzMS41MSwzNDkuMjggMjM1LjE3LDAgNDM4LjYzLC04Ny42NiA2MTAuMzQsLTI2Mi44NCAxNzEuNjcsLTE3NS4yNSAyNTcuNTUsLTQwOS44NiAyNTcuNTUsLTcwMy44MzggdiAtNy4wNjMgYyAwLC0yOTQuMDI3IC04NS44OCwtNTI4LjYzNiAtMjU3LjU1LC03MDMuODI4IEMgNDkyMy43Miw5MS4xMjExIDQ3MjAuMjYsMy41MzkwNiA0NDg1LjA5LDMuNTM5MDYiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg1IgogICAgICAgICBkPSJtIDYzNjguMzQsMy41MzkwNiBjIC0yMDcsMCAtMzY5LjMsNjQuNjUyMzQgLTQ4Ni44NiwxOTQuMDMwOTQgLTExNy42NSwxMjkuMzIxIC0xNzYuNDEsMzAzLjQxIC0xNzYuNDEsNTIyLjE0MSBWIDE5MDUuMTIgaCA0MjYuODkgViA4NDYuNzE5IGMgMCwtMTQ1Ljg2IDM0LjY3LC0yNTguMTYgMTA0LjA4LC0zMzYuOTE4IDY5LjMzLC03OC44MjEgMTY3LjU3LC0xMTguMTkyIDI5NC42LC0xMTguMTkyIDEyNC42MiwwIDIyNS43OCw0MS4xMjEgMzAzLjM5LDEyMy40ODEgNzcuNjIsODIuMzEyIDExNi40MiwxOTUuMTk5IDExNi40MiwzMzguNjggdiAxMDUxLjM1IGggNDI2LjkgViA0Mi4zMzk4IGggLTQyNi45IFYgMzMxLjYyMSBDIDY4MDIuMjksMTEyLjg5OCA2NjA4LjIzLDMuNTM5MDYgNjM2OC4zNCwzLjUzOTA2IgogICAgICAgICBzdHlsZT0iZmlsbDojMjEzMDNiO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lIgogICAgICAgICB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiIC8+CiAgICAgIDxwYXRoCiAgICAgICAgIGlkPSJwYXRoNiIKICAgICAgICAgZD0iTSA3ODU1LjM3LDQyLjMzOTggViAxOTA1LjEyIGggNDI2Ljg5IFYgNDIuMzM5OCBaIE0gNzgzNy43MywyMTkwLjg5IHYgNDA1LjcyIGggNDU4LjY0IHYgLTQwNS43MiBoIC00NTguNjQiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg3IgogICAgICAgICBkPSJNIDg3NzIuMyw0Mi4zMzk4IFYgMjYxNy43OSBoIDQyNi44NyBWIDQyLjMzOTggSCA4NzcyLjMiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg4IgogICAgICAgICBkPSJtIDEwMjk1LjcsMTAuNTg5OCBjIC0zNTcuNTgsMCAtNTM2LjMsMTgyLjI1MDIgLTUzNi4zLDU0Ni44NDAyIHYgOTgwLjc4IGggLTIzNi4zNiB2IDM2Ni45MSBoIDIzNi4zNiB2IDUxMS41NiBoIDQyNi45IHYgLTUxMS41NiBoIDUwMSB2IC0zNjYuOTEgaCAtNTAxIFYgNjI0LjQ2MSBjIDAsLTE1NS4yMzEgNzYuNCwtMjMyLjg1MiAyMjkuMywtMjMyLjg1MiA5MS43LDAgMTc5LjksMjEuMTggMjY0LjYsNjMuNTEyIFYgMTA1Ljg0IGMgLTExMi45LC02My41MDAyIC0yNDEuMSwtOTUuMjUwMiAtMzg0LjUsLTk1LjI1MDIiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg5IgogICAgICAgICBkPSJtIDMzMzcuOTksMzU0NC44MyAxMTc5Ljc5LDEwNzYuNzIgdiAxOTM4LjEgTCAzMzM3Ljk5LDU1OTAuNiBWIDM1NDQuODMiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgxMCIKICAgICAgICAgZD0iTSA2MTY5LjQ4LDk5OTUuMDEgViA0NjIxLjU1IGwgMTE3OS44LC0xMDc2LjcyIHYgNTQ5MS4yOSBsIC0xMTc5LjgsOTU4Ljg5IgogICAgICAgICBzdHlsZT0iZmlsbDojNGVhOWUyO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lIgogICAgICAgICB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiIC8+CiAgICAgIDxwYXRoCiAgICAgICAgIGlkPSJwYXRoMTEiCiAgICAgICAgIGQ9Ik0gNDc1My43NCw3NzQ0LjA1IFYgNDgzNi44OSBsIDU4OS44OSw1MzguMzcgNTg5LjksLTUzOC4zNyA0LjM3LDM5NzMuNzIgLTExODQuMTYsLTEwNjYuNTYiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgxMiIKICAgICAgICAgZD0ibSA0ODAyLjIxLDM0MjUuMTkgaCA0MzAuNjkgdiA0MzAuNjggaCAtNDMwLjY5IHYgLTQzMC42OCIKICAgICAgICAgc3R5bGU9ImZpbGw6IzRlYTllMjtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZSIKICAgICAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIiAvPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDEzIgogICAgICAgICBkPSJtIDU0NDguMjQsMzQyNS4xOSBoIDQzMC43IHYgNDMwLjY4IGggLTQzMC43IHYgLTQzMC42OCIKICAgICAgICAgc3R5bGU9ImZpbGw6IzRlYTllMjtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZSIKICAgICAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIiAvPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDE0IgogICAgICAgICBkPSJtIDUyMzIuOSw0NTAxLjkxIGggLTQzMC42OSB2IC00MzAuNjkgaCA0MzAuNjkgdiA0MzAuNjkiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgxNSIKICAgICAgICAgZD0ibSA1NDQ4LjI0LDQ1MDEuOTEgdiAtNDMwLjY5IGggNDMwLjcgdiA0MzAuNjkgaCAtNDMwLjciCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=" alt="Rebuilt" style="height:34px;width:auto;filter:brightness(0) invert(1);margin-bottom:10px;display:block;"/>
+    <h1 style="font-family:Montserrat,sans-serif;font-size:14px;font-weight:800;color:white;line-height:1.3;">AB Contract<br>Training</h1>
+  </div>
+  <div class="sb-progress">
+    <div class="sb-progress-label"><span>Your Progress</span><span id="progress-pct">0%</span></div>
+    <div class="sb-progress-track"><div class="sb-progress-fill" id="progress-fill"></div></div>
+  </div>
+  <div class="sb-section-label">Start Here</div>
+  <div class="nav-item active" data-page="cover" onclick="goTo('cover')"><span class="nav-icon">🏠</span> Overview<span class="nav-check checked" id="chk-cover">✓</span></div>
+  <div class="sb-section-label">The Contract</div>
+  <div class="nav-item" data-page="m1" onclick="goTo('m1')"><span class="nav-icon">📄</span> Parties, Property &amp; Price<span class="nav-check" id="chk-m1"></span></div>
+  <div class="nav-item" data-page="m2" onclick="goTo('m2')"><span class="nav-icon">🏗️</span> Condition &amp; Due Diligence<span class="nav-check" id="chk-m2"></span></div>
+  <div class="nav-item" data-page="m3" onclick="goTo('m3')"><span class="nav-icon">⚖️</span> Default, Expenses &amp; Provisions<span class="nav-check" id="chk-m3"></span></div>
+  <div class="sb-section-label">Supporting Docs</div>
+  <div class="nav-item" data-page="m4" onclick="goTo('m4')"><span class="nav-icon">📋</span> Seller Info Worksheet<span class="nav-check" id="chk-m4"></span></div>
+  <div class="nav-item" data-page="m5" onclick="goTo('m5')"><span class="nav-icon">📝</span> Agency &amp; Authorization Docs<span class="nav-check" id="chk-m5"></span></div>
+  <div class="nav-item" data-page="m6" onclick="goTo('m6')"><span class="nav-icon">📸</span> Photo &amp; Access Auth<span class="nav-check" id="chk-m6"></span></div>
+  <div class="nav-item" data-page="m7" onclick="goTo('m7')"><span class="nav-icon">🏛️</span> PA Addendum<span class="nav-check" id="chk-m7"></span></div>
+  <div class="sb-section-label">Critical Protocols</div>
+  <div class="nav-item" data-page="m8" onclick="goTo('m8')"><span class="nav-icon">⏱️</span> Due Diligence Protocols<span class="nav-check" id="chk-m8"></span></div>
+  <div class="nav-item" data-page="m9" onclick="goTo('m9')"><span class="nav-icon">🚨</span> Red Flags &amp; Escalation<span class="nav-check" id="chk-m9"></span></div>
+  <div class="sb-section-label">Knowledge Checks</div>
+  <div class="nav-item" data-page="q1" onclick="goTo('q1')"><span class="nav-icon">✅</span> Quiz: The Contract<span class="nav-badge">5 Qs</span></div>
+  <div class="nav-item" data-page="q2" onclick="goTo('q2')"><span class="nav-icon">✅</span> Quiz: Docs &amp; Red Flags<span class="nav-badge">5 Qs</span></div>
+  <div class="nav-item" data-page="scenarios" onclick="goTo('scenarios')"><span class="nav-icon">🎭</span> Role-Play Scenarios<span class="nav-check" id="chk-scenarios"></span></div>
+  <div class="nav-item" data-page="complete" onclick="goTo('complete')"><span class="nav-icon">🎓</span> Completion Checklist<span class="nav-check" id="chk-complete"></span></div>
+</nav>
+<main id="main">
+
+<!-- COVER -->
+<div class="module-page cover-page active" id="page-cover">
+  <div class="cover-eyebrow">Rebuilt Offers, LLC — Internal Training</div>
+  <h1 class="cover-title">AB Contract<br><span>Training Course</span></h1>
+  <p class="cover-sub">Everything a new Acquisition Associate needs to present, complete, and execute the AB Contract packet with confidence.</p>
+  <div class="cover-stats">
+    <div class="cover-stat"><div class="cover-stat-num">9</div><div class="cover-stat-label">Modules</div></div>
+    <div class="cover-stat"><div class="cover-stat-num">10</div><div class="cover-stat-label">Quiz Questions</div></div>
+    <div class="cover-stat"><div class="cover-stat-num">5</div><div class="cover-stat-label">Scenarios</div></div>
+    <div class="cover-stat"><div class="cover-stat-num">9</div><div class="cover-stat-label">Documents</div></div>
+  </div>
+  <div class="cover-modules">
+    <div class="cover-module-chip"><span>📄</span> Purchase &amp; Sales Agreement</div>
+    <div class="cover-module-chip"><span>📋</span> Seller Info Worksheet</div>
+    <div class="cover-module-chip"><span>⚖️</span> Agency &amp; Disclosure Docs</div>
+    <div class="cover-module-chip"><span>📸</span> Photo &amp; Access Auth</div>
+    <div class="cover-module-chip"><span>⏱️</span> Due Diligence Protocols</div>
+    <div class="cover-module-chip"><span>🚨</span> Red Flags &amp; Escalation</div>
+    <div class="cover-module-chip"><span>🎭</span> Role-Play Scenarios</div>
+    <div class="cover-module-chip"><span>✅</span> Knowledge Checks</div>
+  </div>
+  <button class="start-btn" onclick="goTo('m1')">Start Training &#8594;</button>
+</div>
+
+<!-- MODULE 1 -->
+<div class="module-page" id="page-m1">
+  <div class="module-header">
+    <div class="module-eyebrow">Module 1 of 9 — The Contract</div>
+    <h1 class="module-title">Parties, Property &amp; Price</h1>
+    <p class="module-desc">Sections 1–5 of the Purchase &amp; Sales Agreement. These are the first fields a seller sees — and the first you must complete correctly.</p>
+  </div>
+  <h2 class="sh">Customizable Fields — Quick Reference</h2>
+  <table class="data-table">
+    <tr><th>Section</th><th>Field</th><th>Req</th><th>Notes</th></tr>
+    <tr><td>§1</td><td>Seller Name(s)</td><td><span class="by">YES</span></td><td>Full legal first + last. No LLCs alone. LLC-held: individual name + LLC.</td></tr>
+    <tr><td>§2</td><td>Property Address</td><td><span class="by">YES</span></td><td>Street, city, county, state — all four required.</td></tr>
+    <tr><td>§2</td><td>Items NOT Included</td><td><span class="bc">COND</span></td><td>List anything seller keeps. Blank if none.</td></tr>
+    <tr><td>§3</td><td>Sale Price</td><td><span class="by">YES</span></td><td>Agreed dollar amount.</td></tr>
+    <tr><td>§5</td><td>Closing Timeframe</td><td><span class="by">YES</span></td><td>Default: 45 business days. Must match §7 Due Diligence period.</td></tr>
+  </table>
+  <h2 class="sh">§1 — Parties</h2>
+  <p>Identifies Rebuilt Offers, LLC as Buyer and the Seller(s) by legal name.</p>
+  <div class="callout warn"><strong>⚠ Critical</strong>Never list an LLC name alone as Seller. Must always be a person. For LLC-held properties: individual's name + LLC (e.g., "John Smith, XYZ Holdings LLC"). An incorrect entry here can invalidate the contract.</div>
+  <div class="talking-card"><div class="talking-card-header">💬 Talking Point — Seller Name</div><div class="talking-card-body">"This section identifies who we are — Rebuilt Offers, LLC as the buyer — and you as the seller. I'll need your full legal name exactly as it appears on the deed."</div></div>
+  <h2 class="sh">§2 — Property</h2>
+  <p>Defines what is included in the sale: the land, all structures, and all attached fixtures currently on the property. Anything the seller wants to keep must be listed as "NOT Included."</p>
+  <div class="talking-card"><div class="talking-card-header">💬 Talking Point — What's Included</div><div class="talking-card-body">"This section covers everything physically attached to the property — HVAC, plumbing, built-ins, ceiling fans, garage door openers. Anything currently on the property comes with it unless we specifically write it out as excluded."</div></div>
+  <div class="talking-card"><div class="talking-card-header">💬 Talking Point — Exclusions</div><div class="talking-card-body">"Is there anything you'd like to keep that's currently in or on the property? A chandelier, a refrigerator, something sentimental? We can list those as excluded so there's no confusion at closing."</div></div>
+  <h2 class="sh">§3 — Sale Price</h2>
+  <div class="talking-card"><div class="talking-card-header">💬 Talking Point</div><div class="talking-card-body">"Based on our analysis, we're prepared to offer [AMOUNT]. This is an all-cash offer — no bank, no appraisal contingency, no financing to fall through."</div></div>
+  <h2 class="sh">§4 — Non-Financing / All Cash</h2>
+  <p>Confirms a cash transaction. No customization required — standard language.</p>
+  <div class="talking-card"><div class="talking-card-header">💬 Talking Point</div><div class="talking-card-body">"Because we're a cash buyer, there's no lender involved. That means faster closing, no appraisal delays, and no risk of financing falling through."</div></div>
+  <h2 class="sh">§5 — Closing</h2>
+  <p>Sets the closing timeframe from execution. Standard is 45 business days via National Title Services.</p>
+  <div class="callout warn"><strong>⚠ Critical Rule</strong>The closing timeframe in §5 must ALWAYS match the Due Diligence period in §7. If you change one, change both. Default: 45 business days.</div>
+  <div class="talking-card"><div class="talking-card-header">💬 Talking Point</div><div class="talking-card-body">"We target closing within 45 business days from today. That gives both sides time to clear title and handle any outstanding items. National Title Services manages the closing process."</div></div>
+  <div class="nav-buttons">
+    <button class="btn btn-secondary" onclick="goTo('cover')">&#8592; Back</button>
+    <button class="btn btn-primary" onclick="markAndGo('m1','m2')">Next: Condition &amp; Due Diligence &#8594;</button>
+  </div>
+</div>
+
+<!-- MODULE 2 -->
+<div class="module-page" id="page-m2">
+  <div class="module-header">
+    <div class="module-eyebrow">Module 2 of 9 — The Contract</div>
+    <h1 class="module-title">Property Condition &amp; Due Diligence</h1>
+    <p class="module-desc">Sections 6–10. The Due Diligence period is the most operationally critical concept in the entire contract.</p>
+  </div>
+  <h2 class="sh">§6 — Title Policy</h2>
+  <p>Rebuilt purchases title insurance through National Title Services at Buyer's expense. No seller action needed.</p>
+  <div class="talking-card"><div class="talking-card-header">💬 Talking Point</div><div class="talking-card-body">"We purchase title insurance on every deal — it protects against any title issues that come up. Handled entirely by us through National Title Services."</div></div>
+  <h2 class="sh">§7 — Property Condition / Due Diligence (AS-IS)</h2>
+  <p>Property purchased AS-IS. The DD period (default: 45 business days, always matching §5) gives Rebuilt the right to access with inspectors, appraisers, and contractors. Rebuilt can terminate in writing before DD expires.</p>
+  <div class="callout warn"><strong>⚠ Never Let DD Expire</strong>If the DD period expires without a written termination notice, Rebuilt is legally obligated to purchase the property. No exceptions. Create a HubSpot high-priority task 7 days before expiration the moment any contract is executed.</div>
+  <div class="talking-card"><div class="talking-card-header">💬 Talking Point — AS-IS</div><div class="talking-card-body">"We're purchasing the property exactly as it sits today — no repairs, no cleaning required. You don't need to fix anything before we close."</div></div>
+  <div class="talking-card"><div class="talking-card-header">💬 Talking Point — Due Diligence</div><div class="talking-card-body">"During our due diligence period, we'll need access to the property for our team — inspectors, contractors, whoever we bring in to evaluate it. This gives us time to fully assess the property before we commit to closing."</div></div>
+  <h2 class="sh">§8 — Possession</h2>
+  <p>Seller delivers possession at closing. No exceptions unless documented in §19/§20. Post-occupancy must be negotiated and written into Special Provisions.</p>
+  <div class="talking-card"><div class="talking-card-header">💬 Talking Point</div><div class="talking-card-body">"At closing, you hand over the keys and the property transfers to us. If you need a few extra days after closing to move out, we can discuss and document that in Special Provisions."</div></div>
+  <h2 class="sh">§9 — Pre-Marketing Agreement</h2>
+  <p>Grants Rebuilt the right to market the property (including MLS) at its discretion. If vacant, seller provides key or lockbox access upon execution.</p>
+  <div class="talking-card"><div class="talking-card-header">💬 Talking Point</div><div class="talking-card-body">"Once we're under contract, we have the right to begin marketing the property immediately — listing it online, on the MLS, showing it to potential buyers. If it's vacant, we'll ask for key or lockbox access."</div></div>
+  <h2 class="sh">§10 — Prorations</h2>
+  <p>Taxes, insurance, rents, and HOA fees prorated through closing date by National Title. No seller action needed.</p>
+  <div class="talking-card"><div class="talking-card-header">💬 Talking Point</div><div class="talking-card-body">"At closing, we divide ongoing costs — property taxes, HOA dues, insurance — based on the exact day we close. You pay your share through closing day; we take over after that."</div></div>
+  <div class="nav-buttons">
+    <button class="btn btn-secondary" onclick="goTo('m1')">&#8592; Back</button>
+    <button class="btn btn-primary" onclick="markAndGo('m2','m3')">Next: Default, Expenses &amp; Provisions &#8594;</button>
+  </div>
+</div>
+
+<!-- MODULE 3 -->
+<div class="module-page" id="page-m3">
+  <div class="module-header">
+    <div class="module-eyebrow">Module 3 of 9 — The Contract</div>
+    <h1 class="module-title">Default, Expenses &amp; Special Provisions</h1>
+    <p class="module-desc">Sections 11–20. Seller obligations, closing costs, assignment rights, and the Special Provisions field.</p>
+  </div>
+  <h2 class="sh">§13 — Default</h2>
+  <p>If Seller fails to comply, Rebuilt may enforce specific performance or terminate. Prevailing party in any suit recovers attorney's fees.</p>
+  <div class="talking-card"><div class="talking-card-header">💬 Talking Point</div><div class="talking-card-body">"If something prevents you from closing — a title issue you knew about, a change of heart after the DD period — we have the right to either hold you to the contract or walk away. This protects both parties from bad-faith situations."</div></div>
+  <h2 class="sh">§14 — Representations</h2>
+  <p>Seller warrants no undisclosed liens or assessments at closing, and existing loans are current. Representations survive closing.</p>
+  <div class="callout warn"><strong>⚠ Watch For</strong>If a seller discloses judgments or additional liens during the Seller Info Worksheet, flag immediately for your Market Manager and National Title. Do not gloss over this section.</div>
+  <h2 class="sh">§15 — Sales Expenses</h2>
+  <table class="data-table">
+    <tr><th>Party</th><th>Responsible For</th></tr>
+    <tr><td>Buyer (Rebuilt)</td><td>Buyer-specific closing costs as noted in contract.</td></tr>
+    <tr><td>Seller</td><td>Releasing existing liens, prepayment penalties, recording fees, transfer taxes, conveyance fees, mortgage payoffs, and all other seller-side obligations.</td></tr>
+    <tr><td>Seller (if default)</td><td>Consequential damages including title costs, loan processing, and other closing costs incurred by Rebuilt or its assignee.</td></tr>
+  </table>
+  <div class="talking-card"><div class="talking-card-header">💬 Talking Point — Net Proceeds</div><div class="talking-card-body">"You're responsible for clearing any liens, paying off your mortgage, covering transfer taxes, and any other obligations tied to your ownership. This comes out of your sale proceeds at closing — you don't need to bring cash. Whatever you owe comes out first; what's left is your net."</div></div>
+  <h2 class="sh">§16 — Resale of Property</h2>
+  <div class="talking-card"><div class="talking-card-header">💬 Talking Point — Investor Disclosure</div><div class="talking-card-body">"We're transparent: we're investors. We may renovate and resell, rent it out, assign our contract to another buyer, or clear the land for new construction. Any profit from that is ours — that's how we operate."</div></div>
+  <h2 class="sh">§17 — Assignment of Contract</h2>
+  <div class="talking-card"><div class="talking-card-header">💬 Talking Point</div><div class="talking-card-body">"We may transfer our purchase rights to another investor before closing. That investor steps into our shoes — they take on all the same obligations. Your deal terms don't change."</div></div>
+  <h2 class="sh">§19/§20 — Special Provisions</h2>
+  <div class="callout warn"><strong>⚠ Absolute Policy</strong>Under NO circumstances may a cancellation clause be added to Special Provisions. Any seller request must be escalated to your Market Manager immediately.</div>
+  <div class="callout note"><strong>📌 Note</strong>Always enter "N/A (Not Applicable)" if no special provisions exist. A blank field is never acceptable.</div>
+  <div class="nav-buttons">
+    <button class="btn btn-secondary" onclick="goTo('m2')">&#8592; Back</button>
+    <button class="btn btn-primary" onclick="markAndGo('m3','m4')">Next: Seller Info Worksheet &#8594;</button>
+  </div>
+</div>
+
+<!-- MODULE 4 -->
+<div class="module-page" id="page-m4">
+  <div class="module-header">
+    <div class="module-eyebrow">Module 4 of 9 — Supporting Documents</div>
+    <h1 class="module-title">Seller Info Worksheet</h1>
+    <p class="module-desc">A diagnostic tool, not just a form. Every answer surfaces potential closing blockers. Must be fully completed and signed.</p>
+  </div>
+  <h2 class="sh">Seller Identification</h2>
+  <table class="data-table">
+    <tr><th>Field</th><th>Req</th><th>Why It Matters</th></tr>
+    <tr><td>Full Name</td><td><span class="by">YES</span></td><td>Must match the deed exactly.</td></tr>
+    <tr><td>Date of Birth</td><td><span class="by">YES</span></td><td>Used by title/payoff vendors for identity verification — same as a bank uses on a call.</td></tr>
+    <tr><td>Phone / Best Contact Time</td><td><span class="by">YES</span></td><td>Title company outreach and scheduling.</td></tr>
+    <tr><td>Marital Status</td><td><span class="by">YES</span></td><td>Determines if a spouse has a claim (critical for Homestead properties).</td></tr>
+    <tr><td>Spouse Name &amp; Contact</td><td><span class="bc">COND</span></td><td>Required if married. Spouse may need to sign.</td></tr>
+  </table>
+  <h2 class="sh">Property Ownership &amp; Status</h2>
+  <div class="callout warn"><strong>⚠ Red Flag Section</strong>This section surfaces the most common deal killers. Never skip any field.</div>
+  <table class="data-table">
+    <tr><th>Question</th><th>Req</th><th>Why It Matters</th></tr>
+    <tr><td>Primary Residence?</td><td><span class="by">YES</span></td><td>Homestead = spouse may hold a 50% claim even if not on deed. Non-homestead = only vested owner needed.</td></tr>
+    <tr><td>Direct Title Holder?</td><td><span class="by">YES</span></td><td>If not on deed, they CANNOT legally sell. Stop and escalate immediately.</td></tr>
+    <tr><td>Co-Title Holders?</td><td><span class="by">YES</span></td><td>All vested owners must sign. Identify and contact all.</td></tr>
+    <tr><td>Deceased Title Holders?</td><td><span class="by">YES</span></td><td>Requires probate or Affidavit of Heirship. Escalate to title immediately.</td></tr>
+    <tr><td>Time since passing?</td><td><span class="bc">COND</span></td><td>In TN: if over 366 days, Affidavit of Heirship may be possible instead of probate.</td></tr>
+    <tr><td>Probate history?</td><td><span class="by">YES</span></td><td>Title needs the full probate docket. Cannot proceed without review.</td></tr>
+    <tr><td>How property was acquired?</td><td><span class="by">YES</span></td><td>Inherited, divorce, foreclosure — each has different title implications.</td></tr>
+  </table>
+  <h2 class="sh">Property Details</h2>
+  <table class="data-table">
+    <tr><th>Field</th><th>Req</th><th>Notes</th></tr>
+    <tr><td>Property Type</td><td><span class="by">YES</span></td><td>Manufactured Homes require additional docs: title copy, VIN, HUD plate number.</td></tr>
+    <tr><td>Occupancy Status</td><td><span class="by">YES</span></td><td>Vacant / Owner Occupied / Tenant Occupied. Drives access logistics and post-occupancy needs.</td></tr>
+    <tr><td>Post-Occupancy Needed?</td><td><span class="bc">COND</span></td><td>Requires a separate Post-Occupancy Agreement with a holdback amount.</td></tr>
+    <tr><td>Mortgage Balance</td><td><span class="by">YES</span></td><td>Needed for net sheet and title payoff requests.</td></tr>
+    <tr><td>Pre-Foreclosure?</td><td><span class="by">YES</span></td><td>Creates urgency. Escalate immediately — note the foreclosure date.</td></tr>
+    <tr><td>HOA?</td><td><span class="by">YES</span></td><td>Get management company contact. HOA liens can complicate closing.</td></tr>
+  </table>
+  <h2 class="sh">Power of Attorney &amp; Consultation</h2>
+  <table class="data-table">
+    <tr><th>Field</th><th>Req</th><th>Notes</th></tr>
+    <tr><td>POA Involved?</td><td><span class="by">YES</span></td><td>Obtain a copy. Must be current, valid, and recorded. Unrecorded POA is not enforceable.</td></tr>
+    <tr><td>Bankruptcy History?</td><td><span class="by">YES</span></td><td>Type and date required. Open or recent bankruptcy can block the sale entirely.</td></tr>
+    <tr><td>Other Decision-Makers?</td><td><span class="by">YES</span></td><td>Unnamed stakeholders can kill deals. Always ask: "Is there anyone else whose input would affect your decision?"</td></tr>
+  </table>
+  <div class="callout tip"><strong>💡 Pro Tip</strong>Listen for phrases like "I need to talk to my brother" or "my attorney handles all of this" — these signal unnamed stakeholders who could block the deal. Surface them early.</div>
+  <div class="nav-buttons">
+    <button class="btn btn-secondary" onclick="goTo('m3')">&#8592; Back</button>
+    <button class="btn btn-primary" onclick="markAndGo('m4','m5')">Next: Agency &amp; Authorization Docs &#8594;</button>
+  </div>
+</div>
+
+<!-- MODULE 5 -->
+<div class="module-page" id="page-m5">
+  <div class="module-header">
+    <div class="module-eyebrow">Module 5 of 9 — Supporting Documents</div>
+    <h1 class="module-title">Agency &amp; Authorization Documents</h1>
+    <p class="module-desc">Five documents requiring seller signatures. Each must be explained and executed correctly.</p>
+  </div>
+  <h2 class="sh">Consumer Guide to Agency / Fair Housing / Affiliated Business Disclosure</h2>
+  <p>Three-part document (one signature page): how Rebuilt Realty operates as a brokerage, Fair Housing compliance, and disclosure of Rebuilt's relationships with National Title Services and Rebuilt Capital, LLC.</p>
+  <div class="talking-card"><div class="talking-card-header">💬 Talking Point — Agency</div><div class="talking-card-body">"This explains how Rebuilt Realty operates as a licensed brokerage. In this transaction, we're acting as the buyer — not your agent. We're required to disclose that upfront."</div></div>
+  <div class="talking-card"><div class="talking-card-header">💬 Talking Point — Affiliated Business</div><div class="talking-card-body">"We disclose that we have a relationship with National Title Services and Rebuilt Capital. You're not required to use them, but we're required to tell you about the affiliation."</div></div>
+  <div class="callout note"><strong>📌</strong>No customizable fields. Seller signature and date required.</div>
+  <h2 class="sh">Notice of Non-Representation</h2>
+  <p>States that Rebuilt Offers, LLC does not represent the seller. Signing acknowledges receipt only.</p>
+  <div class="talking-card"><div class="talking-card-header">💬 Talking Point</div><div class="talking-card-body">"This is our standard disclosure that we represent ourselves as the buyer — not your real estate agent. If you'd like independent representation, you're free to engage your own agent."</div></div>
+  <h2 class="sh">Authorization to Sign Listing Documents</h2>
+  <p>Grants Scott Pennebaker limited authority to execute listing agreements, addenda, disclosures, and contracts — specifically to list and market on MLS.</p>
+  <table class="data-table">
+    <tr><th>Field</th><th>Required</th></tr>
+    <tr><td>Seller Name (top of form)</td><td><span class="by">YES</span></td></tr>
+    <tr><td>Property Address</td><td><span class="by">YES</span></td></tr>
+    <tr><td>Seller Signature + Printed Name + Date</td><td><span class="by">YES</span></td></tr>
+  </table>
+  <h2 class="sh">Authorization for Release of Information (National Title)</h2>
+  <table class="data-table">
+    <tr><th>Field</th><th>Required</th></tr>
+    <tr><td>Seller Signature + Printed Name</td><td><span class="by">YES</span></td></tr>
+    <tr><td>SSN</td><td><span class="by">YES</span></td></tr>
+    <tr><td>Date</td><td><span class="by">YES</span></td></tr>
+  </table>
+  <div class="callout warn"><strong>⚠ SSN Handling</strong>SSN is sensitive. Never store a photo or copy insecurely. Route completed forms directly to National Title per your market's protocol.</div>
+  <h2 class="sh">Seller's Responsibility Acknowledgement</h2>
+  <p>Seller acknowledges they are responsible for paying off all outstanding mortgages, taxes, assessments, judgments, and liens from sale proceeds.</p>
+  <div class="talking-card"><div class="talking-card-header">💬 Talking Point</div><div class="talking-card-body">"This form spells out that when we close, any outstanding mortgage, tax bill, HOA dues, or judgment gets paid from your proceeds. Our offer is made based on that assumption — we're not paying those on top of the offer price."</div></div>
+  <div class="callout note"><strong>📌</strong>High-value verbal moment. Sellers often misunderstand their net proceeds. Clarify proactively every time.</div>
+  <div class="nav-buttons">
+    <button class="btn btn-secondary" onclick="goTo('m4')">&#8592; Back</button>
+    <button class="btn btn-primary" onclick="markAndGo('m5','m6')">Next: Photo &amp; Access Auth &#8594;</button>
+  </div>
+</div>
+
+<!-- MODULE 6 -->
+<div class="module-page" id="page-m6">
+  <div class="module-header">
+    <div class="module-eyebrow">Module 6 of 9 — Supporting Documents</div>
+    <h1 class="module-title">Property Photo &amp; Access Authorization</h1>
+    <p class="module-desc">Authorizes Rebuilt to access the property for photography and video. Incorporated into the main Purchase &amp; Sales Agreement.</p>
+  </div>
+  <h2 class="sh">Photo Availability — Choose One</h2>
+  <ul>
+    <li><strong>Seller Will Provide Photos:</strong> Delivers clear interior/exterior photos within the specified business days (default: 5).</li>
+    <li><strong>Seller Authorizes Photographer:</strong> Rebuilt coordinates its own team or vendor.</li>
+  </ul>
+  <div class="talking-card"><div class="talking-card-header">💬 Talking Point</div><div class="talking-card-body">"We need interior and exterior photos as soon as possible — it's how we evaluate and market the property. You can send us photos within 5 business days, or we can send someone out. Which works better?"</div></div>
+  <h2 class="sh">All Required Fields</h2>
+  <table class="data-table">
+    <tr><th>Field</th><th>Req</th><th>Notes</th></tr>
+    <tr><td>Photo Option (checkbox)</td><td><span class="by">YES</span></td><td>Select one: Seller provides OR Buyer sends photographer.</td></tr>
+    <tr><td>Business Days for Photos</td><td><span class="by">YES</span></td><td>Default is 5 if seller is providing.</td></tr>
+    <tr><td>Occupancy Status</td><td><span class="by">YES</span></td><td>Vacant / Owner Occupied / Tenant Occupied / Uninhabitable.</td></tr>
+    <tr><td>Access Method</td><td><span class="by">YES</span></td><td>Lockbox, Key, Seller Present, Tenant Present, or Other.</td></tr>
+    <tr><td>Access Notes / Instructions</td><td><span class="bc">COND</span></td><td>Gate codes, pet notices, entry instructions.</td></tr>
+    <tr><td>3 Available Dates + Time Windows</td><td><span class="by">YES</span></td><td>Required if photographer is being sent.</td></tr>
+    <tr><td>Onsite Contact Name + Phone</td><td><span class="by">YES</span></td><td>Who to call for access on the day.</td></tr>
+    <tr><td>Seller Signature + Date</td><td><span class="by">YES</span></td><td></td></tr>
+  </table>
+  <div class="callout note"><strong>📌 Remote Execution</strong>If executed remotely with no photos at signing, the agreement is contingent on Rebuilt receiving and approving photos. Rebuilt may request a price adjustment or terminate if photos reveal material differences.</div>
+  <div class="nav-buttons">
+    <button class="btn btn-secondary" onclick="goTo('m5')">&#8592; Back</button>
+    <button class="btn btn-primary" onclick="markAndGo('m6','m7')">Next: PA Addendum &#8594;</button>
+  </div>
+</div>
+
+<!-- MODULE 7 -->
+<div class="module-page" id="page-m7">
+  <div class="module-header">
+    <div class="module-eyebrow">Module 7 of 9 — Supporting Documents</div>
+    <h1 class="module-title">PA Addendum</h1>
+    <p class="module-desc">Required for Pennsylvania transactions only. Discloses the wholesaling structure to seller and end buyer.</p>
+  </div>
+  <h2 class="sh">What It Covers</h2>
+  <ul>
+    <li>Rebuilt is a Wholesaler entering an assignable contract — not a traditional buyer.</li>
+    <li>Rebuilt will sell (assign) its contract interest for a profit. Seller is not entitled to any of that profit.</li>
+    <li>Rebuilt does not represent the seller or end buyer — no fiduciary duty to either party.</li>
+    <li>Agreement is legally binding. Consulting an attorney is recommended.</li>
+  </ul>
+  <div class="talking-card"><div class="talking-card-header">💬 Talking Point (Pennsylvania Only)</div><div class="talking-card-body">"In Pennsylvania, we're required to disclose how our wholesale process works. We enter into a purchase agreement with you at an agreed price, then may sell our right to purchase to another investor. You get the price we agreed to — any profit above that from our assignment is ours. This form makes sure you understand that clearly."</div></div>
+  <h2 class="sh">Required Fields</h2>
+  <table class="data-table">
+    <tr><th>Field</th><th>Req</th><th>Notes</th></tr>
+    <tr><td>"Wholesaler acting on own behalf" checkbox</td><td><span class="by">YES</span></td><td>Confirm this is checked — Rebuilt acts as Wholesaler, not an agent representing a Wholesaler.</td></tr>
+    <tr><td>Owner Name (acknowledgement block)</td><td><span class="by">YES</span></td><td>Seller/owner prints their name in the Owner section.</td></tr>
+    <tr><td>Seller Signature + Printed Name + Date</td><td><span class="by">YES</span></td><td></td></tr>
+    <tr><td>Rebuilt Authorized Signatory</td><td><span class="by">YES</span></td><td>Albert Charles Young, Member + CEO — pre-populated.</td></tr>
+    <tr><td>Buyer section</td><td><span class="bc">COND</span></td><td>Completed when contract is assigned to end buyer — not always filled at seller execution.</td></tr>
+  </table>
+  <div class="nav-buttons">
+    <button class="btn btn-secondary" onclick="goTo('m6')">&#8592; Back</button>
+    <button class="btn btn-primary" onclick="markAndGo('m7','m8')">Next: Due Diligence Protocols &#8594;</button>
+  </div>
+</div>
+
+<!-- MODULE 8 -->
+<div class="module-page" id="page-m8">
+  <div class="module-header">
+    <div class="module-eyebrow">Module 8 of 9 — Critical Protocols</div>
+    <h1 class="module-title">Due Diligence Protocols</h1>
+    <p class="module-desc">The highest-urgency operational element of any active AB Contract. These protocols must be internalized before working a single live deal.</p>
+  </div>
+  <h2 class="sh">The Alignment Rule</h2>
+  <div class="callout note"><strong>📐 The Rule</strong>Due Diligence Period (§7) = Closing Timeframe (§5). Always. Default: 45 business days for both. If you change one, change the other.</div>
+  <h2 class="sh">Post-Execution Checklist</h2>
+  <p>The moment a contract is fully executed, complete all of the following immediately:</p>
+  <ul class="checklist" id="dd-checklist">
+    <li><span class="checklist-check" onclick="toggleCheck(this)"></span>Calculate the DD expiration date (45 business days from execution).</li>
+    <li><span class="checklist-check" onclick="toggleCheck(this)"></span>Create a HubSpot HIGH PRIORITY task 7 days before the DD expiration date.</li>
+    <li><span class="checklist-check" onclick="toggleCheck(this)"></span>Label the task: "DD Expiration — [Property Address] — Evaluate: Close / Extend / Retrade / Terminate".</li>
+    <li><span class="checklist-check" onclick="toggleCheck(this)"></span>Notify Market Manager, Dispositions, and National Title of the DD end date.</li>
+  </ul>
+  <div class="callout warn"><strong>⚠ Non-Negotiable</strong>If the DD period expires without action, Rebuilt is legally bound to purchase the property at the contracted price — regardless of condition, title complications, or market changes. This is not recoverable.</div>
+  <h2 class="sh">DD Scenario Decision Table</h2>
+  <table class="data-table">
+    <tr><th>Scenario</th><th>Action</th><th>Who to Notify</th></tr>
+    <tr><td>Deal on track, closing as scheduled</td><td>No action — close</td><td>Confirm with Dispositions</td></tr>
+    <tr><td>Title issue discovered, needs more time</td><td>Request DD Extension in writing from Seller</td><td>Market Manager + Title</td></tr>
+    <tr><td>Property condition worse than expected</td><td>Retrade: request price adjustment or terminate</td><td>Market Manager</td></tr>
+    <tr><td>No viable buyer/assignment found</td><td>Terminate in writing before DD expires</td><td>Market Manager + Title</td></tr>
+    <tr><td>Seller unresponsive / unreachable</td><td>Escalate to Market Manager immediately</td><td>Market Manager NOW</td></tr>
+  </table>
+  <div class="nav-buttons">
+    <button class="btn btn-secondary" onclick="goTo('m7')">&#8592; Back</button>
+    <button class="btn btn-primary" onclick="markAndGo('m8','m9')">Next: Red Flags &amp; Escalation &#8594;</button>
+  </div>
+</div>
+
+<!-- MODULE 9 -->
+<div class="module-page" id="page-m9">
+  <div class="module-header">
+    <div class="module-eyebrow">Module 9 of 9 — Critical Protocols</div>
+    <h1 class="module-title">Red Flags &amp; Escalation</h1>
+    <p class="module-desc">These situations require immediate escalation. Never attempt to navigate them independently.</p>
+  </div>
+  <h2 class="sh">Red Flag Reference Table</h2>
+  <table class="data-table">
+    <tr><th>Red Flag</th><th>Why It Matters</th><th>What To Do</th></tr>
+    <tr><td><span class="br">STOP</span> Seller NOT the title holder</td><td>Only vested owners can legally sell.</td><td>Stop. Get actual title holder's name. Escalate to Market Manager.</td></tr>
+    <tr><td><span class="br">STOP</span> Deceased title holder</td><td>Requires probate or Affidavit of Heirship.</td><td>Escalate to Market Manager + National Title immediately.</td></tr>
+    <tr><td><span class="br">STOP</span> Active or prior probate</td><td>Court must approve asset disposition.</td><td>Escalate to Market Manager + National Title. Do not contract.</td></tr>
+    <tr><td><span class="br">URGENT</span> Pending foreclosure</td><td>Legal complexity + tight timing.</td><td>Escalate to Market Manager. Note foreclosure date.</td></tr>
+    <tr><td><span class="br">STOP</span> Active bankruptcy</td><td>Open bankruptcy may require court approval to sell.</td><td>Escalate to Market Manager + National Title immediately.</td></tr>
+    <tr><td><span class="br">REVIEW</span> POA involved</td><td>Must be current, valid, and recorded.</td><td>Obtain a copy before signing. Send to National Title for review.</td></tr>
+    <tr><td><span class="br">STOP</span> Seller wants cancellation clause</td><td>Prohibited under Rebuilt policy.</td><td>Decline firmly. Escalate to Market Manager if seller insists.</td></tr>
+    <tr><td><span class="br">FLAG</span> Unnamed stakeholders</td><td>Hidden decision-makers can kill deals late.</td><td>Ask directly: "Is there anyone else involved in this decision?"</td></tr>
+  </table>
+  <h2 class="sh">Escalation Path</h2>
+  <ol>
+    <li>Associate identifies a red flag during intake or contract execution.</li>
+    <li>Associate stops — does not proceed.</li>
+    <li>Associate contacts Market Manager immediately via phone or Slack.</li>
+    <li>Market Manager assesses and determines path forward.</li>
+    <li>National Title looped in as needed for probate, POA, foreclosure, or bankruptcy.</li>
+  </ol>
+  <div class="nav-buttons">
+    <button class="btn btn-secondary" onclick="goTo('m8')">&#8592; Back</button>
+    <button class="btn btn-primary" onclick="markAndGo('m9','q1')">Take Quiz 1: The Contract &#8594;</button>
+  </div>
+</div>
+
+<!-- QUIZ 1 -->
+<div class="module-page" id="page-q1">
+  <div class="module-header">
+    <div class="module-eyebrow">Knowledge Check — Quiz 1 of 2</div>
+    <h1 class="module-title">Quiz: The Contract</h1>
+    <p class="module-desc">Test your knowledge of the Purchase &amp; Sales Agreement. Select the best answer, then check your results.</p>
+  </div>
+  <div id="quiz1">
+    <div class="quiz-question" data-correct="b">
+      <div class="quiz-q-num">Question 1 of 5</div>
+      <div class="quiz-q-text">A property is held by "Smith Family Trust LLC." How should the Seller field in §1 be completed?</div>
+      <div class="quiz-options">
+        <label class="quiz-option"><input type="radio" name="q1" value="a"> "Smith Family Trust LLC" as the seller</label>
+        <label class="quiz-option"><input type="radio" name="q1" value="b"> The individual's legal name followed by their LLC (e.g., "John Smith, Smith Family Trust LLC")</label>
+        <label class="quiz-option"><input type="radio" name="q1" value="c"> Leave it blank and have an attorney fill it in later</label>
+        <label class="quiz-option"><input type="radio" name="q1" value="d"> The trustee's name only, with no LLC reference</label>
+      </div>
+      <button class="quiz-submit-btn" onclick="checkQ(this,'q1','b','Correct! LLCs cannot be listed as the seller alone. The individual must be named. For LLC-held properties, list the person name followed by the LLC designation.')">Check Answer</button>
+      <div class="quiz-feedback"></div>
+    </div>
+    <div class="quiz-question" data-correct="c">
+      <div class="quiz-q-num">Question 2 of 5</div>
+      <div class="quiz-q-text">The standard closing timeframe is 45 business days. What must the Due Diligence period in §7 be set to?</div>
+      <div class="quiz-options">
+        <label class="quiz-option"><input type="radio" name="q2" value="a"> 30 business days — DD should always be shorter than closing</label>
+        <label class="quiz-option"><input type="radio" name="q2" value="b"> 60 business days — DD should extend beyond closing</label>
+        <label class="quiz-option"><input type="radio" name="q2" value="c"> 45 business days — DD always matches the closing timeframe</label>
+        <label class="quiz-option"><input type="radio" name="q2" value="d"> It doesn't matter — they're independent</label>
+      </div>
+      <button class="quiz-submit-btn" onclick="checkQ(this,'q2','c','Correct! The Due Diligence period always matches the closing timeframe. They must be identical. Default is 45 business days for both.')">Check Answer</button>
+      <div class="quiz-feedback"></div>
+    </div>
+    <div class="quiz-question" data-correct="d">
+      <div class="quiz-q-num">Question 3 of 5</div>
+      <div class="quiz-q-text">A seller says: "I'll sign, but only if I can back out within 30 days if I change my mind." What do you do?</div>
+      <div class="quiz-options">
+        <label class="quiz-option"><input type="radio" name="q3" value="a"> Add a 30-day cancellation clause to Special Provisions</label>
+        <label class="quiz-option"><input type="radio" name="q3" value="b"> Offer to reduce the DD period to 30 days as a compromise</label>
+        <label class="quiz-option"><input type="radio" name="q3" value="c"> Note the request in Special Provisions as a verbal understanding</label>
+        <label class="quiz-option"><input type="radio" name="q3" value="d"> Decline firmly and escalate to your Market Manager if the seller insists</label>
+      </div>
+      <button class="quiz-submit-btn" onclick="checkQ(this,'q3','d','Correct! Cancellation clauses are prohibited under Rebuilt policy — no exceptions. Decline firmly and escalate to your Market Manager if the seller persists.')">Check Answer</button>
+      <div class="quiz-feedback"></div>
+    </div>
+    <div class="quiz-question" data-correct="a">
+      <div class="quiz-q-num">Question 4 of 5</div>
+      <div class="quiz-q-text">The seller asks: "If I accept your offer at $90,000, do I actually get $90,000?" What is the most accurate response?</div>
+      <div class="quiz-options">
+        <label class="quiz-option"><input type="radio" name="q4" value="a"> "Your outstanding mortgage, back taxes, liens, and other seller-side obligations come out of the $90,000 first. What remains after those are cleared is your net proceeds."</label>
+        <label class="quiz-option"><input type="radio" name="q4" value="b"> "Yes, $90,000 is what you'll receive at closing."</label>
+        <label class="quiz-option"><input type="radio" name="q4" value="c"> "We'll determine the final amount at closing — it depends on title."</label>
+        <label class="quiz-option"><input type="radio" name="q4" value="d"> "You get $90,000 minus our standard 3% fee."</label>
+      </div>
+      <button class="quiz-submit-btn" onclick="checkQ(this,'q4','a','Correct! Per §15 and the Sellers Responsibility Acknowledgement, all outstanding mortgages, taxes, judgments, and liens are paid from proceeds. The seller receives the net amount remaining.')">Check Answer</button>
+      <div class="quiz-feedback"></div>
+    </div>
+    <div class="quiz-question" data-correct="b">
+      <div class="quiz-q-num">Question 5 of 5</div>
+      <div class="quiz-q-text">What must always be entered in the Special Provisions field (§20) even if there are no deal-specific modifications?</div>
+      <div class="quiz-options">
+        <label class="quiz-option"><input type="radio" name="q5" value="a"> Leave it blank — an empty field signals no changes</label>
+        <label class="quiz-option"><input type="radio" name="q5" value="b"> "N/A (Not Applicable)"</label>
+        <label class="quiz-option"><input type="radio" name="q5" value="c"> "Standard terms apply"</label>
+        <label class="quiz-option"><input type="radio" name="q5" value="d"> The associate's initials and date</label>
+      </div>
+      <button class="quiz-submit-btn" onclick="checkQ(this,'q5','b','Correct! Always enter N/A (Not Applicable) if there are no special provisions. A blank field is never acceptable.')">Check Answer</button>
+      <div class="quiz-feedback"></div>
+    </div>
+  </div>
+  <div class="quiz-score-bar" id="quiz1-score">
+    <div class="quiz-score-big" id="quiz1-score-num">—</div>
+    <div class="quiz-score-label">out of 5 correct</div>
+    <div class="quiz-score-msg" id="quiz1-score-msg"></div>
+  </div>
+  <div class="nav-buttons">
+    <button class="btn btn-secondary" onclick="goTo('m9')">&#8592; Back to Modules</button>
+    <button class="btn btn-primary" onclick="goTo('q2')">Next Quiz: Docs &amp; Red Flags &#8594;</button>
+  </div>
+</div>
+
+<!-- QUIZ 2 -->
+<div class="module-page" id="page-q2">
+  <div class="module-header">
+    <div class="module-eyebrow">Knowledge Check — Quiz 2 of 2</div>
+    <h1 class="module-title">Quiz: Docs &amp; Red Flags</h1>
+    <p class="module-desc">Supporting documents, the Seller Info Worksheet, and red flag recognition.</p>
+  </div>
+  <div id="quiz2">
+    <div class="quiz-question" data-correct="c">
+      <div class="quiz-q-num">Question 1 of 5</div>
+      <div class="quiz-q-text">During intake, the seller says: "The property is in my mom's name, but she passed away last year." What do you do?</div>
+      <div class="quiz-options">
+        <label class="quiz-option"><input type="radio" name="q6" value="a"> Proceed — the seller is clearly the heir and has the right to sell</label>
+        <label class="quiz-option"><input type="radio" name="q6" value="b"> Ask the seller to sign the contract on behalf of their mother</label>
+        <label class="quiz-option"><input type="radio" name="q6" value="c"> Stop and escalate to your Market Manager and National Title — this likely requires probate or an Affidavit of Heirship</label>
+        <label class="quiz-option"><input type="radio" name="q6" value="d"> Note it in Special Provisions and proceed</label>
+      </div>
+      <button class="quiz-submit-btn" onclick="checkQ(this,'q6','c','Correct! A deceased title holder is an immediate red flag. Depending on timing and state, probate or an Affidavit of Heirship may be required. National Title must be looped in before any contract is executed.')">Check Answer</button>
+      <div class="quiz-feedback"></div>
+    </div>
+    <div class="quiz-question" data-correct="d">
+      <div class="quiz-q-num">Question 2 of 5</div>
+      <div class="quiz-q-text">Why is Date of Birth required on the Seller Info Worksheet?</div>
+      <div class="quiz-options">
+        <label class="quiz-option"><input type="radio" name="q7" value="a"> It is required by Fair Housing law</label>
+        <label class="quiz-option"><input type="radio" name="q7" value="b"> To verify the seller is over 18</label>
+        <label class="quiz-option"><input type="radio" name="q7" value="c"> Rebuilt uses it for its internal CRM system</label>
+        <label class="quiz-option"><input type="radio" name="q7" value="d"> Payoff vendors and title companies use it to verify identity when requesting mortgage and lien payoff information</label>
+      </div>
+      <button class="quiz-submit-btn" onclick="checkQ(this,'q7','d','Correct! DOB is used by payoff vendors the same way a bank uses it — for identity verification. Without it, title cannot get payoff figures on mortgages and liens.')">Check Answer</button>
+      <div class="quiz-feedback"></div>
+    </div>
+    <div class="quiz-question" data-correct="b">
+      <div class="quiz-q-num">Question 3 of 5</div>
+      <div class="quiz-q-text">A seller mentions in passing: "I'll need to check with my brother before I decide." What is the correct response?</div>
+      <div class="quiz-options">
+        <label class="quiz-option"><input type="radio" name="q8" value="a"> Proceed — this is just a personal conversation, not a legal issue</label>
+        <label class="quiz-option"><input type="radio" name="q8" value="b"> Ask directly: "Is your brother involved in the ownership of the property, or is there anyone else whose input would affect your decision to sell?"</label>
+        <label class="quiz-option"><input type="radio" name="q8" value="c"> Note it in the consultation section and move on</label>
+        <label class="quiz-option"><input type="radio" name="q8" value="d"> Tell the seller they don't need anyone else's approval to sign</label>
+      </div>
+      <button class="quiz-submit-btn" onclick="checkQ(this,'q8','b','Correct! Unnamed stakeholders can kill deals late in the process. Surface all decision-makers early. Always ask directly who else might be involved.')">Check Answer</button>
+      <div class="quiz-feedback"></div>
+    </div>
+    <div class="quiz-question" data-correct="a">
+      <div class="quiz-q-num">Question 4 of 5</div>
+      <div class="quiz-q-text">The National Title Authorization form requires the seller's SSN. What is the correct handling protocol?</div>
+      <div class="quiz-options">
+        <label class="quiz-option"><input type="radio" name="q9" value="a"> Route the completed form directly to National Title per your market's protocol — never store a photo or copy insecurely</label>
+        <label class="quiz-option"><input type="radio" name="q9" value="b"> Photograph and upload it to the HubSpot contact record</label>
+        <label class="quiz-option"><input type="radio" name="q9" value="c"> Email it to your Market Manager for review</label>
+        <label class="quiz-option"><input type="radio" name="q9" value="d"> The SSN field is optional — skip it if the seller is uncomfortable</label>
+      </div>
+      <button class="quiz-submit-btn" onclick="checkQ(this,'q9','a','Correct! SSN is sensitive data. Route directly to National Title per your market protocol. Never store unsecured copies or photos of this form.')">Check Answer</button>
+      <div class="quiz-feedback"></div>
+    </div>
+    <div class="quiz-question" data-correct="c">
+      <div class="quiz-q-num">Question 5 of 5</div>
+      <div class="quiz-q-text">When is the PA Addendum (Agency Disclosure Assignable Contract Addendum) required?</div>
+      <div class="quiz-options">
+        <label class="quiz-option"><input type="radio" name="q10" value="a"> On every transaction in every state</label>
+        <label class="quiz-option"><input type="radio" name="q10" value="b"> Only when the contract is being assigned to a third party</label>
+        <label class="quiz-option"><input type="radio" name="q10" value="c"> For Pennsylvania transactions only</label>
+        <label class="quiz-option"><input type="radio" name="q10" value="d"> Whenever a property is listed on the MLS</label>
+      </div>
+      <button class="quiz-submit-btn" onclick="checkQ(this,'q10','c','Correct! The PA Addendum is required for Pennsylvania transactions only. It discloses the wholesaling structure of the deal to the seller and any end buyer.')">Check Answer</button>
+      <div class="quiz-feedback"></div>
+    </div>
+  </div>
+  <div class="quiz-score-bar" id="quiz2-score">
+    <div class="quiz-score-big" id="quiz2-score-num">—</div>
+    <div class="quiz-score-label">out of 5 correct</div>
+    <div class="quiz-score-msg" id="quiz2-score-msg"></div>
+  </div>
+  <div class="nav-buttons">
+    <button class="btn btn-secondary" onclick="goTo('q1')">&#8592; Quiz 1</button>
+    <button class="btn btn-primary" onclick="markAndGo('q2','scenarios')">Next: Role-Play Scenarios &#8594;</button>
+  </div>
+</div>
+
+<!-- SCENARIOS -->
+<div class="module-page" id="page-scenarios">
+  <div class="module-header">
+    <div class="module-eyebrow">Practice</div>
+    <h1 class="module-title">Role-Play Scenarios</h1>
+    <p class="module-desc">Work through each scenario before revealing the suggested approach. These reflect real situations you will encounter on live calls.</p>
+  </div>
+  <div class="scenario-card">
+    <div class="scenario-header">🎭 Scenario 1 — The Net Proceeds Confusion</div>
+    <div class="scenario-body">A seller accepted your offer of $78,000. They have a $45,000 mortgage, $3,200 in back taxes, and a $1,500 HOA lien. The night before closing they ask: "So I'm getting $78,000 tomorrow, right?" How do you respond?</div>
+    <button class="scenario-expand-btn" onclick="toggleScenario(this)">Reveal Suggested Approach ▼</button>
+    <div class="scenario-expand"><div class="scenario-answer">Walk them through the math calmly: "The $78,000 is the purchase price, but your obligations come out of that first. Your mortgage payoff of approximately $45,000, the $3,200 in back taxes, and the $1,500 HOA lien will all be settled at closing from the proceeds. Your net will be approximately $28,300 after those are cleared — you don't need to bring anything to the table. This was outlined in the Seller's Responsibility Acknowledgement you signed. National Title will have the final closing statement for you before closing." Stay calm, don't apologize, and reference the documents they already signed.</div></div>
+  </div>
+  <div class="scenario-card">
+    <div class="scenario-header">🎭 Scenario 2 — The Inherited Property</div>
+    <div class="scenario-body">A caller says: "My mom passed away 8 months ago and left me the house in her will. It's not in probate yet but I want to sell fast — can we sign today?" What do you do?</div>
+    <button class="scenario-expand-btn" onclick="toggleScenario(this)">Reveal Suggested Approach ▼</button>
+    <div class="scenario-expand"><div class="scenario-answer">Do not execute the contract yet. Escalate to your Market Manager and loop in National Title before proceeding. The property is still titled in the deceased mother's name — the caller cannot legally sell it until title is transferred. In Tennessee, if the passing was more than 366 days ago, an Affidavit of Heirship may be an option. Since it has been 8 months, probate may be required. Express empathy, explain that you want to help get this done and that there is a path — but you need to confirm the right process with your title team first. Never promise a quick close on an inherited property until title has reviewed the situation.</div></div>
+  </div>
+  <div class="scenario-card">
+    <div class="scenario-header">🎭 Scenario 3 — The Tenant-Occupied Property</div>
+    <div class="scenario-body">The seller has a tenant paying $1,100/month on a month-to-month lease. The seller also wants to stay in the property themselves for 30 days after closing to "wrap things up." What sections and documents are impacted?</div>
+    <button class="scenario-expand-btn" onclick="toggleScenario(this)">Reveal Suggested Approach ▼</button>
+    <div class="scenario-expand"><div class="scenario-answer">Several things are in play: (1) Seller Info Worksheet — mark Tenant Occupied, capture tenant name, contact, and monthly rent of $1,100 for proration calculations. (2) The seller's request to stay 30 days post-closing is a Post-Occupancy arrangement — it requires a separate Post-Occupancy Agreement with a holdback amount, documented in Special Provisions. (3) Prorations — tenant's rent is prorated through closing; buyer gets credit for any prepaid rent. (4) Photo and Access Authorization — confirm the tenant has been notified and consents to access for photos and inspections. Escalate the post-occupancy request to your Market Manager before finalizing the contract.</div></div>
+  </div>
+  <div class="scenario-card">
+    <div class="scenario-header">🎭 Scenario 4 — The Cancellation Clause Request</div>
+    <div class="scenario-body">A motivated seller is ready to sign but says: "My daughter said I should only sign if there is a 30-day out clause in case I change my mind." How do you handle this?</div>
+    <button class="scenario-expand-btn" onclick="toggleScenario(this)">Reveal Suggested Approach ▼</button>
+    <div class="scenario-expand"><div class="scenario-answer">Do not add any cancellation clause — this is a firm Rebuilt policy with no exceptions. Acknowledge the concern without agreeing: "I completely understand wanting to feel protected. What I can tell you is that our contract already includes a Due Diligence period that gives both sides time to work through any issues — and we're committed to making this as smooth as possible. What I'm not able to do is add a cancellation clause; that's not something we can include in our agreements." If the seller continues to insist, escalate to your Market Manager before signing anything. Never sign a contract with a cancellation clause.</div></div>
+  </div>
+  <div class="scenario-card">
+    <div class="scenario-header">🎭 Scenario 5 — The Pennsylvania Deal</div>
+    <div class="scenario-body">You are closing a deal on a property in Philadelphia, PA. Walk through every additional step and document required compared to a standard state transaction.</div>
+    <button class="scenario-expand-btn" onclick="toggleScenario(this)">Reveal Suggested Approach ▼</button>
+    <div class="scenario-expand"><div class="scenario-answer">In addition to the standard packet (Purchase &amp; Sales Agreement, Seller Info Worksheet, Consumer Guide/Fair Housing/Affiliated Business, Notice of Non-Representation, Authorization to Sign Listing Docs, Authorization for Release of Information, Seller's Responsibility Acknowledgement, and Photo &amp; Access Authorization), Pennsylvania requires the Agency Disclosure Assignable Contract Addendum. Key steps: (1) Confirm the "Wholesaler acting on own behalf" checkbox is selected. (2) Have the seller print their name and sign the Owner acknowledgement block. (3) Rebuilt's signatory — Albert Charles Young, Member + CEO — is pre-populated. (4) The Buyer section is filled in only when the contract is assigned — it may not be completed at seller execution. Explain the wholesaling disclosure clearly using the PA-specific talking point.</div></div>
+  </div>
+  <div class="nav-buttons">
+    <button class="btn btn-secondary" onclick="goTo('q2')">&#8592; Back to Quiz 2</button>
+    <button class="btn btn-primary" onclick="markAndGo('scenarios','complete')">Final Step: Completion Checklist &#8594;</button>
+  </div>
+</div>
+
+<!-- COMPLETION -->
+<div class="module-page" id="page-complete">
+  <div class="module-header">
+    <div class="module-eyebrow">Final Step</div>
+    <h1 class="module-title">Completion Checklist</h1>
+    <p class="module-desc">Check off each item to confirm readiness. All items must be checked before your trainer signs off.</p>
+  </div>
+  <div class="completion-banner"><h2>🎓 Almost There!</h2><p>Check off each item below to confirm you are ready to work live deals.</p></div>
+  <h2 class="sh">Contract Competencies</h2>
+  <ul class="checklist">
+    <li><span class="checklist-check" onclick="toggleCheck(this)"></span>I can identify every customizable field in the Purchase &amp; Sales Agreement and explain why each one matters.</li>
+    <li><span class="checklist-check" onclick="toggleCheck(this)"></span>I can explain the §15 Sales Expenses section and net proceeds calculation to a seller in plain language.</li>
+    <li><span class="checklist-check" onclick="toggleCheck(this)"></span>I know that §5 Closing and §7 Due Diligence must always match, and the default is 45 business days.</li>
+    <li><span class="checklist-check" onclick="toggleCheck(this)"></span>I will never add a cancellation clause to Special Provisions under any circumstances.</li>
+    <li><span class="checklist-check" onclick="toggleCheck(this)"></span>I can explain the Assignment of Contract (§17) to a seller clearly.</li>
+  </ul>
+  <h2 class="sh">Supporting Documents</h2>
+  <ul class="checklist">
+    <li><span class="checklist-check" onclick="toggleCheck(this)"></span>I can explain the purpose of every document in the AB Contract packet to a seller.</li>
+    <li><span class="checklist-check" onclick="toggleCheck(this)"></span>I understand the SSN handling protocol for the National Title Authorization form.</li>
+    <li><span class="checklist-check" onclick="toggleCheck(this)"></span>I know which documents require seller signature and which fields are required in each.</li>
+    <li><span class="checklist-check" onclick="toggleCheck(this)"></span>I can explain why the Seller's Responsibility Acknowledgement is a critical verbal moment.</li>
+    <li><span class="checklist-check" onclick="toggleCheck(this)"></span>I know when the PA Addendum is required and how to explain it.</li>
+  </ul>
+  <h2 class="sh">Seller Info Worksheet &amp; Red Flags</h2>
+  <ul class="checklist">
+    <li><span class="checklist-check" onclick="toggleCheck(this)"></span>I understand the difference between Homestead and Non-Homestead and why it matters.</li>
+    <li><span class="checklist-check" onclick="toggleCheck(this)"></span>I know all 8 red flag situations and the correct escalation path for each.</li>
+    <li><span class="checklist-check" onclick="toggleCheck(this)"></span>I will never proceed without Market Manager guidance when a red flag is identified.</li>
+    <li><span class="checklist-check" onclick="toggleCheck(this)"></span>I actively listen for unnamed stakeholders during intake conversations.</li>
+  </ul>
+  <h2 class="sh">Due Diligence Protocol</h2>
+  <ul class="checklist">
+    <li><span class="checklist-check" onclick="toggleCheck(this)"></span>I will create a HubSpot high-priority task 7 days before DD expiration on every executed contract.</li>
+    <li><span class="checklist-check" onclick="toggleCheck(this)"></span>I understand that allowing the DD period to expire obligates Rebuilt to purchase the property.</li>
+    <li><span class="checklist-check" onclick="toggleCheck(this)"></span>I know the five DD scenarios and the correct action for each.</li>
+  </ul>
+  <div class="nav-buttons">
+    <button class="btn btn-secondary" onclick="goTo('scenarios')">&#8592; Back to Scenarios</button>
+    <button class="btn btn-primary" onclick="markAndGo('complete','cover')">🎓 Return to Start</button>
+  </div>
+  <button class="cert-unlock-btn" id="cert-unlock-btn" onclick="showNameModal()">🏆 Generate My Certificate of Completion</button>
+</div>
+
+</main>
+
+<!-- NAME PROMPT MODAL -->
+<div class="modal-overlay" id="name-modal">
+  <div class="modal-box">
+    <div style="font-size:40px;margin-bottom:12px;">🎓</div>
+    <h2>You did it!</h2>
+    <p>Enter your full name to generate your completion certificate.</p>
+    <input class="modal-input" id="cert-name-input" type="text" placeholder="Your Full Name" maxlength="60" onkeydown="if(event.key==='Enter')generateCert()">
+    <button class="modal-btn" onclick="generateCert()">Generate My Certificate &#8594;</button>
+  </div>
+</div>
+
+<!-- CERTIFICATE OVERLAY -->
+<div class="cert-overlay" id="cert-overlay">
+  <div class="cert-wrap">
+    <button class="cert-print-btn" onclick="window.print()">🖨 Print / Save PDF</button>
+    <button class="cert-close" onclick="closeCert()">✕ Close</button>
+    <div class="certificate" id="certificate">
+      <div class="cert-border"></div>
+      <div class="cert-watermark">REBUILT</div>
+      <div class="cert-inner">
+        <div class="cert-header">
+          <div>
+            <div class="cert-logo-text">re<span>built</span></div>
+            <div class="cert-logo-sub">Offers, LLC &nbsp;·&nbsp; Acquisitions</div>
+          </div>
+          <div class="cert-seal">🏆</div>
+        </div>
+        <div class="cert-body">
+          <div class="cert-presents">This certifies that</div>
+          <div class="cert-name" id="cert-name-display">—</div>
+          <div class="cert-title-text">AB Contract Certification</div>
+          <div class="cert-desc">has successfully completed the Rebuilt Acquisitions AB Contract Training Course, demonstrating proficiency in the Purchase &amp; Sales Agreement, supporting documents, Due Diligence protocols, and red flag identification.</div>
+          <div class="cert-badges">
+            <div class="cert-badge"><div class="cert-badge-num">9</div><div class="cert-badge-label">Modules</div></div>
+            <div class="cert-badge"><div class="cert-badge-num" id="cert-score-display">10/10</div><div class="cert-badge-label">Quiz Score</div></div>
+            <div class="cert-badge"><div class="cert-badge-num">5</div><div class="cert-badge-label">Scenarios</div></div>
+          </div>
+        </div>
+        <div class="cert-footer">
+          <div class="cert-sig-block">
+            <div class="cert-sig-name">Albert Charles Young</div>
+            <div class="cert-sig-line"></div>
+            <div class="cert-sig-title">Member &amp; CEO, Rebuilt Offers LLC</div>
+          </div>
+          <div class="cert-date-block">
+            <div class="cert-date-label">Date Issued</div>
+            <div class="cert-date-val" id="cert-date-display">—</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const contentPages=['m1','m2','m3','m4','m5','m6','m7','m8','m9','scenarios','complete'];
+const completed=new Set(['cover']);
+function goTo(id){
+  document.querySelectorAll('.module-page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  const ni=document.querySelector('[data-page="'+id+'"]');
+  if(ni)ni.classList.add('active');
+  window.scrollTo(0,0);
+  updateProgress();
+}
+function markAndGo(cur,nxt){
+  completed.add(cur);
+  const chk=document.getElementById('chk-'+cur);
+  if(chk){chk.textContent='✓';}
+  const ni=document.querySelector('[data-page="'+cur+'"]');
+  if(ni)ni.classList.add('completed');
+  goTo(nxt);
+}
+function updateProgress(){
+  const done=contentPages.filter(p=>completed.has(p)).length;
+  const pct=Math.round((done/contentPages.length)*100);
+  document.getElementById('progress-fill').style.width=pct+'%';
+  document.getElementById('progress-pct').textContent=pct+'%';
+}
+
+/* ── QUIZ ── */
+const quizScores={quiz1:0,quiz2:0};
+const quizAnswered={};
+function checkQ(btn,qName,correctVal,explanation){
+  const selected=document.querySelector('input[name="'+qName+'"]:checked');
+  if(!selected||quizAnswered[qName])return;
+  quizAnswered[qName]=true;
+  const qNum=parseInt(qName.slice(1));
+  const quizId=qNum<=5?'quiz1':'quiz2';
+  const isCorrect=selected.value===correctVal;
+  document.querySelectorAll('input[name="'+qName+'"]').forEach(opt=>{
+    const lbl=opt.closest('.quiz-option');
+    lbl.classList.add('locked');
+    if(opt.value===correctVal)lbl.classList.add('correct');
+    else if(opt.checked&&!isCorrect)lbl.classList.add('incorrect');
+  });
+  const fb=btn.nextElementSibling;
+  fb.classList.add('show');
+  if(isCorrect){fb.classList.add('correct-fb');fb.textContent='✓ '+explanation;quizScores[quizId]++;}
+  else{fb.classList.add('incorrect-fb');fb.textContent='✗ Not quite. '+explanation;}
+  btn.disabled=true;
+  const qNums=quizId==='quiz1'?[1,2,3,4,5]:[6,7,8,9,10];
+  if(qNums.every(n=>quizAnswered['q'+n]))showQuizScore(quizId);
+}
+function showQuizScore(quizId){
+  const score=quizScores[quizId];
+  const bar=document.getElementById(quizId+'-score');
+  const num=document.getElementById(quizId+'-score-num');
+  const msg=document.getElementById(quizId+'-score-msg');
+  bar.classList.add('show');
+  num.textContent=score+'/5';
+  if(score===5){msg.textContent='🎉 Perfect score! You are ready for the next section.';num.style.color='#1A7A4A';}
+  else if(score>=4){msg.textContent='✅ Great work! Review any incorrect answers before moving on.';num.style.color='#0077B6';}
+  else{msg.textContent='📚 Review the relevant modules and retake when ready.';num.style.color='#C0392B';}
+  completed.add(quizId==='quiz1'?'q1':'q2');
+  updateProgress();
+  // Report running score to hub
+  reportToHub(calcOverallScore());
+}
+
+/* ── SCENARIOS ── */
+function toggleScenario(btn){
+  const ex=btn.nextElementSibling;
+  if(ex.classList.contains('open')){ex.classList.remove('open');btn.textContent=btn.textContent.replace('▲','▼');}
+  else{ex.classList.add('open');btn.textContent=btn.textContent.replace('▼','▲');}
+}
+
+/* ── CHECKLIST + CERTIFICATE UNLOCK ── */
+const TOTAL_CHECKS = 17;
+function toggleCheck(el){
+  el.classList.toggle('checked');
+  el.textContent=el.classList.contains('checked')?'✓':'';
+  const checked = document.querySelectorAll('.checklist-check.checked').length;
+  const btn = document.getElementById('cert-unlock-btn');
+  if(checked >= TOTAL_CHECKS){
+    btn.classList.add('show');
+    btn.scrollIntoView({behavior:'smooth', block:'nearest'});
+  } else {
+    btn.classList.remove('show');
+  }
+}
+
+/* ── CERTIFICATE ── */
+function showNameModal(){
+  document.getElementById('name-modal').classList.add('show');
+  setTimeout(()=>document.getElementById('cert-name-input').focus(), 100);
+}
+function generateCert(){
+  const name = document.getElementById('cert-name-input').value.trim();
+  if(!name){ document.getElementById('cert-name-input').style.borderColor='var(--red)'; return; }
+  document.getElementById('cert-name-display').textContent = name;
+  const totalScore = (quizScores.quiz1||0) + (quizScores.quiz2||0);
+  document.getElementById('cert-score-display').textContent = totalScore + '/10';
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  document.getElementById('cert-date-display').textContent = dateStr;
+  document.getElementById('name-modal').classList.remove('show');
+  document.getElementById('cert-overlay').classList.add('show');
+  // Show hub completion screen
+  showCompletionScreen();
+}
+function closeCert(){
+  document.getElementById('cert-overlay').classList.remove('show');
+}
+// Close modal on overlay click
+document.getElementById('name-modal').addEventListener('click', function(e){
+  if(e.target===this) this.classList.remove('show');
+});
+
+// ── HUB CONFIG ──────────────────────────────────────────
+const HUB_URL      = 'https://script.google.com/macros/s/AKfycbyRSuUKBjwlPZiY8E7IZZUEQ8u-uwwuTXZnQ0nTPqtfk-bu3zyAa6RKZYw7687arJVs/exec';
+const MODULE_ID    = 'olt_ab_contract';
+const MODULE_NAME_H= 'AB Contract Training';
+let   userEmail    = '';
+
+// ── GATE ────────────────────────────────────────────────
+function submitGate() {
+  const input = document.getElementById('gate-email');
+  const errEl = document.getElementById('gate-error');
+  const val   = input.value.trim().toLowerCase();
+  const dom   = [114,101,98,117,105,108,116].map(function(x){return String.fromCharCode(x);}).join('');
+  const valid = new RegExp('^[a-z0-9._%+\\-]+@' + dom + '\\.com$','i').test(val);
+  if (!valid) {
+    errEl.textContent = 'Please enter a valid @' + dom + '.com email.';
+    input.style.borderColor = '#c0392b';
+    return;
+  }
+  userEmail = val;
+  localStorage.setItem('rebuilt_email', val);
+  document.getElementById('email-gate').style.display = 'none';
+}
+window.addEventListener('DOMContentLoaded', function() {
+  var saved = localStorage.getItem('rebuilt_email');
+  if (saved) { document.getElementById('gate-email').value = saved; }
+  document.getElementById('gate-email').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') submitGate();
+  });
+});
+
+// ── HUB REPORTING ────────────────────────────────────────
+function reportToHub(scorePct) {
+  var email = localStorage.getItem('rebuilt_email') || userEmail;
+  var role  = localStorage.getItem('rebuilt_role') || '';
+  if (!email) return;
+  fetch(HUB_URL, {
+    method:'POST', mode:'no-cors',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({
+      email:email, module_id:MODULE_ID,
+      module_name:MODULE_NAME_H, type:'OLT',
+      score_pct:scorePct, role:role
+    })
+  }).catch(function(){});
+}
+
+function calcOverallScore() {
+  var total = (quizScores.quiz1||0) + (quizScores.quiz2||0);
+  return Math.round((total / 10) * 100);
+}
+
+function showCompletionScreen() {
+  var score = calcOverallScore();
+  reportToHub(score);
+  document.getElementById('cs-score').textContent = score + '%';
+  document.getElementById('cs-date').textContent  =
+    'Completed ' + new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+  document.getElementById('completion-screen').style.display = 'flex';
+}
+
+
+updateProgress();
+</script>
+</body>
+</html>
