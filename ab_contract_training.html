@@ -16,26 +16,26 @@
   --sidebar:270px;--radius:10px;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Montserrat',sans-serif;background:var(--gray-50);color:var(--gray-900);display:flex;min-height:100vh;font-size:15px;line-height:1.65;}
-#sidebar{width:var(--sidebar);background:var(--navy);position:fixed;top:0;left:0;height:100vh;overflow-y:auto;z-index:200;display:flex;flex-direction:column;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.15) transparent;}
-.sb-brand{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.08);}
+body{font-family:'Montserrat',sans-serif;background:var(--gray-50);color:var(--gray-900);min-height:100vh;font-size:15px;line-height:1.65;}
+
+
 .sb-brand .eyebrow{font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--sky);margin-bottom:6px;}
 .sb-brand h1{font-family:'Montserrat',sans-serif;font-size:17px;font-weight:800;color:#fff;line-height:1.25;}
 .sb-brand p{font-size:11px;color:rgba(255,255,255,.4);margin-top:4px;}
-.sb-progress{padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.08);}
-.sb-progress-label{font-size:10px;color:rgba(255,255,255,.4);display:flex;justify-content:space-between;margin-bottom:6px;}
-.sb-progress-track{background:rgba(255,255,255,.1);border-radius:4px;height:4px;}
-.sb-progress-fill{background:linear-gradient(90deg,var(--mid),var(--sky));height:4px;border-radius:4px;transition:width .5s ease;width:0%;}
-.sb-section-label{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.25);padding:14px 20px 4px;font-family:'Montserrat',sans-serif;}
-.nav-item{display:flex;align-items:center;gap:10px;padding:10px 20px;cursor:pointer;font-size:12.5px;color:rgba(255,255,255,.6);border-left:3px solid transparent;transition:all .15s;}
-.nav-item:hover{background:rgba(255,255,255,.05);color:#fff;}
-.nav-item.active{background:rgba(0,150,199,.18);color:#fff;border-left-color:var(--sky);font-weight:600;}
-.nav-item .nav-icon{font-size:14px;width:18px;text-align:center;flex-shrink:0;}
-.nav-item .nav-check{margin-left:auto;width:16px;height:16px;border-radius:50%;border:1.5px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0;transition:all .3s;}
-.nav-item.completed .nav-check{background:var(--green);border-color:var(--green);color:#fff;}
-.nav-item .nav-badge{margin-left:auto;background:var(--orange);color:#fff;font-size:9px;padding:1px 6px;border-radius:8px;font-weight:700;font-family:'Montserrat',sans-serif;}
-#main{margin-left:var(--sidebar);flex:1;min-height:100vh;}
-.module-page{display:none;padding:48px 56px 100px;max-width:820px;animation:fadeIn .3s ease;}
+
+
+
+
+
+
+
+
+
+
+
+
+#main{min-height:100vh;}
+.module-page{display:none;padding:32px 40px 80px;max-width:860px;margin:0 auto;animation:fadeIn .3s ease;}
 .module-page.active{display:block;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .module-header{margin-bottom:36px;}
@@ -95,9 +95,9 @@ li{margin-bottom:6px;color:var(--gray-600);}
 .quiz-score-big{font-family:'Montserrat',sans-serif;font-size:48px;font-weight:800;color:var(--navy);}
 .quiz-score-label{color:var(--gray-400);font-size:13px;margin-top:4px;}
 .quiz-score-msg{margin-top:10px;font-size:14px;color:var(--gray-600);}
-.cover-page{display:flex;flex-direction:column;justify-content:center;min-height:100vh;padding:64px 56px;max-width:820px;}
+.cover-page{padding:48px 56px 80px;max-width:820px;}
 .cover-eyebrow{font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--mid);margin-bottom:20px;}
-.cover-title{font-family:'Montserrat',sans-serif;font-size:52px;font-weight:800;color:var(--navy);line-height:1.1;margin-bottom:16px;}
+.cover-title{font-family:'Montserrat',sans-serif;font-size:38px;font-weight:800;color:var(--navy);line-height:1.15;margin-bottom:16px;}
 .cover-title span{color:var(--blue);}
 .cover-sub{font-size:18px;color:var(--gray-600);max-width:520px;margin-bottom:40px;}
 .cover-stats{display:flex;gap:32px;margin-bottom:40px;}
@@ -183,6 +183,35 @@ li{margin-bottom:6px;color:var(--gray-600);}
   .cert-wrap{max-width:100%!important;}
   .certificate{box-shadow:none!important;}
 }
+
+/* ── TOPBAR ── */
+.topbar{background:var(--navy);position:sticky;top:0;z-index:200;border-bottom:3px solid var(--blue);}
+.topbar-inner{max-width:920px;margin:0 auto;padding:0 1.25rem;display:flex;align-items:center;gap:14px;height:56px;}
+.topbar-logo{display:flex;align-items:center;flex-shrink:0;}
+.topbar-logo img{height:28px;width:auto;filter:brightness(0) invert(1);}
+.topbar-divider{width:1px;height:22px;background:rgba(255,255,255,0.2);margin:0 4px;}
+.topbar-sub{font-size:11px;color:rgba(255,255,255,0.55);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;}
+.topbar-badge{margin-left:auto;background:var(--blue);color:#fff;font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:3px 12px;border-radius:20px;}
+
+/* ── PROGRESS BAR ── */
+.progress-wrap{background:#fff;border-bottom:1px solid var(--gray-200);padding:10px 1.25rem;position:sticky;top:59px;z-index:99;}
+.progress-inner{max-width:920px;margin:0 auto;}
+.progress-label{font-size:11px;color:var(--gray-400);font-weight:500;margin-bottom:6px;display:flex;justify-content:space-between;letter-spacing:0.02em;}
+.progress-bar-el{background:var(--gray-100);border-radius:4px;height:4px;overflow:hidden;}
+.progress-fill-el{height:100%;background:linear-gradient(90deg,var(--blue),var(--sky));border-radius:4px;transition:width 0.4s ease;}
+
+/* ── MODULE NAV TABS ── */
+.mod-nav-wrap{background:#fff;border-bottom:1px solid var(--gray-200);}
+.mod-nav-inner{max-width:920px;margin:0 auto;padding:0 1rem;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;}
+.mod-nav-inner::-webkit-scrollbar{display:none;}
+.mod-btn{padding:12px 14px;font-size:11px;font-weight:600;border:none;background:transparent;cursor:pointer;color:var(--gray-400);border-bottom:3px solid transparent;white-space:nowrap;transition:all 0.15s;letter-spacing:0.02em;font-family:'Montserrat',sans-serif;}
+.mod-btn:hover{color:var(--gray-900);background:var(--gray-50);}
+.mod-btn.active{color:var(--blue);border-bottom-color:var(--blue);}
+.mod-btn.done{color:var(--green);}
+
+/* ── CONTENT AREA ── */
+#content-area-ab{max-width:860px;margin:0 auto;padding:0;}
+
 </style>
 </head>
 <body>
@@ -220,40 +249,66 @@ li{margin-bottom:6px;color:var(--gray-600);}
   </div>
 </div>
 
-<nav id="sidebar">
-  <div class="sb-brand">
-    <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgoKPHN2ZwogICB2ZXJzaW9uPSIxLjEiCiAgIGlkPSJzdmcxIgogICB3aWR0aD0iMTQyNC45NzMzIgogICBoZWlnaHQ9IjEzMzIuNjY2NyIKICAgdmlld0JveD0iMCAwIDE0MjQuOTczMyAxMzMyLjY2NjciCiAgIHNvZGlwb2RpOmRvY25hbWU9IkxvZ28gU3RhY2tlZC5lcHMiCiAgIHhtbG5zOmlua3NjYXBlPSJodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy9uYW1lc3BhY2VzL2lua3NjYXBlIgogICB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiCiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnMKICAgICBpZD0iZGVmczEiIC8+CiAgPHNvZGlwb2RpOm5hbWVkdmlldwogICAgIGlkPSJuYW1lZHZpZXcxIgogICAgIHBhZ2Vjb2xvcj0iI2ZmZmZmZiIKICAgICBib3JkZXJjb2xvcj0iIzAwMDAwMCIKICAgICBib3JkZXJvcGFjaXR5PSIwLjI1IgogICAgIGlua3NjYXBlOnNob3dwYWdlc2hhZG93PSIyIgogICAgIGlua3NjYXBlOnBhZ2VvcGFjaXR5PSIwLjAiCiAgICAgaW5rc2NhcGU6cGFnZWNoZWNrZXJib2FyZD0iMCIKICAgICBpbmtzY2FwZTpkZXNrY29sb3I9IiNkMWQxZDEiPgogICAgPGlua3NjYXBlOnBhZ2UKICAgICAgIHg9IjAiCiAgICAgICB5PSIwIgogICAgICAgaW5rc2NhcGU6bGFiZWw9IjEiCiAgICAgICBpZD0icGFnZTEiCiAgICAgICB3aWR0aD0iMTQyNC45NzMzIgogICAgICAgaGVpZ2h0PSIxMzMyLjY2NjciCiAgICAgICBtYXJnaW49IjAiCiAgICAgICBibGVlZD0iMCIgLz4KICA8L3NvZGlwb2RpOm5hbWVkdmlldz4KICA8ZwogICAgIGlkPSJnMSIKICAgICBpbmtzY2FwZTpncm91cG1vZGU9ImxheWVyIgogICAgIGlua3NjYXBlOmxhYmVsPSIxIj4KICAgIDxnCiAgICAgICBpZD0iZ3JvdXAtUjUiPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDIiCiAgICAgICAgIGQ9Ik0gMCw0Mi4zMzk4IFYgMTkwNS4xMiBIIDQyNi44OTUgViAxNDg1LjMgYyAxMzEuNjkxLDMxNy41MSAzNTEuNTkzLDQ2OS4yMiA2NTkuNzM1LDQ1NS4xIHYgLTQ1MS41OCBoIC0yNC42OSBjIC0xOTIuODc3LDAgLTM0Ni45NiwtNjIuOTUgLTQ2Mi4xNzQsLTE4OC43NSBDIDQ4NC41MDQsMTE3NC4yMiA0MjYuODk1LDk5MS4zNzEgNDI2Ljg5NSw3NTEuNDY5IFYgNDIuMzM5OCBIIDAiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgzIgogICAgICAgICBkPSJtIDE2ODQuMjUsMTEwNC4yNiBoIDk1Ni4xIGMgLTE0LjEyLDE0My40NCAtNjIuMzUsMjYxLjA4IC0xNDQuNjcsMzUyLjggLTgyLjM0LDkxLjczIC0xOTEuNzEsMTM3LjYgLTMyOC4wOCwxMzcuNiAtMTI5LjQsMCAtMjM3LjYxLC00NS4zMSAtMzI0LjU5LC0xMzUuODMgLTg3LjA0LC05MC41NiAtMTM5Ljk1LC0yMDguNzYgLTE1OC43NiwtMzU0LjU3IHogTSAyMjE2Ljk5LDAgQyAxOTQ0LjExLDAgMTcxNi41NSw4OS45NjA5IDE1MzQuMzIsMjY5Ljg5MSAxMzUyLjAxLDQ0OS44MiAxMjYwLjg5LDY4Mi4wNTkgMTI2MC44OSw5NjYuNjcyIHYgNy4wNTggYyAwLDI3MC40NCA4NS44Myw0OTkuNzcgMjU3LjU1LDY4Ny45NiAxNzEuNjYsMTg4LjE0IDM4OS4yMywyODIuMjUgNjUyLjY3LDI4Mi4yNSAyODIuMjYsMCA1MDEuNTMsLTk1Ljg3IDY1Ny45NywtMjg3LjU0IDE1Ni40LC0xOTEuNzMgMjM0LjYzLC00MjkuODYgMjM0LjYzLC03MTQuNDIgMCwtMjMuNTM5IC0yLjM4LC02My41MTEgLTcuMDYsLTExOS45NiBIIDE2ODcuNzggYyAyMy40OSwtMTQ4LjE2OCA4My40NiwtMjY0LjA1MSAxNzkuOTQsLTM0Ny41IDk2LjQsLTgzLjUyIDIxNS4yLC0xMjUuMjM5IDM1Ni4zMiwtMTI1LjIzOSAxODMuNDUsMCAzNTEuNTgsNzQuMDc4IDUwNC41MSwyMjIuMjU4IEwgMjk3OS4wMywzNDkuMjgxIEMgMjc4Ni4xNSwxMTYuNDIyIDI1MzIuMTMsMCAyMjE2Ljk5LDAiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg0IgogICAgICAgICBkPSJtIDQzODYuMywzNzMuOTY5IGMgMTUwLjUsMCAyNzYuOTUsNTQuNjgzIDM3OS4yOCwxNjQuMDYyIDEwMi4zLDEwOS4zNzEgMTUzLjQ2LDI1My4zOTkgMTUzLjQ2LDQzMi4xNjggdiA3LjA2MyBjIDAsMTc2LjM5OCAtNTEuNzcsMzE5LjgyOCAtMTU1LjIzLDQzMC40MTggLTEwMy41NCwxMTAuNTMgLTIyOS4zMywxNjUuODEgLTM3Ny41MSwxNjUuODEgLTE0OC4xNiwwIC0yNzUuNzgsLTU1LjkgLTM4Mi43OCwtMTY3LjU4IC0xMDcuMDUsLTExMS43NCAtMTYwLjUzLC0yNTQuNjMgLTE2MC41MywtNDI4LjY0OCB2IC03LjA2MyBjIDAsLTE3NC4wNzggNTMuNDgsLTMxNi45NTcgMTYwLjUzLC00MjguNjQ4IDEwNywtMTExLjc0MiAyMzQuNjIsLTE2Ny41ODIgMzgyLjc4LC0xNjcuNTgyIHogTSA0NDg1LjA5LDMuNTM5MDYgYyAtMjU2LjM5LDAgLTQ2Ni45MSwxMDkuMzU4OTQgLTYzMS41MSwzMjguMDgxOTQgViA0Mi4zMzk4IGggLTQyNi45IFYgMjYxNy43OSBoIDQyNi45IFYgMTU5NC42NiBjIDE2NC42LDIzMi44NCAzNzUuMTIsMzQ5LjI4IDYzMS41MSwzNDkuMjggMjM1LjE3LDAgNDM4LjYzLC04Ny42NiA2MTAuMzQsLTI2Mi44NCAxNzEuNjcsLTE3NS4yNSAyNTcuNTUsLTQwOS44NiAyNTcuNTUsLTcwMy44MzggdiAtNy4wNjMgYyAwLC0yOTQuMDI3IC04NS44OCwtNTI4LjYzNiAtMjU3LjU1LC03MDMuODI4IEMgNDkyMy43Miw5MS4xMjExIDQ3MjAuMjYsMy41MzkwNiA0NDg1LjA5LDMuNTM5MDYiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg1IgogICAgICAgICBkPSJtIDYzNjguMzQsMy41MzkwNiBjIC0yMDcsMCAtMzY5LjMsNjQuNjUyMzQgLTQ4Ni44NiwxOTQuMDMwOTQgLTExNy42NSwxMjkuMzIxIC0xNzYuNDEsMzAzLjQxIC0xNzYuNDEsNTIyLjE0MSBWIDE5MDUuMTIgaCA0MjYuODkgViA4NDYuNzE5IGMgMCwtMTQ1Ljg2IDM0LjY3LC0yNTguMTYgMTA0LjA4LC0zMzYuOTE4IDY5LjMzLC03OC44MjEgMTY3LjU3LC0xMTguMTkyIDI5NC42LC0xMTguMTkyIDEyNC42MiwwIDIyNS43OCw0MS4xMjEgMzAzLjM5LDEyMy40ODEgNzcuNjIsODIuMzEyIDExNi40MiwxOTUuMTk5IDExNi40MiwzMzguNjggdiAxMDUxLjM1IGggNDI2LjkgViA0Mi4zMzk4IGggLTQyNi45IFYgMzMxLjYyMSBDIDY4MDIuMjksMTEyLjg5OCA2NjA4LjIzLDMuNTM5MDYgNjM2OC4zNCwzLjUzOTA2IgogICAgICAgICBzdHlsZT0iZmlsbDojMjEzMDNiO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lIgogICAgICAgICB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiIC8+CiAgICAgIDxwYXRoCiAgICAgICAgIGlkPSJwYXRoNiIKICAgICAgICAgZD0iTSA3ODU1LjM3LDQyLjMzOTggViAxOTA1LjEyIGggNDI2Ljg5IFYgNDIuMzM5OCBaIE0gNzgzNy43MywyMTkwLjg5IHYgNDA1LjcyIGggNDU4LjY0IHYgLTQwNS43MiBoIC00NTguNjQiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg3IgogICAgICAgICBkPSJNIDg3NzIuMyw0Mi4zMzk4IFYgMjYxNy43OSBoIDQyNi44NyBWIDQyLjMzOTggSCA4NzcyLjMiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg4IgogICAgICAgICBkPSJtIDEwMjk1LjcsMTAuNTg5OCBjIC0zNTcuNTgsMCAtNTM2LjMsMTgyLjI1MDIgLTUzNi4zLDU0Ni44NDAyIHYgOTgwLjc4IGggLTIzNi4zNiB2IDM2Ni45MSBoIDIzNi4zNiB2IDUxMS41NiBoIDQyNi45IHYgLTUxMS41NiBoIDUwMSB2IC0zNjYuOTEgaCAtNTAxIFYgNjI0LjQ2MSBjIDAsLTE1NS4yMzEgNzYuNCwtMjMyLjg1MiAyMjkuMywtMjMyLjg1MiA5MS43LDAgMTc5LjksMjEuMTggMjY0LjYsNjMuNTEyIFYgMTA1Ljg0IGMgLTExMi45LC02My41MDAyIC0yNDEuMSwtOTUuMjUwMiAtMzg0LjUsLTk1LjI1MDIiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg5IgogICAgICAgICBkPSJtIDMzMzcuOTksMzU0NC44MyAxMTc5Ljc5LDEwNzYuNzIgdiAxOTM4LjEgTCAzMzM3Ljk5LDU1OTAuNiBWIDM1NDQuODMiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgxMCIKICAgICAgICAgZD0iTSA2MTY5LjQ4LDk5OTUuMDEgViA0NjIxLjU1IGwgMTE3OS44LC0xMDc2LjcyIHYgNTQ5MS4yOSBsIC0xMTc5LjgsOTU4Ljg5IgogICAgICAgICBzdHlsZT0iZmlsbDojNGVhOWUyO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lIgogICAgICAgICB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiIC8+CiAgICAgIDxwYXRoCiAgICAgICAgIGlkPSJwYXRoMTEiCiAgICAgICAgIGQ9Ik0gNDc1My43NCw3NzQ0LjA1IFYgNDgzNi44OSBsIDU4OS44OSw1MzguMzcgNTg5LjksLTUzOC4zNyA0LjM3LDM5NzMuNzIgLTExODQuMTYsLTEwNjYuNTYiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgxMiIKICAgICAgICAgZD0ibSA0ODAyLjIxLDM0MjUuMTkgaCA0MzAuNjkgdiA0MzAuNjggaCAtNDMwLjY5IHYgLTQzMC42OCIKICAgICAgICAgc3R5bGU9ImZpbGw6IzRlYTllMjtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZSIKICAgICAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIiAvPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDEzIgogICAgICAgICBkPSJtIDU0NDguMjQsMzQyNS4xOSBoIDQzMC43IHYgNDMwLjY4IGggLTQzMC43IHYgLTQzMC42OCIKICAgICAgICAgc3R5bGU9ImZpbGw6IzRlYTllMjtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZSIKICAgICAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIiAvPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDE0IgogICAgICAgICBkPSJtIDUyMzIuOSw0NTAxLjkxIGggLTQzMC42OSB2IC00MzAuNjkgaCA0MzAuNjkgdiA0MzAuNjkiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgxNSIKICAgICAgICAgZD0ibSA1NDQ4LjI0LDQ1MDEuOTEgdiAtNDMwLjY5IGggNDMwLjcgdiA0MzAuNjkgaCAtNDMwLjciCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=" alt="Rebuilt" style="height:34px;width:auto;filter:brightness(0) invert(1);margin-bottom:10px;display:block;"/>
-    <h1 style="font-family:Montserrat,sans-serif;font-size:14px;font-weight:800;color:white;line-height:1.3;">AB Contract<br>Training</h1>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-logo">
+      <!-- Official Rebuilt mark -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 80 450 660" style="height:36px;width:auto;">
+        <g transform="matrix(0.13333333,0,0,-0.13333333,0,732.2)" fill="#21a9e1">
+          <path d="m 0,100 986.152,900 V 2620 L 0,1810 V 100"/>
+          <path d="M 2366.76,5491.51 V 1000 l 986.15,-900 v 4590 l -986.15,801.51"/>
+          <path d="M 1183.38,3610 V 1180 l 493.08,450 493.07,-450 3.65,3321.51 -989.8,-891.51"/>
+          <path d="m 1223.9,0 h 360 v 360 h -360 V 0"/>
+          <path d="m 1763.9,0 h 360 v 360 h -360 V 0"/>
+          <path d="m 1583.9,900 h -360 V 540 h 360 v 360"/>
+          <path d="M 1763.9,900 V 540 h 360 v 360 h -360"/>
+        </g>
+      </svg>
+    </div>
+    <div class="topbar-divider"></div>
+    <div class="topbar-sub">ACQUISITION ASSOCIATE TRAINING</div>
+    <div class="topbar-badge">AB Contract</div>
   </div>
-  <div class="sb-progress">
-    <div class="sb-progress-label"><span>Your Progress</span><span id="progress-pct">0%</span></div>
-    <div class="sb-progress-track"><div class="sb-progress-fill" id="progress-fill"></div></div>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-wrap">
+  <div class="progress-inner">
+    <div class="progress-label">
+      <span id="progress-label-text">Overview</span>
+      <span id="progress-pct">0%</span>
+    </div>
+    <div class="progress-bar-el"><div class="progress-fill-el" id="progress-fill" style="width:0%"></div></div>
   </div>
-  <div class="sb-section-label">Start Here</div>
-  <div class="nav-item active" data-page="cover" onclick="goTo('cover')"><span class="nav-icon">🏠</span> Overview<span class="nav-check checked" id="chk-cover">✓</span></div>
-  <div class="sb-section-label">The Contract</div>
-  <div class="nav-item" data-page="m1" onclick="goTo('m1')"><span class="nav-icon">📄</span> Parties, Property &amp; Price<span class="nav-check" id="chk-m1"></span></div>
-  <div class="nav-item" data-page="m2" onclick="goTo('m2')"><span class="nav-icon">🏗️</span> Condition &amp; Due Diligence<span class="nav-check" id="chk-m2"></span></div>
-  <div class="nav-item" data-page="m3" onclick="goTo('m3')"><span class="nav-icon">⚖️</span> Default, Expenses &amp; Provisions<span class="nav-check" id="chk-m3"></span></div>
-  <div class="sb-section-label">Supporting Docs</div>
-  <div class="nav-item" data-page="m4" onclick="goTo('m4')"><span class="nav-icon">📋</span> Seller Info Worksheet<span class="nav-check" id="chk-m4"></span></div>
-  <div class="nav-item" data-page="m5" onclick="goTo('m5')"><span class="nav-icon">📝</span> Agency &amp; Authorization Docs<span class="nav-check" id="chk-m5"></span></div>
-  <div class="nav-item" data-page="m6" onclick="goTo('m6')"><span class="nav-icon">📸</span> Photo &amp; Access Auth<span class="nav-check" id="chk-m6"></span></div>
-  <div class="nav-item" data-page="m7" onclick="goTo('m7')"><span class="nav-icon">🏛️</span> PA Addendum<span class="nav-check" id="chk-m7"></span></div>
-  <div class="sb-section-label">Critical Protocols</div>
-  <div class="nav-item" data-page="m8" onclick="goTo('m8')"><span class="nav-icon">⏱️</span> Due Diligence Protocols<span class="nav-check" id="chk-m8"></span></div>
-  <div class="nav-item" data-page="m9" onclick="goTo('m9')"><span class="nav-icon">🚨</span> Red Flags &amp; Escalation<span class="nav-check" id="chk-m9"></span></div>
-  <div class="sb-section-label">Knowledge Checks</div>
-  <div class="nav-item" data-page="q1" onclick="goTo('q1')"><span class="nav-icon">✅</span> Quiz: The Contract<span class="nav-badge">5 Qs</span></div>
-  <div class="nav-item" data-page="q2" onclick="goTo('q2')"><span class="nav-icon">✅</span> Quiz: Docs &amp; Red Flags<span class="nav-badge">5 Qs</span></div>
-  <div class="nav-item" data-page="scenarios" onclick="goTo('scenarios')"><span class="nav-icon">🎭</span> Role-Play Scenarios<span class="nav-check" id="chk-scenarios"></span></div>
-  <div class="nav-item" data-page="complete" onclick="goTo('complete')"><span class="nav-icon">🎓</span> Completion Checklist<span class="nav-check" id="chk-complete"></span></div>
-</nav>
-<main id="main">
+</div>
+
+<!-- MODULE TABS -->
+<div class="mod-nav-wrap">
+  <div class="mod-nav-inner">
+    <button class="mod-btn active" onclick="goTo('cover')" id="tab-cover">Overview</button>
+    <button class="mod-btn" onclick="goTo('m1')"  id="tab-m1">1 · Parties &amp; Price</button>
+    <button class="mod-btn" onclick="goTo('m2')"  id="tab-m2">2 · Condition &amp; DD</button>
+    <button class="mod-btn" onclick="goTo('m3')"  id="tab-m3">3 · Default &amp; Provisions</button>
+    <button class="mod-btn" onclick="goTo('m4')"  id="tab-m4">4 · Seller Worksheet</button>
+    <button class="mod-btn" onclick="goTo('m5')"  id="tab-m5">5 · Agency &amp; Auth Docs</button>
+    <button class="mod-btn" onclick="goTo('m6')"  id="tab-m6">6 · Photo &amp; Access</button>
+    <button class="mod-btn" onclick="goTo('m7')"  id="tab-m7">7 · PA Addendum</button>
+    <button class="mod-btn" onclick="goTo('m8')"  id="tab-m8">8 · DD Protocols</button>
+    <button class="mod-btn" onclick="goTo('m9')"  id="tab-m9">9 · Red Flags</button>
+    <button class="mod-btn" onclick="goTo('q1')"  id="tab-q1">Quiz 1</button>
+    <button class="mod-btn" onclick="goTo('q2')"  id="tab-q2">Quiz 2</button>
+    <button class="mod-btn" onclick="goTo('scenarios')" id="tab-scenarios">Scenarios</button>
+    <button class="mod-btn" onclick="goTo('complete')"  id="tab-complete">Complete</button>
+  </div>
+</div>
+
+<div id="content-area-ab">
+
 
 <!-- COVER -->
 <div class="module-page cover-page active" id="page-cover">
-  <div class="cover-eyebrow">Rebuilt Offers, LLC — Internal Training</div>
   <h1 class="cover-title">AB Contract<br><span>Training Course</span></h1>
   <p class="cover-sub">Everything a new Acquisition Associate needs to present, complete, and execute the AB Contract packet with confidence.</p>
   <div class="cover-stats">
@@ -846,7 +901,7 @@ li{margin-bottom:6px;color:var(--gray-600);}
   <button class="cert-unlock-btn" id="cert-unlock-btn" onclick="showNameModal()">🏆 Generate My Certificate of Completion</button>
 </div>
 
-</main>
+
 
 <!-- NAME PROMPT MODAL -->
 <div class="modal-overlay" id="name-modal">
@@ -905,28 +960,40 @@ li{margin-bottom:6px;color:var(--gray-600);}
 <script>
 const contentPages=['m1','m2','m3','m4','m5','m6','m7','m8','m9','scenarios','complete'];
 const completed=new Set(['cover']);
-function goTo(id){
-  document.querySelectorAll('.module-page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-  document.getElementById('page-'+id).classList.add('active');
-  const ni=document.querySelector('[data-page="'+id+'"]');
-  if(ni)ni.classList.add('active');
+function goTo(page){
+  document.querySelectorAll('.module-page').forEach(function(p){p.classList.remove('active');});
+  document.getElementById('page-'+page).classList.add('active');
+  // Update tab states
+  document.querySelectorAll('.mod-btn').forEach(function(b){b.classList.remove('active');});
+  var activeTab = document.getElementById('tab-'+page);
+  if(activeTab) activeTab.classList.add('active');
+  // Mark completed tabs as done
+  var tabOrder=['cover','m1','m2','m3','m4','m5','m6','m7','m8','m9','q1','q2','scenarios','complete'];
+  var idx=tabOrder.indexOf(page);
+  tabOrder.forEach(function(p,i){
+    var btn=document.getElementById('tab-'+p);
+    if(btn){ btn.classList.remove('done'); if(i<idx && completed.has(p)) btn.classList.add('done'); }
+  });
+  // Update topbar badge
+  var labels={cover:'Overview',m1:'Module 1',m2:'Module 2',m3:'Module 3',m4:'Module 4',m5:'Module 5',m6:'Module 6',m7:'Module 7',m8:'Module 8',m9:'Module 9',q1:'Quiz 1',q2:'Quiz 2',scenarios:'Scenarios',complete:'Complete'};
+  var plabel=document.getElementById('progress-label-text');
+  if(plabel) plabel.textContent=labels[page]||page;
   window.scrollTo(0,0);
   updateProgress();
 }
 function markAndGo(cur,nxt){
   completed.add(cur);
-  const chk=document.getElementById('chk-'+cur);
-  if(chk){chk.textContent='✓';}
-  const ni=document.querySelector('[data-page="'+cur+'"]');
-  if(ni)ni.classList.add('completed');
+  var btn=document.getElementById('tab-'+cur);
+  if(btn) btn.classList.add('done');
   goTo(nxt);
 }
 function updateProgress(){
   const done=contentPages.filter(p=>completed.has(p)).length;
   const pct=Math.round((done/contentPages.length)*100);
-  document.getElementById('progress-fill').style.width=pct+'%';
-  document.getElementById('progress-pct').textContent=pct+'%';
+  var fill=document.getElementById('progress-fill');
+  var pctEl=document.getElementById('progress-pct');
+  if(fill) fill.style.width=pct+'%';
+  if(pctEl) pctEl.textContent=pct+'%';
 }
 
 /* ── QUIZ ── */
@@ -1081,5 +1148,6 @@ function showCompletionScreen() {
 
 updateProgress();
 </script>
+</div>
 </body>
 </html>
