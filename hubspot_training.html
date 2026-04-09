@@ -1715,6 +1715,8 @@ function startCourse() {
   document.getElementById('gate').style.display = 'none';
   document.getElementById('app').style.display = 'block';
   document.getElementById('top-user-label') && (document.getElementById('top-user-label').textContent = userName);
+  initAllQuizzes();
+  goToSlideByIndex(0);
 }
 
 // ── QUIZ INIT ──
@@ -1863,6 +1865,8 @@ window.addEventListener('DOMContentLoaded', function() {
     document.getElementById('app').style.display  = 'block';
     var lbl = document.getElementById('top-user-label');
     if (lbl) lbl.textContent = userName;
+    initAllQuizzes();
+    goToSlideByIndex(0);
   } else {
     var el = document.getElementById('gate-email');
     if (el && saved) el.value = saved;
@@ -1960,6 +1964,9 @@ function goToSlideByIndex(idx) {
   updateSidebar(m);
   updateProgress();
   window.scrollTo(0,0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+  var appEl = document.getElementById('app'); if (appEl) appEl.scrollTop = 0;
 }
 
 function nextSlide(m) {
