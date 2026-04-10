@@ -79,17 +79,56 @@ body { font-family: var(--font); background: var(--off-white); color: var(--navy
 .filter-btn.active-all   { border-color: var(--navy);  background: var(--navy);  color: white; }
 .filter-btn.active-acq   { border-color: var(--blue);  background: var(--blue);  color: white; }
 .filter-btn.active-dispo { border-color: var(--orange); background: var(--orange); color: white; }
-.search-input {
-  padding: 7px 12px; border: 1.5px solid var(--border); border-radius: 8px;
-  font-family: var(--font); font-size: 12px; color: var(--navy);
-  outline: none; width: 200px; transition: border-color 0.2s;
-}
-.search-input:focus { border-color: var(--blue); }
+
 .sort-select {
   padding: 7px 12px; border: 1.5px solid var(--border); border-radius: 8px;
   font-family: var(--font); font-size: 12px; color: var(--navy);
   outline: none; background: var(--white); cursor: pointer;
 }
+
+/* ── MULTI-SELECT ASSOC ── */
+.ms-wrap { position: relative; }
+.ms-trigger {
+  padding: 7px 12px; border: 1.5px solid var(--border); border-radius: 8px;
+  font-family: var(--font); font-size: 12px; color: var(--navy);
+  background: var(--white); cursor: pointer;
+  min-width: 220px; display: flex; align-items: center; gap: 6px;
+  user-select: none;
+}
+.ms-trigger:hover { border-color: var(--blue); }
+.ms-trigger.open  { border-color: var(--blue); border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+.ms-trigger-text { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ms-caret { font-size: 8px; color: var(--muted); flex-shrink: 0; transition: transform 0.15s; }
+.ms-trigger.open .ms-caret { transform: rotate(180deg); }
+.ms-clear { font-size: 11px; color: var(--muted); cursor: pointer; flex-shrink: 0; padding: 0 2px; }
+.ms-clear:hover { color: var(--fail); }
+.ms-dropdown {
+  display: none; position: absolute; top: 100%; left: 0; z-index: 200;
+  background: var(--white); border: 1.5px solid var(--blue);
+  border-top: none; border-radius: 0 0 8px 8px;
+  min-width: 100%; max-height: 240px; overflow-y: auto;
+  box-shadow: 0 8px 24px rgba(31,53,64,0.12);
+}
+.ms-wrap.is-open .ms-dropdown { display: block; }
+.ms-search {
+  padding: 8px 10px; border: none; border-bottom: 1px solid var(--border);
+  font-family: var(--font); font-size: 11px; width: 100%; outline: none; color: var(--navy);
+}
+.ms-option {
+  padding: 8px 12px; font-size: 11px; color: var(--navy); cursor: pointer;
+  display: flex; align-items: center; gap: 8px; transition: background 0.1s;
+}
+.ms-option:hover { background: rgba(33,169,225,0.06); }
+.ms-option.selected { background: rgba(33,169,225,0.10); }
+.ms-option input[type=checkbox] { accent-color: var(--blue); cursor: pointer; flex-shrink: 0; }
+.ms-option-label { flex: 1; }
+.ms-option-role {
+  font-size: 8px; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase;
+  padding: 2px 6px; border-radius: 8px;
+}
+.ms-option-role.acq   { background: rgba(33,169,225,0.12); color: #1487b8; }
+.ms-option-role.dispo { background: rgba(245,131,31,0.12);  color: #c4640a; }
+.ms-empty { padding: 10px 12px; font-size: 11px; color: var(--muted); font-style: italic; }
 .controls-right { margin-left: auto; font-size: 11px; color: var(--muted); font-weight: 600; }
 
 /* ── TABLE WRAPPER ── */
@@ -246,13 +285,17 @@ td.mod-cell { text-align: center; padding: 6px 4px; }
       <button class="filter-btn" id="f-acq"              onclick="setFilter('acq')">Acquisition</button>
       <button class="filter-btn" id="f-dispo"            onclick="setFilter('dispo')">Disposition</button>
     </div>
-    <select class="sort-select" id="assoc-select" onchange="onAssocSelect()" style="min-width:180px;">
-      <option value="">All Associates</option>
-    </select>
-    <input class="search-input" id="search-input" type="text" placeholder="Search by name or email…" oninput="onSearchInput()"/>
-    <select class="sort-select" id="assoc-filter" onchange="renderTable()" style="min-width:170px;">
-      <option value="">All Associates</option>
-    </select>
+    <div class="ms-wrap" id="ms-wrap">
+      <div class="ms-trigger" id="ms-trigger" onclick="toggleMsDropdown()">
+        <span class="ms-trigger-text" id="ms-trigger-text">All Associates</span>
+        <span class="ms-clear" id="ms-clear" onclick="clearAssocFilter(event)" style="display:none;" title="Clear">✕</span>
+        <span class="ms-caret">▼</span>
+      </div>
+      <div class="ms-dropdown" id="ms-dropdown">
+        <input class="ms-search" id="ms-search" type="text" placeholder="Search associates…" oninput="filterMsOptions()" autocomplete="off"/>
+        <div id="ms-options"></div>
+      </div>
+    </div>
     <select class="sort-select" id="sort-select" onchange="renderTable()">
       <option value="name">Sort: Name A–Z</option>
       <option value="pct-desc">Sort: Most Complete</option>
@@ -290,7 +333,7 @@ const ALL_MODULES = [
   { id:'kc_intro',          name:'Intro to Rebuilt', type:'KC',  roles:['acq','dispo'] },
   { id:'kc_core_values',    name:'Core Values',      type:'KC',  roles:['acq','dispo'] },
   { id:'kc_marketing',      name:'Marketing',        type:'KC',  roles:['acq','dispo'] },
-  { id:'kc_comps_arv',      name:'Comps + ARV',      type:'KC',  roles:['acq'] },
+  { id:'kc_comps_arv',      name:'Comps + ARV',      type:'KC',  roles:['acq','dispo'] },
   { id:'kc_dispo_intro',    name:'Intro to Dispo',   type:'KC',  roles:['dispo'] },
   { id:'kc_ur_to_mktg',     name:'UR to Mktg',       type:'KC',  roles:['dispo'] },
   { id:'kc_buyer_sourcing', name:'Buyer Sourcing',   type:'KC',  roles:['dispo'] },
@@ -382,17 +425,8 @@ function processData(data) {
     }
   });
 
-  // Populate assoc dropdown
-  var assocSel = document.getElementById('assoc-filter');
-  var current  = assocSel.value;
-  assocSel.innerHTML = '<option value="">All Associates</option>';
-  Object.values(repMap).sort(function(a,b){ return a.name.localeCompare(b.name); }).forEach(function(rep) {
-    var opt = document.createElement('option');
-    opt.value = rep.email;
-    opt.textContent = rep.name;
-    if (rep.email === current) opt.selected = true;
-    assocSel.appendChild(opt);
-  });
+  // Refresh multi-select list
+  filterMsOptions();
 
   document.getElementById('last-updated').textContent =
     'Last refreshed: ' + new Date().toLocaleTimeString();
@@ -427,6 +461,98 @@ function updateSummary() {
   document.getElementById('s-full').textContent        = fullCount;
 }
 
+// ── MULTI-SELECT ASSOC ─────────────────────────
+var selectedAssocs = new Set();
+
+function toggleMsDropdown() {
+  var wrap    = document.getElementById('ms-wrap');
+  var trigger = document.getElementById('ms-trigger');
+  var isOpen  = wrap.classList.contains('is-open');
+  if (isOpen) {
+    wrap.classList.remove('is-open');
+    trigger.classList.remove('open');
+  } else {
+    wrap.classList.add('is-open');
+    trigger.classList.add('open');
+    document.getElementById('ms-search').value = '';
+    filterMsOptions();
+    document.getElementById('ms-search').focus();
+  }
+}
+
+document.addEventListener('click', function(e) {
+  var wrap = document.getElementById('ms-wrap');
+  if (wrap && !wrap.contains(e.target)) {
+    wrap.classList.remove('is-open');
+    document.getElementById('ms-trigger').classList.remove('open');
+  }
+});
+
+function filterMsOptions() {
+  var q         = (document.getElementById('ms-search').value || '').toLowerCase();
+  var container = document.getElementById('ms-options');
+  container.innerHTML = '';
+  var reps     = Object.values(repMap).sort(function(a,b){ return a.name.localeCompare(b.name); });
+  var filtered = q ? reps.filter(function(r){ return r.name.toLowerCase().includes(q) || r.email.includes(q); }) : reps;
+  if (filtered.length === 0) {
+    container.innerHTML = '<div class="ms-empty">No matches</div>';
+    return;
+  }
+  filtered.forEach(function(rep) {
+    var div = document.createElement('div');
+    div.className = 'ms-option' + (selectedAssocs.has(rep.email) ? ' selected' : '');
+    div.innerHTML =
+      '<input type="checkbox" ' + (selectedAssocs.has(rep.email) ? 'checked' : '') + '/>' +
+      '<span class="ms-option-label">' + rep.name + '</span>' +
+      '<span class="ms-option-role ' + rep.role + '">' + (rep.role === 'acq' ? 'Acq' : 'Dispo') + '</span>';
+    div.addEventListener('click', function(e) {
+      e.stopPropagation();
+      toggleAssoc(rep.email, div);
+    });
+    container.appendChild(div);
+  });
+}
+
+function toggleAssoc(email, div) {
+  if (selectedAssocs.has(email)) {
+    selectedAssocs.delete(email);
+    div.classList.remove('selected');
+    div.querySelector('input').checked = false;
+  } else {
+    selectedAssocs.add(email);
+    div.classList.add('selected');
+    div.querySelector('input').checked = true;
+  }
+  updateMsTriggerText();
+  renderTable();
+}
+
+function updateMsTriggerText() {
+  var textEl  = document.getElementById('ms-trigger-text');
+  var clearEl = document.getElementById('ms-clear');
+  var n = selectedAssocs.size;
+  if (n === 0) {
+    textEl.textContent = 'All Associates';
+    clearEl.style.display = 'none';
+  } else if (n === 1) {
+    var email = [...selectedAssocs][0];
+    var rep   = repMap[email];
+    textEl.textContent = rep ? rep.name : email;
+    clearEl.style.display = 'inline';
+  } else {
+    textEl.textContent = n + ' associates selected';
+    clearEl.style.display = 'inline';
+  }
+}
+
+function clearAssocFilter(e) {
+  e.stopPropagation();
+  selectedAssocs.clear();
+  updateMsTriggerText();
+  filterMsOptions();
+  renderTable();
+}
+
 // ── FILTER ───────────────────────────────────────────────────
 function setFilter(f) {
   currentFilter = f;
@@ -439,14 +565,11 @@ function setFilter(f) {
 
 // ── RENDER TABLE ─────────────────────────────────────────────
 function renderTable() {
-  var search     = (document.getElementById('search-input').value || '').toLowerCase();
-  var assocPick  = document.getElementById('assoc-filter').value;
-  var sort   = document.getElementById('sort-select').value;
+  var sort = document.getElementById('sort-select').value;
 
   var reps = Object.values(repMap).filter(function(rep) {
     if (currentFilter !== 'all' && rep.role !== currentFilter) return false;
-    if (search && !rep.name.toLowerCase().includes(search) && !rep.email.includes(search)) return false;
-    if (assocPick && rep.email !== assocPick) return false;
+    if (selectedAssocs.size > 0 && !selectedAssocs.has(rep.email)) return false;
     return true;
   });
 
@@ -532,39 +655,7 @@ function getCompPct(rep) {
   return Math.round((passed / myMods.length) * 100);
 }
 
-function populateAssocDropdown() {
-  var sel = document.getElementById('assoc-select');
-  var current = sel.value;
-  // Keep first "All Associates" option
-  while (sel.options.length > 1) sel.remove(1);
-  var reps = Object.values(repMap).sort(function(a,b) { return a.name.localeCompare(b.name); });
-  reps.forEach(function(rep) {
-    var opt = document.createElement('option');
-    opt.value = rep.email;
-    opt.textContent = rep.name;
-    sel.appendChild(opt);
-  });
-  if (current) sel.value = current;
-}
 
-function onAssocSelect() {
-  // When an assoc is selected from dropdown, sync search field and re-render
-  var sel = document.getElementById('assoc-select');
-  var searchEl = document.getElementById('search-input');
-  if (sel.value) {
-    searchEl.value = sel.value; // filter by email
-  } else {
-    searchEl.value = '';
-  }
-  renderTable();
-}
-
-function onSearchInput() {
-  // When typing in search, reset dropdown to "All"
-  var sel = document.getElementById('assoc-select');
-  sel.value = '';
-  renderTable();
-}
 
 // ── INIT ─────────────────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', loadData);
