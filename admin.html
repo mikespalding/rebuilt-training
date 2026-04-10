@@ -85,6 +85,12 @@ body { font-family: var(--font); background: var(--off-white); color: var(--navy
   font-family: var(--font); font-size: 12px; color: var(--navy);
   outline: none; background: var(--white); cursor: pointer;
 }
+.class-select {
+  padding: 7px 12px; border: 1.5px solid var(--border); border-radius: 8px;
+  font-family: var(--font); font-size: 12px; color: var(--navy);
+  outline: none; background: var(--white); cursor: pointer; min-width: 160px;
+}
+.class-select:focus { border-color: var(--blue); outline: none; }
 
 /* ── MULTI-SELECT ASSOC ── */
 .ms-wrap { position: relative; }
@@ -285,6 +291,12 @@ td.mod-cell { text-align: center; padding: 6px 4px; }
       <button class="filter-btn" id="f-acq"              onclick="setFilter('acq')">Acquisition</button>
       <button class="filter-btn" id="f-dispo"            onclick="setFilter('dispo')">Disposition</button>
     </div>
+    <div class="filter-group">
+      <span class="filter-label">Class</span>
+      <select class="class-select" id="class-filter" onchange="renderTable()">
+        <option value="">All Classes</option>
+      </select>
+    </div>
     <div class="ms-wrap" id="ms-wrap">
       <div class="ms-trigger" id="ms-trigger" onclick="toggleMsDropdown()">
         <span class="ms-trigger-text" id="ms-trigger-text">All Associates</span>
@@ -402,6 +414,8 @@ function processData(data) {
     if (!rec.completions[c.module_id] || c.score_pct > rec.completions[c.module_id].score_pct) {
       rec.completions[c.module_id] = c;
     }
+    // Capture class if set (any row for this rep that has one wins)
+    if (c.class && !rec.cls) rec.cls = c.class;
   });
 
   // Role: read directly from sheet data (column H), fallback to inference
@@ -427,6 +441,41 @@ function processData(data) {
 
   // Refresh multi-select list
   filterMsOptions();
+
+  // Populate class filter dropdown (chronological, Unassigned last)
+  var classSel = document.getElementById('class-filter');
+  var currentClass = classSel.value;
+  classSel.innerHTML = '<option value="">All Classes</option>';
+
+  // Collect unique class values
+  var classSet = {};
+  Object.values(repMap).forEach(function(rep) {
+    var cls = (rep.cls || '').trim();
+    if (cls) classSet[cls] = true;
+  });
+
+  // Sort chronologically (parse M/D/YYYY)
+  var classVals = Object.keys(classSet).sort(function(a, b) {
+    var da = new Date(a), db = new Date(b);
+    var va = isNaN(da) ? Infinity : da.getTime();
+    var vb = isNaN(db) ? Infinity : db.getTime();
+    return va - vb;
+  });
+
+  classVals.forEach(function(cls) {
+    var opt = document.createElement('option');
+    opt.value = cls;
+    opt.textContent = cls;
+    if (cls === currentClass) opt.selected = true;
+    classSel.appendChild(opt);
+  });
+
+  // Always add Unassigned option
+  var unOpt = document.createElement('option');
+  unOpt.value = '__unassigned__';
+  unOpt.textContent = 'Unassigned';
+  if (currentClass === '__unassigned__') unOpt.selected = true;
+  classSel.appendChild(unOpt);
 
   document.getElementById('last-updated').textContent =
     'Last refreshed: ' + new Date().toLocaleTimeString();
@@ -567,9 +616,13 @@ function setFilter(f) {
 function renderTable() {
   var sort = document.getElementById('sort-select').value;
 
+  var classPick = document.getElementById('class-filter').value;
+
   var reps = Object.values(repMap).filter(function(rep) {
     if (currentFilter !== 'all' && rep.role !== currentFilter) return false;
     if (selectedAssocs.size > 0 && !selectedAssocs.has(rep.email)) return false;
+    if (classPick === '__unassigned__' && (rep.cls || '').trim()) return false;
+    if (classPick && classPick !== '__unassigned__' && (rep.cls || '').trim() !== classPick) return false;
     return true;
   });
 
