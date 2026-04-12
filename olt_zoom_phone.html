@@ -256,6 +256,7 @@ const HUB_URL         = 'https://script.google.com/macros/s/AKfycbyRSuUKBjwlPZiY
 const MODULE_ID       = 'olt_zoom_phone';
 const MODULE_NAME_HUB = 'Zoom Phone';
 let   userEmail       = '';
+const PASS_PCT        = 70;
 
 // ── EMAIL GATE ────────────────────────────────────────────────────────────────
 function submitGate() {
@@ -283,16 +284,19 @@ window.addEventListener('DOMContentLoaded', function() {
 });
 
 // ── HUB REPORTING ─────────────────────────────────────────────────────────────
-function reportToHub(scorePct) {
+function reportToHub(scorePct, passed) {
   var email = localStorage.getItem('rebuilt_email') || userEmail;
   var role  = localStorage.getItem('rebuilt_role') || '';
   if (!email) return;
-  var params = new URLSearchParams({
-    action: 'saveScore', email: email,
-    module_id: MODULE_ID, module_name: MODULE_NAME_HUB,
-    type: 'OLT', score_pct: scorePct, role: role
-  });
-  fetch(HUB_URL + '?' + params.toString()).catch(function(){});
+  fetch(HUB_URL, {
+    method: 'POST', mode: 'no-cors',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      email: email, module_id: MODULE_ID,
+      module_name: MODULE_NAME_HUB, type: 'OLT',
+      score_pct: scorePct, passed: passed ? 'TRUE' : 'FALSE', role: role
+    })
+  }).catch(function(){});
 }
 
 function calcRunningScore() {
@@ -315,11 +319,11 @@ function checkTrainingComplete() {
   });
   if (allDone) {
     var score = calcRunningScore();
-    reportToHub(score);
+    var passed = score >= PASS_PCT;
+    reportToHub(score, passed);
     document.getElementById('cs-score').textContent = score + '%';
     document.getElementById('cs-date').textContent  = 'Completed ' + new Date().toLocaleDateString('en-US', {month:'long',day:'numeric',year:'numeric'});
-    var cs = document.getElementById('completion-screen');
-    cs.style.display = 'flex';
+    document.getElementById('completion-screen').style.display = 'flex';
   }
 }
 
@@ -893,7 +897,8 @@ function selectAnswer(quizId, qi, oi, correct) {
     updateNav();
     updateQuizSummary();
     var score = calcRunningScore();
-    if (score > 0) reportToHub(score);
+    var passed = score >= PASS_PCT;
+    reportToHub(score, passed);
     checkTrainingComplete();
   }
 }
@@ -1052,7 +1057,8 @@ function selectAnswer(quizId, qi, oi, correct) {
     updateNav();
     updateQuizSummary();
     var score = calcRunningScore();
-    if (score > 0) reportToHub(score);
+    var passed = score >= PASS_PCT;
+    reportToHub(score, passed);
     checkTrainingComplete();
   }
 }
