@@ -49,19 +49,7 @@ body { font-family: var(--font); background: var(--off-white); color: var(--navy
 /* ── MAIN ── */
 .main-wrap { max-width: 1400px; margin: 0 auto; padding: 36px 24px 80px; }
 
-/* ── SUMMARY STATS ── */
-.summary-bar {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 12px; margin-bottom: 32px;
-}
-.summary-card {
-  background: var(--navy); border-radius: 10px; padding: 18px 20px;
-}
-.summary-value { font-size: 28px; font-weight: 900; color: white; line-height: 1; margin-bottom: 4px; }
-.summary-value.blue   { color: var(--blue); }
-.summary-value.green  { color: var(--pass); }
-.summary-value.orange { color: var(--orange); }
-.summary-label { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+
 
 /* ── CONTROLS ── */
 .controls {
@@ -150,9 +138,19 @@ th {
   padding: 10px 12px; text-align: left;
   font-size: 9px; font-weight: 800; letter-spacing: 0.1em;
   text-transform: uppercase; color: rgba(255,255,255,0.6);
-  white-space: nowrap; position: sticky; top: 0;
+  white-space: nowrap; position: sticky; top: 0; z-index: 1;
 }
-th.rep-col { color: white; min-width: 180px; }
+th.rep-col {
+  color: white; min-width: 180px;
+  position: sticky; top: 0; left: 0; z-index: 3;
+  background: var(--navy);
+  box-shadow: 2px 0 0 rgba(255,255,255,0.08);
+}
+th.prog-col {
+  position: sticky; top: 0; left: 180px; z-index: 3;
+  background: var(--navy); min-width: 140px;
+  box-shadow: 2px 0 6px rgba(0,0,0,0.18);
+}
 th.mod-col {
   text-align: center;
   width: 72px;
@@ -178,10 +176,17 @@ th.olt-header { border-top: 3px solid var(--orange); }
 /* ── ROWS ── */
 tbody tr { border-bottom: 1px solid rgba(31,53,64,0.06); transition: background 0.12s; }
 tbody tr:hover { background: rgba(33,169,225,0.04); }
+tbody tr:hover td.rep-cell,
+tbody tr:hover td.prog-cell { background: #eaf7fd; }
 tbody tr:last-child { border-bottom: none; }
 
 td { padding: 10px 12px; vertical-align: middle; }
-td.rep-cell { min-width: 180px; }
+td.rep-cell {
+  min-width: 180px;
+  position: sticky; left: 0; z-index: 2;
+  background: var(--white);
+  box-shadow: 2px 0 0 rgba(31,53,64,0.06);
+}
 
 .rep-name { font-size: 12px; font-weight: 700; color: var(--navy); }
 .rep-email { font-size: 10px; color: var(--muted); font-weight: 500; margin-top: 1px; }
@@ -194,7 +199,12 @@ td.rep-cell { min-width: 180px; }
 .rep-role.dispo{ background: rgba(245,131,31,0.12);  color: #c4640a; }
 
 /* progress bar cell */
-.prog-cell { min-width: 120px; }
+.prog-cell {
+  min-width: 140px;
+  position: sticky; left: 180px; z-index: 2;
+  background: var(--white);
+  box-shadow: 2px 0 6px rgba(31,53,64,0.08);
+}
 .prog-bar-wrap {
   height: 6px; background: rgba(31,53,64,0.08);
   border-radius: 99px; overflow: hidden; margin-bottom: 3px;
@@ -273,15 +283,6 @@ td.mod-cell { text-align: center; padding: 6px 4px; }
 </header>
 
 <main class="main-wrap">
-
-  <!-- SUMMARY -->
-  <div class="summary-bar" id="summary-bar">
-    <div class="summary-card"><div class="summary-value blue" id="s-reps">—</div><div class="summary-label">Total Reps</div></div>
-    <div class="summary-card"><div class="summary-value" id="s-completions">—</div><div class="summary-label">Completions</div></div>
-    <div class="summary-card"><div class="summary-value green" id="s-passes">—</div><div class="summary-label">Passed</div></div>
-    <div class="summary-card"><div class="summary-value orange" id="s-avg">—</div><div class="summary-label">Avg Score</div></div>
-    <div class="summary-card"><div class="summary-value blue" id="s-full">—</div><div class="summary-label">100% Complete</div></div>
-  </div>
 
   <!-- CONTROLS -->
   <div class="controls">
@@ -485,35 +486,10 @@ function processData(data) {
   document.getElementById('last-updated').textContent =
     'Last refreshed: ' + new Date().toLocaleTimeString();
 
-  updateSummary();
   renderTable();
   populateAssocDropdown();
 }
 
-// ── SUMMARY STATS ────────────────────────────────────────────
-function updateSummary() {
-  var reps     = Object.values(repMap);
-  var total    = reps.length;
-  var allComps = 0, allPasses = 0, scoreSum = 0, scoreCount = 0, fullCount = 0;
-
-  reps.forEach(function(rep) {
-    var myMods = ALL_MODULES.filter(function(m) { return m.roles.includes(rep.role || 'acq'); });
-    var comp   = Object.values(rep.completions).length;
-    var passed = Object.values(rep.completions).filter(function(c) { return c.passed; }).length;
-    allComps  += comp;
-    allPasses += passed;
-    Object.values(rep.completions).forEach(function(c) {
-      if (c.score_pct > 0) { scoreSum += parseFloat(c.score_pct); scoreCount++; }
-    });
-    if (comp >= myMods.length && myMods.length > 0) fullCount++;
-  });
-
-  document.getElementById('s-reps').textContent        = total;
-  document.getElementById('s-completions').textContent = allComps;
-  document.getElementById('s-passes').textContent      = allPasses;
-  document.getElementById('s-avg').textContent         = scoreCount > 0 ? Math.round(scoreSum/scoreCount) + '%' : '—';
-  document.getElementById('s-full').textContent        = fullCount;
-}
 
 // ── MULTI-SELECT ASSOC ─────────────────────────
 var selectedAssocs = new Set();
@@ -654,7 +630,7 @@ function renderTable() {
   });
 
   // Build header
-  var thead = '<thead><tr><th class="rep-col">Associate</th><th>Progress</th>';
+  var thead = '<thead><tr><th class="rep-col">Associate</th><th class="prog-col">Progress</th>';
   visibleMods.forEach(function(m) {
     var cls = m.type === 'OLT' ? 'olt-header' : 'kc-header';
     thead += '<th class="mod-col ' + cls + '"><span class="mod-header-inner">' + m.name + '</span></th>';
