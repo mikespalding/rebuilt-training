@@ -320,6 +320,57 @@ body { font-family: var(--font); background: var(--off-white); color: var(--navy
 .card-arrow { font-size: 14px; color: var(--blue); font-weight: 700; transition: transform 0.18s; }
 .module-card:hover .card-arrow { transform: translateX(3px); }
 
+/* ── LEADER RESOURCES ── */
+#leader-section { display: none; }
+
+.leader-section-header {
+  display: flex; align-items: center; gap: 14px; margin-bottom: 16px;
+}
+.leader-section-label {
+  font-size: 10px; font-weight: 800; letter-spacing: 0.14em;
+  text-transform: uppercase; white-space: nowrap;
+  color: var(--teal-dark);
+}
+.leader-section-line { flex: 1; height: 1px; background: rgba(15,105,110,0.18); }
+.leader-section-count {
+  font-size: 10px; font-weight: 700; color: var(--teal-dark);
+  background: rgba(15,105,110,0.10); padding: 3px 10px; border-radius: 20px;
+}
+
+.leader-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 12px; margin-bottom: 44px;
+}
+
+.leader-card {
+  background: var(--white);
+  border: 1px solid rgba(15,105,110,0.15);
+  border-left: 4px solid var(--teal-dark);
+  border-radius: 10px; padding: 18px 20px;
+  display: flex; flex-direction: column; gap: 10px;
+  text-decoration: none; color: inherit;
+  position: relative; overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.15s;
+}
+.leader-card:hover { box-shadow: 0 6px 24px rgba(15,105,110,0.12); transform: translateY(-2px); }
+
+.leader-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.badge.leader {
+  background: rgba(15,105,110,0.10);
+  color: var(--teal-dark);
+}
+
+.leader-card-title { font-size: 13px; font-weight: 700; color: var(--navy); line-height: 1.3; }
+.leader-card-desc  { font-size: 11px; color: var(--muted); line-height: 1.65; flex: 1; }
+
+.leader-card-footer {
+  display: flex; align-items: center; justify-content: flex-end;
+  padding-top: 10px; border-top: 1px solid rgba(15,105,110,0.10);
+}
+.leader-card-arrow { font-size: 14px; color: var(--teal-dark); font-weight: 700; transition: transform 0.18s; }
+.leader-card:hover .leader-card-arrow { transform: translateX(3px); }
+
 /* ── FOOTER ── */
 .site-footer {
   text-align: center; padding: 24px;
@@ -440,6 +491,16 @@ body { font-family: var(--font); background: var(--off-white); color: var(--navy
   </div>
   <div class="module-grid" id="kc-grid"></div>
 
+  <!-- LEADER RESOURCES -->
+  <div id="leader-section">
+    <div class="leader-section-header">
+      <div class="leader-section-label">Leader Resources</div>
+      <div class="leader-section-line"></div>
+      <div class="leader-section-count" id="leader-count"></div>
+    </div>
+    <div class="leader-grid" id="leader-grid"></div>
+  </div>
+
 </main>
 
 <footer class="site-footer">
@@ -450,6 +511,22 @@ body { font-family: var(--font); background: var(--off-white); color: var(--navy
 // ── CONFIG ──────────────────────────────────────────────────────
 const APPS_URL   = 'https://script.google.com/macros/s/AKfycbyRSuUKBjwlPZiY8E7IZZUEQ8u-uwwuTXZnQ0nTPqtfk-bu3zyAa6RKZYw7687arJVs/exec';
 const RB_DOMAIN  = [114,101,98,117,105,108,116].map(c=>String.fromCharCode(c)).join('');
+
+// ── LEADER ACCESS ────────────────────────────────────────────────
+const LEADER_EMAILS = [
+  'mike.spalding@rebuilt.com',
+  'patrick.solomon@rebuilt.com'
+];
+
+// ── LEADER RESOURCE REGISTRY ─────────────────────────────────────
+const LEADER_RESOURCES = [
+  {
+    name: 'Admin Dashboard',
+    badge: 'Admin',
+    desc: 'Rep-level completion grid — view progress by role, search by associate, and track module completion across the team.',
+    url: 'admin.html'
+  }
+];
 
 // ── MODULE REGISTRY ─────────────────────────────────────────────
 const OLT_MODULES = [
@@ -586,6 +663,7 @@ function initApp() {
   roleTag.className   = 'dash-role-tag ' + currentRole;
 
   renderGrids();
+  renderLeaderResources();
   fetchProgress();
 }
 
@@ -714,6 +792,32 @@ function cardHTML(mod, type) {
     '</div>' +
   '</a>';
 }
+// ── LEADER RESOURCES ─────────────────────────────────────────────
+function renderLeaderResources() {
+  const isLeader = LEADER_EMAILS.includes(currentEmail.toLowerCase().trim());
+  const section  = document.getElementById('leader-section');
+
+  if (!isLeader) {
+    section.style.display = 'none';
+    return;
+  }
+
+  section.style.display = 'block';
+  document.getElementById('leader-count').textContent =
+    LEADER_RESOURCES.length + ' resource' + (LEADER_RESOURCES.length !== 1 ? 's' : '');
+
+  document.getElementById('leader-grid').innerHTML = LEADER_RESOURCES.map(r =>
+    '<a class="leader-card" href="' + r.url + '">' +
+      '<div class="leader-card-top">' +
+        '<div class="card-badges"><span class="badge leader">' + r.badge + '</span></div>' +
+      '</div>' +
+      '<div class="leader-card-title">' + r.name + '</div>' +
+      '<div class="leader-card-desc">'  + r.desc + '</div>' +
+      '<div class="leader-card-footer"><span class="leader-card-arrow">→</span></div>' +
+    '</a>'
+  ).join('');
+}
 </script>
+
 </body>
 </html>
