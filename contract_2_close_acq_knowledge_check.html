@@ -542,6 +542,15 @@ const HUB_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyRSuUKBjwlPZiY8
 const PASS_THRESHOLD = 0.70;
 
 // Activate material links if URL is set
+// ── PRE-FILL FROM HUB SESSION ──
+(function() {
+  const savedEmail = localStorage.getItem('rebuilt_email');
+  if (savedEmail) {
+    const el = document.getElementById('inputEmail');
+    if (el) el.value = savedEmail;
+  }
+})();
+
 (function() {
   if (MATERIAL_URL && MATERIAL_URL !== 'PASTE_COURSE_MATERIAL_URL_HERE') {
     const hdr = document.getElementById('materialLink');
