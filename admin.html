@@ -355,6 +355,7 @@ const ALL_MODULES = [
   { id:'kc_buyer_sourcing', name:'Buyer Sourcing',   type:'KC',  roles:['dispo'] },
   { id:'kc_buyer_processes',name:'Buyer Processes',  type:'KC',  roles:['dispo'] },
   { id:'kc_c2c_nts',        name:'C2C + NTS',        type:'KC',  roles:['dispo'] },
+  { id:'kc_c2c_acq',        name:'C2C for Acq',      type:'KC',  roles:['acq'] },
 ];
 
 // ── STATE ────────────────────────────────────────────────────
@@ -436,7 +437,7 @@ function processData(data) {
     } else {
       // Fallback inference for rows without role column populated
       var dispoMods = ['kc_dispo_intro','kc_ur_to_mktg','kc_buyer_sourcing','kc_buyer_processes','kc_c2c_nts'];
-      var acqMods   = ['olt_sales_talk','olt_ab_contract','olt_five9'];
+      var acqMods   = ['olt_sales_talk','olt_ab_contract','olt_five9','kc_c2c_acq'];
       var hasDispoOnly = dispoMods.some(function(id) { return rep.completions[id]; });
       var hasAcqOnly   = acqMods.some(function(id)   { return rep.completions[id]; });
       rep.role = (hasDispoOnly && !hasAcqOnly) ? 'dispo' : 'acq';
