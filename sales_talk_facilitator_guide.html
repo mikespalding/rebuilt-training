@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjQ0MCAwIDU1MCA4OTAiPgogIDxwYXRoIGQ9Im0gMzMzNy45OSwzNTQ0LjgzIDExNzkuNzksMTA3Ni43MiB2IDE5MzguMSBMIDMzMzcuOTksNTU5MC42IFYgMzU0NC44MyIgZmlsbD0iIzRlYTllMiIgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIi8+CiAgPHBhdGggZD0iTSA2MTY5LjQ4LDk5OTUuMDEgViA0NjIxLjU1IGwgMTE3OS44LC0xMDc2LjcyIHYgNTQ5MS4yOSBsIC0xMTc5LjgsOTU4Ljg5IiBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz4KICA8cGF0aCBkPSJNIDQ3NTMuNzQsNzc0NC4wNSBWIDQ4MzYuODkgbCA1ODkuODksNTM4LjM3IDU4OS45LC01MzguMzcgNC4zNywzOTczLjcyIC0xMTg0LjE2LC0xMDY2LjU2IiBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz4KICA8cGF0aCBkPSJtIDQ4MDIuMjEsMzQyNS4xOSBoIDQzMC42OSB2IDQzMC42OCBoIC00MzAuNjkgdiAtNDMwLjY4IiBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz4KICA8cGF0aCBkPSJtIDU0NDguMjQsMzQyNS4xOSBoIDQzMC43IHYgNDMwLjY4IGggLTQzMC43IHYgLTQzMC42OCIgZmlsbD0iIzRlYTllMiIgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIi8+CiAgPHBhdGggZD0ibSA1MjMyLjksNDUwMS45MSBoIC00MzAuNjkgdiAtNDMwLjY5IGggNDMwLjY5IHYgNDMwLjY5IiBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz4KICA8cGF0aCBkPSJtIDU0NDguMjQsNDUwMS45MSB2IC00MzAuNjkgaCA0MzAuNyB2IDQzMC42OSBoIC00MzAuNyIgZmlsbD0iIzRlYTllMiIgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIi8+Cjwvc3ZnPg=="/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Rebuilt — Sales Talk Role Play Facilitator Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --blue:#21a9e1; --blue-dark:#1a8cbf; --blue-light:#e8f6fd;
+    --teal:#64b4b7; --teal-dark:#0f696e;
+    --orange:#f5831f; --orange-dark:#d96d0a;
+    --navy:#1f3540; --navy-mid:#2c4a5a;
+    --off-white:#efedeb;
+    --bg-primary:#ffffff; --bg-secondary:#f7f6f4; --bg-tertiary:#efedeb;
+    --text-primary:#1f3540; --text-secondary:#4a6070; --text-tertiary:#7a90a0;
+    --border-tertiary:rgba(31,53,64,0.10); --border-secondary:rgba(31,53,64,0.18);
+    --success-bg:#f0fdf4; --success-border:#2d7a2d; --success-text:#1a4d1a;
+    --danger-bg:#fff8f0; --danger-border:#f5831f; --danger-text:#7a3a00;
+    --radius-md:8px; --radius-lg:12px;
+    --font:'Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  }
+  body { font-family:var(--font); background:#efedeb; color:#1f3540; font-size:16px; line-height:1.6; font-weight:400; letter-spacing:-0.01em; }
+  .page-wrap { max-width:920px; margin:0 auto; padding:0 1rem 4rem; }
+
+  .topbar { background:var(--navy); position:sticky; top:0; z-index:200; border-bottom:3px solid var(--blue); }
+  .topbar-inner { max-width:920px; margin:0 auto; padding:0 1.25rem; display:flex; align-items:center; gap:14px; height:56px; }
+  .topbar-logo { display:flex; align-items:center; flex-shrink:0; }
+  .topbar-wordmark { font-size:18px; font-weight:700; color:#fff; letter-spacing:-0.02em; line-height:1; }
+  .topbar-divider { width:1px; height:22px; background:rgba(255,255,255,0.2); margin:0 4px; }
+  .topbar-sub { font-size:11px; color:rgba(255,255,255,0.55); font-weight:500; letter-spacing:0.04em; text-transform:uppercase; }
+  .topbar-badge { margin-left:auto; background:var(--orange); color:#fff; font-size:10px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; padding:3px 12px; border-radius:20px; }
+
+  .mod-nav-wrap { background:var(--bg-primary); border-bottom:1px solid var(--border-tertiary); position:sticky; top:59px; z-index:99; }
+  .mod-nav-inner { max-width:920px; margin:0 auto; padding:0 1rem; display:flex; gap:2px; overflow-x:auto; scrollbar-width:none; }
+  .mod-nav-inner::-webkit-scrollbar { display:none; }
+  .mod-btn { padding:12px 14px; font-size:11px; font-weight:600; border:none; background:transparent; cursor:pointer; color:var(--text-tertiary); border-bottom:3px solid transparent; white-space:nowrap; transition:all 0.15s; letter-spacing:0.02em; font-family:var(--font); }
+  .mod-btn:hover { color:var(--text-primary); background:var(--bg-secondary); }
+  .mod-btn.active { color:var(--blue); border-bottom-color:var(--blue); }
+
+  .content { padding:2rem 0; }
+  .section-panel { display:none; }
+  .section-panel.active { display:block; }
+  .module-header { margin-bottom:1.75rem; }
+  .module-eyebrow { font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--blue); margin-bottom:8px; }
+  .module-title { font-size:26px; font-weight:700; line-height:1.25; color:var(--navy); }
+  .module-desc { font-size:14px; color:var(--text-secondary); margin-top:8px; line-height:1.65; }
+  .info-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:1.75rem; }
+  .info-chip { padding:5px 14px; border-radius:20px; background:var(--blue-light); font-size:12px; color:var(--teal-dark); border:1px solid rgba(33,169,225,0.2); font-weight:500; }
+  .info-chip strong { color:var(--navy); font-weight:700; }
+
+  .card { background:var(--bg-primary); border:1px solid var(--border-tertiary); border-radius:var(--radius-lg); overflow:hidden; margin-bottom:10px; transition:border-color 0.15s; }
+  .card:hover { border-color:rgba(33,169,225,0.3); }
+  .card-head { display:flex; align-items:center; gap:14px; padding:15px 18px; cursor:pointer; user-select:none; }
+  .card-head:hover { background:var(--bg-secondary); }
+  .card-num { width:32px; height:32px; border-radius:8px; background:var(--blue-light); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:var(--blue); flex-shrink:0; }
+  .card-num.orange { background:rgba(245,131,31,0.12); color:var(--orange); }
+  .card-num.teal { background:rgba(15,105,110,0.1); color:var(--teal-dark); }
+  .card-num.navy { background:rgba(31,53,64,0.08); color:var(--navy); }
+  .card-title { font-size:14px; font-weight:600; flex:1; color:var(--text-primary); overflow-wrap:break-word; min-width:0; }
+  .card-tag { font-size:10px; padding:3px 10px; border-radius:10px; background:var(--off-white); color:var(--text-tertiary); font-weight:600; letter-spacing:0.04em; text-transform:uppercase; white-space:nowrap; }
+  .card-chevron { font-size:11px; color:var(--text-tertiary); transition:transform 0.2s; }
+  .card.open .card-chevron { transform:rotate(180deg); }
+  .card.open { border-color:rgba(33,169,225,0.4); }
+  .card-body { display:none; padding:0 18px 20px; border-top:1px solid var(--border-tertiary); }
+  .card.open .card-body { display:block; }
+
+  .pillar-card { background:var(--bg-primary); border:1px solid var(--border-tertiary); border-radius:var(--radius-lg); overflow:hidden; margin-bottom:10px; }
+  .pillar-head { display:flex; align-items:center; gap:16px; padding:16px 20px; cursor:pointer; user-select:none; }
+  .pillar-head:hover { background:var(--bg-secondary); }
+  .pillar-num { width:48px; height:48px; background:linear-gradient(135deg,var(--blue),var(--teal)); color:#fff; border-radius:var(--radius-md); display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:700; flex-shrink:0; }
+  .pillar-num.orange { background:linear-gradient(135deg,var(--orange),var(--orange-dark)); }
+  .pillar-num.navy  { background:linear-gradient(135deg,var(--navy),var(--navy-mid)); }
+  .pillar-num.teal  { background:linear-gradient(135deg,var(--teal-dark),var(--teal)); }
+  .pillar-label { flex:1; min-width:0; }
+  .pillar-name { font-size:15px; font-weight:700; color:var(--navy); }
+  .pillar-sub { font-size:12px; color:var(--text-secondary); margin-top:2px; }
+  .pillar-chevron { font-size:11px; color:var(--text-tertiary); transition:transform 0.2s; }
+  .pillar-card.open { border-color:var(--blue); }
+  .pillar-card.open .pillar-chevron { transform:rotate(180deg); }
+  .pillar-body { display:none; padding:0 20px 20px; border-top:1px solid var(--border-tertiary); }
+  .pillar-card.open .pillar-body { display:block; }
+  .pillar-section { margin-top:16px; }
+  .pillar-section-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--teal-dark); margin-bottom:8px; }
+  .pillar-section p { font-size:14px; line-height:1.65; color:var(--text-secondary); }
+
+  .script-block { background:var(--navy); border-radius:var(--radius-md); padding:14px 16px; margin:14px 0 8px; border-left:3px solid var(--blue); }
+  .script-label { font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--teal); margin-bottom:8px; }
+  .script-block p { font-size:13px; color:#c8e8f4; line-height:1.65; font-style:italic; }
+  .script-note { font-size:12px; color:rgba(200,232,244,0.65); margin-top:8px; padding-top:8px; border-top:1px solid rgba(255,255,255,0.1); }
+
+  .deal-killer { background:#fff8f0; border-left:3px solid var(--orange); border-radius:0 6px 6px 0; padding:10px 14px; margin-top:10px; font-size:13px; color:var(--danger-text); line-height:1.55; font-weight:500; }
+  .deal-killer strong { font-weight:700; display:block; margin-bottom:2px; }
+  .tone-cue { background:var(--bg-secondary); border-left:3px solid var(--teal); border-radius:0 6px 6px 0; padding:10px 14px; margin-top:8px; font-size:13px; color:var(--text-secondary); line-height:1.55; font-style:italic; }
+  .agent-note { background:var(--blue-light); border-radius:var(--radius-md); padding:12px 14px; margin-top:8px; font-size:13px; color:var(--teal-dark); line-height:1.55; border:1px solid rgba(33,169,225,0.15); }
+  .agent-note strong { color:var(--navy); font-weight:700; }
+  .alert { padding:14px 18px; border-radius:var(--radius-md); border:1px solid; font-size:13px; line-height:1.6; margin-bottom:1rem; font-weight:500; }
+  .alert-warn { background:#fff8f0; border-color:var(--orange); color:var(--danger-text); border-left:4px solid var(--orange); }
+  .alert-info { background:var(--blue-light); border-color:rgba(33,169,225,0.25); color:var(--teal-dark); border-left:4px solid var(--blue); }
+
+  .mini-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:12px; }
+  .mini-grid-item { padding:10px 14px; border-radius:8px; background:var(--bg-secondary); font-size:12px; border:1px solid var(--border-tertiary); color:var(--text-secondary); }
+  .mini-grid-item strong { display:block; font-weight:700; margin-bottom:3px; font-size:12px; color:var(--navy); }
+  @media (max-width:500px) { .mini-grid { grid-template-columns:1fr; } }
+
+  .persona-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px; }
+  @media (max-width:600px) { .persona-grid { grid-template-columns:1fr; } }
+  .persona-card { background:var(--bg-primary); border:1px solid var(--border-tertiary); border-radius:var(--radius-lg); overflow:hidden; }
+  .persona-header { display:flex; align-items:center; gap:12px; padding:14px 16px; }
+  .persona-badge { width:36px; height:36px; border-radius:var(--radius-md); display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:700; color:#fff; flex-shrink:0; }
+  .persona-info { flex:1; }
+  .persona-name { font-size:13px; font-weight:700; color:var(--navy); }
+  .persona-desc { font-size:11px; color:var(--text-tertiary); font-weight:500; margin-top:1px; }
+  .persona-body { padding:0 16px 16px; }
+  .persona-section-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-tertiary); margin:12px 0 6px; }
+  .persona-body ul { list-style:none; display:flex; flex-direction:column; gap:5px; }
+  .persona-body ul li { font-size:12.5px; color:var(--text-secondary); line-height:1.5; padding-left:14px; position:relative; }
+  .persona-body ul li::before { content:'–'; position:absolute; left:0; color:var(--text-tertiary); }
+  .persona-curveball { margin-top:10px; background:#fff8f0; border-left:3px solid var(--orange); border-radius:0 6px 6px 0; padding:10px 12px; font-size:12px; color:var(--danger-text); line-height:1.55; }
+  .persona-curveball strong { display:block; font-size:10px; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:3px; color:var(--orange); font-weight:700; }
+
+  .mistakes-table { width:100%; border-collapse:collapse; font-size:12.5px; margin-top:14px; }
+  .mistakes-table th { background:var(--navy); color:#fff; font-size:9px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; padding:9px 14px; text-align:left; }
+  .mistakes-table td { padding:11px 14px; vertical-align:top; line-height:1.55; border-bottom:1px solid var(--border-tertiary); color:var(--text-primary); }
+  .mistakes-table tr:last-child td { border-bottom:none; }
+  .mistakes-table tr:nth-child(even) td { background:var(--bg-secondary); }
+  .tag-mistake { color:var(--orange); font-weight:700; }
+  .tag-prompt  { color:var(--teal-dark); font-style:italic; font-weight:500; }
+
+  .round-block { background:var(--bg-primary); border:1px solid var(--border-tertiary); border-radius:var(--radius-lg); overflow:hidden; margin-bottom:10px; }
+  .round-header { display:flex; align-items:center; gap:12px; padding:14px 18px; background:var(--bg-secondary); border-bottom:1px solid var(--border-tertiary); }
+  .round-label { font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-tertiary); flex-shrink:0; }
+  .round-title { font-size:14px; font-weight:700; color:var(--navy); flex:1; }
+  .round-badge { font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; padding:3px 10px; border-radius:10px; flex-shrink:0; }
+  .badge-blue   { background:var(--blue-light); color:var(--blue); }
+  .badge-teal   { background:rgba(15,105,110,0.1); color:var(--teal-dark); }
+  .badge-orange { background:rgba(245,131,31,0.1); color:var(--orange); }
+  .badge-navy   { background:rgba(31,53,64,0.08); color:var(--navy); }
+  .round-body { padding:18px; }
+  .round-cols { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media (max-width:600px) { .round-cols { grid-template-columns:1fr; } }
+  .round-col-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-tertiary); margin-bottom:8px; }
+  .round-body ul { list-style:none; display:flex; flex-direction:column; gap:7px; }
+  .round-body ul li { font-size:13px; color:var(--text-secondary); line-height:1.55; padding-left:16px; position:relative; }
+  .round-body ul li::before { content:'›'; position:absolute; left:0; color:var(--blue); font-weight:700; }
+
+  .lang-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:12px; }
+  @media (max-width:600px) { .lang-grid { grid-template-columns:1fr; } }
+  .lang-item { background:var(--bg-secondary); border-radius:var(--radius-md); padding:12px 14px; border:1px solid var(--border-tertiary); }
+  .lang-context { font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--teal-dark); margin-bottom:5px; }
+  .lang-line { font-size:12.5px; font-style:italic; color:var(--navy); line-height:1.55; }
+
+  .overview-hero { background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%); border-radius:var(--radius-lg); padding:2rem 2rem 1.75rem; margin-bottom:1.5rem; color:#fff; }
+  .overview-hero-eyebrow { font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--teal); margin-bottom:10px; }
+  .overview-hero-title { font-size:26px; font-weight:700; line-height:1.2; margin-bottom:10px; }
+  .overview-hero-sub { font-size:14px; color:rgba(255,255,255,0.7); line-height:1.65; max-width:580px; }
+  .overview-why { background:var(--blue-light); border:1px solid rgba(33,169,225,0.2); border-radius:var(--radius-lg); padding:1.25rem 1.5rem; margin-bottom:1.5rem; border-left:4px solid var(--blue); }
+  .overview-why-title { font-size:13px; font-weight:700; color:var(--navy); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em; }
+  .overview-why p { font-size:14px; color:var(--teal-dark); line-height:1.65; }
+  .overview-map { margin-bottom:1.5rem; }
+  .overview-map-title { font-size:13px; font-weight:700; color:var(--navy); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:12px; }
+  .overview-map-grid { display:flex; flex-direction:column; gap:8px; }
+  .overview-map-item { display:flex; align-items:flex-start; gap:14px; background:var(--bg-primary); border:1px solid var(--border-tertiary); border-radius:var(--radius-md); padding:14px 16px; cursor:pointer; transition:all 0.15s; }
+  .overview-map-item:hover { border-color:var(--blue); background:var(--blue-light); }
+  .overview-map-num { width:32px; height:32px; border-radius:8px; background:linear-gradient(135deg,var(--blue),var(--teal)); color:#fff; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; flex-shrink:0; }
+  .overview-map-info { flex:1; }
+  .overview-map-name { font-size:14px; font-weight:700; color:var(--navy); margin-bottom:2px; }
+  .overview-map-desc { font-size:12px; color:var(--text-secondary); }
+
+  .step-ref { display:flex; flex-direction:column; gap:6px; }
+  .step-row { display:flex; align-items:stretch; background:var(--bg-primary); border:1px solid var(--border-tertiary); border-radius:var(--radius-md); overflow:hidden; }
+  .step-accent { width:4px; flex-shrink:0; }
+  .step-num-wrap { width:44px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .step-num-circle { width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:#fff; }
+  .step-content { flex:1; padding:10px 14px 10px 6px; }
+  .step-eyebrow { font-size:9px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:1px; }
+  .step-title { font-size:13px; font-weight:700; color:var(--navy); }
+  .step-note { font-size:11px; color:var(--text-tertiary); margin-top:2px; line-height:1.5; }
+  .phase-label-row { font-size:9px; font-weight:800; letter-spacing:0.14em; text-transform:uppercase; color:#fff; padding:4px 12px; border-radius:4px 4px 0 0; display:inline-block; margin-top:10px; }
+
+  .checklist { list-style:none; display:flex; flex-direction:column; gap:8px; }
+  .checklist li { display:flex; align-items:flex-start; gap:10px; font-size:13px; line-height:1.55; padding:11px 14px; border-radius:var(--radius-md); border:1px solid var(--border-tertiary); cursor:pointer; background:var(--bg-primary); transition:all 0.15s; }
+  .checklist li:hover { background:var(--blue-light); border-color:rgba(33,169,225,0.3); }
+  .checklist li.checked { background:var(--success-bg); border-color:var(--success-border); color:var(--success-text); }
+  .check-box { width:18px; height:18px; border:2px solid var(--border-secondary); border-radius:4px; flex-shrink:0; display:flex; align-items:center; justify-content:center; margin-top:1px; font-size:11px; }
+  .checklist li.checked .check-box { background:var(--success-border); border-color:var(--success-border); color:#fff; }
+
+  .module-nav-btns { display:flex; justify-content:space-between; margin-top:2rem; padding-top:1.25rem; border-top:1px solid var(--border-tertiary); }
+  .nav-btn { padding:10px 24px; border-radius:var(--radius-md); border:1px solid var(--border-secondary); font-size:13px; cursor:pointer; background:var(--bg-primary); color:var(--text-primary); transition:all 0.15s; font-weight:600; font-family:var(--font); }
+  .nav-btn:hover { background:var(--bg-secondary); }
+  .nav-btn.primary { background:linear-gradient(135deg,var(--blue),var(--teal-dark)); color:#fff; border-color:transparent; }
+  .nav-btn.primary:hover { opacity:0.9; }
+
+  .section-divider { border:none; border-top:1px solid var(--border-tertiary); margin:1.5rem 0; }
+  .subsection-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-tertiary); margin-bottom:10px; padding-bottom:6px; border-bottom:2px solid var(--blue-light); }
+  .mt8 { margin-top:8px; } .mt12 { margin-top:12px; } .mt16 { margin-top:16px; }
+
+  @media print {
+    body { background:#fff; }
+    .topbar,.mod-nav-wrap { position:static; }
+    .section-panel { display:block !important; }
+    .card-body,.pillar-body { display:block !important; }
+    * { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 80 450 660" style="height:36px;width:auto;">
+        <g transform="matrix(0.13333333,0,0,-0.13333333,0,732.2)" fill="#21a9e1">
+          <path d="m 0,100 986.152,900 V 2620 L 0,1810 V 100"/>
+          <path d="M 2366.76,5491.51 V 1000 l 986.15,-900 v 4590 l -986.15,801.51"/>
+          <path d="M 1183.38,3610 V 1180 l 493.08,450 493.07,-450 3.65,3321.51 -989.8,-891.51"/>
+          <path d="m 1223.9,0 h 360 v 360 h -360 V 0"/>
+          <path d="m 1763.9,0 h 360 v 360 h -360 V 0"/>
+          <path d="m 1583.9,900 h -360 V 540 h 360 v 360"/>
+          <path d="M 1763.9,900 V 540 h 360 v 360 h -360"/>
+        </g>
+      </svg>
+    </div>
+    <div class="topbar-wordmark">rebuilt</div>
+    <div class="topbar-divider"></div>
+    <div class="topbar-sub">Acquisition Training</div>
+    <div class="topbar-badge">Facilitator Guide</div>
+  </div>
+</div>
+
+<div class="mod-nav-wrap">
+  <div class="mod-nav-inner">
+    <button class="mod-btn active" onclick="showSection(0)">Overview</button>
+    <button class="mod-btn" onclick="showSection(1)">1 · Prep</button>
+    <button class="mod-btn" onclick="showSection(2)">2 · Kickoff</button>
+    <button class="mod-btn" onclick="showSection(3)">3 · Personas</button>
+    <button class="mod-btn" onclick="showSection(4)">4 · Coaching Topics</button>
+    <button class="mod-btn" onclick="showSection(5)">5 · Round Guide</button>
+    <button class="mod-btn" onclick="showSection(6)">6 · Mistakes</button>
+    <button class="mod-btn" onclick="showSection(7)">7 · Close</button>
+    <button class="mod-btn" onclick="showSection(8)">Appendix</button>
+  </div>
+</div>
+
+<div class="page-wrap"><div class="content">
+
+<!-- OVERVIEW -->
+<div class="section-panel active" id="section-0">
+  <div class="overview-hero">
+    <div class="overview-hero-eyebrow">Sales Talk · Role Play Facilitator Guide</div>
+    <div class="overview-hero-title">Sharpening inbound skills<br/>on the way to the contract</div>
+    <div class="overview-hero-sub">A turn-by-turn guide for running the Sales Talk role play session with Acquisition agents in Week 2. Agents have live outbound experience but are now refining their inbound call structure. Covers setup, round facilitation, and feedback delivery — grounded in real coaching moments from live sessions.</div>
+  </div>
+  <div class="overview-why">
+    <div class="overview-why-title">Purpose of this session</div>
+    <p>Agents in Week 2 have already made outbound calls and have real seller experience — but inbound calls require a different structure and a higher level of execution. This session uses deliberate role play repetition to sharpen Steps 1–7 of the inbound script, identify individual coaching gaps, and build the confidence and consistency needed to convert inbound opportunities.</p>
+  </div>
+  <div class="info-row">
+    <div class="info-chip"><strong>Audience:</strong> Acquisition agents, Week 2</div>
+    <div class="info-chip"><strong>Length:</strong> 60–90 minutes</div>
+    <div class="info-chip"><strong>Script scope:</strong> Steps 1–7 · Inbound only</div>
+    <div class="info-chip"><strong>Excludes:</strong> Condition / repair (Steps 5+ deferred)</div>
+  </div>
+  <div class="overview-map">
+    <div class="overview-map-title">Guide Sections</div>
+    <div class="overview-map-grid">
+      <div class="overview-map-item" onclick="showSection(1)"><div class="overview-map-num">1</div><div class="overview-map-info"><div class="overview-map-name">Facilitator Prep</div><div class="overview-map-desc">Materials checklist, scope notes, what to confirm before the session</div></div></div>
+      <div class="overview-map-item" onclick="showSection(2)"><div class="overview-map-num">2</div><div class="overview-map-info"><div class="overview-map-name">Session Kickoff</div><div class="overview-map-desc">Opening frame, rotation structure, pre-round FAQ</div></div></div>
+      <div class="overview-map-item" onclick="showSection(3)"><div class="overview-map-num">3</div><div class="overview-map-info"><div class="overview-map-name">Seller Personas</div><div class="overview-map-desc">Four scenario cards with backstories and curveball instructions</div></div></div>
+      <div class="overview-map-item" onclick="showSection(4)"><div class="overview-map-num">4</div><div class="overview-map-info"><div class="overview-map-name">Five Core Coaching Topics</div><div class="overview-map-desc">What to watch for, why it matters, language to use in debrief</div></div></div>
+      <div class="overview-map-item" onclick="showSection(5)"><div class="overview-map-num">5</div><div class="overview-map-info"><div class="overview-map-name">Round-by-Round Guide</div><div class="overview-map-desc">Setup and debrief instructions for each of the four rounds</div></div></div>
+      <div class="overview-map-item" onclick="showSection(6)"><div class="overview-map-num">6</div><div class="overview-map-info"><div class="overview-map-name">Mistakes &amp; Coaching Prompts</div><div class="overview-map-desc">Quick-reference: what you see → root cause → what to say</div></div></div>
+      <div class="overview-map-item" onclick="showSection(7)"><div class="overview-map-num">7</div><div class="overview-map-info"><div class="overview-map-name">Closing the Session</div><div class="overview-map-desc">Group close-out and session wrap checklist</div></div></div>
+      <div class="overview-map-item" onclick="showSection(8)"><div class="overview-map-num">A</div><div class="overview-map-info"><div class="overview-map-name">Appendix</div><div class="overview-map-desc">Language bank, Steps 1–7 quick reference</div></div></div>
+    </div>
+  </div>
+  <div class="module-nav-btns"><span></span><button class="nav-btn primary" onclick="showSection(1)">Start with Section 1 →</button></div>
+</div>
+
+<!-- SECTION 1: PREP -->
+<div class="section-panel" id="section-1">
+  <div class="module-header">
+    <div class="module-eyebrow">Section 1</div>
+    <div class="module-title">Facilitator Prep</div>
+    <div class="module-desc">Everything to confirm before the Google Meet session starts.</div>
+  </div>
+  <div class="subsection-title">Session Overview</div>
+  <div class="mini-grid">
+    <div class="mini-grid-item"><strong>Audience</strong>Acquisition agents, Week 2 — typically 4–10 participants</div>
+    <div class="mini-grid-item"><strong>Session Length</strong>60–90 min, scales with group size</div>
+    <div class="mini-grid-item"><strong>Script Scope</strong>Steps 1–7 · Inbound new-call script only</div>
+    <div class="mini-grid-item"><strong>What's Excluded</strong>Property condition / repair (Steps 5+ deferred unless noted)</div>
+  </div>
+  <hr class="section-divider"/>
+  <div class="subsection-title">Materials Checklist</div>
+  <ul class="checklist" id="prep-checklist">
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Inbound sales script — shared on screen or posted in Google Meet chat; agents should have their own copy open</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Call flow reference (Steps 1–13 with phase labels)</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>This facilitator guide open and ready</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Seller persona cards loaded (Section 3 of this guide)</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Google Meet session open — all participants on camera if possible</li>
+  </ul>
+  <hr class="section-divider"/>
+  <div class="alert alert-info mt8"><strong>Inbound Only.</strong> Agents are already making outbound calls, so the inbound vs. outbound distinction is real to them. Be explicit: this session uses the inbound new-call script. The opener and structure are different from what they've been doing on outbound — the discovery body converges once connected, but the setup does not.</div>
+  <div class="alert alert-warn"><strong>Happy Path First.</strong> Round 1 always uses Persona A — a cooperative seller with no complications. Even with outbound experience, agents need a clean first rep to calibrate on the inbound structure before complications are introduced.</div>
+  <div class="module-nav-btns"><button class="nav-btn" onclick="showSection(0)">← Overview</button><button class="nav-btn primary" onclick="showSection(2)">Section 2: Kickoff →</button></div>
+</div>
+
+<!-- SECTION 2: KICKOFF -->
+<div class="section-panel" id="section-2">
+  <div class="module-header">
+    <div class="module-eyebrow">Section 2</div>
+    <div class="module-title">Session Kickoff</div>
+    <div class="module-desc">The first few minutes set the tone. Frame what this session is for, normalize the format, and clarify scope before Round 1.</div>
+  </div>
+  <div class="subsection-title">Opening Frame</div>
+  <div class="script-block">
+    <div class="script-label">Facilitator — Say Something Like This</div>
+    <p>"We're going to do some role plays this morning focusing on the inbound script — setting the stage, getting motivations, and walking through discovery. You've been on outbound calls, so you know what it feels like to be on the phone with a seller. This is about sharpening the inbound structure specifically. One person plays the agent, one plays the seller. After the call, the agent becomes the seller and picks the next agent. Then we debrief together. Make sense?"</p>
+    <div class="script-note">Keep it brief. Acknowledge their outbound experience — but be clear this is a different script and a different skill set.</div>
+  </div>
+  <hr class="section-divider"/>
+  <div class="subsection-title">Cover These Points Before Round 1</div>
+  <div class="pillar-card open">
+    <div class="pillar-head" onclick="togglePillar(this)">
+      <div class="pillar-num">1</div>
+      <div class="pillar-label"><div class="pillar-name">Scope: Steps 1–7 only</div><div class="pillar-sub">Don't let the call drift into condition or offer math</div></div>
+      <span class="pillar-chevron">▾</span>
+    </div>
+    <div class="pillar-body">
+      <div class="pillar-section"><div class="pillar-section-label">What to Say</div><p>We're focusing on the first half of the inbound script — Setting the Stage through Credibility &amp; Submit. Property repairs and offer math are deliberately out of scope for today's reps.</p></div>
+    </div>
+  </div>
+  <div class="pillar-card">
+    <div class="pillar-head" onclick="togglePillar(this)">
+      <div class="pillar-num teal">2</div>
+      <div class="pillar-label"><div class="pillar-name">Purpose vs. pressure</div><div class="pillar-sub">Right or wrong doesn't matter yet — just go for it</div></div>
+      <span class="pillar-chevron">▾</span>
+    </div>
+    <div class="pillar-body">
+      <div class="pillar-section"><div class="pillar-section-label">What to Say</div><p>The goal is to sharpen the inbound structure — not to run a perfect call. Agents already know what it feels like to be on the phone; this is about building the right habits for inbound specifically. Patrick's framing: <em>"Slow-paced role plays, no pressure, no expectation of right or wrong. Just go for it."</em></p></div>
+    </div>
+  </div>
+  <div class="pillar-card">
+    <div class="pillar-head" onclick="togglePillar(this)">
+      <div class="pillar-num orange">3</div>
+      <div class="pillar-label"><div class="pillar-name">Inbound vs. outbound clarification</div><div class="pillar-sub">Someone will ask — answer it once, move on</div></div>
+      <span class="pillar-chevron">▾</span>
+    </div>
+    <div class="pillar-body">
+      <div class="pillar-section"><div class="pillar-section-label">What to Say</div><p>This is the inbound new-call script. Outbound has a different opener — no offer code, no address on file. The core discovery conversation is the same once you're talking to a willing seller. We'll cover outbound separately.</p></div>
+    </div>
+  </div>
+  <div class="pillar-card">
+    <div class="pillar-head" onclick="togglePillar(this)">
+      <div class="pillar-num navy">4</div>
+      <div class="pillar-label"><div class="pillar-name">The "burning questions" prompt</div><div class="pillar-sub">A standing addition to the script — remind agents before they start</div></div>
+      <span class="pillar-chevron">▾</span>
+    </div>
+    <div class="pillar-body">
+      <div class="pillar-section"><div class="pillar-section-label">What to Say</div><p>At the top of every call, right before setting the stage: <em>"Before we jump in — do you have any burning questions for me?"</em> Write them down and promise to address them later. This prevents sellers from derailing discovery and shows you're listening from the start.</p></div>
+      <div class="agent-note"><strong>Script Note:</strong> Patrick added this as a standing note to the sales script following the April 13 session. It should become a default habit from call one.</div>
+    </div>
+  </div>
+  <hr class="section-divider"/>
+  <div class="subsection-title">Pre-Round FAQ</div>
+  <div class="mini-grid">
+    <div class="mini-grid-item"><strong>"Is this the same script I've been using on outbound?"</strong>No — outbound has a different opener. The inbound script starts from a warmer position with an offer code and address. Same discovery body once you're connected.</div>
+    <div class="mini-grid-item"><strong>"What if I use habits from my outbound calls?"</strong>That's expected — and it's exactly what we're here to catch. Outbound habits aren't wrong, they just don't fit the inbound structure. Flag it in debrief.</div>
+    <div class="mini-grid-item"><strong>"Do we need to memorize this?"</strong>Not verbatim. The structure needs to be internalized — the pillars, the sequence. Your words should sound like you.</div>
+    <div class="mini-grid-item"><strong>"How far do we go — do we make an offer?"</strong>We stop after discovery for now. No offer math needed today. Just Steps 1–7.</div>
+  </div>
+  <div class="module-nav-btns"><button class="nav-btn" onclick="showSection(1)">← Section 1</button><button class="nav-btn primary" onclick="showSection(3)">Section 3: Personas →</button></div>
+</div>
+
+<!-- SECTION 3: PERSONAS -->
+<div class="section-panel" id="section-3">
+  <div class="module-header">
+    <div class="module-eyebrow">Section 3</div>
+    <div class="module-title">Seller Personas &amp; Scenario Cards</div>
+    <div class="module-desc">Assign personas to sellers before each round. Complexity increases as the session progresses. Always start with Persona A.</div>
+  </div>
+  <div class="alert alert-info">Share the persona with the seller in the Google Meet chat before each round. Give them a moment to read it — don't start the call before they're ready.</div>
+  <div class="persona-grid">
+    <div class="persona-card">
+      <div class="persona-header" style="background:var(--blue-light);">
+        <div class="persona-badge" style="background:linear-gradient(135deg,var(--blue),var(--teal));">A</div>
+        <div class="persona-info"><div class="persona-name">The Cooperative Seller</div><div class="persona-desc">Happy path · Always use for Round 1</div></div>
+      </div>
+      <div class="persona-body">
+        <div class="persona-section-label">Setup</div>
+        <ul><li>Single-family home, owner-occupied or recently vacated</li><li>One clear decision-maker — seller is on title alone</li><li>Motivation: retirement, downsizing, or moving closer to family</li><li>Friendly; responds to rapport naturally</li></ul>
+        <div class="persona-section-label">Sample Backstory</div>
+        <p style="font-size:12.5px;color:var(--text-secondary);line-height:1.55;">Retiring couple selling a paid-off rental they've owned 25+ years. No mortgage, no urgency — just ready to simplify. Good bones, needs cosmetic work.</p>
+        <div class="persona-curveball"><strong>Optional Curveball</strong>When agent asks the big-goal question — go quiet for a full 5 seconds. See if they hold the silence or fill it.</div>
+      </div>
+    </div>
+    <div class="persona-card">
+      <div class="persona-header" style="background:rgba(15,105,110,0.08);">
+        <div class="persona-badge" style="background:linear-gradient(135deg,var(--teal-dark),var(--teal));">B</div>
+        <div class="persona-info"><div class="persona-name">The Missing Spouse</div><div class="persona-desc">Decision-maker complexity · Round 2+</div></div>
+      </div>
+      <div class="persona-body">
+        <div class="persona-section-label">Setup</div>
+        <ul><li>Seller is on the call; spouse is on title but not available</li><li>Seller says "I make the decisions" — but both must sign</li><li>Motivation: tired landlord, difficult tenants, wants cash</li><li>Friendly, unaware the co-ownership will matter</li></ul>
+        <div class="persona-section-label">Sample Backstory</div>
+        <p style="font-size:12.5px;color:var(--text-secondary);line-height:1.55;">Investment property with difficult tenants. Seller handles day-to-day but spouse is co-owner, works days, and isn't on the call. Seller is eager to sell.</p>
+        <div class="persona-curveball"><strong>Curveball</strong>If agent doesn't ask about co-owners by Step 3, near the end of the call say: "Hold on, Sarah just walked in…" Watch how they pivot.</div>
+      </div>
+    </div>
+    <div class="persona-card">
+      <div class="persona-header" style="background:rgba(245,131,31,0.08);">
+        <div class="persona-badge" style="background:linear-gradient(135deg,var(--orange),var(--orange-dark));">C</div>
+        <div class="persona-info"><div class="persona-name">The Probate / Estate Seller</div><div class="persona-desc">Empathy + complexity · Round 3+</div></div>
+      </div>
+      <div class="persona-body">
+        <div class="persona-section-label">Setup</div>
+        <ul><li>Property inherited after a parent's passing</li><li>Probate is active; seller has a brother and sister</li><li>Seller says they're "handling it" — but not sole executor</li><li>Wants to move quickly; emotionally drained</li></ul>
+        <div class="persona-section-label">Sample Backstory</div>
+        <p style="font-size:12.5px;color:var(--text-secondary);line-height:1.55;">Mother passed six months ago. Estate includes this property. Two siblings also need to agree. Probate expected to close "in about a week."</p>
+        <div class="persona-curveball"><strong>Curveball</strong>Early in the call, ask: "How much do those checks usually say?" — see if agent gets flustered or stays on track with stage-setting.</div>
+      </div>
+    </div>
+    <div class="persona-card">
+      <div class="persona-header" style="background:rgba(31,53,64,0.06);">
+        <div class="persona-badge" style="background:linear-gradient(135deg,var(--navy),var(--navy-mid));">D</div>
+        <div class="persona-info"><div class="persona-name">The Fast-Moving / Educated Seller</div><div class="persona-desc">Advanced · Later rounds only</div></div>
+      </div>
+      <div class="persona-body">
+        <div class="persona-section-label">Setup</div>
+        <ul><li>Zillow-primed; has a number in their head already</li><li>Pushes for an offer immediately; skips rapport</li><li>Can be curt — not rude, just efficient</li><li>Responds well once agent slows the pace down</li></ul>
+        <div class="persona-section-label">Sample Backstory</div>
+        <p style="font-size:12.5px;color:var(--text-secondary);line-height:1.55;">Investor with multiple properties. Vacant house inherited 2 years ago. Wants $150K. Brother is on title and does NOT want to sell — seller wants numbers to convince him.</p>
+        <div class="persona-curveball"><strong>Curveball</strong>As soon as agent starts stage-setting, cut in: "I don't have a lot of time — can you just tell me what you'd offer?" Force them to slow down and re-set the frame.</div>
+      </div>
+    </div>
+  </div>
+  <div class="module-nav-btns"><button class="nav-btn" onclick="showSection(2)">← Section 2</button><button class="nav-btn primary" onclick="showSection(4)">Section 4: Coaching Topics →</button></div>
+</div>
+
+<!-- SECTION 4: COACHING TOPICS -->
+<div class="section-panel" id="section-4">
+  <div class="module-header">
+    <div class="module-eyebrow">Section 4</div>
+    <div class="module-title">Five Core Coaching Topics</div>
+    <div class="module-desc">Recurring themes from live sessions with Patrick Solomon, Jesse Sychowski, and the team. Each topic includes what to watch for, why it matters, and language to use in debrief. These patterns show up whether agents are on day one or week two — knowing what to name and how to coach it is what makes the feedback land.</div>
+  </div>
+
+  <div class="pillar-card open">
+    <div class="pillar-head" onclick="togglePillar(this)">
+      <div class="pillar-num">1</div>
+      <div class="pillar-label"><div class="pillar-name">Setting the Stage — The Four Pillars</div><div class="pillar-sub">Most frequently rushed or skipped entirely</div></div>
+      <span class="pillar-chevron">▾</span>
+    </div>
+    <div class="pillar-body">
+      <div class="pillar-section">
+        <div class="pillar-section-label">The Four Pillars</div>
+        <div class="mini-grid">
+          <div class="mini-grid-item"><strong>1 · Purpose</strong>"My job is to learn about your situation and see if your property qualifies for an offer."</div>
+          <div class="mini-grid-item"><strong>2 · Agenda</strong>"We'll cover the property, your situation, and if it makes sense, I'll get some numbers together."</div>
+          <div class="mini-grid-item"><strong>3 · Logistics</strong>"This should take about 15–20 minutes."</div>
+          <div class="mini-grid-item"><strong>4 · Outcome</strong>"All I ask — whether it works or it doesn't — is that you just let me know where you stand. Does that sound fair?"</div>
+        </div>
+      </div>
+      <div class="pillar-section">
+        <div class="pillar-section-label">Why the Outcome Pillar Matters</div>
+        <div class="agent-note"><strong>From Patrick:</strong> "If we drive more outcomes — more yeses and more nos — that keeps our pipeline efficient. Without the upfront commitment, 'maybe' is an acceptable answer at the end, and maybe never closes. Reps who skip this accumulate 20–30 deals in their name that they don't know what to do with."</div>
+      </div>
+      <div class="pillar-section">
+        <div class="pillar-section-label">Coaching Language</div>
+        <div class="tone-cue">If they skip the Outcome pillar: "Did you get a yes/no commitment? What happens if they say 'let me think about it' at the end?"</div>
+        <div class="tone-cue">If they rush: "You hit four sentences and moved to discovery. Did the seller know why they were on a 20-minute call?"</div>
+        <div class="tone-cue">If they do it well: "Good — you put structure around the call. That outcome piece especially — very gentle, but it's there."</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pillar-card">
+    <div class="pillar-head" onclick="togglePillar(this)">
+      <div class="pillar-num teal">2</div>
+      <div class="pillar-label"><div class="pillar-name">Identifying All Decision-Makers</div><div class="pillar-sub">The #1 deal-killer at closing is an uncovered co-owner</div></div>
+      <span class="pillar-chevron">▾</span>
+    </div>
+    <div class="pillar-body">
+      <div class="pillar-section">
+        <div class="pillar-section-label">The 40–50% Rule</div>
+        <div class="agent-note"><strong>From Patrick:</strong> "40–50% of the time, the other decision-maker is present on the call and just not talking. Get their name and acknowledge them. At the very end of the call, you'll hear this other voice start asking buying questions. If we've already said 'What would Sarah think about this?' — it won't feel like an ambush."</div>
+      </div>
+      <div class="pillar-section">
+        <div class="pillar-section-label">What to Get in Step 3</div>
+        <p>Is the seller the only name on title? If there's a co-owner — get their name, even if not on the call. Confirm who's "running point" then double down: <em>"Just to make sure I'm understanding — you're primarily handling this. Is that right?"</em> For probate: confirm if seller is the administrator and whether siblings/heirs also need to sign.</p>
+      </div>
+      <div class="pillar-section">
+        <div class="pillar-section-label">Coaching Language</div>
+        <div class="deal-killer"><strong>If they skip it:</strong> "What happens at contract time if a spouse shows up and you've never talked to them? They become your deal's biggest problem at signing."</div>
+        <div class="tone-cue">If seller claims sole DM: "Double down — play a little confused if they try to slither away later: 'Oh, I thought you were running point — I'm so confused.'"</div>
+        <div class="tone-cue">If they get the name but don't use it: "You got Sarah's name — great. Now weave her in: 'What would Sarah think about this timeline?'"</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pillar-card">
+    <div class="pillar-head" onclick="togglePillar(this)">
+      <div class="pillar-num orange">3</div>
+      <div class="pillar-label"><div class="pillar-name">Digging for Motivation — Press the Bruise</div><div class="pillar-sub">Step 4 is the most valuable section of the call</div></div>
+      <span class="pillar-chevron">▾</span>
+    </div>
+    <div class="pillar-body">
+      <div class="pillar-section">
+        <div class="pillar-section-label">The Framework</div>
+        <div class="agent-note">Press the bruise gently — then be the beacon of light. First get them talking about the pain. Once it's real, flip: <em>"Good news — you called the right place. We work with people in this exact situation every single day."</em></div>
+      </div>
+      <div class="pillar-section">
+        <div class="pillar-section-label">Impact Question Sequence</div>
+        <p style="font-size:13px;color:var(--text-secondary);line-height:1.75;">
+          1. Open-ended trigger: <em>"What's got you thinking about selling today?"</em><br/>
+          2. Deepen: <em>"Really? How long has that been on your mind?"</em><br/>
+          3. Personalize: <em>"What would you do with the money if everything lined up perfectly?"</em><br/>
+          4. Big goal: <em>"What's the big goal here?"</em> — then <strong>go silent</strong>.<br/>
+          5. If closed: <em>"Tell me a little bit more about that."</em>
+        </p>
+      </div>
+      <div class="pillar-section">
+        <div class="pillar-section-label">Strong Silence</div>
+        <div class="script-block">
+          <div class="script-label">From Patrick</div>
+          <p>"Your strong silence is the most powerful tool you have after an open-ended question. Ask 'What's your big goal here?' — then zip it for 60 seconds. The discomfort you feel is the deal working. The longer they're quiet, the closer they are to telling you the real reason."</p>
+        </div>
+      </div>
+      <div class="pillar-section">
+        <div class="pillar-section-label">Coaching Language</div>
+        <div class="deal-killer"><strong>If they accept surface motivation:</strong> "They said 'just want to sell' and you moved on. What was the dream behind the sale? That's your offer ammunition later."</div>
+        <div class="tone-cue">If they filled the silence: "You asked a great question — then answered it for them. Ask it, then mute yourself."</div>
+        <div class="tone-cue">If seller is guarded: "Blame technology later: 'Remind me, what had you reach out in the first place?' You may get a breadcrumb you didn't get the first time."</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pillar-card">
+    <div class="pillar-head" onclick="togglePillar(this)">
+      <div class="pillar-num navy">4</div>
+      <div class="pillar-label"><div class="pillar-name">Handling Early Price / Offer Pressure</div><div class="pillar-sub">Sellers will push for a number before you're ready — have a move</div></div>
+      <span class="pillar-chevron">▾</span>
+    </div>
+    <div class="pillar-body">
+      <div class="pillar-section">
+        <div class="pillar-section-label">The Offer Code Deflection</div>
+        <div class="script-block">
+          <div class="script-label">John Kinney's Move — Praised by Patrick</div>
+          <p>When the seller immediately asked what the offer code amount meant, the agent said: "Congratulations — not everyone gets one of those." Then pivoted back to stage-setting. Clever rapport-builder that acknowledges the check without getting into numbers.</p>
+        </div>
+      </div>
+      <div class="pillar-section">
+        <div class="pillar-section-label">The Zillow / "I Know What It's Worth" Deflection</div>
+        <div class="script-block">
+          <div class="script-label">Justin Fairbanks's Move — Praised by Patrick</div>
+          <p>Seller dropped a Zillow number early. Agent said: "I've got that number — I want to make sure I give you an accurate offer, so let me gather a few more details and we'll come back to it." Took the number, set it aside, promised to return. Didn't argue, didn't engage.</p>
+        </div>
+      </div>
+      <div class="pillar-section">
+        <div class="pillar-section-label">Context on the Offer Code</div>
+        <div class="agent-note">The check amount is system-generated based on basic property data — not a guaranteed offer. Correct framing: <em>"That number was generated automatically — the actual offer depends on what we learn about the property today."</em> Don't apologize for it; validate and redirect.</div>
+      </div>
+      <div class="pillar-section">
+        <div class="pillar-section-label">Coaching Language</div>
+        <div class="deal-killer"><strong>If they engage the number early:</strong> "You just anchored against their Zillow number before you ran the call. Now the whole conversation is about that number instead of their situation."</div>
+        <div class="tone-cue">If they get flustered: "Park it: 'Great question — I want to give you a real number, so bear with me for a few minutes.'"</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pillar-card">
+    <div class="pillar-head" onclick="togglePillar(this)">
+      <div class="pillar-num">5</div>
+      <div class="pillar-label"><div class="pillar-name">Vocal Presence, Tone &amp; Conversational Flow</div><div class="pillar-sub">Scripted-sounding agents lose sellers even when they say the right words</div></div>
+      <span class="pillar-chevron">▾</span>
+    </div>
+    <div class="pillar-body">
+      <div class="pillar-section">
+        <div class="pillar-section-label">What to Listen For</div>
+        <p style="font-size:13px;color:var(--text-secondary);line-height:1.75;"><strong>Pacing:</strong> Rushing to get through the script, or having a conversation?<br/><strong>Energy:</strong> Does their tone match the seller's register? (Empathy on grief; warmth on rapport.)<br/><strong>Filler:</strong> Filling silence with "Um" or "So, anyway" instead of holding it?<br/><strong>Script dependency:</strong> Reading verbatim, or internalized and made their own?</p>
+      </div>
+      <div class="pillar-section">
+        <div class="pillar-section-label">From Patrick</div>
+        <div class="script-block">
+          <div class="script-label">On Rapport</div>
+          <p>"People like doing business with people that they like. If you and the seller are connecting, you can say things like 'You give us a good deal and I'll see you on that yacht.' But if you haven't built that rapport — you can't say that. When they like you, they shoot you straight at the end of the call."</p>
+        </div>
+        <div class="script-block" style="margin-top:8px;">
+          <div class="script-label">On Sounding Scripted</div>
+          <p>"Your personality should be shining through. When Eric went off-script for a moment and said something unexpected, it worked — because it was genuinely him. Scripted language is a floor, not a ceiling."</p>
+        </div>
+      </div>
+      <div class="pillar-section">
+        <div class="pillar-section-label">Coaching Language</div>
+        <div class="tone-cue">If they sound robotic: "That was technically correct. But did it feel like a call or a presentation? Let's try it again — same content, your words."</div>
+        <div class="tone-cue">If too fast: "You hit all the beats but they need time to absorb. Slow down on stage-setting — let it land."</div>
+        <div class="tone-cue">If they're great: "Your personality was shining. That's what this is about. Now they like you — which means they'll shoot you straight."</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="module-nav-btns"><button class="nav-btn" onclick="showSection(3)">← Section 3</button><button class="nav-btn primary" onclick="showSection(5)">Section 5: Round Guide →</button></div>
+</div>
+
+<!-- SECTION 5: ROUND GUIDE -->
+<div class="section-panel" id="section-5">
+  <div class="module-header">
+    <div class="module-eyebrow">Section 5</div>
+    <div class="module-title">Round-by-Round Facilitation Guide</div>
+    <div class="module-desc">How to set up, run, and debrief each round. Complexity escalates across rounds. Agents have outbound experience, so the coaching focus shifts from basic comfort to structural precision.</div>
+  </div>
+
+  <div class="round-block">
+    <div class="round-header"><span class="round-label">Round 1</span><span class="round-title">Happy Path — Cooperative Seller</span><span class="round-badge badge-blue">Persona A</span></div>
+    <div class="round-body">
+      <div class="round-cols">
+        <div>
+          <div class="round-col-label">Facilitator Actions</div>
+          <ul><li>Ask for a volunteer to go first — don't over-explain, just start</li><li>Assign Persona A to the seller; give 30 seconds to read it</li><li>Let the call run — don't interrupt unless it completely stalls</li><li>Watch for: four pillars, decision-maker question, first motivation probe</li></ul>
+        </div>
+        <div>
+          <div class="round-col-label">Debrief Sequence</div>
+          <ul><li>Open to group: "Feedback for [agent]?"</li><li>Peers first — 2–3 observations from the group</li><li>Facilitator last — what they nailed, one coaching point, re-anchor positive</li><li>Rotate: agent → seller → picks next agent</li></ul>
+        </div>
+      </div>
+      <div class="agent-note mt12"><strong>What counts as a pass on Round 1:</strong> Did they set all four pillars? Get a yes/no commitment? Identify the decision-maker? Ask at least one motivation question and hold the silence? Agents have live call experience — the bar here is execution of the inbound structure, not just effort.</div>
+    </div>
+  </div>
+
+  <div class="round-block">
+    <div class="round-header"><span class="round-label">Round 2</span><span class="round-title">Missing Spouse — Decision-Maker Complexity</span><span class="round-badge badge-teal">Persona B</span></div>
+    <div class="round-body">
+      <div class="round-cols">
+        <div>
+          <div class="round-col-label">Facilitator Actions</div>
+          <ul><li>Brief the new seller on Persona B before starting</li><li>Seller says "I make the decisions" — but doesn't volunteer that spouse is on title</li><li>If agent doesn't ask about co-owners by Step 3, introduce spouse naturally at call's end</li></ul>
+        </div>
+        <div>
+          <div class="round-col-label">Key Coaching Focus</div>
+          <ul><li>Did they ask "Is there anyone else on the title?"</li><li>Did they get the spouse's name even without them on the call?</li><li>Did they weave the name in — "What would [name] think?"</li><li>Did they double down on confirming who's running point?</li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="round-block">
+    <div class="round-header"><span class="round-label">Round 3</span><span class="round-title">Probate / Estate Seller — Empathy + Complexity</span><span class="round-badge badge-orange">Persona C</span></div>
+    <div class="round-body">
+      <div class="round-cols">
+        <div>
+          <div class="round-col-label">Facilitator Actions</div>
+          <ul><li>Coach seller to mention the parent's passing naturally — not dramatically</li><li>Seller brings up price/timing early: "How quickly can we close?"</li><li>Seller has siblings on title; describes themselves as "handling it"</li></ul>
+        </div>
+        <div>
+          <div class="round-col-label">Key Coaching Focus</div>
+          <ul><li>Did they show empathy and slow down on the passing?</li><li>Did they redirect the early price question without dismissing it?</li><li>Did they clarify seller's role in probate — administrator? sole executor?</li><li>Did they use "feel, felt, found" language?</li></ul>
+        </div>
+      </div>
+      <div class="script-block mt12">
+        <div class="script-label">Feel, Felt, Found — Patrick's Language</div>
+        <p>"I understand how you feel. Others who've called us have felt exactly the same way — and what they found is that we made this process as simple as possible. You called the right place."</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="round-block">
+    <div class="round-header"><span class="round-label">Round 4</span><span class="round-title">Fast-Moving / Educated Seller</span><span class="round-badge badge-navy">Persona D</span></div>
+    <div class="round-body">
+      <div class="round-cols">
+        <div>
+          <div class="round-col-label">Facilitator Actions</div>
+          <ul><li>Use for experienced agents or late in the session</li><li>Brief seller to push for a number immediately and reference Zillow</li><li>Seller states: "My brother doesn't want to sell — I need numbers to convince him"</li><li>Let the agent struggle a bit — this is the hardest scenario</li></ul>
+        </div>
+        <div>
+          <div class="round-col-label">Key Coaching Focus</div>
+          <ul><li>Did they slow the call down without losing the seller?</li><li>Did they take the Zillow number and park it?</li><li>Did they identify the brother as a required signer?</li><li>Did they probe for motivation on the abandoned property?</li></ul>
+        </div>
+      </div>
+      <div class="deal-killer mt12"><strong>The leverage they missed:</strong> "That property has been sitting vacant for two years — that's taxes on an asset generating zero income. Ask: 'Have you been paying taxes on a property that's just sitting empty?'"</div>
+    </div>
+  </div>
+
+  <hr class="section-divider"/>
+  <div class="subsection-title">Universal Debrief Template — Use After Every Round</div>
+  <div class="mini-grid mt8">
+    <div class="mini-grid-item"><strong>Step 1 · Peers First</strong>"What did [agent] do well?" — Let the group give 2–3 observations before you weigh in.</div>
+    <div class="mini-grid-item"><strong>Step 2 · Peer Coaching</strong>"What's one thing that would have made the call stronger?" — Optional if session energy allows.</div>
+    <div class="mini-grid-item"><strong>Step 3 · Facilitator Closes</strong>Top strength → one specific coaching point → re-anchor to positive. End on forward momentum.</div>
+    <div class="mini-grid-item"><strong>Step 4 · Rotate</strong>Agent becomes seller. Seller picks the next agent. Keep it moving — don't let debrief eat the clock.</div>
+  </div>
+
+  <div class="module-nav-btns"><button class="nav-btn" onclick="showSection(4)">← Section 4</button><button class="nav-btn primary" onclick="showSection(6)">Section 6: Mistakes →</button></div>
+</div>
+
+<!-- SECTION 6: MISTAKES -->
+<div class="section-panel" id="section-6">
+  <div class="module-header">
+    <div class="module-eyebrow">Section 6</div>
+    <div class="module-title">Common Mistakes &amp; Coaching Prompts</div>
+    <div class="module-desc">Use this during and after role plays. The right prompt in the moment is more effective than a long explanation in debrief.</div>
+  </div>
+  <table class="mistakes-table">
+    <thead><tr><th style="width:28%">What You See</th><th style="width:22%">Root Cause</th><th style="width:50%">Coaching Prompt</th></tr></thead>
+    <tbody>
+      <tr><td><span class="tag-mistake">Skips Stage-Setting entirely</span></td><td>Nervousness; eager to get to questions</td><td><span class="tag-prompt">"What does the seller know about why they're on this call? You jumped straight to discovery — go back and set the stage."</span></td></tr>
+      <tr><td><span class="tag-mistake">Misses the Outcome pillar</span></td><td>Doesn't know it exists or rushes past it</td><td><span class="tag-prompt">"Did you get a yes/no commitment? Without that, 'maybe' is an acceptable answer at the end — and maybe never closes."</span></td></tr>
+      <tr><td><span class="tag-mistake">Accepts "I make the decisions" without verifying title</span></td><td>Trusts seller; afraid to push</td><td><span class="tag-prompt">"Is anyone else on the deed? A spouse on title can tank a contract at signing — you have to ask."</span></td></tr>
+      <tr><td><span class="tag-mistake">Gets spouse's name but never uses it</span></td><td>Doesn't know why it matters beyond the information itself</td><td><span class="tag-prompt">"You got the name — now weave them in. 'What would Sarah think about this?' If they pop up at the end, it's not a surprise."</span></td></tr>
+      <tr><td><span class="tag-mistake">Accepts surface motivation</span></td><td>Afraid to press; doesn't know what to do with silence</td><td><span class="tag-prompt">"That's the first answer. Ask one more layer — 'And what would you do with the money?' Find the dream."</span></td></tr>
+      <tr><td><span class="tag-mistake">Fills silence after the big-goal question</span></td><td>Discomfort with pause; instinct to help</td><td><span class="tag-prompt">"You asked the perfect question and then answered it for them. Ask it — then zip it for 60 seconds."</span></td></tr>
+      <tr><td><span class="tag-mistake">Engages Zillow number or offer code immediately</span></td><td>Caught off guard; no redirect ready</td><td><span class="tag-prompt">"Park it: 'I've got that — I want to give you an accurate number, so bear with me.' You just let them anchor the conversation."</span></td></tr>
+      <tr><td><span class="tag-mistake">Sounds scripted / reads verbatim</span></td><td>Under-prepared or over-reliant on notes</td><td><span class="tag-prompt">"Technically right, but does it feel like a call or a presentation? Let's try again — same points, your words."</span></td></tr>
+      <tr><td><span class="tag-mistake">Frames tenants as a company problem</span></td><td>Empathy instinct; inadvertent negative framing</td><td><span class="tag-prompt">"Flip it — 'we specialize in exactly these situations.' Don't say 'we have issues with tenants.' Don't introduce doubt."</span></td></tr>
+      <tr><td><span class="tag-mistake">Misses probate complexity (assumes single signer)</span></td><td>Doesn't know to probe the estate structure</td><td><span class="tag-prompt">"Are you the administrator? Is anyone else named on the estate? Probate has multiple signers — find them all now."</span></td></tr>
+    </tbody>
+  </table>
+  <div class="module-nav-btns"><button class="nav-btn" onclick="showSection(5)">← Section 5</button><button class="nav-btn primary" onclick="showSection(7)">Section 7: Close →</button></div>
+</div>
+
+<!-- SECTION 7: CLOSE -->
+<div class="section-panel" id="section-7">
+  <div class="module-header">
+    <div class="module-eyebrow">Section 7</div>
+    <div class="module-title">Closing the Session</div>
+    <div class="module-desc">End with a clear takeaway and a connection to their live inbound calls. Keep the group close-out focused and under 10 minutes.</div>
+  </div>
+  <div class="subsection-title">Group Close-Out</div>
+  <div class="script-block">
+    <div class="script-label">Facilitator — Closing Frame</div>
+    <p>"Good work today. I saw [specific thing the group did well collectively]. The one thing I want everyone to carry into their next inbound call is [single recurring coaching point]. You've already got the outbound reps — this structure is what turns inbound calls into contracts. Keep working it."</p>
+    <div class="script-note">Name one collective strength → one recurring coaching theme → connect it to their live work. Keep it tight.</div>
+  </div>
+  <hr class="section-divider"/>
+  <div class="subsection-title">Before You Release Them — Confirm These</div>
+  <ul class="checklist mt8">
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Confirm agents know which inbound scenarios to flag for a team lead vs. handle independently</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Remind agents to apply the inbound structure on their next live inbound call and self-assess against the four pillars</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Share any follow-up coaching notes in Slack after the session</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Note which agents are ready for more complex scenarios in the next session (Personas C and D)</li>
+  </ul>
+  <hr class="section-divider"/>
+  <div class="alert alert-info mt8"><strong>Connect to live calls.</strong> Agents are already on the phones. Encourage them to use the next inbound call as a real test of what was practiced — specifically the four pillars and the decision-maker question. Short debrief in the next team huddle reinforces the loop.</div>
+  <div class="alert alert-warn"><strong>Facilitator follow-up.</strong> If an agent had a specific pattern — filling silence, skipping the outcome pillar, not verifying title — send them a one-line note in Slack after the session. A private, specific coaching point lands better than a general group reminder.</div>
+  <div class="module-nav-btns"><button class="nav-btn" onclick="showSection(6)">← Section 6</button><button class="nav-btn primary" onclick="showSection(8)">Appendix →</button></div>
+</div>
+
+<!-- APPENDIX -->
+<div class="section-panel" id="section-8">
+  <div class="module-header">
+    <div class="module-eyebrow">Appendix</div>
+    <div class="module-title">Language Bank &amp; Steps 1–7 Reference</div>
+    <div class="module-desc">Verbatim phrases from live coaching sessions, plus the call flow quick reference for Steps 1–7.</div>
+  </div>
+
+  <div class="subsection-title">A. Key Phrases &amp; Language Bank</div>
+  <p style="font-size:13px;color:var(--text-secondary);line-height:1.65;margin-bottom:12px;">Proven lines from experienced agents in live sessions. These are anchors to return to — not scripts to memorize verbatim.</p>
+  <div class="lang-grid">
+    <div class="lang-item"><div class="lang-context">Call Opening</div><div class="lang-line">"Smile — it comes through in your voice. Sound conversational, never scripted."</div></div>
+    <div class="lang-item"><div class="lang-context">Stage-Setting — Outcome Pillar</div><div class="lang-line">"All I ask — whether it works or it doesn't — is that you just let me know where you stand. Does that sound fair?"</div></div>
+    <div class="lang-item"><div class="lang-context">Burning Questions Prompt</div><div class="lang-line">"Before we jump in — do you have any burning questions for me?" [Write them down. Address later.]</div></div>
+    <div class="lang-item"><div class="lang-context">Missing Spouse — Get the Name</div><div class="lang-line">"What's your wife's name? Sarah? And what would Sarah think about this timeline?"</div></div>
+    <div class="lang-item"><div class="lang-context">Missing Spouse — Double Down</div><div class="lang-line">"Just to make sure I'm understanding — you're primarily running point on this. Is that right?"</div></div>
+    <div class="lang-item"><div class="lang-context">Digging for Motivation</div><div class="lang-line">"Really? How long has that been on your mind?" / "What's the big goal here?" [then go silent]</div></div>
+    <div class="lang-item"><div class="lang-context">Beacon of Light Flip</div><div class="lang-line">"Good news — you called the right place. We work with people in this exact situation every single day."</div></div>
+    <div class="lang-item"><div class="lang-context">Offer Code Deflection</div><div class="lang-line">"Congratulations — not everyone gets one of those." [pivot back to stage-setting]</div></div>
+    <div class="lang-item"><div class="lang-context">Zillow / Price Deflection</div><div class="lang-line">"I've got that number — I want to give you an accurate offer, so let me gather a few more details and we'll come back to it."</div></div>
+    <div class="lang-item"><div class="lang-context">Feel, Felt, Found (Probate / Empathy)</div><div class="lang-line">"I understand how you feel. Others who've called us felt exactly the same way — and what they found is we made this as simple as possible."</div></div>
+    <div class="lang-item"><div class="lang-context">Condition — Neutral on Positives</div><div class="lang-line">"Okay, noted." [No celebration — preserve the negotiation anchor.]</div></div>
+    <div class="lang-item"><div class="lang-context">Condition — Slight Concern on Negatives</div><div class="lang-line">"Oh, that's important." / "Gosh, that sounds like it's been stressful to deal with."</div></div>
+    <div class="lang-item"><div class="lang-context">Credibility Beat — While "Submitting"</div><div class="lang-line">"Good news — the property qualifies. Let me get this over to Finance…" [deliver: since 2018, 80+ closings/month, as-is, no fees]</div></div>
+    <div class="lang-item"><div class="lang-context">Rapport Bonus</div><div class="lang-line">"People love talking about two things: their house and their children. Get them talking — they're so proud."</div></div>
+  </div>
+
+  <hr class="section-divider"/>
+  <div class="subsection-title">B. Steps 1–7 Quick Reference</div>
+  <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px;">Scope of this role play session. Steps 8–13 (Offer, Objection Handling, Close) are covered in separate training.</p>
+  <div class="step-ref">
+    <div><div class="phase-label-row" style="background:#21a9e1;">Opening</div></div>
+    <div class="step-row"><div class="step-accent" style="background:#21a9e1;"></div><div class="step-num-wrap"><div class="step-num-circle" style="background:#21a9e1;">1</div></div><div class="step-content"><div class="step-eyebrow" style="color:#21a9e1;">Step 1</div><div class="step-title">Introduction &amp; Rapport</div><div class="step-note">Warm greeting, confirm address &amp; offer code. Smile — it comes through.</div></div></div>
+    <div class="step-row"><div class="step-accent" style="background:#21a9e1;"></div><div class="step-num-wrap"><div class="step-num-circle" style="background:#21a9e1;">2</div></div><div class="step-content"><div class="step-eyebrow" style="color:#21a9e1;">Step 2</div><div class="step-title">Set the Stage</div><div class="step-note">Four pillars: Purpose, Agenda, Logistics, Outcome. Get the yes/no commitment. Identify all decision-makers now.</div></div></div>
+    <div style="margin-top:8px;"><div class="phase-label-row" style="background:#0f696e;">Discovery</div></div>
+    <div class="step-row"><div class="step-accent" style="background:#0f696e;"></div><div class="step-num-wrap"><div class="step-num-circle" style="background:#0f696e;">3</div></div><div class="step-content"><div class="step-eyebrow" style="color:#0f696e;">Step 3</div><div class="step-title">Fact Finding — Ownership &amp; Occupancy</div><div class="step-note">Confirm who owns, how acquired. Flag probate, multiple heirs, tenant status early.</div></div></div>
+    <div class="step-row"><div class="step-accent" style="background:#0f696e;"></div><div class="step-num-wrap"><div class="step-num-circle" style="background:#0f696e;">4</div></div><div class="step-content"><div class="step-eyebrow" style="color:#0f696e;">Step 4 — Highest Value</div><div class="step-title">Discovery &amp; Motivation</div><div class="step-note">Spend as much time here as possible. Press the bruise gently — then be the beacon of light. Impact questions + strong silence.</div></div></div>
+    <div class="step-row"><div class="step-accent" style="background:#0f696e;"></div><div class="step-num-wrap"><div class="step-num-circle" style="background:#0f696e;">5</div></div><div class="step-content"><div class="step-eyebrow" style="color:#0f696e;">Step 5</div><div class="step-title">Condition Assessment</div><div class="step-note">Grade A–F. Probe: Roof, HVAC, Water Heater, Plumbing, Electrical, Foundation. Neutral on positives. Slight concern on negatives.</div></div></div>
+    <div class="step-row"><div class="step-accent" style="background:#0f696e;"></div><div class="step-num-wrap"><div class="step-num-circle" style="background:#0f696e;">6</div></div><div class="step-content"><div class="step-eyebrow" style="color:#0f696e;">Step 6</div><div class="step-title">Recap &amp; Alignment</div><div class="step-note">Mirror back: "You're dealing with [pain], hoping to [goal], and the property's in [condition] — sound right?"</div></div></div>
+    <div class="step-row"><div class="step-accent" style="background:#0f696e;"></div><div class="step-num-wrap"><div class="step-num-circle" style="background:#0f696e;">7</div></div><div class="step-content"><div class="step-eyebrow" style="color:#0f696e;">Step 7</div><div class="step-title">Credibility &amp; Submit</div><div class="step-note">"The property qualifies — submitting to Finance now." While waiting: since 2018, 80+ closings/month, as-is, no fees. Credibility comes after the seller's story, not before.</div></div></div>
+  </div>
+
+  <div class="module-nav-btns"><button class="nav-btn" onclick="showSection(7)">← Section 7</button><button class="nav-btn primary" onclick="showSection(0)">↑ Back to Overview</button></div>
+</div>
+
+</div></div>
+
+<script>
+const panels = document.querySelectorAll('.section-panel');
+const navBtns = document.querySelectorAll('.mod-btn');
+function showSection(idx) {
+  panels.forEach((p,i) => p.classList.toggle('active', i===idx));
+  navBtns.forEach((b,i) => b.classList.toggle('active', i===idx));
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function toggleCard(headEl) { headEl.closest('.card').classList.toggle('open'); }
+function togglePillar(headEl) { headEl.closest('.pillar-card').classList.toggle('open'); }
+function toggleCheck(li) {
+  li.classList.toggle('checked');
+  li.querySelector('.check-box').textContent = li.classList.contains('checked') ? '✓' : '';
+}
+</script>
+</body>
+</html>
