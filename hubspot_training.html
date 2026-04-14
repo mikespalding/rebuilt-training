@@ -3,10 +3,146 @@
 <head>
 <meta charset="UTF-8"/>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjQ0MCAwIDU1MCA4OTAiPjxwYXRoIGQ9Im0gMzMzNy45OSwzNTQ0LjgzIDExNzkuNzksMTA3Ni43MiB2IDE5MzguMSBMIDMzMzcuOTksNTU5MC42IFYgMzU0NC44MyIgZmlsbD0iIzRlYTllMiIgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIi8+PHBhdGggZD0iTSA2MTY5LjQ4LDk5OTUuMDEgViA0NjIxLjU1IGwgMTE3OS44LC0xMDc2LjcyIHYgNTQ5MS4yOSBsIC0xMTc5LjgsOTU4Ljg5IiBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz48cGF0aCBkPSJNIDQ3NTMuNzQsNzc0NC4wNSBWIDQ4MzYuODkgbCA1ODkuODksNTM4LjM3IDU4OS45LC01MzguMzcgNC4zNywzOTczLjcyIC0xMTg0LjE2LC0xMDY2LjU2IiBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz48cGF0aCBkPSJtIDQ4MDIuMjEsMzQyNS4xOSBoIDQzMC42OSB2IDQzMC42OCBoIC00MzAuNjkgdiAtNDMwLjY4IiBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz48cGF0aCBkPSJtIDU0NDguMjQsMzQyNS4xOSBoIDQzMC43IHYgNDMwLjY4IGggLTQzMC43IHYgLTQzMC42OCIgZmlsbD0iIzRlYTllMiIgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIi8+PHBhdGggZD0ibSA1MjMyLjksNDUwMS45MSBoIC00MzAuNjkgdiAtNDMwLjY5IGggNDMwLjY5IHYgNDMwLjY5IiBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz48cGF0aCBkPSJtIDU0NDguMjQsNDUwMS45MSB2IC00MzAuNjkgaCA0MzAuNyB2IDQzMC42OSBoIC00MzAuNyIgZmlsbD0iIzRlYTllMiIgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIi8+PC9zdmc+"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>HubSpot for Acquisition Associates — Rebuilt</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HubSpot for Acquisition Associates &#x2014; Rebuilt Training</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
+  :root {
+    --primary:       #21a9e1;
+    --primary-light: #1a96cc;
+    --accent:        #f5831f;
+    --success:       #2e7d52;
+    --success-light: #f0fdf4;
+    --danger:        #c0392b;
+    --danger-light:  #fef2f2;
+    --warn:          #D97706;
+    --warn-light:    #FEF3C7;
+    --bg:            #efedeb;
+    --card:          #ffffff;
+    --text:          #1f3540;
+    --muted:         #5a7888;
+    --border:        rgba(31,53,64,0.12);
+    --navy:          #1f3540;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Montserrat', -apple-system, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+  .topbar { background:#1f3540; position:sticky; top:0; z-index:200; border-bottom:3px solid #21a9e1; }
+  .topbar-inner { max-width:1100px; margin:0 auto; padding:0 1.25rem; display:flex; align-items:center; gap:14px; height:56px; }
+  .topbar-divider { width:1px; height:22px; background:rgba(255,255,255,0.2); margin:0 4px; }
+  .topbar-label { font-size:11px; color:rgba(255,255,255,0.55); font-weight:500; letter-spacing:0.04em; text-transform:uppercase; font-family:Montserrat,sans-serif; }
+  .topbar-badge { margin-left:auto; background:#21a9e1; color:#fff; font-size:10px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; padding:3px 12px; border-radius:20px; font-family:Montserrat,sans-serif; }
+  .prog-bar-wrap { background:#fff; border-bottom:1px solid rgba(31,53,64,0.1); padding:10px 1.25rem; position:sticky; top:59px; z-index:99; }
+  .prog-bar-inner { max-width:1100px; margin:0 auto; }
+  .prog-meta { font-size:11px; color:#5a7888; font-weight:500; margin-bottom:6px; display:flex; justify-content:space-between; font-family:Montserrat,sans-serif; }
+  .prog-track { background:rgba(31,53,64,0.08); border-radius:4px; height:4px; overflow:hidden; }
+  .prog-fill { height:100%; background:linear-gradient(90deg,#21a9e1,#64b4b7); border-radius:4px; transition:width 0.4s ease; width:0%; }
+  .tab-nav-wrap { background:#fff; border-bottom:1px solid rgba(31,53,64,0.10); }
+  .tab-nav-inner { max-width:1100px; margin:0 auto; padding:0 1rem; display:flex; align-items:center; }
+  .tab-scroll { display:flex; gap:2px; overflow-x:auto; scrollbar-width:none; flex:1; }
+  .tab-scroll::-webkit-scrollbar { display:none; }
+  .t-tab { padding:11px 13px; font-size:10px; font-weight:600; border:none; background:transparent; cursor:pointer; color:#5a7888; border-bottom:3px solid transparent; white-space:nowrap; transition:all 0.15s; letter-spacing:0.03em; font-family:Montserrat,sans-serif; }
+  .t-tab:hover { color:#1f3540; background:#efedeb; }
+  .t-tab.active { color:#21a9e1; border-bottom-color:#21a9e1; }
+  .t-tab.done { color:#2e7d52; }
+  .nav-btns { display:flex; gap:8px; padding:8px 0 8px 16px; flex-shrink:0; }
+  .btn { padding:7px 16px; border-radius:6px; font-family:Montserrat,sans-serif; font-size:12px; font-weight:700; cursor:pointer; transition:all 0.15s; }
+  .btn-outline { border:1.5px solid rgba(31,53,64,0.2); background:#fff; color:#1f3540; }
+  .btn-outline:hover { border-color:#21a9e1; background:#EEF2FA; }
+  .btn-outline:disabled { opacity:0.35; cursor:not-allowed; }
+  .btn-primary { border:none; background:#21a9e1; color:#fff; }
+  .btn-primary:hover { background:#1a96cc; }
+  #content-area { max-width:860px; margin:0 auto; padding:32px 40px 80px; }
+  .slide { display:none; animation: fadeIn 0.25s ease; }
+  .slide.active { display:block; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+  .slide-type-tag { display:inline-block; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:3px 10px; border-radius:20px; margin-bottom:12px; }
+  .tag-lesson { background:#DBEAFE; color:#1E40AF; }
+  .tag-quiz { background:#FEF3C7; color:#92400E; }
+  .tag-intro { background:#EDE9FE; color:#4C1D95; }
+  .slide-title { font-size:28px; font-weight:800; color:var(--primary); margin-bottom:6px; line-height:1.2; }
+  .slide-subtitle { font-size:15px; color:var(--muted); margin-bottom:28px; padding-bottom:20px; border-bottom:2px solid var(--border); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:22px 24px; margin-bottom:16px; }
+  .card-header { font-size:13px; font-weight:700; color:var(--primary); text-transform:uppercase; letter-spacing:0.8px; margin-bottom:12px; }
+  .cover-hero { background:linear-gradient(135deg,var(--primary) 0%,#2E5FA3 100%); border-radius:14px; padding:50px 48px; color:#fff; margin-bottom:24px; position:relative; overflow:hidden; }
+  .cover-hero::after { content:''; position:absolute; top:-60px; right:-60px; width:300px; height:300px; background:rgba(255,255,255,0.05); border-radius:50%; }
+  .cover-brand { font-size:11px; font-weight:700; letter-spacing:2.5px; color:rgba(255,255,255,0.5); text-transform:uppercase; margin-bottom:12px; }
+  .cover-title { font-size:38px; font-weight:900; line-height:1.1; margin-bottom:12px; }
+  .cover-sub { font-size:16px; color:rgba(255,255,255,0.7); margin-bottom:30px; }
+  .cover-meta { display:flex; gap:24px; flex-wrap:wrap; }
+  .cover-meta-item { font-size:13px; color:rgba(255,255,255,0.7); }
+  .cover-meta-item strong { color:#fff; display:block; font-size:15px; }
+  .obj-list { list-style:none; }
+  .obj-list li { display:flex; align-items:flex-start; gap:10px; padding:8px 0; font-size:14.5px; border-bottom:1px solid var(--border); line-height:1.5; }
+  .obj-list li:last-child { border-bottom:none; }
+  .obj-check { color:var(--success); font-size:16px; flex-shrink:0; margin-top:1px; }
+  .bullet-list { list-style:none; }
+  .bullet-list li { display:flex; align-items:flex-start; gap:10px; padding:7px 0; font-size:14.5px; line-height:1.5; }
+  .bullet-list li::before { content:''; width:7px; height:7px; background:var(--accent); border-radius:50%; flex-shrink:0; margin-top:7px; }
+  .callout { display:flex; gap:14px; align-items:flex-start; padding:14px 18px; border-radius:8px; margin-bottom:16px; font-size:14px; line-height:1.5; }
+  .callout-icon { font-size:20px; flex-shrink:0; margin-top:1px; }
+  .callout-warn { background:var(--warn-light); border-left:4px solid var(--warn); }
+  .callout-info { background:#EEF2FF; border-left:4px solid var(--primary-light); }
+  .callout-success { background:var(--success-light); border-left:4px solid var(--success); }
+  .two-col { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:16px; }
+  .info-card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:18px; }
+  .info-card .ic-icon { font-size:26px; margin-bottom:8px; }
+  .info-card .ic-title { font-weight:700; font-size:14px; color:var(--primary); margin-bottom:5px; }
+  .info-card .ic-body { font-size:13px; color:#444; line-height:1.5; }
+  .role-badge { display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:20px; font-size:10px; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px; }
+  .role-acq { background:#DBEAFE; color:#1E40AF; }
+  .role-dispo { background:#FEF3C7; color:#92400E; }
+  .role-both { background:#F3E8FF; color:#6B21A8; }
+  .role-badges { display:flex; gap:6px; margin-bottom:16px; flex-wrap:wrap; }
+  /* Logo table */
+  .logo-table { width:100%; border-collapse:collapse; font-size:13.5px; margin-bottom:0; }
+  .logo-table th { background:var(--primary); color:#fff; padding:10px 14px; text-align:left; font-weight:600; font-size:12px; letter-spacing:0.5px; }
+  .logo-table td { padding:10px 14px; border-bottom:1px solid var(--border); vertical-align:middle; line-height:1.4; }
+  .logo-table tr:nth-child(even) td { background:#F8FAFF; }
+  .logo-table tr:nth-child(even) td:first-child { background:#F8FAFF; }
+  .logo-table td:first-child { width:150px; }
+  .logo-table td:nth-child(2) { font-weight:600; font-size:13px; color:var(--navy); }
+  /* Role section header */
+  .section-icon-header { display:flex; align-items:center; gap:14px; margin-bottom:20px; padding:16px 20px; background:#fff; border:1px solid var(--border); border-radius:10px; border-left:4px solid var(--primary); }
+  .section-icon-header svg { flex-shrink:0; }
+  .section-icon-header .sih-label { font-size:10px; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:2px; }
+  .section-icon-header .sih-title { font-size:16px; font-weight:800; color:var(--navy); }
+  /* Quiz */
+  .quiz-header { background:linear-gradient(90deg,var(--accent) 0%,#F5B942 100%); border-radius:10px 10px 0 0; padding:20px 24px; }
+  .quiz-header .q-label { font-size:11px; font-weight:700; letter-spacing:1.5px; color:rgba(0,0,0,0.5); text-transform:uppercase; margin-bottom:6px; }
+  .quiz-header .q-text { font-size:18px; font-weight:700; color:#1A1A1A; line-height:1.4; }
+  .quiz-body { background:var(--card); border:1px solid var(--border); border-top:none; border-radius:0 0 10px 10px; padding:20px 24px; margin-bottom:20px; }
+  .answer-option { display:flex; align-items:flex-start; gap:12px; padding:13px 16px; border:2px solid var(--border); border-radius:8px; margin-bottom:10px; cursor:pointer; transition:all 0.15s; font-size:14px; line-height:1.4; }
+  .answer-option:hover:not(.locked) { border-color:var(--primary-light); background:#EEF2FF; }
+  .answer-option.correct { border-color:var(--success); background:var(--success-light); }
+  .answer-option.wrong { border-color:var(--danger); background:var(--danger-light); }
+  .answer-option.locked { cursor:default; }
+  .opt-letter { min-width:28px; height:28px; border:2px solid var(--border); border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:12px; color:var(--muted); flex-shrink:0; transition:all 0.15s; }
+  .answer-option.correct .opt-letter { border-color:var(--success); color:#fff; background:var(--success); }
+  .answer-option.wrong .opt-letter { border-color:var(--danger); color:#fff; background:var(--danger); }
+  .feedback-box { margin-top:14px; padding:14px 18px; border-radius:8px; font-size:14px; line-height:1.5; display:none; }
+  .feedback-box.correct { background:var(--success-light); border-left:4px solid var(--success); color:#1a4731; display:block; }
+  .feedback-box.wrong { background:var(--danger-light); border-left:4px solid var(--danger); color:#7b1a1a; display:block; }
+  .feedback-box .fb-icon { font-size:18px; margin-bottom:4px; }
+  .feedback-box .fb-title { font-weight:700; margin-bottom:4px; }
+  .quiz-progress { display:flex; gap:6px; margin-bottom:20px; }
+  .qp-dot { height:8px; flex:1; border-radius:4px; background:var(--border); transition:background 0.3s; }
+  .qp-dot.correct { background:var(--success); }
+  .qp-dot.wrong { background:var(--danger); }
+  .score-card { text-align:center; padding:40px 30px; background:var(--card); border:1px solid var(--border); border-radius:12px; margin-bottom:20px; }
+  .score-circle { width:110px; height:110px; border-radius:50%; border:6px solid var(--primary); display:flex; align-items:center; justify-content:center; margin:0 auto 16px; font-size:34px; font-weight:900; color:var(--primary); }
+  .score-circle.pass { border-color:var(--success); color:var(--success); }
+  .score-circle.fail { border-color:var(--danger); color:var(--danger); }
+  .btn-retake { display:inline-block; margin-top:16px; padding:10px 28px; background:var(--accent); color:#fff; border:none; border-radius:7px; font-family:Montserrat,sans-serif; font-size:13px; font-weight:700; cursor:pointer; transition:background 0.15s; }
+  .btn-retake:hover { background:#d96d0a; }
+  /* Ref pill */
+  .ref-pill { position:fixed; bottom:24px; right:24px; z-index:500; display:flex; align-items:center; gap:10px; background:#1f3540; color:#fff; padding:10px 16px 10px 12px; border-radius:99px; box-shadow:0 4px 20px rgba(0,0,0,0.25); text-decoration:none; font-family:Montserrat,sans-serif; font-size:12px; font-weight:700; letter-spacing:0.02em; transition:background 0.15s,transform 0.15s; }
+  .ref-pill:hover { background:#21a9e1; transform:translateY(-2px); }
+  .ref-pill-icon { width:26px; height:26px; background:#21a9e1; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:13px; flex-shrink:0; }
+  .ref-pill:hover .ref-pill-icon { background:rgba(255,255,255,0.2); }
+  @media (max-width:640px) { #content-area { padding:20px 16px 60px; } .cover-hero { padding:28px 24px; } .cover-title { font-size:26px; } .two-col { grid-template-columns:1fr; } .logo-table td:first-child { width:100px; } }
+</style>
+<style>
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
   --blue:      #21a9e1;
@@ -705,70 +841,114 @@ body {
 .mod-tab.active { color: #21a9e1; border-bottom-color: #21a9e1; }
 .mod-tab.done { color: #2e7d52; }
 
+
+/* ── Tools Overview progress bar / tab-nav overrides ── */
+.prog-bar-wrap { background:#fff; border-bottom:1px solid rgba(31,53,64,0.1); padding:10px 1.25rem; position:sticky; top:59px; z-index:99; }
+.prog-bar-inner { max-width:1100px; margin:0 auto; }
+.prog-meta { font-size:11px; color:#5a7888; font-weight:500; margin-bottom:6px; display:flex; justify-content:space-between; font-family:Montserrat,sans-serif; }
+.prog-track { background:rgba(31,53,64,0.08); border-radius:4px; height:4px; overflow:hidden; }
+.prog-fill { height:100%; background:linear-gradient(90deg,#21a9e1,#64b4b7); border-radius:4px; transition:width 0.4s ease; width:0%; }
+.tab-nav-wrap { background:#fff; border-bottom:1px solid rgba(31,53,64,0.10); }
+.tab-nav-inner { max-width:1100px; margin:0 auto; padding:0 1rem; display:flex; align-items:center; }
+.tab-scroll { display:flex; gap:2px; overflow-x:auto; scrollbar-width:none; flex:1; }
+.tab-scroll::-webkit-scrollbar { display:none; }
+.t-tab { padding:11px 13px; font-size:10px; font-weight:600; border:none; background:transparent; cursor:pointer; color:#5a7888; border-bottom:3px solid transparent; white-space:nowrap; transition:all 0.15s; letter-spacing:0.03em; font-family:Montserrat,sans-serif; }
+.t-tab:hover { color:#1f3540; background:#efedeb; }
+.t-tab.active { color:#21a9e1; border-bottom-color:#21a9e1; }
+.t-tab.done { color:#2e7d52; }
+.nav-btns { display:flex; gap:8px; padding:8px 0 8px 16px; flex-shrink:0; }
+.btn { padding:7px 16px; border-radius:6px; font-family:Montserrat,sans-serif; font-size:12px; font-weight:700; cursor:pointer; transition:all 0.15s; }
+.btn-outline { border:1.5px solid rgba(31,53,64,0.2); background:#fff; color:#1f3540; }
+.btn-outline:hover { border-color:#21a9e1; background:#EEF2FA; }
+.btn-outline:disabled { opacity:0.35; cursor:not-allowed; }
+.btn-primary-nav { border:none; background:#21a9e1; color:#fff; }
+.btn-primary-nav:hover { background:#1a96cc; }
+#app-content { display:none; min-height:100vh; flex-direction:column; }
 </style>
 </head>
 <body>
-
-<!-- ── GATE ── -->
-<div id="gate">
-  <div class="gate-card">
-    <div class="gate-logo">
-      <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgoKPHN2ZwogICB2ZXJzaW9uPSIxLjEiCiAgIGlkPSJzdmcxIgogICB3aWR0aD0iMTQyNC45NzMzIgogICBoZWlnaHQ9IjEzMzIuNjY2NyIKICAgdmlld0JveD0iMCAwIDE0MjQuOTczMyAxMzMyLjY2NjciCiAgIHNvZGlwb2RpOmRvY25hbWU9IkxvZ28gU3RhY2tlZC5lcHMiCiAgIHhtbG5zOmlua3NjYXBlPSJodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy9uYW1lc3BhY2VzL2lua3NjYXBlIgogICB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiCiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnMKICAgICBpZD0iZGVmczEiIC8+CiAgPHNvZGlwb2RpOm5hbWVkdmlldwogICAgIGlkPSJuYW1lZHZpZXcxIgogICAgIHBhZ2Vjb2xvcj0iI2ZmZmZmZiIKICAgICBib3JkZXJjb2xvcj0iIzAwMDAwMCIKICAgICBib3JkZXJvcGFjaXR5PSIwLjI1IgogICAgIGlua3NjYXBlOnNob3dwYWdlc2hhZG93PSIyIgogICAgIGlua3NjYXBlOnBhZ2VvcGFjaXR5PSIwLjAiCiAgICAgaW5rc2NhcGU6cGFnZWNoZWNrZXJib2FyZD0iMCIKICAgICBpbmtzY2FwZTpkZXNrY29sb3I9IiNkMWQxZDEiPgogICAgPGlua3NjYXBlOnBhZ2UKICAgICAgIHg9IjAiCiAgICAgICB5PSIwIgogICAgICAgaW5rc2NhcGU6bGFiZWw9IjEiCiAgICAgICBpZD0icGFnZTEiCiAgICAgICB3aWR0aD0iMTQyNC45NzMzIgogICAgICAgaGVpZ2h0PSIxMzMyLjY2NjciCiAgICAgICBtYXJnaW49IjAiCiAgICAgICBibGVlZD0iMCIgLz4KICA8L3NvZGlwb2RpOm5hbWVkdmlldz4KICA8ZwogICAgIGlkPSJnMSIKICAgICBpbmtzY2FwZTpncm91cG1vZGU9ImxheWVyIgogICAgIGlua3NjYXBlOmxhYmVsPSIxIj4KICAgIDxnCiAgICAgICBpZD0iZ3JvdXAtUjUiPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDIiCiAgICAgICAgIGQ9Ik0gMCw0Mi4zMzk4IFYgMTkwNS4xMiBIIDQyNi44OTUgViAxNDg1LjMgYyAxMzEuNjkxLDMxNy41MSAzNTEuNTkzLDQ2OS4yMiA2NTkuNzM1LDQ1NS4xIHYgLTQ1MS41OCBoIC0yNC42OSBjIC0xOTIuODc3LDAgLTM0Ni45NiwtNjIuOTUgLTQ2Mi4xNzQsLTE4OC43NSBDIDQ4NC41MDQsMTE3NC4yMiA0MjYuODk1LDk5MS4zNzEgNDI2Ljg5NSw3NTEuNDY5IFYgNDIuMzM5OCBIIDAiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgzIgogICAgICAgICBkPSJtIDE2ODQuMjUsMTEwNC4yNiBoIDk1Ni4xIGMgLTE0LjEyLDE0My40NCAtNjIuMzUsMjYxLjA4IC0xNDQuNjcsMzUyLjggLTgyLjM0LDkxLjczIC0xOTEuNzEsMTM3LjYgLTMyOC4wOCwxMzcuNiAtMTI5LjQsMCAtMjM3LjYxLC00NS4zMSAtMzI0LjU5LC0xMzUuODMgLTg3LjA0LC05MC41NiAtMTM5Ljk1LC0yMDguNzYgLTE1OC43NiwtMzU0LjU3IHogTSAyMjE2Ljk5LDAgQyAxOTQ0LjExLDAgMTcxNi41NSw4OS45NjA5IDE1MzQuMzIsMjY5Ljg5MSAxMzUyLjAxLDQ0OS44MiAxMjYwLjg5LDY4Mi4wNTkgMTI2MC44OSw5NjYuNjcyIHYgNy4wNTggYyAwLDI3MC40NCA4NS44Myw0OTkuNzcgMjU3LjU1LDY4Ny45NiAxNzEuNjYsMTg4LjE0IDM4OS4yMywyODIuMjUgNjUyLjY3LDI4Mi4yNSAyODIuMjYsMCA1MDEuNTMsLTk1Ljg3IDY1Ny45NywtMjg3LjU0IDE1Ni40LC0xOTEuNzMgMjM0LjYzLC00MjkuODYgMjM0LjYzLC03MTQuNDIgMCwtMjMuNTM5IC0yLjM4LC02My41MTEgLTcuMDYsLTExOS45NiBIIDE2ODcuNzggYyAyMy40OSwtMTQ4LjE2OCA4My40NiwtMjY0LjA1MSAxNzkuOTQsLTM0Ny41IDk2LjQsLTgzLjUyIDIxNS4yLC0xMjUuMjM5IDM1Ni4zMiwtMTI1LjIzOSAxODMuNDUsMCAzNTEuNTgsNzQuMDc4IDUwNC41MSwyMjIuMjU4IEwgMjk3OS4wMywzNDkuMjgxIEMgMjc4Ni4xNSwxMTYuNDIyIDI1MzIuMTMsMCAyMjE2Ljk5LDAiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg0IgogICAgICAgICBkPSJtIDQzODYuMywzNzMuOTY5IGMgMTUwLjUsMCAyNzYuOTUsNTQuNjgzIDM3OS4yOCwxNjQuMDYyIDEwMi4zLDEwOS4zNzEgMTUzLjQ2LDI1My4zOTkgMTUzLjQ2LDQzMi4xNjggdiA3LjA2MyBjIDAsMTc2LjM5OCAtNTEuNzcsMzE5LjgyOCAtMTU1LjIzLDQzMC40MTggLTEwMy41NCwxMTAuNTMgLTIyOS4zMywxNjUuODEgLTM3Ny41MSwxNjUuODEgLTE0OC4xNiwwIC0yNzUuNzgsLTU1LjkgLTM4Mi43OCwtMTY3LjU4IC0xMDcuMDUsLTExMS43NCAtMTYwLjUzLC0yNTQuNjMgLTE2MC41MywtNDI4LjY0OCB2IC03LjA2MyBjIDAsLTE3NC4wNzggNTMuNDgsLTMxNi45NTcgMTYwLjUzLC00MjguNjQ4IDEwNywtMTExLjc0MiAyMzQuNjIsLTE2Ny41ODIgMzgyLjc4LC0xNjcuNTgyIHogTSA0NDg1LjA5LDMuNTM5MDYgYyAtMjU2LjM5LDAgLTQ2Ni45MSwxMDkuMzU4OTQgLTYzMS41MSwzMjguMDgxOTQgViA0Mi4zMzk4IGggLTQyNi45IFYgMjYxNy43OSBoIDQyNi45IFYgMTU5NC42NiBjIDE2NC42LDIzMi44NCAzNzUuMTIsMzQ5LjI4IDYzMS41MSwzNDkuMjggMjM1LjE3LDAgNDM4LjYzLC04Ny42NiA2MTAuMzQsLTI2Mi44NCAxNzEuNjcsLTE3NS4yNSAyNTcuNTUsLTQwOS44NiAyNTcuNTUsLTcwMy44MzggdiAtNy4wNjMgYyAwLC0yOTQuMDI3IC04NS44OCwtNTI4LjYzNiAtMjU3LjU1LC03MDMuODI4IEMgNDkyMy43Miw5MS4xMjExIDQ3MjAuMjYsMy41MzkwNiA0NDg1LjA5LDMuNTM5MDYiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg1IgogICAgICAgICBkPSJtIDYzNjguMzQsMy41MzkwNiBjIC0yMDcsMCAtMzY5LjMsNjQuNjUyMzQgLTQ4Ni44NiwxOTQuMDMwOTQgLTExNy42NSwxMjkuMzIxIC0xNzYuNDEsMzAzLjQxIC0xNzYuNDEsNTIyLjE0MSBWIDE5MDUuMTIgaCA0MjYuODkgViA4NDYuNzE5IGMgMCwtMTQ1Ljg2IDM0LjY3LC0yNTguMTYgMTA0LjA4LC0zMzYuOTE4IDY5LjMzLC03OC44MjEgMTY3LjU3LC0xMTguMTkyIDI5NC42LC0xMTguMTkyIDEyNC42MiwwIDIyNS43OCw0MS4xMjEgMzAzLjM5LDEyMy40ODEgNzcuNjIsODIuMzEyIDExNi40MiwxOTUuMTk5IDExNi40MiwzMzguNjggdiAxMDUxLjM1IGggNDI2LjkgViA0Mi4zMzk4IGggLTQyNi45IFYgMzMxLjYyMSBDIDY4MDIuMjksMTEyLjg5OCA2NjA4LjIzLDMuNTM5MDYgNjM2OC4zNCwzLjUzOTA2IgogICAgICAgICBzdHlsZT0iZmlsbDojMjEzMDNiO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lIgogICAgICAgICB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiIC8+CiAgICAgIDxwYXRoCiAgICAgICAgIGlkPSJwYXRoNiIKICAgICAgICAgZD0iTSA3ODU1LjM3LDQyLjMzOTggViAxOTA1LjEyIGggNDI2Ljg5IFYgNDIuMzM5OCBaIE0gNzgzNy43MywyMTkwLjg5IHYgNDA1LjcyIGggNDU4LjY0IHYgLTQwNS43MiBoIC00NTguNjQiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg3IgogICAgICAgICBkPSJNIDg3NzIuMyw0Mi4zMzk4IFYgMjYxNy43OSBoIDQyNi44NyBWIDQyLjMzOTggSCA4NzcyLjMiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg4IgogICAgICAgICBkPSJtIDEwMjk1LjcsMTAuNTg5OCBjIC0zNTcuNTgsMCAtNTM2LjMsMTgyLjI1MDIgLTUzNi4zLDU0Ni44NDAyIHYgOTgwLjc4IGggLTIzNi4zNiB2IDM2Ni45MSBoIDIzNi4zNiB2IDUxMS41NiBoIDQyNi45IHYgLTUxMS41NiBoIDUwMSB2IC0zNjYuOTEgaCAtNTAxIFYgNjI0LjQ2MSBjIDAsLTE1NS4yMzEgNzYuNCwtMjMyLjg1MiAyMjkuMywtMjMyLjg1MiA5MS43LDAgMTc5LjksMjEuMTggMjY0LjYsNjMuNTEyIFYgMTA1Ljg0IGMgLTExMi45LC02My41MDAyIC0yNDEuMSwtOTUuMjUwMiAtMzg0LjUsLTk1LjI1MDIiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg5IgogICAgICAgICBkPSJtIDMzMzcuOTksMzU0NC44MyAxMTc5Ljc5LDEwNzYuNzIgdiAxOTM4LjEgTCAzMzM3Ljk5LDU1OTAuNiBWIDM1NDQuODMiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgxMCIKICAgICAgICAgZD0iTSA2MTY5LjQ4LDk5OTUuMDEgViA0NjIxLjU1IGwgMTE3OS44LC0xMDc2LjcyIHYgNTQ5MS4yOSBsIC0xMTc5LjgsOTU4Ljg5IgogICAgICAgICBzdHlsZT0iZmlsbDojNGVhOWUyO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lIgogICAgICAgICB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiIC8+CiAgICAgIDxwYXRoCiAgICAgICAgIGlkPSJwYXRoMTEiCiAgICAgICAgIGQ9Ik0gNDc1My43NCw3NzQ0LjA1IFYgNDgzNi44OSBsIDU4OS44OSw1MzguMzcgNTg5LjksLTUzOC4zNyA0LjM3LDM5NzMuNzIgLTExODQuMTYsLTEwNjYuNTYiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgxMiIKICAgICAgICAgZD0ibSA0ODAyLjIxLDM0MjUuMTkgaCA0MzAuNjkgdiA0MzAuNjggaCAtNDMwLjY5IHYgLTQzMC42OCIKICAgICAgICAgc3R5bGU9ImZpbGw6IzRlYTllMjtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZSIKICAgICAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIiAvPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDEzIgogICAgICAgICBkPSJtIDU0NDguMjQsMzQyNS4xOSBoIDQzMC43IHYgNDMwLjY4IGggLTQzMC43IHYgLTQzMC42OCIKICAgICAgICAgc3R5bGU9ImZpbGw6IzRlYTllMjtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZSIKICAgICAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIiAvPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDE0IgogICAgICAgICBkPSJtIDUyMzIuOSw0NTAxLjkxIGggLTQzMC42OSB2IC00MzAuNjkgaCA0MzAuNjkgdiA0MzAuNjkiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgxNSIKICAgICAgICAgZD0ibSA1NDQ4LjI0LDQ1MDEuOTEgdiAtNDMwLjY5IGggNDMwLjcgdiA0MzAuNjkgaCAtNDMwLjciCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=" alt="Rebuilt logo" style="height:56px;width:auto;"/>
+<div id="email-gate" style="position:fixed;inset:0;background:rgba(10,22,28,0.93);z-index:9999;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);">
+  <div style="background:#fff;border-radius:14px;padding:44px 40px 36px;max-width:420px;width:92%;text-align:center;box-shadow:0 40px 100px rgba(0,0,0,0.4);font-family:Montserrat,sans-serif;">
+    <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgoKPHN2ZwogICB2ZXJzaW9uPSIxLjEiCiAgIGlkPSJzdmcxIgogICB3aWR0aD0iMTQyNC45NzMzIgogICBoZWlnaHQ9IjEzMzIuNjY2NyIKICAgdmlld0JveD0iMCAwIDE0MjQuOTczMyAxMzMyLjY2NjciCiAgIHNvZGlwb2RpOmRvY25hbWU9IkxvZ28gU3RhY2tlZC5lcHMiCiAgIHhtbG5zOmlua3NjYXBlPSJodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy9uYW1lc3BhY2VzL2lua3NjYXBlIgogICB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiCiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnMKICAgICBpZD0iZGVmczEiIC8+CiAgPHNvZGlwb2RpOm5hbWVkdmlldwogICAgIGlkPSJuYW1lZHZpZXcxIgogICAgIHBhZ2Vjb2xvcj0iI2ZmZmZmZiIKICAgICBib3JkZXJjb2xvcj0iIzAwMDAwMCIKICAgICBib3JkZXJvcGFjaXR5PSIwLjI1IgogICAgIGlua3NjYXBlOnNob3dwYWdlc2hhZG93PSIyIgogICAgIGlua3NjYXBlOnBhZ2VvcGFjaXR5PSIwLjAiCiAgICAgaW5rc2NhcGU6cGFnZWNoZWNrZXJib2FyZD0iMCIKICAgICBpbmtzY2FwZTpkZXNrY29sb3I9IiNkMWQxZDEiPgogICAgPGlua3NjYXBlOnBhZ2UKICAgICAgIHg9IjAiCiAgICAgICB5PSIwIgogICAgICAgaW5rc2NhcGU6bGFiZWw9IjEiCiAgICAgICBpZD0icGFnZTEiCiAgICAgICB3aWR0aD0iMTQyNC45NzMzIgogICAgICAgaGVpZ2h0PSIxMzMyLjY2NjciCiAgICAgICBtYXJnaW49IjAiCiAgICAgICBibGVlZD0iMCIgLz4KICA8L3NvZGlwb2RpOm5hbWVkdmlldz4KICA8ZwogICAgIGlkPSJnMSIKICAgICBpbmtzY2FwZTpncm91cG1vZGU9ImxheWVyIgogICAgIGlua3NjYXBlOmxhYmVsPSIxIj4KICAgIDxnCiAgICAgICBpZD0iZ3JvdXAtUjUiPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDIiCiAgICAgICAgIGQ9Ik0gMCw0Mi4zMzk4IFYgMTkwNS4xMiBIIDQyNi44OTUgViAxNDg1LjMgYyAxMzEuNjkxLDMxNy41MSAzNTEuNTkzLDQ2OS4yMiA2NTkuNzM1LDQ1NS4xIHYgLTQ1MS41OCBoIC0yNC42OSBjIC0xOTIuODc3LDAgLTM0Ni45NiwtNjIuOTUgLTQ2Mi4xNzQsLTE4OC43NSBDIDQ4NC41MDQsMTE3NC4yMiA0MjYuODk1LDk5MS4zNzEgNDI2Ljg5NSw3NTEuNDY5IFYgNDIuMzM5OCBIIDAiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgzIgogICAgICAgICBkPSJtIDE2ODQuMjUsMTEwNC4yNiBoIDk1Ni4xIGMgLTE0LjEyLDE0My40NCAtNjIuMzUsMjYxLjA4IC0xNDQuNjcsMzUyLjggLTgyLjM0LDkxLjczIC0xOTEuNzEsMTM3LjYgLTMyOC4wOCwxMzcuNiAtMTI5LjQsMCAtMjM3LjYxLC00NS4zMSAtMzI0LjU5LC0xMzUuODMgLTg3LjA0LC05MC41NiAtMTM5Ljk1LC0yMDguNzYgLTE1OC43NiwtMzU0LjU3IHogTSAyMjE2Ljk5LDAgQyAxOTQ0LjExLDAgMTcxNi41NSw4OS45NjA5IDE1MzQuMzIsMjY5Ljg5MSAxMzUyLjAxLDQ0OS44MiAxMjYwLjg5LDY4Mi4wNTkgMTI2MC44OSw5NjYuNjcyIHYgNy4wNTggYyAwLDI3MC40NCA4NS44Myw0OTkuNzcgMjU3LjU1LDY4Ny45NiAxNzEuNjYsMTg4LjE0IDM4OS4yMywyODIuMjUgNjUyLjY3LDI4Mi4yNSAyODIuMjYsMCA1MDEuNTMsLTk1Ljg3IDY1Ny45NywtMjg3LjU0IDE1Ni40LC0xOTEuNzMgMjM0LjYzLC00MjkuODYgMjM0LjYzLC03MTQuNDIgMCwtMjMuNTM5IC0yLjM4LC02My41MTEgLTcuMDYsLTExOS45NiBIIDE2ODcuNzggYyAyMy40OSwtMTQ4LjE2OCA4My40NiwtMjY0LjA1MSAxNzkuOTQsLTM0Ny41IDk2LjQsLTgzLjUyIDIxNS4yLC0xMjUuMjM5IDM1Ni4zMiwtMTI1LjIzOSAxODMuNDUsMCAzNTEuNTgsNzQuMDc4IDUwNC41MSwyMjIuMjU4IEwgMjk3OS4wMywzNDkuMjgxIEMgMjc4Ni4xNSwxMTYuNDIyIDI1MzIuMTMsMCAyMjE2Ljk5LDAiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg0IgogICAgICAgICBkPSJtIDQzODYuMywzNzMuOTY5IGMgMTUwLjUsMCAyNzYuOTUsNTQuNjgzIDM3OS4yOCwxNjQuMDYyIDEwMi4zLDEwOS4zNzEgMTUzLjQ2LDI1My4zOTkgMTUzLjQ2LDQzMi4xNjggdiA3LjA2MyBjIDAsMTc2LjM5OCAtNTEuNzcsMzE5LjgyOCAtMTU1LjIzLDQzMC40MTggLTEwMy41NCwxMTAuNTMgLTIyOS4zMywxNjUuODEgLTM3Ny41MSwxNjUuODEgLTE0OC4xNiwwIC0yNzUuNzgsLTU1LjkgLTM4Mi43OCwtMTY3LjU4IC0xMDcuMDUsLTExMS43NCAtMTYwLjUzLC0yNTQuNjMgLTE2MC41MywtNDI4LjY0OCB2IC03LjA2MyBjIDAsLTE3NC4wNzggNTMuNDgsLTMxNi45NTcgMTYwLjUzLC00MjguNjQ4IDEwNywtMTExLjc0MiAyMzQuNjIsLTE2Ny41ODIgMzgyLjc4LC0xNjcuNTgyIHogTSA0NDg1LjA5LDMuNTM5MDYgYyAtMjU2LjM5LDAgLTQ2Ni45MSwxMDkuMzU4OTQgLTYzMS41MSwzMjguMDgxOTQgViA0Mi4zMzk4IGggLTQyNi45IFYgMjYxNy43OSBoIDQyNi45IFYgMTU5NC42NiBjIDE2NC42LDIzMi44NCAzNzUuMTIsMzQ5LjI4IDYzMS41MSwzNDkuMjggMjM1LjE3LDAgNDM4LjYzLC04Ny42NiA2MTAuMzQsLTI2Mi44NCAxNzEuNjcsLTE3NS4yNSAyNTcuNTUsLTQwOS44NiAyNTcuNTUsLTcwMy44MzggdiAtNy4wNjMgYyAwLC0yOTQuMDI3IC04NS44OCwtNTI4LjYzNiAtMjU3LjU1LC03MDMuODI4IEMgNDkyMy43Miw5MS4xMjExIDQ3MjAuMjYsMy41MzkwNiA0NDg1LjA5LDMuNTM5MDYiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg1IgogICAgICAgICBkPSJtIDYzNjguMzQsMy41MzkwNiBjIC0yMDcsMCAtMzY5LjMsNjQuNjUyMzQgLTQ4Ni44NiwxOTQuMDMwOTQgLTExNy42NSwxMjkuMzIxIC0xNzYuNDEsMzAzLjQxIC0xNzYuNDEsNTIyLjE0MSBWIDE5MDUuMTIgaCA0MjYuODkgViA4NDYuNzE5IGMgMCwtMTQ1Ljg2IDM0LjY3LC0yNTguMTYgMTA0LjA4LC0zMzYuOTE4IDY5LjMzLC03OC44MjEgMTY3LjU3LC0xMTguMTkyIDI5NC42LC0xMTguMTkyIDEyNC42MiwwIDIyNS43OCw0MS4xMjEgMzAzLjM5LDEyMy40ODEgNzcuNjIsODIuMzEyIDExNi40MiwxOTUuMTk5IDExNi40MiwzMzguNjggdiAxMDUxLjM1IGggNDI2LjkgViA0Mi4zMzk4IGggLTQyNi45IFYgMzMxLjYyMSBDIDY4MDIuMjksMTEyLjg5OCA2NjA4LjIzLDMuNTM5MDYgNjM2OC4zNCwzLjUzOTA2IgogICAgICAgICBzdHlsZT0iZmlsbDojMjEzMDNiO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lIgogICAgICAgICB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiIC8+CiAgICAgIDxwYXRoCiAgICAgICAgIGlkPSJwYXRoNiIKICAgICAgICAgZD0iTSA3ODU1LjM3LDQyLjMzOTggViAxOTA1LjEyIGggNDI2Ljg5IFYgNDIuMzM5OCBaIE0gNzgzNy43MywyMTkwLjg5IHYgNDA1LjcyIGggNDU4LjY0IHYgLTQwNS43MiBoIC00NTguNjQiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg3IgogICAgICAgICBkPSJNIDg3NzIuMyw0Mi4zMzk4IFYgMjYxNy43OSBoIDQyNi44NyBWIDQyLjMzOTggSCA4NzcyLjMiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg4IgogICAgICAgICBkPSJtIDEwMjk1LjcsMTAuNTg5OCBjIC0zNTcuNTgsMCAtNTM2LjMsMTgyLjI1MDIgLTUzNi4zLDU0Ni44NDAyIHYgOTgwLjc4IGggLTIzNi4zNiB2IDM2Ni45MSBoIDIzNi4zNiB2IDUxMS41NiBoIDQyNi45IHYgLTUxMS41NiBoIDUwMSB2IC0zNjYuOTEgaCAtNTAxIFYgNjI0LjQ2MSBjIDAsLTE1NS4yMzEgNzYuNCwtMjMyLjg1MiAyMjkuMywtMjMyLjg1MiA5MS43LDAgMTc5LjksMjEuMTggMjY0LjYsNjMuNTEyIFYgMTA1Ljg0IGMgLTExMi45LC02My41MDAyIC0yNDEuMSwtOTUuMjUwMiAtMzg0LjUsLTk1LjI1MDIiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg5IgogICAgICAgICBkPSJtIDMzMzcuOTksMzU0NC44MyAxMTc5Ljc5LDEwNzYuNzIgdiAxOTM4LjEgTCAzMzM3Ljk5LDU1OTAuNiBWIDM1NDQuODMiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgxMCIKICAgICAgICAgZD0iTSA2MTY5LjQ4LDk5OTUuMDEgViA0NjIxLjU1IGwgMTE3OS44LC0xMDc2LjcyIHYgNTQ5MS4yOSBsIC0xMTc5LjgsOTU4Ljg5IgogICAgICAgICBzdHlsZT0iZmlsbDojNGVhOWUyO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lIgogICAgICAgICB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiIC8+CiAgICAgIDxwYXRoCiAgICAgICAgIGlkPSJwYXRoMTEiCiAgICAgICAgIGQ9Ik0gNDc1My43NCw3NzQ0LjA1IFYgNDgzNi44OSBsIDU4OS44OSw1MzguMzcgNTg5LjksLTUzOC4zNyA0LjM3LDM5NzMuNzIgLTExODQuMTYsLTEwNjYuNTYiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgxMiIKICAgICAgICAgZD0ibSA0ODAyLjIxLDM0MjUuMTkgaCA0MzAuNjkgdiA0MzAuNjggaCAtNDMwLjY5IHYgLTQzMC42OCIKICAgICAgICAgc3R5bGU9ImZpbGw6IzRlYTllMjtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZSIKICAgICAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIiAvPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDEzIgogICAgICAgICBkPSJtIDU0NDguMjQsMzQyNS4xOSBoIDQzMC43IHYgNDMwLjY4IGggLTQzMC43IHYgLTQzMC42OCIKICAgICAgICAgc3R5bGU9ImZpbGw6IzRlYTllMjtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZSIKICAgICAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIiAvPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDE0IgogICAgICAgICBkPSJtIDUyMzIuOSw0NTAxLjkxIGggLTQzMC42OSB2IC00MzAuNjkgaCA0MzAuNjkgdiA0MzAuNjkiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgxNSIKICAgICAgICAgZD0ibSA1NDQ4LjI0LDQ1MDEuOTEgdiAtNDMwLjY5IGggNDMwLjcgdiA0MzAuNjkgaCAtNDMwLjciCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=" alt="Rebuilt" style="height:56px;width:auto;margin:0 auto 20px;display:block;"/>
+    <h2 style="font-size:18px;font-weight:800;color:#1f3540;margin-bottom:6px;">HubSpot for Acquisition Associates</h2>
+    <p style="font-size:12px;color:#5a7888;line-height:1.6;margin-bottom:24px;">Enter your Rebuilt email to access this training and track your progress.</p>
+    <div style="text-align:left;margin-bottom:8px;">
+      <label style="display:block;font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#5a7888;margin-bottom:6px;">Rebuilt Email Address</label>
+      <input type="text" id="gate-email" placeholder="yourname@rebuilt.com"
+        style="width:100%;padding:13px 14px;border:2px solid rgba(31,53,64,0.15);border-radius:8px;font-family:Montserrat,sans-serif;font-size:14px;font-weight:500;color:#1f3540;outline:none;"
+        autocomplete="email" autocapitalize="off"/>
     </div>
-    <div class="gate-title">HubSpot for Acquisition Associates</div>
-    <div class="gate-subtitle">7 modules · ~25 min · Knowledge checks included</div>
-    <label class="gate-label" for="gate-email">Rebuilt Email Address</label>
-    <input class="gate-input" type="text" id="gate-email" placeholder="you@rebuilt.com"/>
-    <div class="gate-error" id="gate-error"></div>
-    <button class="btn-primary" onclick="startCourse()">Start Training →</button>
+    <div id="gate-error" style="font-size:11px;color:#c0392b;text-align:left;margin-bottom:12px;min-height:14px;"></div>
+    <button onclick="submitGate()" style="width:100%;padding:14px;background:#21a9e1;color:white;border:none;border-radius:8px;font-family:Montserrat,sans-serif;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:0.04em;">Access Training &#x2192;</button>
+    <p style="font-size:11px;color:#5a7888;margin-top:14px;line-height:1.5;">Progress is tracked and recorded to your Training Hub dashboard.</p>
   </div>
 </div>
 
-<!-- ── APP ── -->
-<div id="app">
-  <div class="top-bar">
-    <div class="top-bar-inner">
-      <div class="top-logo">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 80 450 660" style="height:36px;width:auto;">
-          <g transform="matrix(0.13333333,0,0,-0.13333333,0,732.2)" fill="#21a9e1">
-            <path d="m 0,100 986.152,900 V 2620 L 0,1810 V 100"/>
-            <path d="M 2366.76,5491.51 V 1000 l 986.15,-900 v 4590 l -986.15,801.51"/>
-            <path d="M 1183.38,3610 V 1180 l 493.08,450 493.07,-450 3.65,3321.51 -989.8,-891.51"/>
-            <path d="m 1223.9,0 h 360 v 360 h -360 V 0"/>
-            <path d="m 1763.9,0 h 360 v 360 h -360 V 0"/>
-            <path d="m 1583.9,900 h -360 V 540 h 360 v 360"/>
-            <path d="M 1763.9,900 V 540 h 360 v 360 h -360"/>
-          </g>
-        </svg>
-        <span style="width:1px;height:22px;background:rgba(255,255,255,0.2);margin:0 12px;display:inline-block;vertical-align:middle;"></span>
-        <span class="top-course-name">ASSOCIATE TRAINING</span>
-      </div>
-      <div class="top-right">
-        <div class="top-progress-wrap">
-          <div class="top-progress-bar"><div class="top-progress-fill" id="top-progress-fill"></div></div>
-          <span class="top-progress-label" id="top-progress-label">0%</span>
-        </div>
-        <div style="margin-left:16px;background:#21a9e1;color:#fff;font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:3px 12px;border-radius:20px;font-family:Montserrat,sans-serif;white-space:nowrap;">HubSpot</div>
-      </div>
-    </div>
-  </div>
-
-
-<!-- MODULE TABS -->
-<div class="mod-tabs-wrap">
-  <div class="mod-tabs-inner">
-    <button class="mod-tab active" id="tab-0" onclick="goToSlide(0)">1 · Accessing HubSpot</button>
-    <button class="mod-tab" id="tab-1" onclick="goToSlide(1)">2 · Left Panel</button>
-    <button class="mod-tab" id="tab-2" onclick="goToSlide(2)">3 · Notes &amp; Tasks</button>
-    <button class="mod-tab" id="tab-3" onclick="goToSlide(3)">4 · Middle Panel</button>
-    <button class="mod-tab" id="tab-4" onclick="goToSlide(4)">5 · PandaDocs</button>
-    <button class="mod-tab" id="tab-5" onclick="goToSlide(5)">6 · Dashboard</button>
-    <button class="mod-tab" id="tab-6" onclick="goToSlide(6)">7 · Workflow</button>
+<div id="completion-screen" style="display:none;position:fixed;inset:0;background:rgba(10,22,28,0.93);z-index:9999;align-items:center;justify-content:center;backdrop-filter:blur(6px);">
+  <div style="background:#fff;border-radius:14px;padding:48px 40px 40px;max-width:460px;width:90%;text-align:center;box-shadow:0 32px 80px rgba(0,0,0,0.35);font-family:Montserrat,sans-serif;">
+    <div style="width:64px;height:64px;background:#2ecc71;border-radius:50%;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;font-size:28px;color:white;">&#x2713;</div>
+    <h2 style="font-size:22px;font-weight:800;color:#1f3540;margin-bottom:8px;">Training Complete!</h2>
+    <p style="font-size:13px;color:#5a7888;line-height:1.6;margin-bottom:6px;">You&#x2019;ve successfully completed</p>
+    <p style="font-size:13px;color:#5a7888;margin-bottom:4px;"><strong>HubSpot for Acquisition Associates</strong></p>
+    <div id="cs-score" style="font-size:42px;font-weight:900;color:#21a9e1;margin:16px 0 4px;line-height:1;">&#x2014;</div>
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#5a7888;margin-bottom:24px;">Overall Score</div>
+    <p style="font-size:12px;color:#5a7888;margin-bottom:24px;">Your completion has been recorded on your Training Hub dashboard.</p>
+    <a href="index.html" style="display:inline-block;padding:14px 32px;background:#21a9e1;color:white;font-weight:700;font-size:14px;text-decoration:none;border-radius:8px;font-family:Montserrat,sans-serif;letter-spacing:0.04em;">&#x2190; Back to Training Hub</a>
+    <div id="cs-date" style="font-size:11px;color:#95a5a6;margin-top:14px;"></div>
   </div>
 </div>
 
-  <!-- CONTENT -->
-    <div class="page-wrap"><div class="content-area">
+
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 80 450 660" style="height:36px;width:auto;">
+      <g transform="matrix(0.13333333,0,0,-0.13333333,0,732.2)" fill="#21a9e1">
+        <path d="m 0,100 986.152,900 V 2620 L 0,1810 V 100"/>
+        <path d="M 2366.76,5491.51 V 1000 l 986.15,-900 v 4590 l -986.15,801.51"/>
+        <path d="M 1183.38,3610 V 1180 l 493.08,450 493.07,-450 3.65,3321.51 -989.8,-891.51"/>
+        <path d="m 1223.9,0 h 360 v 360 h -360 V 0"/>
+        <path d="m 1763.9,0 h 360 v 360 h -360 V 0"/>
+        <path d="m 1583.9,900 h -360 V 540 h 360 v 360"/>
+        <path d="M 1763.9,900 V 540 h 360 v 360 h -360"/>
+      </g>
+    </svg>
+    <div class="topbar-divider"></div>
+    <div class="topbar-label">Associate Training</div>
+    <div class="topbar-badge">HubSpot Training</div>
+  </div>
+</div>
+
+<div class="prog-bar-wrap">
+  <div class="prog-bar-inner">
+    <div class="prog-meta">
+      <span id="progress-label">Module 1</span>
+      <span id="progressPct">0 of 7 completed</span>
+    </div>
+    <div class="prog-track"><div class="prog-fill" id="progressFill"></div></div>
+  </div>
+<div class="tab-nav-wrap">
+  <div class="tab-nav-inner">
+    <div class="tab-scroll">
+      <button class="t-tab active" id="tab-0" onclick="goToSlide(0)">1 · Accessing HubSpot</button>
+      <button class="t-tab" id="tab-1" onclick="goToSlide(1)">2 · Left Panel</button>
+      <button class="t-tab" id="tab-2" onclick="goToSlide(2)">3 · Notes &amp; Tasks</button>
+      <button class="t-tab" id="tab-3" onclick="goToSlide(3)">4 · Middle Panel</button>
+      <button class="t-tab" id="tab-4" onclick="goToSlide(4)">5 · PandaDocs</button>
+      <button class="t-tab" id="tab-5" onclick="goToSlide(5)">6 · Dashboard</button>
+      <button class="t-tab" id="tab-6" onclick="goToSlide(6)">7 · Workflow</button>
+    </div>
+    <div class="nav-btns">
+      <button id="btnPrev" class="btn btn-outline" onclick="navigate(-1)" disabled>&#x2190; Back</button>
+      <button id="btnNext" class="btn btn-primary" onclick="navigate(1)">Continue &#x2192;</button>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<div id="app-content">
+<div class="page-wrap"><div class="content-area">
 
       <!-- ══════════════════════════════════════
            MODULE 1: ACCESSING HUBSPOT
@@ -1519,9 +1699,7 @@ body {
       </div>
 
     </div></div><!-- /content-area /page-wrap -->
-  </div><!-- /main-layout -->
-</div><!-- /app -->
-
+</div>
 <!-- ── MODULE SCORECARD OVERLAY ── -->
 <div id="scorecard-overlay">
   <div class="scorecard-modal">
@@ -1556,7 +1734,8 @@ body {
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+
+<script>
 // ── USER STATE ──
 let userName = '', userEmail = '';
 
@@ -1699,26 +1878,6 @@ const moduleState = Array(7).fill(null).map(() => ({
 const moduleScores = Array(7).fill(null).map(() => ({ correct: 0, total: 0 }));
 let pendingScorecardModule = -1;
 
-// ── GATE ──
-function startCourse() {
-  const emailEl = document.getElementById('gate-email');
-  const errEl   = document.getElementById('gate-error');
-  const email   = emailEl.value.trim().toLowerCase();
-  const domain  = [114,101,98,117,105,108,116].map(c=>String.fromCharCode(c)).join('');
-  if (!email || !email.endsWith('@' + domain + '.com')) {
-    errEl.textContent = 'Please enter a valid @' + domain + '.com email.';
-    return;
-  }
-  userEmail = email;
-  userName  = email.split('@')[0].replace(/[._]/g,' ').replace(/(^\w|\s\w)/g, m => m.toUpperCase());
-  localStorage.setItem('rebuilt_email', email);
-  document.getElementById('gate').style.display = 'none';
-  document.getElementById('app').style.display = 'block';
-  document.getElementById('top-user-label') && (document.getElementById('top-user-label').textContent = userName);
-  initAllQuizzes();
-  goToSlideByIndex(0);
-}
-
 // ── QUIZ INIT ──
 function initAllQuizzes() {
   for (let m = 0; m < 7; m++) initQuiz(m);
@@ -1854,29 +2013,6 @@ function closeScorecardAndContinue() {
 }
 
 
-window.addEventListener('DOMContentLoaded', function() {
-  var saved = localStorage.getItem('rebuilt_email');
-  var domain = [114,101,98,117,105,108,116].map(function(x){return String.fromCharCode(x);}).join('');
-  if (saved && saved.endsWith('@' + domain + '.com')) {
-    // Auto-login from hub session
-    userEmail = saved;
-    userName  = saved.split('@')[0].replace(/[._]/g,' ').replace(/(^\w|\s\w)/g, function(m){ return m.toUpperCase(); });
-    document.getElementById('gate').style.display = 'none';
-    document.getElementById('app').style.display  = 'block';
-    var lbl = document.getElementById('top-user-label');
-    if (lbl) lbl.textContent = userName;
-    initAllQuizzes();
-    goToSlideByIndex(0);
-  } else {
-    var el = document.getElementById('gate-email');
-    if (el && saved) el.value = saved;
-  }
-  var emailEl = document.getElementById('gate-email');
-  if (emailEl) emailEl.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') startCourse();
-  });
-});
-
 // ── FINAL OVERLAY ──
 function showFinalOverlay() {
   const moduleNames = ['M1: Accessing HubSpot','M2: Left Panel','M3: Notes & Tasks','M4: Middle Panel','M5: PandaDocs','M6: Dashboard','M7: Workflow'];
@@ -1966,7 +2102,7 @@ function goToSlideByIndex(idx) {
   window.scrollTo(0,0);
   document.documentElement.scrollTop = 0;
   document.body.scrollTop = 0;
-  var appEl = document.getElementById('app'); if (appEl) appEl.scrollTop = 0;
+  var appEl = document.getElementById('app-content'); if (appEl) appEl.scrollTop = 0;
 }
 
 function nextSlide(m) {
@@ -1994,8 +2130,8 @@ function updateSidebar(activeModule) {
 function updateProgress() {
   const done = moduleState.filter(s => s.done).length;
   const pct = Math.round((done / 7) * 100);
-  document.getElementById('top-progress-fill').style.width = pct + '%';
-  document.getElementById('top-progress-label').textContent = pct + '%';
+  var _pf=document.getElementById('progressFill');if(_pf)_pf.style.width=pct+'%';
+  var _pl=document.getElementById('progress-label');if(_pl){var _done=moduleState.filter(function(s){return s.done;}).length;_pl.textContent='Module '+(Math.min(_done+1,7));var _pp=document.getElementById('progressPct');if(_pp)_pp.textContent=_done+' of 7 completed';}
 }
 
 function updateSlideCounters() {
@@ -2022,6 +2158,48 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+
+// ── GATE BRIDGE (Tools Overview compatible) ──
+function submitGate() {
+  var input = document.getElementById('gate-email');
+  var errEl = document.getElementById('gate-error');
+  var val   = input.value.trim().toLowerCase();
+  var dom   = [114,101,98,117,105,108,116].map(function(c){return String.fromCharCode(c);}).join('');
+  var valid = new RegExp('^[a-z0-9._%+\\-]+@' + dom + '\\.com$', 'i').test(val);
+  if (!valid) {
+    errEl.textContent = 'Please enter a valid @' + dom + '.com email address.';
+    input.style.borderColor = '#c0392b';
+    return;
+  }
+  userEmail = val;
+  userName  = val.split('@')[0].replace(/[._]/g,' ').replace(/(^\w|\s\w)/g,function(m){return m.toUpperCase();});
+  localStorage.setItem('rebuilt_email', val);
+  document.getElementById('email-gate').style.display = 'none';
+  document.getElementById('app-content').style.display = 'block';
+  initAllQuizzes();
+  goToSlideByIndex(0);
+}
+
+window.addEventListener('DOMContentLoaded', function() {
+  var saved = localStorage.getItem('rebuilt_email');
+  var domain = [114,101,98,117,105,108,116].map(function(x){return String.fromCharCode(x);}).join('');
+  if (saved && new RegExp('^[a-z0-9._%+\\-]+@' + domain + '\\.com$','i').test(saved)) {
+    userEmail = saved;
+    userName  = saved.split('@')[0].replace(/[._]/g,' ').replace(/(^\w|\s\w)/g,function(m){return m.toUpperCase();});
+    document.getElementById('gate-email').value = saved;
+    document.getElementById('email-gate').style.display = 'none';
+    document.getElementById('app-content').style.display = 'block';
+    initAllQuizzes();
+    goToSlideByIndex(0);
+  } else {
+    if (saved) document.getElementById('gate-email').value = saved;
+  }
+  document.getElementById('gate-email').addEventListener('keydown', function(e){
+    if (e.key === 'Enter') submitGate();
+  });
+});
+
 </script>
 </body>
 </html>
