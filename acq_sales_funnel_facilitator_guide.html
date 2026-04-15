@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjQ0MCAwIDU1MCA4OTAiPgogIDxwYXRoIGQ9Im0gMzMzNy45OSwzNTQ0LjgzIDExNzkuNzksMTA3Ni43MiB2IDE5MzguMSBMIDMzMzcuOTksNTU5MC42IFYgMzU0NC44MyIgZmlsbD0iIzRlYTllMiIgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIi8+CiAgPHBhdGggZD0iTSA2MTY5LjQ4LDk5OTUuMDEgViA0NjIxLjU1IGwgMTE3OS44LC0xMDc2LjcyIHYgNTQ5MS4yOSBsIC0xMTc5LjgsOTU4Ljg5IiBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz4KICA8cGF0aCBkPSJNIDQ3NTMuNzQsNzc0NC4wNSBWIDQ4MzYuODkgbCA1ODkuODksNTM4LjM3IDU4OS45LC01MzguMzcgNC4zNywzOTczLjcyIC0xMTg0LjE2LC0xMDY2LjU2IiBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz4KICA8cGF0aCBkPSJtIDQ4MDIuMjEsMzQyNS4xOSBoIDQzMC42OSB2IDQzMC42OCBoIC00MzAuNjkgdiAtNDMwLjY4IiBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz4KICA8cGF0aCBkPSJtIDU0NDguMjQsMzQyNS4xOSBoIDQzMC43IHYgNDMwLjY4IGggLTQzMC43IHYgLTQzMC42OCIgZmlsbD0iIzRlYTllMiIgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIi8+CiAgPHBhdGggZD0ibSA1MjMyLjksNDUwMS45MSBoIC00MzAuNjkgdiAtNDMwLjY5IGggNDMwLjY5IHYgNDMwLjY5IiBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz4KICA8cGF0aCBkPSJtIDU0NDguMjQsNDUwMS45MSB2IC00MzAuNjkgaCA0MzAuNyB2IDQzMC42OSBoIC00MzAuNyIgZmlsbD0iIzRlYTllMiIgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIi8+Cjwvc3ZnPg=="/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Rebuilt — ACQ Managing Your Sales Funnel · Facilitator Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --blue:#21a9e1; --blue-dark:#1a8cbf; --blue-light:#e8f6fd;
+    --teal:#64b4b7; --teal-dark:#0f696e;
+    --orange:#f5831f; --orange-dark:#d96d0a;
+    --navy:#1f3540; --navy-mid:#2c4a5a;
+    --off-white:#efedeb;
+    --bg-primary:#ffffff; --bg-secondary:#f7f6f4; --bg-tertiary:#efedeb;
+    --text-primary:#1f3540; --text-secondary:#4a6070; --text-tertiary:#7a90a0;
+    --border-tertiary:rgba(31,53,64,0.10); --border-secondary:rgba(31,53,64,0.18);
+    --success-bg:#f0fdf4; --success-border:#2d7a2d; --success-text:#1a4d1a;
+    --danger-bg:#fff8f0; --danger-border:#f5831f; --danger-text:#7a3a00;
+    --radius-md:8px; --radius-lg:12px;
+    --font:'Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  }
+  body { font-family:var(--font); background:#efedeb; color:#1f3540; font-size:16px; line-height:1.6; font-weight:400; letter-spacing:-0.01em; }
+  .page-wrap { max-width:920px; margin:0 auto; padding:0 1rem 4rem; }
+
+  .topbar { background:var(--navy); position:sticky; top:0; z-index:200; border-bottom:3px solid var(--blue); }
+  .topbar-inner { max-width:920px; margin:0 auto; padding:0 1.25rem; display:flex; align-items:center; gap:14px; height:56px; }
+  .topbar-wordmark { font-size:18px; font-weight:700; color:#fff; letter-spacing:-0.02em; line-height:1; }
+  .topbar-divider { width:1px; height:22px; background:rgba(255,255,255,0.2); margin:0 4px; }
+  .topbar-sub { font-size:11px; color:rgba(255,255,255,0.55); font-weight:500; letter-spacing:0.04em; text-transform:uppercase; }
+  .topbar-badge { margin-left:auto; background:var(--orange); color:#fff; font-size:10px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; padding:3px 12px; border-radius:20px; }
+
+  .mod-nav-wrap { background:var(--bg-primary); border-bottom:1px solid var(--border-tertiary); position:sticky; top:59px; z-index:99; }
+  .mod-nav-inner { max-width:920px; margin:0 auto; padding:0 1rem; display:flex; gap:2px; overflow-x:auto; scrollbar-width:none; }
+  .mod-nav-inner::-webkit-scrollbar { display:none; }
+  .mod-btn { padding:12px 14px; font-size:11px; font-weight:600; border:none; background:transparent; cursor:pointer; color:var(--text-tertiary); border-bottom:3px solid transparent; white-space:nowrap; transition:all 0.15s; letter-spacing:0.02em; font-family:var(--font); }
+  .mod-btn:hover { color:var(--text-primary); background:var(--bg-secondary); }
+  .mod-btn.active { color:var(--blue); border-bottom-color:var(--blue); }
+
+  .content { padding:2rem 0; }
+  .section-panel { display:none; }
+  .section-panel.active { display:block; }
+  .module-header { margin-bottom:1.75rem; }
+  .module-eyebrow { font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--blue); margin-bottom:8px; }
+  .module-title { font-size:26px; font-weight:700; line-height:1.25; color:var(--navy); }
+  .module-desc { font-size:14px; color:var(--text-secondary); margin-top:8px; line-height:1.65; }
+  .info-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:1.75rem; }
+  .info-chip { padding:5px 14px; border-radius:20px; background:var(--blue-light); font-size:12px; color:var(--teal-dark); border:1px solid rgba(33,169,225,0.2); font-weight:500; }
+  .info-chip strong { color:var(--navy); font-weight:700; }
+
+  .card { background:var(--bg-primary); border:1px solid var(--border-tertiary); border-radius:var(--radius-lg); overflow:hidden; margin-bottom:10px; transition:border-color 0.15s; }
+  .card:hover { border-color:rgba(33,169,225,0.3); }
+  .card-head { display:flex; align-items:center; gap:14px; padding:15px 18px; cursor:pointer; user-select:none; }
+  .card-head:hover { background:var(--bg-secondary); }
+  .card-num { width:32px; height:32px; border-radius:8px; background:var(--blue-light); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:var(--blue); flex-shrink:0; }
+  .card-num.orange { background:rgba(245,131,31,0.12); color:var(--orange); }
+  .card-num.teal { background:rgba(15,105,110,0.1); color:var(--teal-dark); }
+  .card-num.navy { background:rgba(31,53,64,0.08); color:var(--navy); }
+  .card-title { font-size:14px; font-weight:600; flex:1; color:var(--text-primary); overflow-wrap:break-word; min-width:0; }
+  .card-tag { font-size:10px; padding:3px 10px; border-radius:10px; background:var(--off-white); color:var(--text-tertiary); font-weight:600; letter-spacing:0.04em; text-transform:uppercase; white-space:nowrap; }
+  .card-tag.orange { background:rgba(245,131,31,0.1); color:var(--orange); }
+  .card-tag.teal { background:rgba(15,105,110,0.1); color:var(--teal-dark); }
+  .card-tag.blue { background:var(--blue-light); color:var(--blue-dark); }
+  .card-tag.green { background:#f0fdf4; color:#1a6b2a; }
+  .card-chevron { font-size:11px; color:var(--text-tertiary); transition:transform 0.2s; }
+  .card.open .card-chevron { transform:rotate(180deg); }
+  .card.open { border-color:rgba(33,169,225,0.4); }
+  .card-body { display:none; padding:0 18px 20px; border-top:1px solid var(--border-tertiary); }
+  .card.open .card-body { display:block; }
+
+  .pillar-card { background:var(--bg-primary); border:1px solid var(--border-tertiary); border-radius:var(--radius-lg); overflow:hidden; margin-bottom:10px; }
+  .pillar-head { display:flex; align-items:center; gap:16px; padding:16px 20px; cursor:pointer; user-select:none; }
+  .pillar-head:hover { background:var(--bg-secondary); }
+  .pillar-num { width:48px; height:48px; background:linear-gradient(135deg,var(--blue),var(--teal)); color:#fff; border-radius:var(--radius-md); display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:700; flex-shrink:0; }
+  .pillar-num.orange { background:linear-gradient(135deg,var(--orange),var(--orange-dark)); }
+  .pillar-num.navy  { background:linear-gradient(135deg,var(--navy),var(--navy-mid)); }
+  .pillar-num.teal  { background:linear-gradient(135deg,var(--teal-dark),var(--teal)); }
+  .pillar-label { flex:1; min-width:0; }
+  .pillar-name { font-size:15px; font-weight:700; color:var(--navy); }
+  .pillar-sub { font-size:12px; color:var(--text-secondary); margin-top:2px; }
+  .pillar-chevron { font-size:11px; color:var(--text-tertiary); transition:transform 0.2s; }
+  .pillar-card.open { border-color:var(--blue); }
+  .pillar-card.open .pillar-chevron { transform:rotate(180deg); }
+  .pillar-body { display:none; padding:0 20px 20px; border-top:1px solid var(--border-tertiary); }
+  .pillar-card.open .pillar-body { display:block; }
+  .pillar-section { margin-top:16px; }
+  .pillar-section-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--teal-dark); margin-bottom:8px; }
+  .pillar-section p { font-size:14px; line-height:1.65; color:var(--text-secondary); }
+
+  .script-block { background:var(--navy); border-radius:var(--radius-md); padding:14px 16px; margin:14px 0 8px; border-left:3px solid var(--blue); }
+  .script-label { font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--teal); margin-bottom:8px; }
+  .script-block p { font-size:13px; color:#c8e8f4; line-height:1.65; font-style:italic; }
+  .script-note { font-size:12px; color:rgba(200,232,244,0.65); margin-top:8px; padding-top:8px; border-top:1px solid rgba(255,255,255,0.1); }
+
+  .deal-killer { background:#fff8f0; border-left:3px solid var(--orange); border-radius:0 6px 6px 0; padding:10px 14px; margin-top:10px; font-size:13px; color:var(--danger-text); line-height:1.55; font-weight:500; }
+  .deal-killer strong { font-weight:700; display:block; margin-bottom:2px; }
+  .tone-cue { background:var(--bg-secondary); border-left:3px solid var(--teal); border-radius:0 6px 6px 0; padding:10px 14px; margin-top:8px; font-size:13px; color:var(--text-secondary); line-height:1.55; font-style:italic; }
+  .agent-note { background:var(--blue-light); border-radius:var(--radius-md); padding:12px 14px; margin-top:8px; font-size:13px; color:var(--teal-dark); line-height:1.55; border:1px solid rgba(33,169,225,0.15); }
+  .agent-note strong { color:var(--navy); font-weight:700; }
+  .alert { padding:14px 18px; border-radius:var(--radius-md); border:1px solid; font-size:13px; line-height:1.6; margin-bottom:1rem; font-weight:500; }
+  .alert-warn { background:#fff8f0; border-color:var(--orange); color:var(--danger-text); border-left:4px solid var(--orange); }
+  .alert-info { background:var(--blue-light); border-color:rgba(33,169,225,0.25); color:var(--teal-dark); border-left:4px solid var(--blue); }
+  .alert-success { background:var(--success-bg); border-color:var(--success-border); color:var(--success-text); border-left:4px solid var(--success-border); }
+
+  .mini-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:12px; }
+  .mini-grid-item { padding:10px 14px; border-radius:8px; background:var(--bg-secondary); font-size:12px; border:1px solid var(--border-tertiary); color:var(--text-secondary); }
+  .mini-grid-item strong { display:block; font-weight:700; margin-bottom:3px; font-size:12px; color:var(--navy); }
+  @media (max-width:500px) { .mini-grid { grid-template-columns:1fr; } }
+
+  .overview-hero { background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%); border-radius:var(--radius-lg); padding:2rem 2rem 1.75rem; margin-bottom:1.5rem; color:#fff; }
+  .overview-hero-eyebrow { font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--teal); margin-bottom:10px; }
+  .overview-hero-title { font-size:26px; font-weight:700; line-height:1.2; margin-bottom:10px; }
+  .overview-hero-sub { font-size:14px; color:rgba(255,255,255,0.7); line-height:1.65; max-width:580px; }
+  .overview-why { background:var(--blue-light); border:1px solid rgba(33,169,225,0.2); border-radius:var(--radius-lg); padding:1.25rem 1.5rem; margin-bottom:1.5rem; border-left:4px solid var(--blue); }
+  .overview-why-title { font-size:13px; font-weight:700; color:var(--navy); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em; }
+  .overview-why p { font-size:14px; color:var(--teal-dark); line-height:1.65; }
+  .overview-map { margin-bottom:1.5rem; }
+  .overview-map-title { font-size:13px; font-weight:700; color:var(--navy); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:12px; }
+  .overview-map-grid { display:flex; flex-direction:column; gap:8px; }
+  .overview-map-item { display:flex; align-items:flex-start; gap:14px; background:var(--bg-primary); border:1px solid var(--border-tertiary); border-radius:var(--radius-md); padding:14px 16px; cursor:pointer; transition:all 0.15s; }
+  .overview-map-item:hover { border-color:var(--blue); background:var(--blue-light); }
+  .overview-map-num { width:32px; height:32px; border-radius:8px; background:linear-gradient(135deg,var(--blue),var(--teal)); color:#fff; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; flex-shrink:0; }
+  .overview-map-info { flex:1; }
+  .overview-map-name { font-size:14px; font-weight:700; color:var(--navy); margin-bottom:2px; }
+  .overview-map-desc { font-size:12px; color:var(--text-secondary); }
+
+  .checklist { list-style:none; display:flex; flex-direction:column; gap:8px; }
+  .checklist li { display:flex; align-items:flex-start; gap:10px; font-size:13px; line-height:1.55; padding:11px 14px; border-radius:var(--radius-md); border:1px solid var(--border-tertiary); cursor:pointer; background:var(--bg-primary); transition:all 0.15s; }
+  .checklist li:hover { background:var(--blue-light); border-color:rgba(33,169,225,0.3); }
+  .checklist li.checked { background:var(--success-bg); border-color:var(--success-border); color:var(--success-text); }
+  .check-box { width:18px; height:18px; border:2px solid var(--border-secondary); border-radius:4px; flex-shrink:0; display:flex; align-items:center; justify-content:center; margin-top:1px; font-size:11px; }
+  .checklist li.checked .check-box { background:var(--success-border); border-color:var(--success-border); color:#fff; }
+
+  .module-nav-btns { display:flex; justify-content:space-between; margin-top:2rem; padding-top:1.25rem; border-top:1px solid var(--border-tertiary); }
+  .nav-btn { padding:10px 24px; border-radius:var(--radius-md); border:1px solid var(--border-secondary); font-size:13px; cursor:pointer; background:var(--bg-primary); color:var(--text-primary); transition:all 0.15s; font-weight:600; font-family:var(--font); }
+  .nav-btn:hover { background:var(--bg-secondary); }
+  .nav-btn.primary { background:linear-gradient(135deg,var(--blue),var(--teal-dark)); color:#fff; border-color:transparent; }
+  .nav-btn.primary:hover { opacity:0.9; }
+
+  .section-divider { border:none; border-top:1px solid var(--border-tertiary); margin:1.5rem 0; }
+  .subsection-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-tertiary); margin-bottom:10px; padding-bottom:6px; border-bottom:2px solid var(--blue-light); }
+  .mt8 { margin-top:8px; } .mt12 { margin-top:12px; } .mt16 { margin-top:16px; }
+
+  /* Cadence block */
+  .cadence-row { display:flex; align-items:stretch; gap:0; margin-bottom:6px; }
+  .cadence-step { flex:1; background:var(--bg-primary); border:1px solid var(--border-tertiary); border-radius:var(--radius-md); padding:12px 14px; text-align:center; position:relative; }
+  .cadence-step + .cadence-step { margin-left:6px; }
+  .cadence-step-num { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-tertiary); margin-bottom:4px; }
+  .cadence-step-label { font-size:13px; font-weight:700; color:var(--navy); }
+  .cadence-step-sub { font-size:11px; color:var(--text-secondary); margin-top:2px; line-height:1.4; }
+  .cadence-step.kick { background:#fff8f0; border-color:var(--orange); }
+  .cadence-step.kick .cadence-step-label { color:var(--orange); }
+  .cadence-arrow { display:flex; align-items:center; color:var(--text-tertiary); font-size:14px; padding:0 2px; }
+  @media (max-width:600px) { .cadence-row { flex-wrap:wrap; } .cadence-step { min-width:calc(50% - 6px); } }
+
+  /* Policy block */
+  .policy-block { background:#fff8f0; border:1px solid rgba(245,131,31,0.3); border-left:4px solid var(--orange); border-radius:0 var(--radius-md) var(--radius-md) 0; padding:14px 18px; margin-bottom:10px; }
+  .policy-block-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--orange); margin-bottom:6px; }
+  .policy-block p { font-size:13px; color:var(--danger-text); line-height:1.6; }
+  .policy-block strong { font-weight:700; color:var(--navy); }
+
+  /* Timeline / 7-day visual */
+  .timeline-bar { background:var(--bg-primary); border:1px solid var(--border-tertiary); border-radius:var(--radius-lg); overflow:hidden; margin-bottom:12px; }
+  .timeline-bar-header { padding:12px 16px; background:var(--bg-secondary); font-size:12px; font-weight:700; color:var(--navy); border-bottom:1px solid var(--border-tertiary); }
+  .timeline-bar-inner { padding:16px; }
+  .timeline-track { display:flex; height:28px; border-radius:6px; overflow:hidden; margin-bottom:8px; }
+  .timeline-seg { display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; color:#fff; }
+  .timeline-labels { display:flex; font-size:11px; color:var(--text-secondary); }
+  .timeline-label { flex:1; text-align:center; }
+
+  /* Lang grid */
+  .lang-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:12px; }
+  @media (max-width:600px) { .lang-grid { grid-template-columns:1fr; } }
+  .lang-item { background:var(--bg-secondary); border-radius:var(--radius-md); padding:12px 14px; border:1px solid var(--border-tertiary); }
+  .lang-context { font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--teal-dark); margin-bottom:5px; }
+  .lang-line { font-size:12.5px; font-style:italic; color:var(--navy); line-height:1.55; }
+
+  /* Topic list */
+  .topic-list { display:flex; flex-direction:column; gap:0; }
+  .topic-item { display:flex; align-items:flex-start; gap:14px; padding:14px 0; border-bottom:1px solid var(--border-tertiary); }
+  .topic-item:last-child { border-bottom:none; }
+  .topic-icon { width:36px; height:36px; border-radius:var(--radius-md); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; color:#fff; flex-shrink:0; }
+  .topic-content { flex:1; }
+  .topic-title { font-size:14px; font-weight:700; color:var(--navy); margin-bottom:3px; }
+  .topic-body { font-size:13px; color:var(--text-secondary); line-height:1.6; }
+  .topic-tags { display:flex; gap:5px; flex-wrap:wrap; margin-top:6px; }
+  .ttag { font-size:10px; padding:2px 9px; border-radius:10px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; }
+  .ttag-demo { background:var(--blue-light); color:var(--blue-dark); }
+  .ttag-policy { background:rgba(245,131,31,0.12); color:var(--orange); }
+  .ttag-discuss { background:rgba(15,105,110,0.1); color:var(--teal-dark); }
+  .ttag-rp { background:#f0fdf4; color:#1a6b2a; }
+
+  /* Link chip */
+  .link-chip { display:inline-flex; align-items:center; gap:8px; background:var(--navy); color:#21a9e1; font-size:12px; font-weight:600; padding:8px 14px; border-radius:var(--radius-md); text-decoration:none; margin-top:8px; transition:opacity 0.15s; word-break:break-all; }
+  .link-chip:hover { opacity:0.85; }
+
+  /* next-steps block */
+  .next-steps { background:var(--bg-primary); border:1px solid var(--border-tertiary); border-radius:var(--radius-lg); overflow:hidden; margin-top:1.5rem; }
+  .next-steps-header { background:var(--navy); color:#fff; padding:12px 18px; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; }
+  .next-steps-body { padding:16px 18px; }
+  .next-step-row { display:flex; align-items:flex-start; gap:12px; padding:10px 0; border-bottom:1px solid var(--border-tertiary); }
+  .next-step-row:last-child { border-bottom:none; }
+  .next-step-who { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--blue); min-width:80px; padding-top:1px; }
+  .next-step-what { font-size:13px; color:var(--text-secondary); line-height:1.5; }
+
+  @media print {
+    body { background:#fff; }
+    .topbar,.mod-nav-wrap { position:static; }
+    .section-panel { display:block !important; }
+    .card-body,.pillar-body { display:block !important; }
+    * { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 80 450 660" style="height:36px;width:auto;">
+        <g transform="matrix(0.13333333,0,0,-0.13333333,0,732.2)" fill="#21a9e1">
+          <path d="m 0,100 986.152,900 V 2620 L 0,1810 V 100"/>
+          <path d="M 2366.76,5491.51 V 1000 l 986.15,-900 v 4590 l -986.15,801.51"/>
+          <path d="M 1183.38,3610 V 1180 l 493.08,450 493.07,-450 3.65,3321.51 -989.8,-891.51"/>
+          <path d="m 1223.9,0 h 360 v 360 h -360 V 0"/>
+          <path d="m 1763.9,0 h 360 v 360 h -360 V 0"/>
+          <path d="m 1583.9,900 h -360 V 540 h 360 v 360"/>
+          <path d="M 1763.9,900 V 540 h 360 v 360 h -360"/>
+        </g>
+      </svg>
+    </div>
+    <div class="topbar-wordmark">rebuilt</div>
+    <div class="topbar-divider"></div>
+    <div class="topbar-sub">Acquisition Training</div>
+    <div class="topbar-badge">Facilitator Guide</div>
+  </div>
+</div>
+
+<div class="mod-nav-wrap">
+  <div class="mod-nav-inner">
+    <button class="mod-btn active" onclick="showSection(0)">Overview</button>
+    <button class="mod-btn" onclick="showSection(1)">1 · Prep</button>
+    <button class="mod-btn" onclick="showSection(2)">2 · Setting the Stage</button>
+    <button class="mod-btn" onclick="showSection(3)">3 · HubSpot Dashboard</button>
+    <button class="mod-btn" onclick="showSection(4)">4 · Task Management</button>
+    <button class="mod-btn" onclick="showSection(5)">5 · Deals &amp; Tiers</button>
+    <button class="mod-btn" onclick="showSection(6)">6 · Objection Handling</button>
+    <button class="mod-btn" onclick="showSection(7)">7 · Zoom SMS Protocol</button>
+    <button class="mod-btn" onclick="showSection(8)">8 · Close &amp; Next Steps</button>
+  </div>
+</div>
+
+<div class="page-wrap"><div class="content">
+
+<!-- OVERVIEW -->
+<div class="section-panel active" id="section-0">
+  <div class="overview-hero">
+    <div class="overview-hero-eyebrow">ACQ Training · Facilitator Guide</div>
+    <div class="overview-hero-title">Managing Your Sales Funnel</div>
+    <div class="overview-hero-sub">A section-by-section guide for facilitating the ACQ Sales Funnel training session. Covers HubSpot pipeline management, the 7-day dialer rule, lead cadence, objection handling, and Zoom SMS protocol — with updated guidance from sales leadership.</div>
+  </div>
+  <div class="overview-why">
+    <div class="overview-why-title">Purpose of this session</div>
+    <p>New Acquisition Associates have outbound call experience but need a structured process for managing their pipeline: when to pursue, when to let go, how to maintain ownership, and how to use HubSpot and Zoom SMS as their daily operating system. This session closes the gap between activity and outcomes.</p>
+  </div>
+  <div class="info-row">
+    <div class="info-chip"><strong>Audience:</strong> Acquisition Associates, new cohort</div>
+    <div class="info-chip"><strong>Length:</strong> 60–90 minutes</div>
+    <div class="info-chip"><strong>Format:</strong> Screen share + Q&amp;A</div>
+    <div class="info-chip"><strong>System:</strong> HubSpot + Zoom SMS + Five9 dialer</div>
+  </div>
+  <div class="overview-map">
+    <div class="overview-map-title">Guide Sections</div>
+    <div class="overview-map-grid">
+      <div class="overview-map-item" onclick="showSection(1)"><div class="overview-map-num">1</div><div class="overview-map-info"><div class="overview-map-name">Facilitator Prep</div><div class="overview-map-desc">What to have open, key links, and session reminders</div></div></div>
+      <div class="overview-map-item" onclick="showSection(2)"><div class="overview-map-num">2</div><div class="overview-map-info"><div class="overview-map-name">Setting the Stage</div><div class="overview-map-desc">Opening frame: why the funnel matters, lead hoarding, and work ethic</div></div></div>
+      <div class="overview-map-item" onclick="showSection(3)"><div class="overview-map-num">3</div><div class="overview-map-info"><div class="overview-map-name">HubSpot Dashboard Walkthrough</div><div class="overview-map-desc">Protected leads, 6/7-day rule, retrades, disposition agent relationship</div></div></div>
+      <div class="overview-map-item" onclick="showSection(4)"><div class="overview-map-num">4</div><div class="overview-map-info"><div class="overview-map-name">Task Management &amp; Lead Cadence</div><div class="overview-map-desc">3-strike kick rule, ATC cadence, ownership claim, daily pipeline habits</div></div></div>
+      <div class="overview-map-item" onclick="showSection(5)"><div class="overview-map-num">5</div><div class="overview-map-info"><div class="overview-map-name">Working Deals &amp; Tier Progression</div><div class="overview-map-desc">Board vs. list view, deal stages, unlocking inbound, fail-forward mindset</div></div></div>
+      <div class="overview-map-item" onclick="showSection(6)"><div class="overview-map-num">6</div><div class="overview-map-info"><div class="overview-map-name">Objection Handling &amp; Stalling Sellers</div><div class="overview-map-desc">Weekly touch rule, sales resistance tactics, getting to yes or no</div></div></div>
+      <div class="overview-map-item" onclick="showSection(7)"><div class="overview-map-num">7</div><div class="overview-map-info"><div class="overview-map-name">Zoom SMS Protocol</div><div class="overview-map-desc">All-texts-via-Zoom policy, second-voice strategy, text templates</div></div></div>
+      <div class="overview-map-item" onclick="showSection(8)"><div class="overview-map-num">8</div><div class="overview-map-info"><div class="overview-map-name">Close &amp; Next Steps</div><div class="overview-map-desc">Session wrap, Q&amp;A prompt, action items to assign</div></div></div>
+    </div>
+  </div>
+  <div class="module-nav-btns"><span></span><button class="nav-btn primary" onclick="showSection(1)">Start with Section 1 →</button></div>
+</div>
+
+<!-- SECTION 1: PREP -->
+<div class="section-panel" id="section-1">
+  <div class="module-header">
+    <div class="module-eyebrow">Section 1</div>
+    <div class="module-title">Facilitator Prep</div>
+    <div class="module-desc">Everything to confirm and have open before the session starts.</div>
+  </div>
+  <div class="subsection-title">Session at a Glance</div>
+  <div class="mini-grid">
+    <div class="mini-grid-item"><strong>Audience</strong>New Acquisition Associates — typically 4–12 participants</div>
+    <div class="mini-grid-item"><strong>Session Length</strong>60–90 min; expect questions throughout — build in time</div>
+    <div class="mini-grid-item"><strong>Primary System</strong>HubSpot + Zoom Phone/SMS; Five9 dialer context</div>
+    <div class="mini-grid-item"><strong>Facilitator Role</strong>Screen share HubSpot live; show a populated pipeline, not an empty one</div>
+  </div>
+  <hr class="section-divider"/>
+  <div class="subsection-title">Pre-Session Checklist</div>
+  <ul class="checklist" id="prep-checklist">
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>HubSpot open and logged in — ACQ Dashboard bookmarked and ready to share screen</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>ACQ Dashboard link ready to paste in chat: <strong>https://app.hubspot.com/reports-dashboard/22487283/view/17953758</strong></li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Zoom Phone open — SMS tab visible and ready for demo</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Slack open — ACQ team channel search ready to show text templates</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>This facilitator guide open and ready</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Pipeline has real deals in it — protected leads, tasks, in-marketing, on-hold examples all visible</li>
+  </ul>
+  <hr class="section-divider"/>
+  <div class="alert alert-warn"><strong>Use a real pipeline.</strong> A new hire's empty HubSpot won't illustrate the protected leads panel, gold mine list, or retrade tasks. Facilitate from your own or another experienced rep's pipeline — with their permission if needed.</div>
+  <div class="alert alert-info"><strong>Expect questions.</strong> Sales leadership confirmed reps will have questions throughout. Don't rush through slides. Pause after each section and invite them.</div>
+  <div class="module-nav-btns"><button class="nav-btn" onclick="showSection(0)">← Overview</button><button class="nav-btn primary" onclick="showSection(2)">Section 2: Setting the Stage →</button></div>
+</div>
+
+<!-- SECTION 2: SETTING THE STAGE -->
+<div class="section-panel" id="section-2">
+  <div class="module-header">
+    <div class="module-eyebrow">Section 2</div>
+    <div class="module-title">Setting the Stage</div>
+    <div class="module-desc">The opening frame. Establish why managing the funnel matters before you touch HubSpot. ~5 minutes.</div>
+  </div>
+  <div class="subsection-title">Opening Frame</div>
+  <div class="script-block">
+    <div class="script-label">Facilitator — Say Something Like This</div>
+    <p>"We're going to cover how to manage your pipeline day-to-day — how to find your leads, how to keep them, when to push forward, and when to cut bait. Things have changed since we moved to the dialer system, so the way you call through a list is different now. This is about building a process so your pipeline doesn't get away from you."</p>
+    <div class="script-note">Keep it short. This cohort has outbound experience — they know what a lead is. Establish the stakes quickly and get into the tools.</div>
+  </div>
+  <hr class="section-divider"/>
+  <div class="subsection-title">Key Points to Cover</div>
+  <div class="topic-list">
+    <div class="topic-item">
+      <div class="topic-icon" style="background:linear-gradient(135deg,var(--blue),var(--teal));">1</div>
+      <div class="topic-content">
+        <div class="topic-title">Role-playing is the #1 skill-builder</div>
+        <div class="topic-body">If there's any training to prioritize, it's role-playing — getting on the phone and running talk tracks. This session is important, but it's the systems side. Phone skills come from reps.</div>
+        <div class="topic-tags"><span class="ttag ttag-rp">role-play callout</span></div>
+      </div>
+    </div>
+    <div class="topic-item">
+      <div class="topic-icon" style="background:linear-gradient(135deg,var(--orange),var(--orange-dark));">2</div>
+      <div class="topic-content">
+        <div class="topic-title">Lead hoarding ("smoking opium")</div>
+        <div class="topic-body">Holding onto an unresponsive lead too long drowns you. If someone won't call back after five or six attempts, let it go — a random number through the dialer has a better chance of getting answered than a number they've learned to ignore.</div>
+        <div class="topic-tags"><span class="ttag ttag-discuss">discussion moment</span></div>
+      </div>
+    </div>
+    <div class="topic-item">
+      <div class="topic-icon" style="background:linear-gradient(135deg,var(--navy),var(--navy-mid));">3</div>
+      <div class="topic-content">
+        <div class="topic-title">Early-stage work ethic: get the flywheel moving</div>
+        <div class="topic-body">In the beginning, 50-hour weeks are the path to fast success. The flywheel is hard to start — once it's moving, maintenance is much lighter. Use extra time outside normal hours to work geographic lists.</div>
+      </div>
+    </div>
+    <div class="topic-item">
+      <div class="topic-icon" style="background:linear-gradient(135deg,var(--teal-dark),var(--teal));">4</div>
+      <div class="topic-content">
+        <div class="topic-title">Dedicated daily pipeline time</div>
+        <div class="topic-body">Reps need to block time every day — not weekly, not when they remember — to review their pipeline and hit tasks. The 7-day dialer rule means gaps of even a few days can cost them leads they've already worked hard to earn.</div>
+        <div class="topic-tags"><span class="ttag ttag-policy">key policy</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="module-nav-btns"><button class="nav-btn" onclick="showSection(1)">← Section 1</button><button class="nav-btn primary" onclick="showSection(3)">Section 3: HubSpot Dashboard →</button></div>
+</div>
+
+<!-- SECTION 3: HUBSPOT DASHBOARD -->
+<div class="section-panel" id="section-3">
+  <div class="module-header">
+    <div class="module-eyebrow">Section 3</div>
+    <div class="module-title">HubSpot Dashboard Walkthrough</div>
+    <div class="module-desc">Live screen share. Show a populated pipeline. This is the longest section — allow 15–20 minutes and pause for questions after each sub-topic.</div>
+  </div>
+  <div class="alert alert-info"><strong>Share the dashboard link now.</strong> Paste this in the meeting chat so every rep bookmarks it immediately:<br/><a class="link-chip" href="https://app.hubspot.com/reports-dashboard/22487283/view/17953758" target="_blank">https://app.hubspot.com/reports-dashboard/22487283/view/17953758</a></div>
+  <hr class="section-divider"/>
+  <div class="subsection-title">Dashboard Sections — Walk Through Each</div>
+
+  <div class="card open">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num">A</div>
+      <div class="card-title">Logging in &amp; bookmarking the dashboard</div>
+      <span class="card-tag blue">screen demo</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <p style="font-size:13px;color:var(--text-secondary);line-height:1.65;margin-top:12px;">When reps log into HubSpot, they should land on the ACQ Dashboard. Walk them through: the HubSpot icon in the upper-right corner that returns them to this page; the cog-wheel setting to make it the default landing page. If theirs isn't set up correctly, they should notify management to fix it.</p>
+      <div class="agent-note"><strong>Action item:</strong> Have every rep click the dashboard link in the chat right now and bookmark it before moving on.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num">B</div>
+      <div class="card-title">Protected leads panel &amp; statuses</div>
+      <span class="card-tag blue">screen demo</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <p style="font-size:13px;color:var(--text-secondary);line-height:1.65;margin-top:12px;">Show the protected leads section at the top of the dashboard. Walk through the statuses: <strong>Appointment Scheduled</strong>, <strong>Hotly</strong>, <strong>Appointment Held</strong>. Below those is the <strong>Protected List Gold Mine</strong> — deals where an appointment has been held or scheduled but no contract is signed yet. This is the rep's active book of business.</p>
+      <p style="font-size:13px;color:var(--text-secondary);line-height:1.65;margin-top:8px;">Show how to page through the list. The dashboard displays roughly 10 at a time. Reps should be scanning all pages daily, not just the first screen.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num teal">C</div>
+      <div class="card-title">The 6-day / 7-day dialer rule — HAMMER THIS HOME</div>
+      <span class="card-tag orange">key policy</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <div class="timeline-bar mt12">
+        <div class="timeline-bar-header">What happens to a lead with no contact activity</div>
+        <div class="timeline-bar-inner">
+          <div class="timeline-track">
+            <div class="timeline-seg" style="flex:6;background:var(--teal-dark);">Days 1–6: Protected</div>
+            <div class="timeline-seg" style="flex:1;background:var(--orange);">Day 6</div>
+            <div class="timeline-seg" style="flex:1;background:#c0392b;">Day 7+</div>
+          </div>
+          <div class="timeline-labels">
+            <div class="timeline-label" style="flex:6;text-align:left;">Rep owns the lead</div>
+            <div class="timeline-label" style="flex:1;">Appears on dashboard warning list</div>
+            <div class="timeline-label" style="flex:1;text-align:right;">Moves to dialer pool — anyone can claim it</div>
+          </div>
+        </div>
+      </div>
+      <div class="policy-block">
+        <div class="policy-block-label">The rule</div>
+        <p>A rep must have a call <strong>or</strong> text logged on a deal within every 7-day window. At 6 days without activity, it appears on the protected leads dashboard. At 7 days, it drops into the general dialer pool and can be claimed by anyone — including someone else on the team.</p>
+      </div>
+      <p style="font-size:13px;color:var(--text-secondary);line-height:1.65;margin-top:8px;">This is why checking the dashboard every morning is critical. Reps should make the first-thing daily habit: log in, scan the protected leads page for anything approaching 6 days, and take action before it's too late.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num orange">D</div>
+      <div class="card-title">Retrade tasks — always loop in your manager</div>
+      <span class="card-tag orange">key policy</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <p style="font-size:13px;color:var(--text-secondary);line-height:1.65;margin-top:12px;">A retrade task appears when a deal is stuck — either the acquisition price was too high, or investor feedback from marketing is pushing for a lower price. Show what this looks like on the dashboard.</p>
+      <div class="deal-killer"><strong>Non-negotiable:</strong> Reps must loop in their team lead or manager on every retrade call. The good cop / bad cop dynamic has shown a 50–60% higher success rate. This isn't optional — ego is the enemy here. The rep still earns 100% of their commission either way, so there's no reason to go it alone.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num">E</div>
+      <div class="card-title">Overdue tasks, on-hold contracts, in-marketing deals</div>
+      <span class="card-tag blue">screen demo</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <p style="font-size:13px;color:var(--text-secondary);line-height:1.65;margin-top:12px;">Walk through each section on the dashboard:</p>
+      <ul style="margin-top:8px;display:flex;flex-direction:column;gap:7px;list-style:none;">
+        <li style="font-size:13px;color:var(--text-secondary);padding-left:16px;position:relative;line-height:1.55;"><span style="position:absolute;left:0;color:var(--blue);font-weight:700;">›</span><strong>Overdue tasks:</strong> Show the overdue list. Emphasize these don't auto-roll to the next day — reps must manually move them or deal with the backlog.</li>
+        <li style="font-size:13px;color:var(--text-secondary);padding-left:16px;position:relative;line-height:1.55;"><span style="position:absolute;left:0;color:var(--blue);font-weight:700;">›</span><strong>On-hold contracts:</strong> Usually means photos pending or a competing contract situation. Show what each status means.</li>
+        <li style="font-size:13px;color:var(--text-secondary);padding-left:16px;position:relative;line-height:1.55;"><span style="position:absolute;left:0;color:var(--blue);font-weight:700;">›</span><strong>In-marketing deals:</strong> These are how reps get paid. Show the disposition agent field. Reps should know their dispo agent by name and maintain a strong working relationship with them.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num teal">F</div>
+      <div class="card-title">Warm handoff to disposition agents</div>
+      <span class="card-tag teal">best practice</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <p style="font-size:13px;color:var(--text-secondary);line-height:1.65;margin-top:12px;">When a contract goes into marketing, don't just pass the lead over. Call the seller and the disposition agent together — a warm handoff call. All the rapport you built transfers over in that 10–15 minute call. If the dispo agent gets a cold call from an unknown number, they start from scratch.</p>
+      <div class="tone-cue">Ask the group: "How many of you have had a seller go cold after the handoff?" This usually generates discussion — use it to reinforce why the warm call matters.</div>
+    </div>
+  </div>
+
+  <div class="module-nav-btns"><button class="nav-btn" onclick="showSection(2)">← Section 2</button><button class="nav-btn primary" onclick="showSection(4)">Section 4: Task Management →</button></div>
+</div>
+
+<!-- SECTION 4: TASK MANAGEMENT -->
+<div class="section-panel" id="section-4">
+  <div class="module-header">
+    <div class="module-eyebrow">Section 4</div>
+    <div class="module-title">Task Management &amp; Lead Cadence</div>
+    <div class="module-desc">The operational core. How reps stay on top of every lead without letting anything fall through. ~15 minutes.</div>
+  </div>
+
+  <div class="subsection-title">The 3-Strike Kick Rule</div>
+  <div class="alert alert-warn"><strong>Updated from session recording.</strong> The transcript described an ATC1–ATC3 cadence (calls only, 4 attempts). Sales leadership has updated this: the correct kick threshold is <strong>3 calls + 3 texts + 1 email</strong> before releasing a lead. Use this version in facilitation.</div>
+
+  <div class="cadence-row mt12">
+    <div class="cadence-step">
+      <div class="cadence-step-num">Call 1</div>
+      <div class="cadence-step-label">ATC1</div>
+      <div class="cadence-step-sub">First attempt</div>
+    </div>
+    <div class="cadence-arrow">›</div>
+    <div class="cadence-step">
+      <div class="cadence-step-num">Call 2</div>
+      <div class="cadence-step-label">ATC2</div>
+      <div class="cadence-step-sub">Second attempt</div>
+    </div>
+    <div class="cadence-arrow">›</div>
+    <div class="cadence-step">
+      <div class="cadence-step-num">Call 3</div>
+      <div class="cadence-step-label">ATC3</div>
+      <div class="cadence-step-sub">Third attempt</div>
+    </div>
+  </div>
+  <div class="cadence-row" style="margin-top:4px;">
+    <div class="cadence-step" style="border-color:var(--blue);">
+      <div class="cadence-step-num">Text 1</div>
+      <div class="cadence-step-label">SMS 1</div>
+      <div class="cadence-step-sub">Via Zoom</div>
+    </div>
+    <div class="cadence-arrow">›</div>
+    <div class="cadence-step" style="border-color:var(--blue);">
+      <div class="cadence-step-num">Text 2</div>
+      <div class="cadence-step-label">SMS 2</div>
+      <div class="cadence-step-sub">Via Zoom</div>
+    </div>
+    <div class="cadence-arrow">›</div>
+    <div class="cadence-step" style="border-color:var(--blue);">
+      <div class="cadence-step-num">Text 3</div>
+      <div class="cadence-step-label">SMS 3</div>
+      <div class="cadence-step-sub">Via Zoom</div>
+    </div>
+    <div class="cadence-arrow">›</div>
+    <div class="cadence-step" style="border-color:var(--teal-dark);">
+      <div class="cadence-step-num">Email</div>
+      <div class="cadence-step-label">1 Email</div>
+      <div class="cadence-step-sub">Final touch</div>
+    </div>
+    <div class="cadence-arrow">›</div>
+    <div class="cadence-step kick">
+      <div class="cadence-step-num">No Response</div>
+      <div class="cadence-step-label">KICK</div>
+      <div class="cadence-step-sub">Remove from pipeline</div>
+    </div>
+  </div>
+  <p style="font-size:13px;color:var(--text-secondary);line-height:1.65;margin-top:12px;">Calls are the primary contact channel. Texts and the email can be interleaved throughout the cadence — there's no strict ordering between them. The goal is 3 genuine call attempts, 3 texts via Zoom, and 1 email before releasing a lead. Revenue-generating activity is the priority — don't spin the wheel on a dead lead indefinitely.</p>
+
+  <hr class="section-divider"/>
+  <div class="subsection-title">Creating &amp; Managing Tasks</div>
+
+  <div class="card open">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num">1</div>
+      <div class="card-title">Creating a task on a deal record</div>
+      <span class="card-tag blue">screen demo</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <p style="font-size:13px;color:var(--text-secondary);line-height:1.65;margin-top:12px;">On any deal record, click the <strong>Task</strong> tab at the top (alongside Notes, Emails, Calls). Set the task name — something meaningful, not just "follow up." Set the due date. Assign to yourself unless handing off. Show how notifications pop up when a task is due.</p>
+      <div class="agent-note"><strong>Task naming matters.</strong> "ATC1," "ATC2," "Follow up — seller needs to talk to spouse," "Verbal yes — call to lock up" are all useful. "Call back" or "follow up" with no context is not. Reps should know why they're calling before they dial.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num teal">2</div>
+      <div class="card-title">Claiming lead ownership — only after you've spoken to them</div>
+      <span class="card-tag orange">key policy</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <p style="font-size:13px;color:var(--text-secondary);line-height:1.65;margin-top:12px;">An ATC task means you attempted to call — it does not grant ownership. A rep can only claim ownership of a lead once they've had a live conversation and qualified the prospect. Before that conversation, anyone could call the same number through the dialer and take it.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num orange">3</div>
+      <div class="card-title">Tasks don't auto-roll — manual reschedule required</div>
+      <span class="card-tag orange">key policy</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <p style="font-size:13px;color:var(--text-secondary);line-height:1.65;margin-top:12px;">If a task goes past its due date without being completed, it lands in the overdue list — it does not automatically move to tomorrow. Reps must manually reschedule. Show the batch-edit trick: select multiple overdue tasks at once and update the date in bulk rather than going task by task.</p>
+      <div class="deal-killer"><strong>Watch out:</strong> The longer a task goes unworked, the closer that lead gets to the 7-day window. An overdue task pile is an early warning sign that a rep is about to lose leads they've already invested in.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num">4</div>
+      <div class="card-title">Task list as talk-time credit</div>
+      <span class="card-tag teal">efficiency tip</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <p style="font-size:13px;color:var(--text-secondary);line-height:1.65;margin-top:12px;">When a rep dials a lead directly from a task (clicking into the task and calling), any resulting talk time counts toward their ready-to-sell time in the dialer. This lets reps work through admin tasks and generate talk time simultaneously. After 4–5 hours in the dialer, running through the task list is how the remaining time gets used productively.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num">5</div>
+      <div class="card-title">Daily pipeline time — non-negotiable habit</div>
+      <span class="card-tag orange">key policy</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <p style="font-size:13px;color:var(--text-secondary);line-height:1.65;margin-top:12px;">Reps should dedicate time every day — not once a week, not when they think about it — to hitting their pipeline. Recommended split: 5–6 hours on phones (dialer + follow-up appointments), remaining time on tasks, admin, and list prospecting. Two monitors are strongly recommended — bouncing between HubSpot and comping tools on one screen is inefficient.</p>
+      <div class="agent-note"><strong>Monitor tip:</strong> Excess monitors available from the Nashville office — $20 box + $20 shipping. Text Cody if interested. Facebook Marketplace is also a same-day option.</div>
+    </div>
+  </div>
+
+  <div class="module-nav-btns"><button class="nav-btn" onclick="showSection(3)">← Section 3</button><button class="nav-btn primary" onclick="showSection(5)">Section 5: Deals &amp; Tiers →</button></div>
+</div>
+
+<!-- SECTION 5: DEALS & TIERS -->
+<div class="section-panel" id="section-5">
+  <div class="module-header">
+    <div class="module-eyebrow">Section 5</div>
+    <div class="module-title">Working Deals &amp; Tier Progression</div>
+    <div class="module-desc">How to work the deals view efficiently, and how to think about the progression system. ~10 minutes.</div>
+  </div>
+  <div class="subsection-title">Board View vs. List View</div>
+
+  <div class="card open">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num">A</div>
+      <div class="card-title">Board view — pipeline status overview</div>
+      <span class="card-tag blue">screen demo</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <p style="font-size:13px;color:var(--text-secondary);line-height:1.65;margin-top:12px;">The board view shows deals organized by status — good for reviewing your overall pipeline health: how many under review, in contract, in marketing, backed out, closed. Use this view when you want a picture of your business, not when you're trying to dial people.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num teal">B</div>
+      <div class="card-title">List view — preferred for making serial dials</div>
+      <span class="card-tag blue">screen demo</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <p style="font-size:13px;color:var(--text-secondary);line-height:1.65;margin-top:12px;">Switch to the list view when making calls. Sort by deal stage to surface appointment-helds that never converted, then right-click → open in new tab for each one. Open 8–10 in tabs and work through them one by one. This is more efficient than clicking back and forth through the board.</p>
+    </div>
+  </div>
+
+  <hr class="section-divider"/>
+  <div class="subsection-title">Tier Progression — The Game</div>
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num orange">C</div>
+      <div class="card-title">How lead tiers work — unlock the next level</div>
+      <span class="card-tag teal">motivation</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <p style="font-size:13px;color:var(--text-secondary);line-height:1.65;margin-top:12px;">Success in this role is structured in tiers. Getting a first contract unlocks the next tier. Getting a contract that passes underwriting unlocks another. Getting a contract assigned unlocks inbound calls. Each level opens up better, fresher leads. Think of it like Super Mario Brothers — beat this level to get to the next one.</p>
+      <div class="agent-note"><strong>Example to share:</strong> Tony Risa's $4K assignment — not a huge deal, but it unlocked inbound calls. The dollar amount of the first deal doesn't matter. Getting to the next level does.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num">D</div>
+      <div class="card-title">"Fail forward" — pull the trigger, sharpen later</div>
+      <span class="card-tag teal">mindset</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <p style="font-size:13px;color:var(--text-secondary);line-height:1.65;margin-top:12px;">New reps tend to overthink deals — "I'm not sure this will get assigned." Don't. Lock up contracts. Numbers can be off and still be retraded into a good deal. The skill sharpens as the drive keeps going. If 10 bad contracts yields one good one, that's all it takes to unlock the next tier and start getting better leads.</p>
+      <div class="tone-cue">Good discussion prompt here: "What's the cost of locking up a contract that doesn't close?" vs. "What's the cost of not locking it up?" Usually helps them see the asymmetry clearly.</div>
+    </div>
+  </div>
+
+  <hr class="section-divider"/>
+  <div class="subsection-title">Personal Strategies — Open It Up</div>
+  <div class="script-block">
+    <div class="script-label">Facilitator — Invite Discussion Here</div>
+    <p>"I've shared how I do it — but everyone finds their own rhythm. What's working for you right now when it comes to staying on top of your pipeline? Anyone have a habit or trick that's helped?"</p>
+    <div class="script-note">Sales leadership specifically requested that facilitators share personal strategies that work for them. Don't skip this — it builds credibility and models the servant leadership approach the team values.</div>
+  </div>
+
+  <div class="module-nav-btns"><button class="nav-btn" onclick="showSection(4)">← Section 4</button><button class="nav-btn primary" onclick="showSection(6)">Section 6: Objection Handling →</button></div>
+</div>
+
+<!-- SECTION 6: OBJECTION HANDLING -->
+<div class="section-panel" id="section-6">
+  <div class="module-header">
+    <div class="module-eyebrow">Section 6</div>
+    <div class="module-title">Objection Handling &amp; Stalling Sellers</div>
+    <div class="module-desc">The conversational side of funnel management — what to do when sellers delay, go cold, or try to push you out. ~10 minutes.</div>
+  </div>
+
+  <div class="subsection-title">The Weekly Touch Rule</div>
+  <div class="policy-block">
+    <div class="policy-block-label">Mandatory Policy</div>
+    <p>A rep must call or text every lead within every 7-day window — regardless of what the seller said about their timeline. A seller who says "call me in three weeks" doesn't exempt that lead from the 7-day rule. The rep still touches base weekly to maintain ownership and keep their name fresh.</p>
+  </div>
+  <hr class="section-divider"/>
+
+  <div class="subsection-title">Key Tactics — Walk Through Each</div>
+  <div class="pillar-card open">
+    <div class="pillar-head" onclick="togglePillar(this)">
+      <div class="pillar-num">1</div>
+      <div class="pillar-label"><div class="pillar-name">Sales resistance relief — agree and probe</div><div class="pillar-sub">When a seller pushes the timeline out</div></div>
+      <span class="pillar-chevron">▾</span>
+    </div>
+    <div class="pillar-body">
+      <div class="pillar-section"><div class="pillar-section-label">The Tactic</div><p>When a seller says "call me back in three weeks," don't push back — that creates resistance. Instead, agree, schedule it, and then pivot: <em>"So I'm better prepared for that call — what's holding you back from moving forward today?"</em> Now they're in a lower-resistance state and more likely to actually tell you what the real issue is. Then you have something to work with.</p></div>
+      <div class="script-block">
+        <div class="script-label">Example language</div>
+        <p>"No problem — let me pull up my calendar. Three weeks from now on Tuesday at 2pm — does that work? Great. So I can be better prepared, what exactly is holding you back from moving forward today?"</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pillar-card">
+    <div class="pillar-head" onclick="togglePillar(this)">
+      <div class="pillar-num teal">2</div>
+      <div class="pillar-label"><div class="pillar-name">Get to yes or no — stop chasing maybes</div><div class="pillar-sub">The goal is always a conclusive outcome</div></div>
+      <span class="pillar-chevron">▾</span>
+    </div>
+    <div class="pillar-body">
+      <div class="pillar-section"><div class="pillar-section-label">The Mindset</div><p>Chasing maybes kills the business. The goal of every conversation is an outcome — yes or no. A no is fine; a no frees up the rep's time. What's not fine is an endless parade of "call me back in three weeks" with no real intention to move.</p></div>
+      <div class="script-block">
+        <div class="script-label">The direct call-out</div>
+        <p>"Hey — are you politely telling me to kick rocks, or do you really want me to call you back? Either way is fine, I just don't want to waste your time or mine."</p>
+        <div class="script-note">This line sounds bold but it works — it relieves the seller of the social pressure to be polite and lets them tell you the truth. Use it when you've already done the agree-and-probe and the seller still seems evasive.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pillar-card">
+    <div class="pillar-head" onclick="togglePillar(this)">
+      <div class="pillar-num orange">3</div>
+      <div class="pillar-label"><div class="pillar-name">Bring in a second voice — don't let ego cost you a deal</div><div class="pillar-sub">Loop in a team lead before the lead goes cold</div></div>
+      <span class="pillar-chevron">▾</span>
+    </div>
+    <div class="pillar-body">
+      <div class="pillar-section"><div class="pillar-section-label">When to Use This</div><p>If a rep feels like they're losing a lead — the seller is going quiet, the conversations are going nowhere — that's the moment to loop in a team lead or manager. Not after the deal dies. A second voice from a "position of power" (someone who can speak to the underwriting or investment side) often elicits a response the rep alone can't.</p></div>
+      <div class="agent-note"><strong>Servant leadership reminder:</strong> Team leads aren't there to take over deals — they're there to remove obstacles. Reps still get 100% of their commission. Looping someone in costs nothing and wins deals.</div>
+    </div>
+  </div>
+
+  <hr class="section-divider"/>
+  <div class="subsection-title">Role-Play Prompt</div>
+  <div class="script-block">
+    <div class="script-label">Optional Practice Exercise</div>
+    <p>Facilitator plays a seller who says: "I appreciate it, but I think we're going to wait three months before making any decisions." Rep has to: (1) agree without pushback, (2) schedule the future call, (3) probe for the real objection, (4) do a weekly-touch check-in call one week later.</p>
+    <div class="script-note">Keep this brief — 3–5 minutes. It doesn't need to be a full drill. The goal is for reps to hear themselves say the language once before they're on a live call.</div>
+  </div>
+
+  <div class="module-nav-btns"><button class="nav-btn" onclick="showSection(5)">← Section 5</button><button class="nav-btn primary" onclick="showSection(7)">Section 7: Zoom SMS Protocol →</button></div>
+</div>
+
+<!-- SECTION 7: ZOOM SMS -->
+<div class="section-panel" id="section-7">
+  <div class="module-header">
+    <div class="module-eyebrow">Section 7</div>
+    <div class="module-title">Zoom SMS Protocol</div>
+    <div class="module-desc">How texts must be sent, how to use text templates, and how to add a second voice to a text chain. ~10 minutes. Live Zoom demo required.</div>
+  </div>
+
+  <div class="alert alert-warn"><strong>All texts must go through Zoom — no exceptions.</strong> Personal cell phone texts cannot be tracked. If a rep texts a seller from their personal phone, that lead can fall out of the pipeline and end up assigned to someone else. This is a non-negotiable compliance rule, not a preference.</div>
+
+  <hr class="section-divider"/>
+  <div class="subsection-title">Step-by-Step: Sending a Text in Zoom</div>
+
+  <div class="card open">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num">1</div>
+      <div class="card-title">Finding the SMS function in Zoom Phone</div>
+      <span class="card-tag blue">screen demo</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <p style="font-size:13px;color:var(--text-secondary);line-height:1.65;margin-top:12px;">In Zoom, navigate to the Phone section. Along the top tabs you'll see: History, Voicemail, Lines, and <strong>SMS</strong>. Click SMS. Show the thread view — it looks like a standard cell phone message chain. The conversation history is visible and trackable.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num teal">2</div>
+      <div class="card-title">Adding a second person to the text thread</div>
+      <span class="card-tag blue">screen demo</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <p style="font-size:13px;color:var(--text-secondary);line-height:1.65;margin-top:12px;">When composing a text, type the seller's number in the recipient field — and then also add Pat, Shon, or the relevant team lead. Both people receive the message. The team lead can then step in as a "position of power" — identifying themselves as being from the underwriting department, or simply reinforcing the offer with authority.</p>
+      <div class="script-block">
+        <div class="script-label">What the second voice looks like</div>
+        <p>"Hi [Seller Name], this is [Manager] from the underwriting team. I wanted to reach out personally — we're wrapping up funding in your area and wanted to make sure we could still secure that offer for you. Do you have a few minutes this week?"</p>
+        <div class="script-note">The seller who's been ignoring the rep's texts often responds when a new name appears with a title. It's not dishonest — underwriting is a real part of the process. It's about creating the second voice of authority.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num orange">3</div>
+      <div class="card-title">Finding text templates in Slack</div>
+      <span class="card-tag blue">screen demo</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <p style="font-size:13px;color:var(--text-secondary);line-height:1.65;margin-top:12px;">In Slack, navigate to the ACQ team channel. In the search bar at the top of that channel, type <strong>"text"</strong> and select "Show results for text." This surfaces pre-written urgency messages from leadership — templates for chasing ghosting leads, creating deadline pressure, etc. These are starting points, not scripts to copy verbatim.</p>
+      <div class="agent-note"><strong>Important clarification:</strong> The Slack messages are <em>templates</em> for what to send via Zoom. Slack itself is not the channel for texting sellers. Always send via Zoom SMS.</div>
+    </div>
+  </div>
+
+  <div class="module-nav-btns"><button class="nav-btn" onclick="showSection(6)">← Section 6</button><button class="nav-btn primary" onclick="showSection(8)">Section 8: Close &amp; Next Steps →</button></div>
+</div>
+
+<!-- SECTION 8: CLOSE -->
+<div class="section-panel" id="section-8">
+  <div class="module-header">
+    <div class="module-eyebrow">Section 8</div>
+    <div class="module-title">Close &amp; Next Steps</div>
+    <div class="module-desc">Wrapping the session with clarity and action items. Don't skip this — the close matters.</div>
+  </div>
+
+  <div class="subsection-title">Session Close Checklist</div>
+  <ul class="checklist" id="close-checklist">
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Every rep has the ACQ Dashboard bookmarked: <strong>https://app.hubspot.com/reports-dashboard/22487283/view/17953758</strong></li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Every rep understands the 7-day rule and why daily pipeline time is non-negotiable</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Every rep understands the updated 3-strike kick cadence: 3 calls + 3 texts + 1 email</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Every rep knows to use Zoom SMS only — no personal phone texts to sellers</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Every rep knows to add Pat/Shon/manager to text threads when a lead is going cold</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Open Q&amp;A completed — questions have been addressed or flagged for follow-up</li>
+  </ul>
+
+  <hr class="section-divider"/>
+  <div class="subsection-title">Open Q&amp;A Prompt</div>
+  <div class="script-block">
+    <div class="script-label">Facilitator — Wrap-Up Language</div>
+    <p>"That's everything I wanted to cover today. We went through a lot — pipeline management, the 7-day rule, how to work tasks efficiently, handling objections, and Zoom SMS. I'm sure things will come up once you're in it. Come find me with the specific situation and I'll help you work through it. That's what I'm here for. What questions do you have right now?"</p>
+    <div class="script-note">Wait through the silence. The first question always unlocks the others. Reps often have questions but wait to see if someone else goes first.</div>
+  </div>
+
+  <hr class="section-divider"/>
+  <div class="subsection-title">Assigned Next Steps</div>
+  <div class="next-steps">
+    <div class="next-steps-header">Action Items from This Session</div>
+    <div class="next-steps-body">
+      <div class="next-step-row">
+        <div class="next-step-who">All Reps</div>
+        <div class="next-step-what">Bookmark the ACQ Dashboard — confirm it loads as the HubSpot homepage. Notify manager if the setting isn't right.</div>
+      </div>
+      <div class="next-step-row">
+        <div class="next-step-who">All Reps</div>
+        <div class="next-step-what">Starting today: check the protected leads dashboard every morning. Any deal approaching 6 days without contact gets a call or text before anything else.</div>
+      </div>
+      <div class="next-step-row">
+        <div class="next-step-who">All Reps</div>
+        <div class="next-step-what">Going forward, all seller texts go through Zoom SMS. Add Pat or Shon to any text thread where you're trying to create urgency or recover a ghosting lead.</div>
+      </div>
+      <div class="next-step-row">
+        <div class="next-step-who">Ted Hughes</div>
+        <div class="next-step-what">Text Cody about the monitor inventory in Nashville — $20 for the box, $20 to ship. Relay back to group.</div>
+      </div>
+      <div class="next-step-row">
+        <div class="next-step-who">Facilitator</div>
+        <div class="next-step-what">Send a Slack recap to the cohort channel with the dashboard link, the 3-strike cadence summary, and a reminder of the Zoom SMS rule.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-success mt16"><strong>Facilitator reminder:</strong> The best thing you can do after this session is be available. Reps will hit their first real situation in 24–48 hours and need someone to call. That touchpoint is worth more than any training material.</div>
+
+  <div class="module-nav-btns"><button class="nav-btn" onclick="showSection(7)">← Section 7</button><button class="nav-btn primary" onclick="showSection(0)">↑ Back to Overview</button></div>
+</div>
+
+</div></div>
+
+<script>
+const panels = document.querySelectorAll('.section-panel');
+const navBtns = document.querySelectorAll('.mod-btn');
+function showSection(idx) {
+  panels.forEach((p,i) => p.classList.toggle('active', i===idx));
+  navBtns.forEach((b,i) => b.classList.toggle('active', i===idx));
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function toggleCard(headEl) { headEl.closest('.card').classList.toggle('open'); }
+function togglePillar(headEl) { headEl.closest('.pillar-card').classList.toggle('open'); }
+function toggleCheck(li) {
+  li.classList.toggle('checked');
+  li.querySelector('.check-box').textContent = li.classList.contains('checked') ? '✓' : '';
+}
+</script>
+</body>
+</html>
