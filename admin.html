@@ -125,6 +125,139 @@ body { font-family: var(--font); background: var(--off-white); color: var(--navy
 .ms-empty { padding: 10px 12px; font-size: 11px; color: var(--muted); font-style: italic; }
 .controls-right { margin-left: auto; font-size: 11px; color: var(--muted); font-weight: 600; }
 
+/* ── MODAL / REPORT CARD ── */
+.modal-overlay {
+  display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(31,53,64,0.7); z-index: 1000;
+  align-items: center; justify-content: center;
+}
+.modal-overlay.show { display: flex; }
+.modal-card {
+  background: var(--white); border-radius: 16px;
+  width: 90%; max-width: 700px; max-height: 85vh; overflow: auto;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+  animation: modalSlideIn 0.25s ease-out;
+}
+@keyframes modalSlideIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.modal-header {
+  background: var(--navy); padding: 24px 28px;
+  border-radius: 16px 16px 0 0; position: relative;
+}
+.modal-close {
+  position: absolute; top: 16px; right: 20px;
+  width: 32px; height: 32px; border-radius: 50%;
+  background: rgba(255,255,255,0.1); border: none;
+  color: rgba(255,255,255,0.6); font-size: 20px; font-weight: 300;
+  cursor: pointer; transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center; line-height: 1;
+}
+.modal-close:hover { background: rgba(255,255,255,0.2); color: white; }
+.modal-rep-name {
+  font-size: 22px; font-weight: 800; color: white; margin-bottom: 6px;
+}
+.modal-meta {
+  display: flex; gap: 20px; flex-wrap: wrap; margin-top: 12px;
+}
+.modal-meta-item {
+  display: flex; flex-direction: column; gap: 3px;
+}
+.modal-meta-label {
+  font-size: 8px; font-weight: 800; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(255,255,255,0.4);
+}
+.modal-meta-value {
+  font-size: 13px; font-weight: 600; color: white;
+}
+.modal-meta-value .rep-role {
+  display: inline-block; margin: 0;
+  font-size: 9px; font-weight: 800; letter-spacing: 0.08em;
+  padding: 3px 8px; border-radius: 10px;
+}
+.modal-meta-value .rep-role.acq {
+  background: rgba(33,169,225,0.2); color: #1aa6dc;
+}
+.modal-meta-value .rep-role.dispo {
+  background: rgba(245,131,31,0.2); color: #f5831f;
+}
+.modal-body {
+  padding: 28px;
+}
+.modal-section-title {
+  font-size: 11px; font-weight: 800; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted);
+  margin-bottom: 14px; padding-bottom: 8px;
+  border-bottom: 1.5px solid var(--border);
+}
+.activity-list {
+  display: flex; flex-direction: column; gap: 10px;
+}
+.activity-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 12px;
+  padding: 14px 16px; background: rgba(31,53,64,0.02);
+  border-radius: 10px; border: 1px solid var(--border);
+  align-items: center; transition: all 0.15s;
+}
+.activity-item:hover {
+  background: rgba(33,169,225,0.04);
+  border-color: rgba(33,169,225,0.2);
+}
+.activity-main {
+  display: flex; flex-direction: column; gap: 4px;
+}
+.activity-name {
+  font-size: 12px; font-weight: 700; color: var(--navy);
+}
+.activity-type {
+  font-size: 8px; font-weight: 800; letter-spacing: 0.08em;
+  text-transform: uppercase; display: inline-block;
+  padding: 2px 7px; border-radius: 8px; width: fit-content;
+}
+.activity-type.kc {
+  background: rgba(15,105,110,0.1); color: var(--teal-dark);
+}
+.activity-type.olt {
+  background: rgba(245,131,31,0.1); color: #c4640a;
+}
+.activity-date {
+  font-size: 10px; color: var(--muted); font-weight: 600;
+  text-align: right; white-space: nowrap;
+}
+.activity-date-label {
+  font-size: 8px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muted); opacity: 0.6;
+  display: block; margin-bottom: 2px;
+}
+.activity-result {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 12px; border-radius: 8px;
+  font-size: 11px; font-weight: 700;
+}
+.activity-result.passed {
+  background: rgba(46,204,113,0.1); color: #27ae60;
+}
+.activity-result.failed {
+  background: rgba(231,76,60,0.1); color: #c0392b;
+}
+.activity-result.pending {
+  background: rgba(90,120,136,0.08); color: var(--muted);
+  font-style: italic; font-weight: 600;
+}
+.activity-score {
+  font-weight: 800;
+}
+.activity-item.not-assigned {
+  opacity: 0.4; background: rgba(31,53,64,0.01);
+}
+.activity-item.not-assigned:hover {
+  background: rgba(31,53,64,0.02);
+  border-color: var(--border);
+}
+
 /* ── TABLE WRAPPER ── */
 .table-wrap {
   background: var(--white); border-radius: 12px;
@@ -188,7 +321,13 @@ td.rep-cell {
   box-shadow: 2px 0 0 rgba(31,53,64,0.06);
 }
 
-.rep-name { font-size: 12px; font-weight: 700; color: var(--navy); }
+.rep-name {
+  font-size: 12px; font-weight: 700; color: var(--navy);
+  cursor: pointer; transition: color 0.15s;
+}
+.rep-name:hover {
+  color: var(--blue); text-decoration: underline;
+}
 .rep-email { font-size: 10px; color: var(--muted); font-weight: 500; margin-top: 1px; }
 .rep-role {
   display: inline-block; font-size: 8px; font-weight: 800;
@@ -332,6 +471,34 @@ td.mod-cell { text-align: center; padding: 6px 4px; }
 <footer class="site-footer">
   © Rebuilt Offers, LLC · Admin Dashboard · Data from Google Sheets
 </footer>
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- REPORT CARD MODAL -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<div id="modal-overlay" class="modal-overlay" onclick="closeModal(event)">
+  <div class="modal-card" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <div class="modal-rep-name" id="modal-rep-name">–</div>
+      <div class="modal-meta">
+        <div class="modal-meta-item">
+          <span class="modal-meta-label">Class Date</span>
+          <span class="modal-meta-value" id="modal-class-date">–</span>
+        </div>
+        <div class="modal-meta-item">
+          <span class="modal-meta-label">Function</span>
+          <span class="modal-meta-value" id="modal-function">–</span>
+        </div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section-title">Assigned Training Activities</div>
+      <div class="activity-list" id="activity-list">
+        <!-- populated by JS -->
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
 const APPS_URL = 'https://script.google.com/macros/s/AKfycbyRSuUKBjwlPZiY8E7IZZUEQ8u-uwwuTXZnQ0nTPqtfk-bu3zyAa6RKZYw7687arJVs/exec';
@@ -647,7 +814,7 @@ function renderTable() {
 
     tbody += '<tr>';
     tbody += '<td class="rep-cell">';
-    tbody += '<div class="rep-name">' + rep.name + '</div>';
+    tbody += '<div class="rep-name" onclick="openRepModal(\'' + rep.email + '\')">' + rep.name + '</div>';
     tbody += '<div class="rep-email">' + rep.email + '</div>';
     tbody += '<span class="rep-role ' + rep.role + '">' + (rep.role === 'acq' ? 'Acquisition' : 'Disposition') + '</span>';
     tbody += '</td>';
@@ -690,6 +857,104 @@ function getCompPct(rep) {
   return Math.round((passed / myMods.length) * 100);
 }
 
+
+// ── MODAL FUNCTIONS ──────────────────────────────────────────
+function openRepModal(email) {
+  var rep = repMap[email];
+  if (!rep) return;
+
+  // Set header info
+  document.getElementById('modal-rep-name').textContent = rep.name;
+  document.getElementById('modal-class-date').textContent = rep.cls || 'Not assigned';
+  
+  var funcHtml = '<span class="rep-role ' + rep.role + '">' + 
+                 (rep.role === 'acq' ? 'Acquisition' : 'Disposition') + 
+                 '</span>';
+  document.getElementById('modal-function').innerHTML = funcHtml;
+
+  // Build activity list
+  var myMods = ALL_MODULES.filter(function(m) { return m.roles.includes(rep.role || 'acq'); });
+  var html = '';
+
+  myMods.forEach(function(mod) {
+    var comp = rep.completions[mod.id];
+    var isAssigned = true; // All modules for this role are assigned
+    
+    var itemClass = 'activity-item' + (isAssigned ? '' : ' not-assigned');
+    html += '<div class="' + itemClass + '">';
+    
+    // Activity main info
+    html += '<div class="activity-main">';
+    html += '<div class="activity-name">' + mod.name + '</div>';
+    html += '<span class="activity-type ' + mod.type.toLowerCase() + '">' + mod.type + '</span>';
+    html += '</div>';
+    
+    // Completion date
+    html += '<div class="activity-date">';
+    if (comp) {
+      // Use 'completed' field from the sheet data
+      var ts = comp.completed || comp.timestamp || comp.completed_at || comp.date;
+      html += '<span class="activity-date-label">Last Taken</span>';
+      html += ts ? formatDate(ts) : '–';
+    } else {
+      html += '<span class="activity-date-label">Last Taken</span>';
+      html += '–';
+    }
+    html += '</div>';
+    
+    // Result/score
+    if (comp) {
+      var resultClass = comp.passed ? 'passed' : 'failed';
+      var resultText = comp.passed ? '✓ Pass' : '✗ Retry';
+      html += '<div class="activity-result ' + resultClass + '">';
+      html += '<span class="activity-score">' + Math.round(comp.score_pct) + '%</span>';
+      html += resultText;
+      html += '</div>';
+    } else {
+      html += '<div class="activity-result pending">Pending</div>';
+    }
+    
+    html += '</div>';
+  });
+
+  document.getElementById('activity-list').innerHTML = html;
+
+  // Show modal
+  document.getElementById('modal-overlay').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(e) {
+  if (e && e.target !== document.getElementById('modal-overlay')) return;
+  document.getElementById('modal-overlay').classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+function formatDate(ts) {
+  if (!ts) return '–';
+  
+  // Handle various timestamp formats
+  var d;
+  if (typeof ts === 'number') {
+    // Unix timestamp (seconds or milliseconds)
+    d = new Date(ts > 10000000000 ? ts : ts * 1000);
+  } else if (typeof ts === 'string') {
+    d = new Date(ts);
+  } else {
+    return '–';
+  }
+  
+  // Check if valid date
+  if (isNaN(d.getTime())) return '–';
+  
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+}
+
+// Close modal on Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
+});
 
 
 // ── INIT ─────────────────────────────────────────────────────
