@@ -134,7 +134,7 @@ body { font-family: var(--font); background: var(--off-white); color: var(--navy
 .modal-overlay.show { display: flex; }
 .modal-card {
   background: var(--white); border-radius: 16px;
-  width: 90%; max-width: 700px; max-height: 85vh; overflow: auto;
+  width: 90%; max-width: 700px; max-height: 90vh; overflow: auto;
   box-shadow: 0 24px 64px rgba(0,0,0,0.4);
   animation: modalSlideIn 0.25s ease-out;
 }
@@ -143,12 +143,12 @@ body { font-family: var(--font); background: var(--off-white); color: var(--navy
   to   { opacity: 1; transform: translateY(0); }
 }
 .modal-header {
-  background: var(--navy); padding: 24px 28px;
+  background: var(--navy); padding: 20px 24px 18px;
   border-radius: 16px 16px 0 0; position: relative;
 }
 .modal-close {
-  position: absolute; top: 16px; right: 20px;
-  width: 32px; height: 32px; border-radius: 50%;
+  position: absolute; top: 12px; right: 16px;
+  width: 30px; height: 30px; border-radius: 50%;
   background: rgba(255,255,255,0.1); border: none;
   color: rgba(255,255,255,0.6); font-size: 20px; font-weight: 300;
   cursor: pointer; transition: all 0.2s;
@@ -156,13 +156,13 @@ body { font-family: var(--font); background: var(--off-white); color: var(--navy
 }
 .modal-close:hover { background: rgba(255,255,255,0.2); color: white; }
 .modal-rep-name {
-  font-size: 22px; font-weight: 800; color: white; margin-bottom: 6px;
+  font-size: 20px; font-weight: 800; color: white; margin-bottom: 8px;
 }
 .modal-meta {
-  display: flex; gap: 20px; flex-wrap: wrap; margin-top: 12px;
+  display: flex; gap: 20px; flex-wrap: wrap; margin-top: 8px;
 }
 .modal-meta-item {
-  display: flex; flex-direction: column; gap: 3px;
+  display: flex; flex-direction: column; gap: 2px;
 }
 .modal-meta-label {
   font-size: 8px; font-weight: 800; letter-spacing: 0.1em;
@@ -183,22 +183,22 @@ body { font-family: var(--font); background: var(--off-white); color: var(--navy
   background: rgba(245,131,31,0.2); color: #f5831f;
 }
 .modal-body {
-  padding: 28px;
+  padding: 20px 24px 22px;
 }
 .modal-section-title {
-  font-size: 11px; font-weight: 800; letter-spacing: 0.1em;
+  font-size: 10px; font-weight: 800; letter-spacing: 0.1em;
   text-transform: uppercase; color: var(--muted);
-  margin-bottom: 14px; padding-bottom: 8px;
+  margin-bottom: 12px; padding-bottom: 6px;
   border-bottom: 1.5px solid var(--border);
 }
 .activity-list {
-  display: flex; flex-direction: column; gap: 10px;
+  display: flex; flex-direction: column; gap: 8px;
 }
 .activity-item {
   display: grid;
   grid-template-columns: 1fr auto auto;
   gap: 12px;
-  padding: 14px 16px; background: rgba(31,53,64,0.02);
+  padding: 11px 14px; background: rgba(31,53,64,0.02);
   border-radius: 10px; border: 1px solid var(--border);
   align-items: center; transition: all 0.15s;
 }
