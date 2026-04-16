@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjQ0MCAwIDU1MCA4OTAiPgogIDxwYXRoIGQ9Im0gMzMzNy45OSwzNTQ0LjgzIDExNzkuNzksMTA3Ni43MiB2IDE5MzguMSBMIDMzMzcuOTksNTU5MC42IFYgMzU0NC44MyIgZmlsbD0iIzRlYTllMiIgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIi8+CiAgPHBhdGggZD0iTSA2MTY5LjQ4LDk5OTUuMDEgViA0NjIxLjU1IGwgMTE3OS44LC0xMDc2LjcyIHYgNTQ5MS4yOSBsIC0xMTc5LjgsOTU4Ljg5IiBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz4KICA8cGF0aCBkPSJNIDQ3NTMuNzQsNzc0NC4wNSBWIDQ4MzYuODkgbCA1ODkuODksNTM4LjM3IDU4OS45LC01MzguMzcgNC4zNywzOTczLjcyIC0xMTg0LjE2LC0xMDY2LjU2IiBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz4KICA8cGF0aCBkPSJtIDQ4MDIuMjEsMzQyNS4xOSBoIDQzMC42OSB2IDQzMC42OCBoIC00MzAuNjkgdiAtNDMwLjY4IiBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz4KICA8cGF0aCBkPSJtIDU0NDguMjQsMzQyNS4xOSBoIDQzMC43IHYgNDMwLjY4IGggLTQzMC43IHYgLTQzMC42OCIgZmlsbD0iIzRlYTllMiIgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIi8+CiAgPHBhdGggZD0ibSA1MjMyLjksNDUwMS45MSBoIC00MzAuNjkgdiAtNDMwLjY5IGggNDMwLjY5IHYgNDMwLjY5IiBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz4KICA8cGF0aCBkPSJtIDU0NDguMjQsNDUwMS45MSB2IC00MzAuNjkgaCA0MzAuNyB2IDQzMC42OSBoIC00MzAuNyIgZmlsbD0iIzRlYTllMiIgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIi8+Cjwvc3ZnPg=="/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Rebuilt — Guided Call Review · Facilitator Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --blue:#21a9e1; --blue-dark:#1a8cbf; --blue-light:#e8f6fd;
+    --teal:#64b4b7; --teal-dark:#0f696e;
+    --orange:#f5831f; --orange-dark:#d96d0a;
+    --navy:#1f3540; --navy-mid:#2c4a5a;
+    --off-white:#efedeb;
+    --bg-primary:#ffffff; --bg-secondary:#f7f6f4; --bg-tertiary:#efedeb;
+    --text-primary:#1f3540; --text-secondary:#4a6070; --text-tertiary:#7a90a0;
+    --border-tertiary:rgba(31,53,64,0.10); --border-secondary:rgba(31,53,64,0.18);
+    --success-bg:#f0fdf4; --success-border:#2d7a2d; --success-text:#1a4d1a;
+    --danger-bg:#fff8f0; --danger-border:#f5831f; --danger-text:#7a3a00;
+    --radius-md:8px; --radius-lg:12px;
+    --font:'Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  }
+  body { font-family:var(--font); background:#efedeb; color:#1f3540; font-size:16px; line-height:1.6; font-weight:400; letter-spacing:-0.01em; }
+  .page-wrap { max-width:920px; margin:0 auto; padding:0 1rem 4rem; }
+
+  .topbar { background:var(--navy); position:sticky; top:0; z-index:200; border-bottom:3px solid var(--blue); }
+  .topbar-inner { max-width:920px; margin:0 auto; padding:0 1.25rem; display:flex; align-items:center; gap:14px; height:56px; }
+  .topbar-wordmark { font-size:18px; font-weight:700; color:#fff; letter-spacing:-0.02em; line-height:1; }
+  .topbar-divider { width:1px; height:22px; background:rgba(255,255,255,0.2); margin:0 4px; }
+  .topbar-sub { font-size:11px; color:rgba(255,255,255,0.55); font-weight:500; letter-spacing:0.04em; text-transform:uppercase; }
+  .topbar-badge { margin-left:auto; background:var(--orange); color:#fff; font-size:10px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; padding:3px 12px; border-radius:20px; }
+
+  .mod-nav-wrap { background:var(--bg-primary); border-bottom:1px solid var(--border-tertiary); position:sticky; top:59px; z-index:99; }
+  .mod-nav-inner { max-width:920px; margin:0 auto; padding:0 1rem; display:flex; gap:2px; overflow-x:auto; scrollbar-width:none; }
+  .mod-nav-inner::-webkit-scrollbar { display:none; }
+  .mod-btn { padding:12px 14px; font-size:11px; font-weight:600; border:none; background:transparent; cursor:pointer; color:var(--text-tertiary); border-bottom:3px solid transparent; white-space:nowrap; transition:all 0.15s; letter-spacing:0.02em; font-family:var(--font); }
+  .mod-btn:hover { color:var(--text-primary); background:var(--bg-secondary); }
+  .mod-btn.active { color:var(--blue); border-bottom-color:var(--blue); }
+
+  .content { padding:2rem 0; }
+  .section-panel { display:none; }
+  .section-panel.active { display:block; }
+  .module-header { margin-bottom:1.75rem; }
+  .module-eyebrow { font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--blue); margin-bottom:8px; }
+  .module-title { font-size:26px; font-weight:700; line-height:1.25; color:var(--navy); }
+  .module-desc { font-size:14px; color:var(--text-secondary); margin-top:8px; line-height:1.65; }
+  .info-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:1.75rem; }
+  .info-chip { padding:5px 14px; border-radius:20px; background:var(--blue-light); font-size:12px; color:var(--teal-dark); border:1px solid rgba(33,169,225,0.2); font-weight:500; }
+  .info-chip strong { color:var(--navy); font-weight:700; }
+
+  .card { background:var(--bg-primary); border:1px solid var(--border-tertiary); border-radius:var(--radius-lg); overflow:hidden; margin-bottom:10px; transition:border-color 0.15s; }
+  .card:hover { border-color:rgba(33,169,225,0.3); }
+  .card-head { display:flex; align-items:center; gap:14px; padding:15px 18px; cursor:pointer; user-select:none; }
+  .card-head:hover { background:var(--bg-secondary); }
+  .card-num { width:32px; height:32px; border-radius:8px; background:var(--blue-light); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:var(--blue); flex-shrink:0; }
+  .card-num.orange { background:rgba(245,131,31,0.12); color:var(--orange); }
+  .card-num.teal { background:rgba(15,105,110,0.1); color:var(--teal-dark); }
+  .card-num.navy { background:rgba(31,53,64,0.08); color:var(--navy); }
+  .card-title { font-size:14px; font-weight:600; flex:1; color:var(--text-primary); overflow-wrap:break-word; min-width:0; }
+  .card-tag { font-size:10px; padding:3px 10px; border-radius:10px; background:var(--off-white); color:var(--text-tertiary); font-weight:600; letter-spacing:0.04em; text-transform:uppercase; white-space:nowrap; }
+  .card-tag.orange { background:rgba(245,131,31,0.1); color:var(--orange); }
+  .card-tag.teal { background:rgba(15,105,110,0.1); color:var(--teal-dark); }
+  .card-tag.blue { background:var(--blue-light); color:var(--blue-dark); }
+  .card-tag.green { background:#f0fdf4; color:#1a6b2a; }
+  .card-chevron { font-size:11px; color:var(--text-tertiary); transition:transform 0.2s; }
+  .card.open .card-chevron { transform:rotate(180deg); }
+  .card.open { border-color:rgba(33,169,225,0.4); }
+  .card-body { display:none; padding:0 18px 20px; border-top:1px solid var(--border-tertiary); }
+  .card.open .card-body { display:block; }
+
+  .script-block { background:var(--navy); border-radius:var(--radius-md); padding:14px 16px; margin:14px 0 8px; border-left:3px solid var(--blue); }
+  .script-label { font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--teal); margin-bottom:8px; }
+  .script-block p { font-size:13px; color:#c8e8f4; line-height:1.65; font-style:italic; }
+  .script-note { font-size:12px; color:rgba(200,232,244,0.65); margin-top:8px; padding-top:8px; border-top:1px solid rgba(255,255,255,0.1); }
+
+  .alert { border-left:4px solid; border-radius:var(--radius-md); padding:12px 16px; margin:16px 0; font-size:13px; line-height:1.65; }
+  .alert-success { background:var(--success-bg); border-color:var(--success-border); color:var(--success-text); }
+  .alert-danger { background:var(--danger-bg); border-color:var(--danger-border); color:var(--danger-text); }
+  .alert strong { font-weight:700; display:block; margin-bottom:4px; }
+
+  .agent-note { background:var(--blue-light); border-radius:var(--radius-md); padding:10px 14px; margin:12px 0; font-size:12px; color:var(--navy); line-height:1.55; border-left:3px solid var(--blue); }
+  .agent-note strong { font-weight:700; }
+
+  .subsection-title { font-size:15px; font-weight:700; color:var(--navy); margin:24px 0 12px; padding-bottom:6px; border-bottom:2px solid var(--border-tertiary); }
+
+  .checklist { list-style:none; padding:0; margin:12px 0; }
+  .checklist li { display:flex; gap:10px; padding:8px 12px; border:1px solid var(--border-tertiary); border-radius:var(--radius-md); margin-bottom:6px; cursor:pointer; transition:all 0.15s; font-size:13px; color:var(--text-secondary); }
+  .checklist li:hover { background:var(--bg-secondary); border-color:var(--border-secondary); }
+  .check-box { width:18px; height:18px; border:2px solid var(--border-secondary); border-radius:4px; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:11px; color:var(--blue); font-weight:700; transition:all 0.15s; margin-top:2px; }
+  .checklist li.checked { background:var(--success-bg); border-color:var(--success-border); }
+  .checklist li.checked .check-box { background:var(--success-border); border-color:var(--success-border); color:#fff; }
+
+  .section-divider { border:none; border-top:2px solid var(--border-tertiary); margin:28px 0; }
+
+  .module-nav-btns { display:flex; gap:10px; margin-top:36px; padding-top:24px; border-top:1px solid var(--border-tertiary); }
+  .nav-btn { padding:10px 18px; border:1px solid var(--border-secondary); background:var(--bg-primary); border-radius:var(--radius-md); cursor:pointer; font-size:13px; font-weight:600; color:var(--text-primary); transition:all 0.15s; font-family:var(--font); }
+  .nav-btn:hover { background:var(--bg-secondary); border-color:var(--blue); }
+  .nav-btn.primary { background:var(--blue); border-color:var(--blue); color:#fff; }
+  .nav-btn.primary:hover { background:var(--blue-dark); }
+
+  .comparison-table { width:100%; border-collapse:collapse; margin:16px 0; background:var(--bg-primary); border-radius:var(--radius-md); overflow:hidden; border:1px solid var(--border-tertiary); }
+  .comparison-table td { padding:12px 14px; font-size:13px; line-height:1.6; border-bottom:1px solid var(--border-tertiary); }
+  .comparison-table tr:last-child td { border-bottom:none; }
+  .comparison-table td:first-child { font-weight:700; color:var(--navy); background:var(--bg-secondary); width:35%; }
+
+  .reference-table { width:100%; border-collapse:collapse; margin:16px 0; background:var(--bg-primary); border-radius:var(--radius-md); overflow:hidden; border:1px solid var(--border-tertiary); font-size:13px; }
+  .reference-table th { background:var(--navy); color:#fff; padding:10px 12px; text-align:left; font-weight:600; font-size:11px; letter-spacing:0.03em; text-transform:uppercase; }
+  .reference-table td { padding:10px 12px; border-bottom:1px solid var(--border-tertiary); line-height:1.55; }
+  .reference-table tr:last-child td { border-bottom:none; }
+
+  .next-steps { background:var(--bg-primary); border:1px solid var(--border-tertiary); border-radius:var(--radius-lg); overflow:hidden; margin:20px 0; }
+  .next-steps-header { background:var(--navy); color:#fff; padding:12px 16px; font-weight:700; font-size:13px; letter-spacing:0.02em; }
+  .next-steps-body { padding:16px; }
+  .next-step-row { display:flex; gap:14px; padding:10px 0; border-bottom:1px solid var(--border-tertiary); }
+  .next-step-row:last-child { border-bottom:none; }
+  .next-step-who { min-width:100px; font-weight:700; font-size:12px; color:var(--blue); }
+  .next-step-what { flex:1; font-size:13px; color:var(--text-secondary); line-height:1.6; }
+
+  .mt16 { margin-top:16px; }
+  ul, ol { margin:12px 0 12px 24px; }
+  li { margin-bottom:6px; font-size:14px; color:var(--text-secondary); line-height:1.65; }
+  p { margin:12px 0; font-size:14px; color:var(--text-secondary); line-height:1.65; }
+  strong { font-weight:700; color:var(--navy); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 80 450 660" style="height:36px;width:auto;">
+        <g transform="matrix(0.13333333,0,0,-0.13333333,0,732.2)" fill="#21a9e1">
+          <path d="m 0,100 986.152,900 V 2620 L 0,1810 V 100"/>
+          <path d="M 2366.76,5491.51 V 1000 l 986.15,-900 v 4590 l -986.15,801.51"/>
+          <path d="M 1183.38,3610 V 1180 l 493.08,450 493.07,-450 3.65,3321.51 -989.8,-891.51"/>
+          <path d="m 1223.9,0 h 360 v 360 h -360 V 0"/>
+          <path d="m 1763.9,0 h 360 v 360 h -360 V 0"/>
+          <path d="m 1583.9,900 h -360 V 540 h 360 v 360"/>
+          <path d="M 1763.9,900 V 540 h 360 v 360 h -360"/>
+        </g>
+      </svg>
+    </div>
+    <div class="topbar-wordmark">rebuilt</div>
+    <div class="topbar-divider"></div>
+    <div class="topbar-sub">Acquisition Training</div>
+    <div class="topbar-badge">Facilitator Guide</div>
+  </div>
+</div>
+
+<div class="mod-nav-wrap">
+  <div class="mod-nav-inner">
+    <button class="mod-btn active" onclick="showSection(0)">Overview</button>
+    <button class="mod-btn" onclick="showSection(1)">Session Structure</button>
+    <button class="mod-btn" onclick="showSection(2)">Phase-by-Phase</button>
+    <button class="mod-btn" onclick="showSection(3)">Call Selection</button>
+    <button class="mod-btn" onclick="showSection(4)">Sales Talk Reference</button>
+    <button class="mod-btn" onclick="showSection(5)">Facilitation Tips</button>
+  </div>
+</div>
+
+<div class="page-wrap"><div class="content">
+
+<!-- OVERVIEW -->
+<div class="section-panel active" id="section-0">
+  <div class="module-header">
+    <div class="module-eyebrow">Guided Call Review</div>
+    <div class="module-title">Facilitator Guide</div>
+    <div class="module-desc">A structured training format to replace traditional call shadowing with focused, methodology-driven call analysis</div>
+  </div>
+
+  <div class="info-row">
+    <div class="info-chip"><strong>Format:</strong> Group listening + live discussion</div>
+    <div class="info-chip"><strong>Focus:</strong> 1–2 sales talk sections per session</div>
+    <div class="info-chip"><strong>Sessions:</strong> 4–5 to cover full 13-step methodology</div>
+  </div>
+
+  <div class="subsection-title">What is Guided Call Review?</div>
+  <p>The Guided Call Review (GCR) is a structured training session designed to replace traditional call shadowing. It gives new Acquisition Associates the opportunity to listen to recorded calls in a group setting, pause and discuss in real time, and directly connect what they hear to the sales talk methodology.</p>
+
+  <div class="subsection-title">Why GCR Instead of Shadowing?</div>
+  <table class="comparison-table">
+    <tr>
+      <td>Call Shadowing</td>
+      <td>You only hear one side of the conversation, limited to live calls, cannot pause or rewind</td>
+    </tr>
+    <tr>
+      <td>Guided Call Review</td>
+      <td>Full recorded calls, pause and rewind at any moment, connect to methodology in real time, multiple calls in one session</td>
+    </tr>
+  </table>
+
+  <div class="subsection-title">Session Design Principle</div>
+  <div class="alert alert-danger">
+    <strong>KEY RULE</strong>
+    One section per session. Resist the temptation to cover everything. It's an elephant — eat it one bite at a time.
+  </div>
+  <p>Each session focuses on one or two specific sections of the 13-step sales talk — not the whole call. This keeps the content digestible and allows participants to develop mastery of each part before moving on. Plan for 4–5 total sessions to cover the full sales talk process.</p>
+
+  <div class="subsection-title">Five-Part Session Arc</div>
+  <p>Every GCR session follows this structure, regardless of which section of the sales talk is being covered:</p>
+  
+  <table class="reference-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Phase</th>
+        <th>What Happens</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Frame the Session</td>
+        <td>Tell participants exactly what section of the sales talk you're focusing on today and why. Set expectations: you will not listen to whole calls.</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Connect to the Script</td>
+        <td>Briefly reference the relevant section(s) of the Direct Answer Call Script before playing any audio. Confirm participants have access.</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Play the Call (in clips)</td>
+        <td>Play only the portion of the call that covers your target section. Pause at key moments.</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Debrief the Clip</td>
+        <td>Ask open-ended questions to the group. Connect observations back to the sales talk steps.</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Repeat with 2–4 More Calls</td>
+        <td>Listen to different agents handling the same section. Surface contrast and variety. Wrap up with key takeaways.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="module-nav-btns"><button class="nav-btn primary" onclick="showSection(1)">Session Structure →</button></div>
+</div>
+
+<!-- SESSION STRUCTURE -->
+<div class="section-panel" id="section-1">
+  <div class="module-header">
+    <div class="module-eyebrow">Session Structure</div>
+    <div class="module-title">Five-Phase Framework</div>
+    <div class="module-desc">Detailed breakdown of each phase in the Guided Call Review session</div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num">1</div>
+      <div class="card-title">Frame the Session</div>
+      <div class="card-tag blue">Opening</div>
+      <div class="card-chevron">▼</div>
+    </div>
+    <div class="card-body">
+      <p>Before playing a single second of audio, tell participants exactly what they're listening for. Narrow their focus deliberately.</p>
+      
+      <div class="script-block">
+        <div class="script-label">Facilitator Opening</div>
+        <p>"Today we're going to focus specifically on [target section — e.g., 'Steps 1 and 2: Introduction/Rapport and Setting the Stage']. We will not listen to whole calls. We're going to read the first chapter and put the book down."</p>
+        <p>"Each of these sessions will focus on a different part of the sales talk so we can make it digestible. There are 13 steps in this process — we can't cover all of them at once."</p>
+      </div>
+
+      <p>Confirm participants have access to the Direct Answer Virtual Call Appointment Script. Remind them to bookmark the shared (live) copy, not download a static version.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num">2</div>
+      <div class="card-title">Connect to the Script</div>
+      <div class="card-tag teal">Orientation</div>
+      <div class="card-chevron">▼</div>
+    </div>
+    <div class="card-body">
+      <p>Before playing audio, orient participants to the relevant section of the sales talk. You do not need to read it aloud — just point to it.</p>
+      
+      <div class="script-block">
+        <div class="script-label">Script Connection</div>
+        <p>"Open your script to [section name]. The portion we're listening for today is [Steps X through Y]. Here's what the script says we're supposed to accomplish in this part of the call…"</p>
+      </div>
+
+      <p>This anchors the group before they hear the call, so they're evaluating against a known standard rather than reacting to personal opinion.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num">3</div>
+      <div class="card-title">Play the Call (in Clips)</div>
+      <div class="card-tag orange">Playback</div>
+      <div class="card-chevron">▼</div>
+    </div>
+    <div class="card-body">
+      <p>This is where the session format diverges from shadowing. You are in control of playback.</p>
+
+      <div class="subsection-title">Before You Press Play</div>
+      <ul>
+        <li>Tell participants whose call it is and any relevant context (inbound vs. outbound, owner-occupant vs. investor, experience level of the agent)</li>
+        <li>Tell them exactly what to listen for: "Watch specifically for how they handle [target step]. Does the agent accomplish [goal of that step]?"</li>
+      </ul>
+
+      <div class="subsection-title">While the Call Plays</div>
+      <ul>
+        <li>Pause at natural moments — typically when the agent completes (or skips) the section you're targeting</li>
+        <li>Do not wait for a "perfect" moment. Pause when there's something worth discussing, whether it went well or not</li>
+        <li>You can also pause when participants are visibly reacting — that's a signal there's something to unpack</li>
+      </ul>
+
+      <div class="agent-note">
+        <strong>NOTE:</strong> You do not need to play the whole call. Tell participants you can share the recording if they want to hear how it ends. The goal is focused learning, not storytelling.
+      </div>
+
+      <div class="subsection-title">How Many Calls Per Session?</div>
+      <p>Aim for 2–4 calls per session, all covering the same section of the sales talk. The contrast between agents and sellers is where most of the learning happens.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num">4</div>
+      <div class="card-title">Debrief the Clip</div>
+      <div class="card-tag blue">Discussion</div>
+      <div class="card-chevron">▼</div>
+    </div>
+    <div class="card-body">
+      <p>This is the most important phase. Your job is to guide discussion that connects observations back to the sales talk.</p>
+
+      <div class="subsection-title">Debrief Question Framework</div>
+      <p>Use this sequence after pausing a clip:</p>
+
+      <table class="reference-table">
+        <thead>
+          <tr>
+            <th>Question Type</th>
+            <th>Example Questions to Ask the Group</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Observation</td>
+            <td>What did you notice there? Did the agent follow the script? Was it close? What felt natural or unnatural?</td>
+          </tr>
+          <tr>
+            <td>Alignment to Script</td>
+            <td>Did they accomplish the goal of [step name]? What step were they on? What did they skip or rush through?</td>
+          </tr>
+          <tr>
+            <td>Diagnosis</td>
+            <td>Why do you think they made that choice? What was the seller's energy telling them? Was the deviation intentional or accidental?</td>
+          </tr>
+          <tr>
+            <td>Impact / Consequence</td>
+            <td>What might happen later in the call because they skipped [X]? How could this create an objection they'll have to deal with?</td>
+          </tr>
+          <tr>
+            <td>Alternative Approach</td>
+            <td>What would you have done differently? What does the script suggest you do here? How would you adapt it for this specific seller?</td>
+          </tr>
+          <tr>
+            <td>Principle Extraction</td>
+            <td>What's the underlying principle we're seeing here? What does this tell us about [e.g., matching the seller's energy / setting the stage early]?</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="alert alert-success">
+        <strong>FACILITATOR TIP</strong>
+        Avoid answering your own questions. Ask the group first. Your role is to draw out observations, then affirm, reframe, or add nuance. The reps will remember what they discover themselves far better than what you tell them.
+      </div>
+
+      <div class="subsection-title">When the Group Spots Something Good</div>
+      <p>Affirm it, then tie it to the methodology: "Yes — what he did there is exactly what Step 4 is designed to accomplish. He uncovered the motivation before the seller even realized they'd shared it."</p>
+
+      <div class="subsection-title">When the Group Spots a Miss</div>
+      <p>Validate the observation, avoid piling on the agent, then redirect to principle: "Good catch. What's the risk of jumping straight to fact-finding before you've set the stage? What does the seller feel when that happens?"</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num">5</div>
+      <div class="card-title">The Power of Contrast</div>
+      <div class="card-tag teal">Multiple Calls</div>
+      <div class="card-chevron">▼</div>
+    </div>
+    <div class="card-body">
+      <p>The real value of GCR comes from listening to multiple agents handle the same section differently. Same section of the script — completely different execution.</p>
+
+      <div class="subsection-title">Contrasts to Surface Across Calls</div>
+      <ul>
+        <li>High-energy vs. flat/monotone delivery</li>
+        <li>On-script vs. adapted (make it your own)</li>
+        <li>Owner-occupant call vs. investor/rental property call</li>
+        <li>Seller who gives a lot vs. seller who is guarded</li>
+        <li>Call that resulted in a contract vs. call that did not</li>
+      </ul>
+
+      <div class="script-block">
+        <div class="script-label">Debrief Prompt</div>
+        <p>After 2–3 calls on the same section: "You've now heard [Agent A], [Agent B], and [Agent C] handle this same part of the call. What patterns do you notice? What worked across all of them? What varied, and why?"</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="module-nav-btns"><button class="nav-btn" onclick="showSection(0)">← Overview</button><button class="nav-btn primary" onclick="showSection(2)">Phase-by-Phase Details →</button></div>
+</div>
+
+<!-- PHASE-BY-PHASE -->
+<div class="section-panel" id="section-2">
+  <div class="module-header">
+    <div class="module-eyebrow">Phase-by-Phase Instructions</div>
+    <div class="module-title">Detailed Facilitator Instructions</div>
+    <div class="module-desc">In-depth guidance for executing each phase of the session</div>
+  </div>
+
+  <div class="subsection-title">Phase 1 — Frame the Session</div>
+  <p>Before playing a single second of audio, tell participants exactly what they're listening for. Narrow their focus deliberately.</p>
+
+  <div class="script-block">
+    <div class="script-label">SAY</div>
+    <p>"Today we're going to focus specifically on [target section — e.g., 'Steps 1 and 2: Introduction/Rapport and Setting the Stage']. We will not listen to whole calls. We're going to read the first chapter and put the book down."</p>
+    <p>"Each of these sessions will focus on a different part of the sales talk so we can make it digestible. There are 13 steps in this process — we can't cover all of them at once."</p>
+  </div>
+
+  <p>Confirm participants have access to the Direct Answer Virtual Call Appointment Script. Remind them to bookmark the shared (live) copy, not download a static version.</p>
+
+  <hr class="section-divider"/>
+
+  <div class="subsection-title">Phase 2 — Connect to the Script</div>
+  <p>Before playing audio, orient participants to the relevant section of the sales talk. You do not need to read it aloud — just point to it.</p>
+
+  <div class="script-block">
+    <div class="script-label">SAY</div>
+    <p>"Open your script to [section name]. The portion we're listening for today is [Steps X through Y]. Here's what the script says we're supposed to accomplish in this part of the call…"</p>
+  </div>
+
+  <p>This anchors the group before they hear the call, so they're evaluating against a known standard rather than reacting to personal opinion.</p>
+
+  <hr class="section-divider"/>
+
+  <div class="subsection-title">Phase 3 — Playing the Call (in Clips)</div>
+  <p>This is where the session format diverges from shadowing. You are in control of playback.</p>
+
+  <div class="subsection-title">Before you press play:</div>
+  <ul>
+    <li>Tell participants whose call it is and any relevant context (inbound vs. outbound, owner-occupant vs. investor, experience level of the agent)</li>
+    <li>Tell them exactly what to listen for: "Watch specifically for how they handle [target step]. Does the agent accomplish [goal of that step]?"</li>
+  </ul>
+
+  <div class="subsection-title">While the call plays:</div>
+  <ul>
+    <li>Pause at natural moments — typically when the agent completes (or skips) the section you're targeting</li>
+    <li>Do not wait for a "perfect" moment. Pause when there's something worth discussing, whether it went well or not</li>
+    <li>You can also pause when participants are visibly reacting — that's a signal there's something to unpack</li>
+  </ul>
+
+  <div class="agent-note">
+    <strong>NOTE:</strong> You do not need to play the whole call. Tell participants you can share the recording if they want to hear how it ends. The goal is focused learning, not storytelling.
+  </div>
+
+  <div class="subsection-title">How many calls per session?</div>
+  <p>Aim for 2–4 calls per session, all covering the same section of the sales talk. The contrast between agents and sellers is where most of the learning happens.</p>
+
+  <hr class="section-divider"/>
+
+  <div class="subsection-title">Phase 4 — Debriefing Each Clip</div>
+  <p>This is the most important phase. Your job is to guide discussion that connects observations back to the sales talk.</p>
+
+  <div class="subsection-title">Debrief Question Framework</div>
+  <p>Use this sequence after pausing a clip:</p>
+
+  <table class="reference-table">
+    <thead>
+      <tr>
+        <th>Question Type</th>
+        <th>Example Questions to Ask the Group</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Observation</td>
+        <td>What did you notice there? Did the agent follow the script? Was it close? What felt natural or unnatural?</td>
+      </tr>
+      <tr>
+        <td>Alignment to Script</td>
+        <td>Did they accomplish the goal of [step name]? What step were they on? What did they skip or rush through?</td>
+      </tr>
+      <tr>
+        <td>Diagnosis</td>
+        <td>Why do you think they made that choice? What was the seller's energy telling them? Was the deviation intentional or accidental?</td>
+      </tr>
+      <tr>
+        <td>Impact / Consequence</td>
+        <td>What might happen later in the call because they skipped [X]? How could this create an objection they'll have to deal with?</td>
+      </tr>
+      <tr>
+        <td>Alternative Approach</td>
+        <td>What would you have done differently? What does the script suggest you do here? How would you adapt it for this specific seller?</td>
+      </tr>
+      <tr>
+        <td>Principle Extraction</td>
+        <td>What's the underlying principle we're seeing here? What does this tell us about [e.g., matching the seller's energy / setting the stage early]?</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="alert alert-success">
+    <strong>FACILITATOR TIP</strong>
+    Avoid answering your own questions. Ask the group first. Your role is to draw out observations, then affirm, reframe, or add nuance. The reps will remember what they discover themselves far better than what you tell them.
+  </div>
+
+  <div class="subsection-title">When the Group Spots Something Good</div>
+  <p>Affirm it, then tie it to the methodology: "Yes — what he did there is exactly what Step 4 is designed to accomplish. He uncovered the motivation before the seller even realized they'd shared it."</p>
+
+  <div class="subsection-title">When the Group Spots a Miss</div>
+  <p>Validate the observation, avoid piling on the agent, then redirect to principle: "Good catch. What's the risk of jumping straight to fact-finding before you've set the stage? What does the seller feel when that happens?"</p>
+
+  <hr class="section-divider"/>
+
+  <div class="subsection-title">Phase 5 — The Power of Contrast (Multiple Calls)</div>
+  <p>The real value of GCR comes from listening to multiple agents handle the same section differently. Same section of the script — completely different execution.</p>
+
+  <div class="subsection-title">Contrasts to surface across calls:</div>
+  <ul>
+    <li>High-energy vs. flat/monotone delivery</li>
+    <li>On-script vs. adapted (make it your own)</li>
+    <li>Owner-occupant call vs. investor/rental property call</li>
+    <li>Seller who gives a lot vs. seller who is guarded</li>
+    <li>Call that resulted in a contract vs. call that did not</li>
+  </ul>
+
+  <div class="script-block">
+    <div class="script-label">DEBRIEF PROMPT</div>
+    <p>After 2–3 calls on the same section: "You've now heard [Agent A], [Agent B], and [Agent C] handle this same part of the call. What patterns do you notice? What worked across all of them? What varied, and why?"</p>
+  </div>
+
+  <div class="module-nav-btns"><button class="nav-btn" onclick="showSection(1)">← Session Structure</button><button class="nav-btn primary" onclick="showSection(3)">Call Selection →</button></div>
+</div>
+
+<!-- CALL SELECTION -->
+<div class="section-panel" id="section-3">
+  <div class="module-header">
+    <div class="module-eyebrow">Call Selection</div>
+    <div class="module-title">Selecting the Right Calls</div>
+    <div class="module-desc">Call selection makes or breaks the session. Here's how to choose well.</div>
+  </div>
+
+  <table class="reference-table">
+    <thead>
+      <tr>
+        <th>Criteria</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Match to session focus</td>
+        <td>Pick calls where the target section is clearly present — good or bad. Avoid calls where that section is ambiguous or buried.</td>
+      </tr>
+      <tr>
+        <td>Variety of agents</td>
+        <td>Use calls from different reps to show that the methodology adapts to individual style and personality.</td>
+      </tr>
+      <tr>
+        <td>Variety of seller types</td>
+        <td>Include at least one owner-occupant and one investor/landlord if possible. The difference in tone and approach is instructive.</td>
+      </tr>
+      <tr>
+        <td>Recency matters</td>
+        <td>Newer calls reflect current systems (e.g., six-digit offer code, current CRM). Older calls may confuse trainees with outdated processes. Flag this if using older calls.</td>
+      </tr>
+      <tr>
+        <td>Include imperfect calls</td>
+        <td>You don't need showcase calls. Calls with real mistakes are often more valuable learning tools than polished ones.</td>
+      </tr>
+      <tr>
+        <td>Outcome context (optional)</td>
+        <td>It can be useful to know if a call resulted in a contract. Knowing an "imperfect" call still converted reinforces that the methodology is a guide, not a rigid script.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr class="section-divider"/>
+
+  <div class="subsection-title">Linking Observations to the Sales Talk</div>
+  <p>Every debrief moment should close a loop back to the 13-step methodology. This is what separates GCR from "just listening to calls."</p>
+
+  <div class="subsection-title">The Link-Back Formula</div>
+  <div class="script-block">
+    <div class="script-label">FORMULA</div>
+    <p>Observation → Name the Step → Name the Goal of That Step → Connect to What You Heard</p>
+    <div class="script-note">Example: "What you noticed — that he jumped straight into condition questions — is what happens when Step 2 (Setting the Stage) gets skipped. The goal of Setting the Stage is to set time expectations and confirm all decision-makers are present. Without it, the seller doesn't know what they've agreed to participate in. That's why it can feel off."</div>
+  </div>
+
+  <div class="module-nav-btns"><button class="nav-btn" onclick="showSection(2)">← Phase-by-Phase</button><button class="nav-btn primary" onclick="showSection(4)">Sales Talk Reference →</button></div>
+</div>
+
+<!-- SALES TALK REFERENCE -->
+<div class="section-panel" id="section-4">
+  <div class="module-header">
+    <div class="module-eyebrow">Reference Map</div>
+    <div class="module-title">Sales Talk Section Reference</div>
+    <div class="module-desc">Quick reference guide for all 13 steps of the sales talk methodology</div>
+  </div>
+
+  <p>Use this as a quick reference when planning sessions or mid-debrief:</p>
+
+  <table class="reference-table">
+    <thead>
+      <tr>
+        <th>Step</th>
+        <th>Section</th>
+        <th>Goal</th>
+        <th>What to Listen For</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Introduction & Rapport</td>
+        <td>Warm, confident opening that confirms property intent</td>
+        <td>Energy, personalization, warmth vs. flatness; name use; call confirmed as inbound/outbound</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Setting the Stage</td>
+        <td>Set time expectations; identify all decision-makers</td>
+        <td>Did they say how long the call takes? Did they ask if others need to be included?</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Fact Finding</td>
+        <td>Confirm ownership, how acquired, occupancy status</td>
+        <td>Did they verify who's on title? Did they ask about probate, lien, tenants?</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Motivation & Story</td>
+        <td>Uncover the real reason for selling</td>
+        <td>Did they dig into WHY? Did they ask follow-up/impact questions or move on too quickly?</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Condition</td>
+        <td>Assess physical state of property</td>
+        <td>Did they use the grading scale? Did they probe beyond surface answers?</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>Recap & Alignment</td>
+        <td>Confirm understanding; ensure seller feels heard</td>
+        <td>Did they summarize the seller's story back to them before moving to offer?</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>Establishing Credibility</td>
+        <td>Build trust; differentiate Rebuilt's process</td>
+        <td>Did they mention closings, speed, as-is? Did it feel organic or rehearsed?</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>Price Anchor</td>
+        <td>Frame market context before delivering offer</td>
+        <td>Did they use comps? Did they create drama / pause before the number?</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>Presenting the Offer</td>
+        <td>Deliver offer; manage negotiation</td>
+        <td>Did they pause after the number? Did they avoid negotiating against themselves?</td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td>Post-Offer Objections</td>
+        <td>Identify real objection; reconnect to motivation</td>
+        <td>Did they probe for the real "no"? Did they bring motivation back to surface?</td>
+      </tr>
+      <tr>
+        <td>11–13</td>
+        <td>Contract & Close</td>
+        <td>Send agreement; review; set next steps</td>
+        <td>Did they walk through the contract? Did they confirm photos and next steps clearly?</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="module-nav-btns"><button class="nav-btn" onclick="showSection(3)">← Call Selection</button><button class="nav-btn primary" onclick="showSection(5)">Facilitation Tips →</button></div>
+</div>
+
+<!-- FACILITATION TIPS -->
+<div class="section-panel" id="section-5">
+  <div class="module-header">
+    <div class="module-eyebrow">Best Practices</div>
+    <div class="module-title">Facilitation Tips & Common Pitfalls</div>
+    <div class="module-desc">What to do, what to avoid, and how to handle common scenarios</div>
+  </div>
+
+  <table class="reference-table">
+    <thead>
+      <tr>
+        <th style="width:50%;">✅ Do This</th>
+        <th style="width:50%;">❌ Avoid This</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Let the group identify issues first before you name them</td>
+        <td>Jumping in with your own analysis before the group has a chance to observe</td>
+      </tr>
+      <tr>
+        <td>Pause mid-clip when something noteworthy happens, not just at the end</td>
+        <td>Only discussing after the clip ends — key moments lose their immediacy</td>
+      </tr>
+      <tr>
+        <td>Use agent names respectfully — the goal is learning, not critique</td>
+        <td>Making individual agents feel exposed or embarrassed in front of peers</td>
+      </tr>
+      <tr>
+        <td>Frame imperfect calls as learning opportunities, not failures</td>
+        <td>Using only "perfect" showcase calls — they're less instructive</td>
+      </tr>
+      <tr>
+        <td>Tie every observation back to a named step in the sales talk</td>
+        <td>Leaving observations as opinions ("that felt off") without anchoring to methodology</td>
+      </tr>
+      <tr>
+        <td>Acknowledge seller variability — the same step looks different with different sellers</td>
+        <td>Implying there's one right way to execute every step</td>
+      </tr>
+      <tr>
+        <td>End each call clip with: "What's the one thing you'd take away from that call?"</td>
+        <td>Letting sessions end without a clear synthesis of what was learned</td>
+      </tr>
+      <tr>
+        <td>Use live calls sparingly and intentionally — great for showing real-time variation</td>
+        <td>Relying only on live calls — you can't pause or rewind them</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr class="section-divider"/>
+
+  <div class="subsection-title">Session Close Checklist</div>
+  <p>Use this at the end of each Guided Call Review session:</p>
+
+  <ul class="checklist">
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Every participant can name the specific sales talk step(s) covered today</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Every participant can articulate the goal of that step in their own words</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>At least one key pattern or principle was identified across multiple calls</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Participants saw examples of both effective and ineffective execution</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Questions were answered or flagged for follow-up</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Next session focus area was announced</li>
+  </ul>
+
+  <hr class="section-divider"/>
+
+  <div class="subsection-title">Wrap-Up Language</div>
+  <div class="script-block">
+    <div class="script-label">Facilitator — Session Close</div>
+    <p>"That's what I wanted you to walk away with today. We focused on [section name] — you heard [number] different agents handle it, some who nailed it, some who struggled. The key takeaway is [state the principle]. Next session, we'll move to [next section]. Between now and then, pay attention to this section on your own calls. When you hear something worth discussing, flag it for me. Questions?"</p>
+    <div class="script-note">Wait through the silence. The first question always unlocks the others.</div>
+  </div>
+
+  <hr class="section-divider"/>
+
+  <div class="subsection-title">Assigned Next Steps</div>
+  <div class="next-steps">
+    <div class="next-steps-header">Action Items After Each Session</div>
+    <div class="next-steps-body">
+      <div class="next-step-row">
+        <div class="next-step-who">All Participants</div>
+        <div class="next-step-what">On your next live call, deliberately focus on executing the section we covered today. Notice what works and what feels uncomfortable.</div>
+      </div>
+      <div class="next-step-row">
+        <div class="next-step-who">All Participants</div>
+        <div class="next-step-what">If you encounter a situation where you're unsure how to handle the section, flag it for discussion at the next session.</div>
+      </div>
+      <div class="next-step-row">
+        <div class="next-step-who">Facilitator</div>
+        <div class="next-step-what">Select 2–4 calls for the next session that clearly demonstrate the next section of the sales talk.</div>
+      </div>
+      <div class="next-step-row">
+        <div class="next-step-who">Facilitator</div>
+        <div class="next-step-what">Send a recap message to the cohort with the key principle from today and a reminder of the next session focus.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-success mt16">
+    <strong>Facilitator Reminder:</strong> The best thing you can do after this session is be available. Reps will hit situations on their next calls where they need coaching. That real-time support is worth more than any training material.
+  </div>
+
+  <div class="module-nav-btns"><button class="nav-btn" onclick="showSection(4)">← Sales Talk Reference</button><button class="nav-btn primary" onclick="showSection(0)">↑ Back to Overview</button></div>
+</div>
+
+</div></div>
+
+<script>
+const panels = document.querySelectorAll('.section-panel');
+const navBtns = document.querySelectorAll('.mod-btn');
+function showSection(idx) {
+  panels.forEach((p,i) => p.classList.toggle('active', i===idx));
+  navBtns.forEach((b,i) => b.classList.toggle('active', i===idx));
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function toggleCard(headEl) { headEl.closest('.card').classList.toggle('open'); }
+function toggleCheck(li) {
+  li.classList.toggle('checked');
+  li.querySelector('.check-box').textContent = li.classList.contains('checked') ? '✓' : '';
+}
+</script>
+</body>
+</html>
