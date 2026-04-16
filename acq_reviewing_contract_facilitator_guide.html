@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjQ0MCAwIDU1MCA4OTAiPgogIDxwYXRoIGQ9Im0gMzMzNy45OSwzNTQ0LjgzIDExNzkuNzksMTA3Ni43MiB2IDE5MzguMSBMIDMzMzcuOTksNTU5MC42IFYgMzU0NC44MyIgZmlsbD0iIzRlYTllMiIgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIi8+CiAgPHBhdGggZD0iTSA2MTY5LjQ4LDk5OTUuMDEgViA0NjIxLjU1IGwgMTE3OS44LC0xMDc2LjcyIHYgNTQ5MS4yOSBsIC0xMTc5LjgsOTU4Ljg5IiBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz4KICA8cGF0aCBkPSJNIDQ3NTMuNzQsNzc0NC4wNSBWIDQ4MzYuODkgbCA1ODkuODksNTM4LjM3IDU4OS45LC01MzguMzcgNC4zNywzOTczLjcyIC0xMTg0LjE2LC0xMDY2LjU2IiBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz4KICA8cGF0aCBkPSJtIDQ4MDIuMjEsMzQyNS4xOSBoIDQzMC42OSB2IDQzMC42OCBoIC00MzAuNjkgdiAtNDMwLjY4IiBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz4KICA8cGF0aCBkPSJtIDU0NDguMjQsMzQyNS4xOSBoIDQzMC43IHYgNDMwLjY4IGggLTQzMC43IHYgLTQzMC42OCIgZmlsbD0iIzRlYTllMiIgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIi8+CiAgPHBhdGggZD0ibSA1MjMyLjksNDUwMS45MSBoIC00MzAuNjkgdiAtNDMwLjY5IGggNDMwLjY5IHYgNDMwLjY5IiBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz4KICA8cGF0aCBkPSJtIDU0NDguMjQsNDUwMS45MSB2IC00MzAuNjkgaCA0MzAuNyB2IDQzMC42OSBoIC00MzAuNyIgZmlsbD0iIzRlYTllMiIgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIi8+Cjwvc3ZnPg=="/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Rebuilt — ACQ Reviewing a Contract with a Seller · Facilitator Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --blue:#21a9e1; --blue-dark:#1a8cbf; --blue-light:#e8f6fd;
+    --teal:#64b4b7; --teal-dark:#0f696e;
+    --orange:#f5831f; --orange-dark:#d96d0a;
+    --navy:#1f3540; --navy-mid:#2c4a5a;
+    --off-white:#efedeb;
+    --bg-primary:#ffffff; --bg-secondary:#f7f6f4; --bg-tertiary:#efedeb;
+    --text-primary:#1f3540; --text-secondary:#4a6070; --text-tertiary:#7a90a0;
+    --border-tertiary:rgba(31,53,64,0.10); --border-secondary:rgba(31,53,64,0.18);
+    --success-bg:#f0fdf4; --success-border:#2d7a2d; --success-text:#1a4d1a;
+    --danger-bg:#fff8f0; --danger-border:#f5831f; --danger-text:#7a3a00;
+    --radius-md:8px; --radius-lg:12px;
+    --font:'Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  }
+  body { font-family:var(--font); background:#efedeb; color:#1f3540; font-size:16px; line-height:1.6; font-weight:400; letter-spacing:-0.01em; }
+  .page-wrap { max-width:920px; margin:0 auto; padding:0 1rem 4rem; }
+
+  .topbar { background:var(--navy); position:sticky; top:0; z-index:200; border-bottom:3px solid var(--blue); }
+  .topbar-inner { max-width:920px; margin:0 auto; padding:0 1.25rem; display:flex; align-items:center; gap:14px; height:56px; }
+  .topbar-wordmark { font-size:18px; font-weight:700; color:#fff; letter-spacing:-0.02em; line-height:1; }
+  .topbar-divider { width:1px; height:22px; background:rgba(255,255,255,0.2); margin:0 4px; }
+  .topbar-sub { font-size:11px; color:rgba(255,255,255,0.55); font-weight:500; letter-spacing:0.04em; text-transform:uppercase; }
+  .topbar-badge { margin-left:auto; background:var(--orange); color:#fff; font-size:10px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; padding:3px 12px; border-radius:20px; }
+
+  .mod-nav-wrap { background:var(--bg-primary); border-bottom:1px solid var(--border-tertiary); position:sticky; top:59px; z-index:99; }
+  .mod-nav-inner { max-width:920px; margin:0 auto; padding:0 1rem; display:flex; gap:2px; overflow-x:auto; scrollbar-width:none; }
+  .mod-nav-inner::-webkit-scrollbar { display:none; }
+  .mod-btn { padding:12px 14px; font-size:11px; font-weight:600; border:none; background:transparent; cursor:pointer; color:var(--text-tertiary); border-bottom:3px solid transparent; white-space:nowrap; transition:all 0.15s; letter-spacing:0.02em; font-family:var(--font); }
+  .mod-btn:hover { color:var(--text-primary); background:var(--bg-secondary); }
+  .mod-btn.active { color:var(--blue); border-bottom-color:var(--blue); }
+
+  .content { padding:2rem 0; }
+  .section-panel { display:none; }
+  .section-panel.active { display:block; }
+  .module-header { margin-bottom:1.75rem; }
+  .module-eyebrow { font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--blue); margin-bottom:8px; }
+  .module-title { font-size:26px; font-weight:700; line-height:1.25; color:var(--navy); }
+  .module-desc { font-size:14px; color:var(--text-secondary); margin-top:8px; line-height:1.65; }
+  .info-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:1.75rem; }
+  .info-chip { padding:5px 14px; border-radius:20px; background:var(--blue-light); font-size:12px; color:var(--teal-dark); border:1px solid rgba(33,169,225,0.2); font-weight:500; }
+  .info-chip strong { color:var(--navy); font-weight:700; }
+
+  .card { background:var(--bg-primary); border:1px solid var(--border-tertiary); border-radius:var(--radius-lg); overflow:hidden; margin-bottom:10px; transition:border-color 0.15s; }
+  .card:hover { border-color:rgba(33,169,225,0.3); }
+  .card-head { display:flex; align-items:center; gap:14px; padding:15px 18px; cursor:pointer; user-select:none; }
+  .card-head:hover { background:var(--bg-secondary); }
+  .card-num { width:32px; height:32px; border-radius:8px; background:var(--blue-light); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:var(--blue); flex-shrink:0; }
+  .card-num.orange { background:rgba(245,131,31,0.12); color:var(--orange); }
+  .card-num.teal { background:rgba(15,105,110,0.1); color:var(--teal-dark); }
+  .card-num.navy { background:rgba(31,53,64,0.08); color:var(--navy); }
+  .card-title { font-size:14px; font-weight:600; flex:1; color:var(--text-primary); overflow-wrap:break-word; min-width:0; }
+  .card-tag { font-size:10px; padding:3px 10px; border-radius:10px; background:var(--off-white); color:var(--text-tertiary); font-weight:600; letter-spacing:0.04em; text-transform:uppercase; white-space:nowrap; }
+  .card-tag.orange { background:rgba(245,131,31,0.1); color:var(--orange); }
+  .card-tag.teal { background:rgba(15,105,110,0.1); color:var(--teal-dark); }
+  .card-tag.blue { background:var(--blue-light); color:var(--blue-dark); }
+  .card-tag.green { background:#f0fdf4; color:#1a6b2a; }
+  .card-chevron { font-size:11px; color:var(--text-tertiary); transition:transform 0.2s; }
+  .card.open .card-chevron { transform:rotate(180deg); }
+  .card.open { border-color:rgba(33,169,225,0.4); }
+  .card-body { display:none; padding:0 18px 20px; border-top:1px solid var(--border-tertiary); }
+  .card.open .card-body { display:block; }
+
+  .script-block { background:var(--navy); border-radius:var(--radius-md); padding:14px 16px; margin:14px 0 8px; border-left:3px solid var(--blue); }
+  .script-label { font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--teal); margin-bottom:8px; }
+  .script-block p { font-size:13px; color:#c8e8f4; line-height:1.65; font-style:italic; }
+  .script-note { font-size:12px; color:rgba(200,232,244,0.65); margin-top:8px; padding-top:8px; border-top:1px solid rgba(255,255,255,0.1); }
+
+  .alert { border-left:4px solid; border-radius:var(--radius-md); padding:12px 16px; margin:16px 0; font-size:13px; line-height:1.65; }
+  .alert-success { background:var(--success-bg); border-color:var(--success-border); color:var(--success-text); }
+  .alert-danger { background:var(--danger-bg); border-color:var(--danger-border); color:var(--danger-text); }
+  .alert strong { font-weight:700; display:block; margin-bottom:4px; }
+
+  .agent-note { background:var(--blue-light); border-radius:var(--radius-md); padding:10px 14px; margin:12px 0; font-size:12px; color:var(--navy); line-height:1.55; border-left:3px solid var(--blue); }
+  .agent-note strong { font-weight:700; }
+
+  .subsection-title { font-size:15px; font-weight:700; color:var(--navy); margin:24px 0 12px; padding-bottom:6px; border-bottom:2px solid var(--border-tertiary); }
+
+  .checklist { list-style:none; padding:0; margin:12px 0; }
+  .checklist li { display:flex; gap:10px; padding:8px 12px; border:1px solid var(--border-tertiary); border-radius:var(--radius-md); margin-bottom:6px; cursor:pointer; transition:all 0.15s; font-size:13px; color:var(--text-secondary); }
+  .checklist li:hover { background:var(--bg-secondary); border-color:var(--border-secondary); }
+  .check-box { width:18px; height:18px; border:2px solid var(--border-secondary); border-radius:4px; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:11px; color:var(--blue); font-weight:700; transition:all 0.15s; margin-top:2px; }
+  .checklist li.checked { background:var(--success-bg); border-color:var(--success-border); }
+  .checklist li.checked .check-box { background:var(--success-border); border-color:var(--success-border); color:#fff; }
+
+  .section-divider { border:none; border-top:2px solid var(--border-tertiary); margin:28px 0; }
+
+  .module-nav-btns { display:flex; gap:10px; margin-top:36px; padding-top:24px; border-top:1px solid var(--border-tertiary); }
+  .nav-btn { padding:10px 20px; border-radius:var(--radius-md); font-size:13px; font-weight:600; border:1px solid var(--border-tertiary); background:var(--bg-primary); color:var(--text-secondary); cursor:pointer; transition:all 0.15s; font-family:var(--font); }
+  .nav-btn:hover { background:var(--bg-secondary); border-color:var(--border-secondary); }
+  .nav-btn.primary { background:var(--blue); color:#fff; border-color:var(--blue); }
+  .nav-btn.primary:hover { background:var(--blue-dark); border-color:var(--blue-dark); }
+
+  .next-steps { background:var(--bg-primary); border:1px solid var(--border-tertiary); border-radius:var(--radius-lg); overflow:hidden; margin:16px 0; }
+  .next-steps-header { background:var(--navy); color:#fff; padding:12px 18px; font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; }
+  .next-steps-body { padding:0; }
+  .next-step-row { display:grid; grid-template-columns:140px 1fr; gap:14px; padding:12px 18px; border-bottom:1px solid var(--border-tertiary); }
+  .next-step-row:last-child { border-bottom:none; }
+  .next-step-who { font-size:11px; font-weight:700; color:var(--blue); text-transform:uppercase; letter-spacing:0.04em; padding-top:2px; }
+  .next-step-what { font-size:13px; color:var(--text-secondary); line-height:1.55; }
+
+  .mt16 { margin-top:16px; }
+
+  p { margin-bottom:10px; color:var(--text-secondary); line-height:1.65; font-size:13px; }
+  ul { margin:10px 0; padding-left:24px; }
+  ul li { margin-bottom:6px; color:var(--text-secondary); font-size:13px; }
+  strong { font-weight:700; color:var(--navy); }
+
+  .talk-track-example { background:var(--bg-primary); border:1px solid var(--border-tertiary); border-radius:var(--radius-md); padding:14px 16px; margin:12px 0; }
+  .talk-track-example-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--teal-dark); margin-bottom:8px; }
+  .talk-track-example-text { font-size:13px; color:var(--navy); font-style:italic; line-height:1.65; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-wordmark">rebuilt</div>
+    <div class="topbar-divider"></div>
+    <div class="topbar-sub">Acquisitions Training</div>
+    <div class="topbar-badge">Facilitator Guide</div>
+  </div>
+</div>
+
+<div class="mod-nav-wrap">
+  <div class="mod-nav-inner">
+    <button class="mod-btn active" onclick="showSection(0)">Overview</button>
+    <button class="mod-btn" onclick="showSection(1)">Section 1</button>
+    <button class="mod-btn" onclick="showSection(2)">Section 2</button>
+    <button class="mod-btn" onclick="showSection(3)">Section 3</button>
+    <button class="mod-btn" onclick="showSection(4)">Section 4</button>
+    <button class="mod-btn" onclick="showSection(5)">Section 5</button>
+  </div>
+</div>
+
+<div class="page-wrap">
+<div class="content">
+
+<!-- SECTION 0: OVERVIEW -->
+<div class="section-panel active" id="section-0">
+  <div class="module-header">
+    <div class="module-eyebrow">Training Session Overview</div>
+    <div class="module-title">Reviewing a Contract with a Seller</div>
+    <div class="module-desc">This session teaches reps how to walk a seller through the contract with confidence — filling it out for them, highlighting key points, and closing the signature while still on the phone.</div>
+  </div>
+
+  <div class="info-row">
+    <div class="info-chip"><strong>Duration:</strong> 60–75 minutes</div>
+    <div class="info-chip"><strong>Format:</strong> Live facilitated session</div>
+    <div class="info-chip"><strong>Prerequisite:</strong> AB Contract OLT completed</div>
+  </div>
+
+  <div class="alert alert-danger">
+    <strong>Critical Facilitator Note</strong>
+    This session is NOT about teaching contract content — reps must complete the AB Contract OLT before attending. This session focuses exclusively on the seller conversation: how to present the contract with confidence, fill it out for the seller, and get it signed before ending the call.
+  </div>
+
+  <div class="subsection-title">Session Learning Objectives</div>
+  <p>By the end of this session, every rep will be able to:</p>
+  <ul>
+    <li>Walk a seller through the contract with confident, natural tonality</li>
+    <li>Fill out the Preliminary Seller Information worksheet while on the phone to reduce seller friction</li>
+    <li>Highlight only the relevant sections (1–6, 15) instead of reading line-by-line</li>
+    <li>Close for the signature while still on the phone — not after the seller "reviews it"</li>
+    <li>Handle common seller objections during contract review with confidence</li>
+  </ul>
+
+  <div class="subsection-title">Pre-Session Setup</div>
+  <ul class="checklist" id="setup-checklist">
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Confirm all attendees completed the AB Contract OLT (check in #rebuilt-training or ask directly)</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Share the Google Doc link for "AB Contract Language" in the Zoom chat at session start: <strong>https://docs.google.com/document/d/1AZpBVO3ETCQlk-oKSsuCQDXRDNR7jikNvi6__slA6Zk/edit?usp=sharing</strong></li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Have the AB Contract Google Doc open and ready to screenshare</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Have a live or recent example contract (with seller info redacted) ready to show</li>
+  </ul>
+
+  <div class="subsection-title">Session Flow at a Glance</div>
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num">1</div>
+      <div class="card-title">Section 1: Frame the Session &amp; Set Expectations (5 min)</div>
+      <span class="card-tag blue">intro</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <p>Open with the core truth: the contract is signed or it's not. Set the expectation that reps will learn how to close the signature on the same call.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num">2</div>
+      <div class="card-title">Section 2: The Psychology of Filling It Out for Them (10 min)</div>
+      <span class="card-tag orange">skill</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <p>Teach the turnkey principle: the more you fill out, the more likely they'll sign. Walk through Preliminary Seller Info collection.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num">3</div>
+      <div class="card-title">Section 3: Walking Through the Contract — What to Say (20 min)</div>
+      <span class="card-tag teal">talk tracks</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <p>Practice the highlights-only approach: sections 1–6, section 15, and the agency packet. Teach confident tonality.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num">4</div>
+      <div class="card-title">Section 4: Handling Objections During Review (15 min)</div>
+      <span class="card-tag orange">objections</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <p>Address the most common contract objections: SSN concerns, "I need time to review," "I need to talk to my lawyer," etc.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num">5</div>
+      <div class="card-title">Section 5: Close &amp; Next Steps (10 min)</div>
+      <span class="card-tag blue">wrap-up</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <p>Assign action items, reinforce the key principle (close while on the phone), and open for Q&amp;A.</p>
+    </div>
+  </div>
+
+  <div class="module-nav-btns"><button class="nav-btn primary" onclick="showSection(1)">Section 1: Frame the Session →</button></div>
+</div>
+
+<!-- SECTION 1: FRAME THE SESSION -->
+<div class="section-panel" id="section-1">
+  <div class="module-header">
+    <div class="module-eyebrow">Section 1 · 5 minutes</div>
+    <div class="module-title">Frame the Session &amp; Set Expectations</div>
+    <div class="module-desc">Open with the core principle: this session is about how to talk to the seller, not what's in the contract.</div>
+  </div>
+
+  <div class="subsection-title">Opening Remarks</div>
+  <div class="script-block">
+    <div class="script-label">Facilitator Opening</div>
+    <p>"Welcome, everyone. This session is about one thing: how to walk a seller through the contract and get it signed while you're still on the phone with them. You all completed the AB Contract OLT, so you know what's in the agreement. Today is about execution — how you say it, how you fill it out, and how you close the signature. By the end of this session, you'll know how to make contract execution turnkey for the seller. Let's get into it."</p>
+  </div>
+
+  <div class="alert alert-success">
+    <strong>Facilitator Tip</strong>
+    Reinforce that this session is skill-building, not content review. If someone hasn't completed the AB Contract OLT, they should not be in this session — politely redirect them to complete it first.
+  </div>
+
+  <div class="subsection-title">The Core Truth</div>
+  <p>State this directly to the group:</p>
+  <div class="talk-track-example">
+    <div class="talk-track-example-label">Core Truth — Say This</div>
+    <div class="talk-track-example-text">"The contract is either signed or it's not. Every time you let a seller off the phone to 'review it later,' your closing odds drop dramatically. This is sales. If you leave the lot, the deal gets colder. We're going to teach you how to stay on the lot and close while the iron is hot."</div>
+  </div>
+
+  <div class="agent-note"><strong>Why this matters:</strong> Many reps avoid the close because they think it's pushy. Reframe it as helping the seller move forward efficiently. You're not pressuring them — you're serving them by making it easy.</div>
+
+  <div class="subsection-title">Confirm Prerequisite Completion</div>
+  <p>Quick verbal check-in:</p>
+  <ul>
+    <li>"Quick show of hands: who completed the AB Contract OLT before this session?"</li>
+    <li>If anyone hasn't, send them the link and have them complete it after this session before using these techniques live.</li>
+  </ul>
+
+  <div class="module-nav-btns"><button class="nav-btn" onclick="showSection(0)">← Overview</button><button class="nav-btn primary" onclick="showSection(2)">Section 2: Psychology of Filling It Out →</button></div>
+</div>
+
+<!-- SECTION 2: PSYCHOLOGY OF FILLING IT OUT -->
+<div class="section-panel" id="section-2">
+  <div class="module-header">
+    <div class="module-eyebrow">Section 2 · 10 minutes</div>
+    <div class="module-title">The Psychology of Filling It Out for Them</div>
+    <div class="module-desc">The more you fill out, the less friction the seller faces. Make it turnkey.</div>
+  </div>
+
+  <div class="subsection-title">The Turnkey Principle</div>
+  <p>Teach this concept clearly:</p>
+  <div class="talk-track-example">
+    <div class="talk-track-example-label">Turnkey Principle — Explain to Reps</div>
+    <div class="talk-track-example-text">"The more of the contract you fill out for the seller, the easier it becomes for them to execute. If you send them a blank contract and tell them to fill it all out on their phone, they won't do it. But if you fill out everything you can and all they have to do is click through and sign, you just removed 90% of the friction. Your job is to make this as easy as possible for them."</div>
+  </div>
+
+  <div class="agent-note"><strong>Mike Spalding quote from transcript:</strong> "Fill as much of that contract for the seller as you can. Make it as easy for them to execute. If you can fill out as much as you can so it becomes easy for them, if you put it on them, it increases the odds that they won't do it."</div>
+
+  <div class="subsection-title">Preliminary Seller Information Worksheet</div>
+  <p>This is the most important section to fill out for the seller. Walk through the process:</p>
+
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num orange">1</div>
+      <div class="card-title">Ask: Are they pulling this up on a phone or computer?</div>
+      <span class="card-tag orange">technique</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <div class="script-block">
+        <div class="script-label">Rep Talk Track</div>
+        <p>"Are you going to pull this up on your phone or on a computer? <strong>[They say phone]</strong> Okay, perfect. Since it's going to come up pretty small on a phone screen, here's what I'll do — I'll fill out the preliminary seller information for you by asking you a few quick questions. That way you don't have to squint at a tiny screen trying to type everything in. Sound good?"</p>
+      </div>
+      <p style="margin-top:12px;font-size:13px;color:var(--text-secondary);line-height:1.65;">This frames the service you're providing. You're not interrogating them — you're making their life easier.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num orange">2</div>
+      <div class="card-title">Collect the information conversationally</div>
+      <span class="card-tag orange">technique</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <p>Most of this information you already have from the prior conversation. Confirm and fill in gaps:</p>
+      <ul style="margin:12px 0;padding-left:20px;">
+        <li><strong>Name, phone, marital status:</strong> You should already have this.</li>
+        <li><strong>Date of birth:</strong> "What's your date of birth for the title work?"</li>
+        <li><strong>SSN:</strong> Handle carefully (covered in Section 4).</li>
+        <li><strong>How they acquired the property:</strong> "How did you originally acquire this property — traditional purchase, inherited, gifted?"</li>
+        <li><strong>Mortgage balance estimate:</strong> "About how much do you still owe on the mortgage?"</li>
+        <li><strong>Post-occupancy needs:</strong> "Do you need any time to stay in the property after closing, or will it be vacant by then?"</li>
+      </ul>
+      <div class="agent-note"><strong>Pro tip:</strong> You've already asked most of these questions in the qualification call. You're confirming, not interrogating.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num orange">3</div>
+      <div class="card-title">Fill it out while they're on the phone with you</div>
+      <span class="card-tag orange">technique</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <p>Do not wait until after the call. Do it live:</p>
+      <div class="script-block">
+        <div class="script-label">Rep Talk Track</div>
+        <p>"Okay, I'm filling this out for you right now. I've got your name as [name], date of birth [DOB], and you acquired this property through [inheritance/purchase]. Looks like the mortgage balance is around $95,000. Everything sound right?"</p>
+        <div class="script-note">Narrate what you're doing so they know you're actively working on it. This builds trust and keeps them engaged.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection-title">Why This Works</div>
+  <p>When you fill out the contract for the seller, you accomplish three things:</p>
+  <ul>
+    <li><strong>Remove friction:</strong> They don't have to struggle with a small screen or navigate unfamiliar fields.</li>
+    <li><strong>Maintain momentum:</strong> You keep the call moving forward instead of creating a break where they "go review it."</li>
+    <li><strong>Increase close rate:</strong> The closer you get to a one-click signature, the higher your execution rate.</li>
+  </ul>
+
+  <div class="alert alert-success">
+    <strong>Facilitator Reminder</strong>
+    Emphasize that this is not manipulation — it's service. You're making the process easier for someone who wants to move forward but might be overwhelmed by the paperwork.
+  </div>
+
+  <div class="module-nav-btns"><button class="nav-btn" onclick="showSection(1)">← Section 1</button><button class="nav-btn primary" onclick="showSection(3)">Section 3: Walking Through the Contract →</button></div>
+</div>
+
+<!-- SECTION 3: WALKING THROUGH THE CONTRACT -->
+<div class="section-panel" id="section-3">
+  <div class="module-header">
+    <div class="module-eyebrow">Section 3 · 20 minutes</div>
+    <div class="module-title">Walking Through the Contract — What to Say</div>
+    <div class="module-desc">Teach reps to highlight key sections with confidence — not read line-by-line.</div>
+  </div>
+
+  <div class="alert alert-danger">
+    <strong>Critical Teaching Point</strong>
+    Reps must NOT read the entire contract line-by-line. That takes too long and loses the seller's attention. Highlight the key sections, then give them space to read it themselves if they want.
+  </div>
+
+  <div class="subsection-title">The Highlights-Only Approach</div>
+  <p>Luis Guzman's method from the transcript:</p>
+  <ul>
+    <li><strong>Highlight Sections 1–6:</strong> Parties, property, terms, closing timeline, title, and AS-IS condition</li>
+    <li><strong>Jump to Section 15:</strong> Seller expenses (this appears twice — reinforce it)</li>
+    <li><strong>Briefly touch Agency Packet:</strong> Non-representation notice, fair housing statement</li>
+    <li><strong>Let them read the rest:</strong> "The rest is standard legal language. You're welcome to read through it yourself — it'll be in your email."</li>
+  </ul>
+
+  <div class="subsection-title">Tonality &amp; Delivery</div>
+  <p>This is where confidence matters most. Teach reps to use <strong>subject-matter-expert tonality</strong>:</p>
+  <div class="talk-track-example">
+    <div class="talk-track-example-label">Good Tonality Example</div>
+    <div class="talk-track-example-text">"Okay, I'm going to walk you through the highlights of the agreement real quick. This first section just confirms the parties — you're the seller, we're the buyer. Section 2 covers what's included with the property — all fixtures, appliances if they're checked, all the standard stuff. Section 3 confirms this is a non-financed cash sale, meaning we're not going to a bank for a loan — we'll close directly. Closing will happen within 45 business days, which is about two months, but we'll close sooner if we can. Make sense so far?"</div>
+  </div>
+
+  <div class="agent-note"><strong>Ted Hughes quote from transcript:</strong> "The more confident you are about reading the contract with them, the more they feel stable and like you're not trying to rip them off, like steal their house. That's what they're so afraid of."</div>
+
+  <div class="subsection-title">Section-by-Section Talk Tracks</div>
+
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num teal">1</div>
+      <div class="card-title">Sections 1 &amp; 2: Parties &amp; Property</div>
+      <span class="card-tag teal">talk track</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <div class="script-block">
+        <div class="script-label">Rep Talk Track</div>
+        <p>"Section 1 just confirms you're the seller and we're the buyer — straightforward. Section 2 lists everything that's included with the property: the land, all the fixtures, built-in appliances, all the standard stuff. If there's anything you're planning to take with you — like a specific appliance or a shed — we can note that in the Special Provisions section. Anything you need to call out?"</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num teal">2</div>
+      <div class="card-title">Section 3: Terms &amp; Closing Timeline</div>
+      <span class="card-tag teal">talk track</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <div class="script-block">
+        <div class="script-label">Rep Talk Track</div>
+        <p>"Section 3 confirms this is a non-financed cash sale. That just means we're not going to a bank for a loan — this is a direct purchase. And the closing will happen within 45 business days, which is about two months, but we'll aim to close sooner if everything lines up. That timeline work for you?"</p>
+        <div class="script-note">Emphasize "within" — not "it will take 45 days." This is the maximum time, not the expected time.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num teal">3</div>
+      <div class="card-title">Sections 6 &amp; 7: Title &amp; AS-IS Condition</div>
+      <span class="card-tag teal">talk track</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <div class="script-block">
+        <div class="script-label">Rep Talk Track</div>
+        <p>"Section 6 covers title insurance — that's standard. Section 7 confirms the property is being sold AS-IS, which you and I already talked about. We have a 45-business-day due diligence period to inspect the property and make sure everything checks out. If for any reason we can't find a buyer during that time, we'll send you written notice to terminate the contract. Fair enough?"</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num teal">4</div>
+      <div class="card-title">Section 15: Seller Expenses (Critical)</div>
+      <span class="card-tag orange">critical</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <div class="script-block">
+        <div class="script-label">Rep Talk Track</div>
+        <p>"Section 15 is important — this breaks down seller expenses. Your responsibility is anything mortgage-related, tax-related, or lien-related. We handle the title work, recording fees, and our side of closing costs. This section appears twice in the agreement to make sure it's crystal clear. Any questions on that?"</p>
+        <div class="script-note">This is the section where sellers sometimes try to renegotiate. Address it confidently and move on.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num teal">5</div>
+      <div class="card-title">Agency Packet: Non-Representation Notice</div>
+      <span class="card-tag teal">talk track</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <div class="script-block">
+        <div class="script-label">Rep Talk Track</div>
+        <p>"This next page is the agency packet. It just confirms that we're not acting as your real estate agent — we're the buyer. You're welcome to bring in your own representation if you want, but most sellers don't. It also includes our fair housing statement, which is standard across the board. And this last part just authorizes us to list the property on MLS and market it to our investor network during due diligence. That's how we find the end buyer. Make sense?"</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection-title">After the Highlights</div>
+  <p>Once you've covered the key sections, transition to the close:</p>
+  <div class="script-block">
+    <div class="script-label">Rep Talk Track — Transition to Close</div>
+    <p>"Those are the main highlights. The rest is standard legal language — prorations, casualty loss, default terms, all that. You're welcome to read through it yourself, and you'll have a copy in your email once you sign. Do you have any questions on anything we just covered?"</p>
+    <div class="script-note">Pause here. Let them ask questions. If they have none, move directly to the close: "Great. Go ahead and pull up your email — I'm going to send this over right now. All you'll need to do is click through and sign."</div>
+  </div>
+
+  <div class="alert alert-success">
+    <strong>Facilitator Practice Activity</strong>
+    Have 2–3 reps practice delivering the Section 1–6 highlights with confident tonality. Coach on pace, tone, and eliminating verbal filler ("um," "like," "you know").
+  </div>
+
+  <div class="module-nav-btns"><button class="nav-btn" onclick="showSection(2)">← Section 2</button><button class="nav-btn primary" onclick="showSection(4)">Section 4: Handling Objections →</button></div>
+</div>
+
+<!-- SECTION 4: HANDLING OBJECTIONS -->
+<div class="section-panel" id="section-4">
+  <div class="module-header">
+    <div class="module-eyebrow">Section 4 · 15 minutes</div>
+    <div class="module-title">Handling Objections During Review</div>
+    <div class="module-desc">Address the most common objections that arise during contract review with confidence and empathy.</div>
+  </div>
+
+  <div class="subsection-title">Common Objections &amp; How to Handle Them</div>
+
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num orange">1</div>
+      <div class="card-title">"I'm not comfortable giving my Social Security Number"</div>
+      <span class="card-tag orange">objection</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <div class="script-block">
+        <div class="script-label">Rep Response</div>
+        <p>"Totally understand — that's a common concern. The SSN helps us get started on title work and makes sure everything is accurate when we file with the title company. If you're not comfortable giving the full number right now, we can just use the last four digits for now, and you can provide the full number directly to the title company later. Does that work?"</p>
+        <div class="script-note">Luis Guzman's approach: don't press hard. Pivot to "we'll get it later" if needed. The goal is to keep the deal moving, not to win a battle over SSN.</div>
+      </div>
+      <p style="margin-top:12px;font-size:13px;color:var(--text-secondary);line-height:1.65;">If they're still uncomfortable, move on. Don't let this derail the signature.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num orange">2</div>
+      <div class="card-title">"I need time to review this with my spouse/lawyer"</div>
+      <span class="card-tag orange">objection</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <div class="script-block">
+        <div class="script-label">Rep Response — If You've Already Qualified the Decision-Maker</div>
+        <p>"I appreciate that, and I want to make sure you feel comfortable. When we spoke earlier, you mentioned you were the main decision-maker and you were ready to move forward if the offer worked for you. Did something change, or is there a specific section you want to review with them?"</p>
+        <div class="script-note">This is a gentle hold. You're reminding them they already gave you the green light. If they say "I just want them to see it," offer to walk them through it together on a three-way call.</div>
+      </div>
+      <div class="script-block" style="margin-top:12px;">
+        <div class="script-label">Rep Response — If They Insist</div>
+        <p>"No problem. Here's what I'll do — I'll send it over right now so you can review it together. How soon can you two connect? Can we plan to touch base tomorrow afternoon once you've had a chance to go through it?"</p>
+        <div class="script-note">Set a specific follow-up time. Don't leave it open-ended or the deal goes cold.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num orange">3</div>
+      <div class="card-title">"This feels rushed — I need more time to think"</div>
+      <span class="card-tag orange">objection</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <div class="script-block">
+        <div class="script-label">Rep Response</div>
+        <p>"I totally get that — this is a big decision. Let me ask you this: is there something specific in the agreement that's giving you pause, or is it just the overall process that feels fast? I want to make sure I address any concerns you have."</p>
+        <div class="script-note">Drill down to the real objection. Often "I need time" means "I don't understand something" or "I'm scared." Once you identify the real concern, address it directly.</div>
+      </div>
+      <p style="margin-top:12px;font-size:13px;color:var(--text-secondary);line-height:1.65;">If they genuinely need time, give them a bounded window: "How about we touch base tomorrow morning at 10am? That gives you tonight to think it over, and we can address any questions then."</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num orange">4</div>
+      <div class="card-title">"What if I change my mind?"</div>
+      <span class="card-tag orange">objection</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <div class="script-block">
+        <div class="script-label">Rep Response</div>
+        <p>"Great question. We have a 45-business-day due diligence period built into the agreement. During that time, if for any reason we can't find a buyer or if something changes on your end, we can provide written notice to terminate the contract. So you're not locked in forever — you have that window. Does that make sense?"</p>
+        <div class="script-note">This is technically accurate, but frame it as protection for both sides — not as an escape hatch. You want them to feel secure, not start planning their exit.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" onclick="toggleCard(this)">
+      <div class="card-num orange">5</div>
+      <div class="card-title">"I don't understand Section [X] — can you explain it?"</div>
+      <span class="card-tag orange">objection</span>
+      <span class="card-chevron">▾</span>
+    </div>
+    <div class="card-body">
+      <div class="script-block">
+        <div class="script-label">Rep Response</div>
+        <p>"Absolutely. Let me walk you through that section. <strong>[Explain in plain language.]</strong> Does that clear it up, or do you have any other questions on it?"</p>
+        <div class="script-note">If they ask about a section you're not 100% confident on, don't fake it. Say: "Let me confirm the exact details on that and get back to you in the next hour. I want to make sure I give you the right answer."</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection-title">Facilitator Role-Play Activity</div>
+  <p>Run a quick role-play exercise:</p>
+  <ul>
+    <li>Pair reps up (or use breakout rooms if virtual)</li>
+    <li>One rep plays the seller, one plays the ACQ rep</li>
+    <li>Seller throws one of the above objections, rep responds</li>
+    <li>Debrief: What worked? What felt awkward? Coach in real-time.</li>
+  </ul>
+
+  <div class="alert alert-success">
+    <strong>Facilitator Coaching Tip</strong>
+    Watch for reps who get defensive or apologetic when handling objections. Reinforce that objections are normal — they're not a sign you did something wrong. Confident, empathetic responses close deals.
+  </div>
+
+  <div class="module-nav-btns"><button class="nav-btn" onclick="showSection(3)">← Section 3</button><button class="nav-btn primary" onclick="showSection(5)">Section 5: Close &amp; Next Steps →</button></div>
+</div>
+
+<!-- SECTION 5: CLOSE & NEXT STEPS -->
+<div class="section-panel" id="section-5">
+  <div class="module-header">
+    <div class="module-eyebrow">Section 5 · 10 minutes</div>
+    <div class="module-title">Close &amp; Next Steps</div>
+    <div class="module-desc">Wrap the session with clarity, assign action items, and reinforce the core principle.</div>
+  </div>
+
+  <div class="subsection-title">Session Close Checklist</div>
+  <ul class="checklist" id="close-checklist">
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Every rep understands the turnkey principle: fill out as much as possible for the seller</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Every rep knows the highlights-only approach: Sections 1–6, Section 15, Agency Packet</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Every rep can confidently handle the top 5 objections during contract review</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Every rep knows to close the signature while still on the phone — not after</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Every rep has the AB Contract Language Google Doc link: <strong>https://docs.google.com/document/d/1AZpBVO3ETCQlk-oKSsuCQDXRDNR7jikNvi6__slA6Zk/edit?usp=sharing</strong></li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Open Q&amp;A completed — questions addressed or flagged for follow-up</li>
+  </ul>
+
+  <hr class="section-divider"/>
+  <div class="subsection-title">Reinforce the Core Principle</div>
+  <div class="script-block">
+    <div class="script-label">Facilitator — Final Reminder</div>
+    <p>"Here's what I want you to remember from today: every time you let a seller off the phone to 'review the contract later,' your odds of getting it signed drop significantly. That's not pushy — that's reality. Your job is to make it easy for them to move forward. Fill out the contract for them, walk them through the highlights with confidence, handle their objections calmly, and close the signature while you're still on the call. If you do that, your contract execution rate will go up immediately. Questions?"</p>
+  </div>
+
+  <hr class="section-divider"/>
+  <div class="subsection-title">Open Q&amp;A Prompt</div>
+  <div class="script-block">
+    <div class="script-label">Facilitator — Wrap-Up Language</div>
+    <p>"That's everything I wanted to cover today. We went through the psychology of filling it out, the highlights-only approach, handling objections, and the importance of closing while on the phone. I know things will come up once you're in it. When they do, come find me with the specific situation and I'll help you work through it. That's what I'm here for. What questions do you have right now?"</p>
+    <div class="script-note">Wait through the silence. The first question always unlocks the others. Reps often have questions but wait to see if someone else goes first.</div>
+  </div>
+
+  <hr class="section-divider"/>
+  <div class="subsection-title">Assigned Next Steps</div>
+  <div class="next-steps">
+    <div class="next-steps-header">Action Items from This Session</div>
+    <div class="next-steps-body">
+      <div class="next-step-row">
+        <div class="next-step-who">All Reps</div>
+        <div class="next-step-what">On your next contracted deal, fill out the Preliminary Seller Information worksheet while on the phone with the seller. Report back to the group how it went.</div>
+      </div>
+      <div class="next-step-row">
+        <div class="next-step-who">All Reps</div>
+        <div class="next-step-what">Role-play the top 3 objections with a teammate before your next live contract review. Practice confident, empathetic responses.</div>
+      </div>
+      <div class="next-step-row">
+        <div class="next-step-who">All Reps</div>
+        <div class="next-step-what">Ask a Team Lead or Manager to walk through your next contract with a seller.</div>
+      </div>
+      <div class="next-step-row">
+        <div class="next-step-who">Facilitator</div>
+        <div class="next-step-what">Send a Slack recap to the cohort channel with the highlights-only approach summary and a reminder to close while on the phone.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-success mt16"><strong>Facilitator reminder:</strong> The best thing you can do after this session is be available. Reps will hit their first real contract review in the next 24–48 hours and need someone to call. That touchpoint is worth more than any training material.</div>
+
+  <div class="module-nav-btns"><button class="nav-btn" onclick="showSection(4)">← Section 4</button><button class="nav-btn primary" onclick="showSection(0)">↑ Back to Overview</button></div>
+</div>
+
+</div></div>
+
+<script>
+const panels = document.querySelectorAll('.section-panel');
+const navBtns = document.querySelectorAll('.mod-btn');
+function showSection(idx) {
+  panels.forEach((p,i) => p.classList.toggle('active', i===idx));
+  navBtns.forEach((b,i) => b.classList.toggle('active', i===idx));
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function toggleCard(headEl) { headEl.closest('.card').classList.toggle('open'); }
+function toggleCheck(li) {
+  li.classList.toggle('checked');
+  li.querySelector('.check-box').textContent = li.classList.contains('checked') ? '✓' : '';
+}
+</script>
+</body>
+</html>
