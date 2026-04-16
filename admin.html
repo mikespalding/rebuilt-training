@@ -191,23 +191,53 @@ body { font-family: var(--font); background: var(--off-white); color: var(--navy
   margin-bottom: 12px; padding-bottom: 6px;
   border-bottom: 1.5px solid var(--border);
 }
+.activity-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.activity-column {
+  display: flex;
+  flex-direction: column;
+}
+.column-header {
+  font-size: 9px; font-weight: 800; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 6px 10px;
+  border-radius: 6px; margin-bottom: 10px;
+}
+.column-header.olt {
+  background: rgba(245,131,31,0.12); color: #c4640a;
+}
+.column-header.kc {
+  background: rgba(15,105,110,0.12); color: var(--teal-dark);
+}
 .activity-list {
-  display: flex; flex-direction: column; gap: 8px;
+  display: flex; flex-direction: column; gap: 6px;
 }
 .activity-item {
-  display: grid;
-  grid-template-columns: 1fr auto auto;
-  gap: 12px;
-  padding: 11px 14px; background: rgba(31,53,64,0.02);
-  border-radius: 10px; border: 1px solid var(--border);
-  align-items: center; transition: all 0.15s;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 9px 12px; background: rgba(31,53,64,0.02);
+  border-radius: 8px; border: 1px solid var(--border);
+  transition: all 0.15s;
 }
 .activity-item:hover {
   background: rgba(33,169,225,0.04);
   border-color: rgba(33,169,225,0.2);
 }
+.activity-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
 .activity-main {
-  display: flex; flex-direction: column; gap: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
 }
 .activity-name {
   font-size: 12px; font-weight: 700; color: var(--navy);
@@ -223,9 +253,16 @@ body { font-family: var(--font); background: var(--off-white); color: var(--navy
 .activity-type.olt {
   background: rgba(245,131,31,0.1); color: #c4640a;
 }
+.activity-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10px;
+  color: var(--muted);
+}
 .activity-date {
   font-size: 10px; color: var(--muted); font-weight: 600;
-  text-align: right; white-space: nowrap;
+  white-space: nowrap;
 }
 .activity-date-label {
   font-size: 8px; font-weight: 700; letter-spacing: 0.08em;
@@ -233,9 +270,10 @@ body { font-family: var(--font); background: var(--off-white); color: var(--navy
   display: block; margin-bottom: 2px;
 }
 .activity-result {
-  display: flex; align-items: center; gap: 8px;
-  padding: 6px 12px; border-radius: 8px;
-  font-size: 11px; font-weight: 700;
+  display: flex; align-items: center; gap: 6px;
+  padding: 4px 10px; border-radius: 6px;
+  font-size: 10px; font-weight: 700;
+  white-space: nowrap;
 }
 .activity-result.passed {
   background: rgba(46,204,113,0.1); color: #27ae60;
@@ -256,6 +294,13 @@ body { font-family: var(--font); background: var(--off-white); color: var(--navy
 .activity-item.not-assigned:hover {
   background: rgba(31,53,64,0.02);
   border-color: var(--border);
+}
+
+@media (max-width: 800px) {
+  .activity-columns {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
 }
 
 /* ── TABLE WRAPPER ── */
@@ -872,34 +917,28 @@ function openRepModal(email) {
                  '</span>';
   document.getElementById('modal-function').innerHTML = funcHtml;
 
-  // Build activity list
+  // Build activity list - separate OLT and KC
   var myMods = ALL_MODULES.filter(function(m) { return m.roles.includes(rep.role || 'acq'); });
-  var html = '';
-
-  myMods.forEach(function(mod) {
+  var oltMods = myMods.filter(function(m) { return m.type === 'OLT'; });
+  var kcMods = myMods.filter(function(m) { return m.type === 'KC'; });
+  
+  var html = '<div class="activity-columns">';
+  
+  // OLT Column
+  html += '<div class="activity-column">';
+  html += '<div class="column-header olt">Online Training (OLT)</div>';
+  html += '<div class="activity-list">';
+  
+  oltMods.forEach(function(mod) {
     var comp = rep.completions[mod.id];
-    var isAssigned = true; // All modules for this role are assigned
+    var itemClass = 'activity-item';
     
-    var itemClass = 'activity-item' + (isAssigned ? '' : ' not-assigned');
     html += '<div class="' + itemClass + '">';
+    html += '<div class="activity-row">';
     
-    // Activity main info
+    // Module name
     html += '<div class="activity-main">';
     html += '<div class="activity-name">' + mod.name + '</div>';
-    html += '<span class="activity-type ' + mod.type.toLowerCase() + '">' + mod.type + '</span>';
-    html += '</div>';
-    
-    // Completion date
-    html += '<div class="activity-date">';
-    if (comp) {
-      // Use 'completed' field from the sheet data
-      var ts = comp.completed || comp.timestamp || comp.completed_at || comp.date;
-      html += '<span class="activity-date-label">Last Taken</span>';
-      html += ts ? formatDate(ts) : '–';
-    } else {
-      html += '<span class="activity-date-label">Last Taken</span>';
-      html += '–';
-    }
     html += '</div>';
     
     // Result/score
@@ -914,8 +953,69 @@ function openRepModal(email) {
       html += '<div class="activity-result pending">Pending</div>';
     }
     
+    html += '</div>'; // end activity-row
+    
+    // Meta row (date)
+    html += '<div class="activity-meta">';
+    if (comp) {
+      var ts = comp.completed || comp.timestamp || comp.completed_at || comp.date;
+      html += '<span class="activity-date">' + (ts ? formatDate(ts) : '–') + '</span>';
+    } else {
+      html += '<span class="activity-date">–</span>';
+    }
     html += '</div>';
+    
+    html += '</div>'; // end activity-item
   });
+  
+  html += '</div></div>'; // end OLT column
+  
+  // KC Column
+  html += '<div class="activity-column">';
+  html += '<div class="column-header kc">Knowledge Checks (KC)</div>';
+  html += '<div class="activity-list">';
+  
+  kcMods.forEach(function(mod) {
+    var comp = rep.completions[mod.id];
+    var itemClass = 'activity-item';
+    
+    html += '<div class="' + itemClass + '">';
+    html += '<div class="activity-row">';
+    
+    // Module name
+    html += '<div class="activity-main">';
+    html += '<div class="activity-name">' + mod.name + '</div>';
+    html += '</div>';
+    
+    // Result/score
+    if (comp) {
+      var resultClass = comp.passed ? 'passed' : 'failed';
+      var resultText = comp.passed ? '✓ Pass' : '✗ Retry';
+      html += '<div class="activity-result ' + resultClass + '">';
+      html += '<span class="activity-score">' + Math.round(comp.score_pct) + '%</span>';
+      html += resultText;
+      html += '</div>';
+    } else {
+      html += '<div class="activity-result pending">Pending</div>';
+    }
+    
+    html += '</div>'; // end activity-row
+    
+    // Meta row (date)
+    html += '<div class="activity-meta">';
+    if (comp) {
+      var ts = comp.completed || comp.timestamp || comp.completed_at || comp.date;
+      html += '<span class="activity-date">' + (ts ? formatDate(ts) : '–') + '</span>';
+    } else {
+      html += '<span class="activity-date">–</span>';
+    }
+    html += '</div>';
+    
+    html += '</div>'; // end activity-item
+  });
+  
+  html += '</div></div>'; // end KC column
+  html += '</div>'; // end activity-columns
 
   document.getElementById('activity-list').innerHTML = html;
 
