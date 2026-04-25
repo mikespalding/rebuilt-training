@@ -6533,6 +6533,18 @@ body {
     }, '\uD83C\uDFE0 Dashboard');
     nav.appendChild(dashBtn);
 
+    var histBtn = el('button', {
+      className: 'nav-trigger' + (activeSection === 'history' ? ' nav-trigger-active' : ''),
+      onClick: function () { closeMobileNav(); renderHistory(); }
+    }, '\uD83D\uDCCA History');
+    nav.appendChild(histBtn);
+
+    var certBtn = el('button', {
+      className: 'nav-trigger' + (activeSection === 'certification' ? ' nav-trigger-active' : ''),
+      onClick: function () { closeMobileNav(); renderCertificationStatus(); }
+    }, '\uD83C\uDF93 Certification');
+    nav.appendChild(certBtn);
+
     if (mobilePanel) {
       mobilePanel.appendChild(el('a', {
         className: 'mobile-nav-direct-btn',
@@ -6548,6 +6560,16 @@ body {
           loadProperties().then(function () { renderDashboard(); }).catch(function () { renderDashboard(); });
         }
       }, '\uD83C\uDFE0 Dashboard'));
+
+      mobilePanel.appendChild(el('button', {
+        className: 'mobile-nav-direct-btn' + (activeSection === 'history' ? ' mobile-nav-trigger-active' : ''),
+        onClick: function () { closeMobileNav(); renderHistory(); }
+      }, '\uD83D\uDCCA History'));
+
+      mobilePanel.appendChild(el('button', {
+        className: 'mobile-nav-direct-btn' + (activeSection === 'certification' ? ' mobile-nav-trigger-active' : ''),
+        onClick: function () { closeMobileNav(); renderCertificationStatus(); }
+      }, '\uD83C\uDF93 Certification'));
     }
 
     // Wire hamburger
