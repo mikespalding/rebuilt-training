@@ -6320,6 +6320,7 @@ body {
 
   function setEmail(email) {
     try { localStorage.setItem(STORAGE_EMAIL, email); } catch (_) {}
+    if (typeof window.rebuiltTrackPageView === 'function') window.rebuiltTrackPageView();
   }
 
   function isAdmin() {
@@ -11052,5 +11053,6 @@ body {
 })();
 
   </script>
+<script src="shared/tracking.js"></script>
 </body>
 </html>
