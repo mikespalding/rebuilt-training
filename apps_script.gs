@@ -14,6 +14,7 @@
  *   - "PageViews"   — page-view tracking           (type: "PV")
  */
 
+var SHEET_ID = '1qBOTsZpMHaZ2C5Fh_zemNONvpUzFuTg6tLvRsiqyAHg';
 var PASS_THRESHOLD = 0.70;
 
 // ─── Routing ────────────────────────────────────────────────────────────────
@@ -78,7 +79,7 @@ function handleKnowledgeCheck_(p) {
 }
 
 function getCompletionsForEmail_(email) {
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Completions');
+  var sheet = SpreadsheetApp.openById(SHEET_ID).getSheetByName('Completions');
   if (!sheet || sheet.getLastRow() < 2) return [];
 
   var values = sheet.getDataRange().getValues();
@@ -133,7 +134,7 @@ function handlePageView_(p) {
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
 function getOrCreateSheet_(name, headers) {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss = SpreadsheetApp.openById(SHEET_ID);
   var sheet = ss.getSheetByName(name);
   if (!sheet) {
     sheet = ss.insertSheet(name);
