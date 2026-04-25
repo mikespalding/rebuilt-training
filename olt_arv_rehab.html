@@ -6516,154 +6516,38 @@ body {
     nav.innerHTML = '';
     if (mobilePanel) mobilePanel.innerHTML = '';
 
-    NAV_CONFIG.forEach(function (section) {
-      if (section.disabled) return;
-      // --- Desktop dropdown ---
-      var dropdownWrapper = el('div', { className: 'nav-dropdown' });
-      var triggerText = section.icon + ' ' + section.label;
-      var trigger = el('button', {
-        className: 'nav-trigger' + (isSectionActive(section) ? ' nav-trigger-active' : ''),
-      }, triggerText, ' ', el('span', { className: 'nav-chevron' }, '\u25BE'));
-      trigger.setAttribute('aria-haspopup', 'true');
-      trigger.setAttribute('aria-expanded', 'false');
+    var hubBtn = el('a', {
+      className: 'nav-trigger',
+      href: 'index.html'
+    }, '\u2190 Training Hub');
+    nav.appendChild(hubBtn);
 
-      var panel = el('div', { className: 'nav-panel' });
-
-      if (section.groups) {
-        section.groups.forEach(function (group) {
-          panel.appendChild(el('div', { className: 'nav-group-label' }, group.label));
-          group.items.forEach(function (item) {
-            panel.appendChild(createNavItem(item, false));
-          });
-        });
-      } else if (section.items) {
-        section.items.forEach(function (item) {
-          panel.appendChild(createNavItem(item, false));
-        });
+    var dashBtn = el('button', {
+      className: 'nav-trigger' + (activeSection === 'arv-training' ? ' nav-trigger-active' : ''),
+      onClick: function () {
+        closeMobileNav();
+        activeSection = 'arv-training';
+        renderNav();
+        loadProperties().then(function () { renderDashboard(); }).catch(function () { renderDashboard(); });
       }
+    }, '\uD83C\uDFE0 Dashboard');
+    nav.appendChild(dashBtn);
 
-      trigger.addEventListener('click', function (e) {
-        e.stopPropagation();
-        var isOpen = dropdownWrapper.classList.contains('nav-dropdown-open');
-        closeAllDropdowns();
-        if (!isOpen) {
-          dropdownWrapper.classList.add('nav-dropdown-open');
-          trigger.setAttribute('aria-expanded', 'true');
+    if (mobilePanel) {
+      mobilePanel.appendChild(el('a', {
+        className: 'mobile-nav-direct-btn',
+        href: 'index.html'
+      }, '\u2190 Training Hub'));
+
+      mobilePanel.appendChild(el('button', {
+        className: 'mobile-nav-direct-btn' + (activeSection === 'arv-training' ? ' mobile-nav-trigger-active' : ''),
+        onClick: function () {
+          closeMobileNav();
+          activeSection = 'arv-training';
+          renderNav();
+          loadProperties().then(function () { renderDashboard(); }).catch(function () { renderDashboard(); });
         }
-      });
-      // Stop clicks inside the panel from bubbling to the document close handler
-      panel.addEventListener('click', function (e) { e.stopPropagation(); });
-
-      dropdownWrapper.appendChild(trigger);
-      dropdownWrapper.appendChild(panel);
-      nav.appendChild(dropdownWrapper);
-
-      // --- Mobile accordion ---
-      if (mobilePanel) {
-        var mobileSection = el('div', { className: 'mobile-nav-section' });
-        var mobileTrigger = el('button', {
-          className: 'mobile-nav-trigger' + (isSectionActive(section) ? ' mobile-nav-trigger-active' : ''),
-        }, section.icon + ' ' + section.label, ' ', el('span', { className: 'nav-chevron' }, '\u25BE'));
-        var mobileItems = el('div', { className: 'mobile-nav-items' });
-
-        if (section.groups) {
-          section.groups.forEach(function (group) {
-            mobileItems.appendChild(el('div', { className: 'nav-group-label' }, group.label));
-            group.items.forEach(function (item) {
-              mobileItems.appendChild(createNavItem(item, true));
-            });
-          });
-        } else if (section.items) {
-          section.items.forEach(function (item) {
-            mobileItems.appendChild(createNavItem(item, true));
-          });
-        }
-
-        mobileTrigger.addEventListener('click', function () {
-          var isOpen = mobileSection.classList.contains('mobile-section-open');
-          var allSections = mobilePanel.querySelectorAll('.mobile-nav-section');
-          for (var i = 0; i < allSections.length; i++) {
-            allSections[i].classList.remove('mobile-section-open');
-          }
-          if (!isOpen) mobileSection.classList.add('mobile-section-open');
-        });
-
-        mobileSection.appendChild(mobileTrigger);
-        mobileSection.appendChild(mobileItems);
-        mobilePanel.appendChild(mobileSection);
-      }
-    });
-
-    // Dashboard, History & Leaderboard direct nav buttons
-    if (getEmail()) {
-      if (isCompAnalysisDone()) {
-        var dashBtn = el('button', {
-          className: 'nav-trigger' + (activeSection === 'arv-training' ? ' nav-trigger-active' : ''),
-          onClick: function () {
-            closeAllDropdowns();
-            closeMobileNav();
-            activeSection = 'arv-training';
-            renderNav();
-            loadProperties().then(function () { renderDashboard(); }).catch(function () { renderDashboard(); });
-          }
-        }, '\uD83C\uDFE0 Dashboard');
-        nav.appendChild(dashBtn);
-      }
-
-      var histBtn = el('button', {
-        className: 'nav-trigger' + (activeSection === 'history' ? ' nav-trigger-active' : ''),
-        onClick: function () { closeAllDropdowns(); closeMobileNav(); renderHistory(); }
-      }, '\uD83D\uDCCA History');
-      nav.appendChild(histBtn);
-
-      var certBtn = el('button', {
-        className: 'nav-trigger' + (activeSection === 'certification' ? ' nav-trigger-active' : ''),
-        onClick: function () { closeAllDropdowns(); closeMobileNav(); renderCertificationStatus(); }
-      }, '\uD83C\uDF93 Certification');
-      nav.appendChild(certBtn);
-
-      var lbBtn = el('button', {
-        className: 'nav-trigger' + (activeSection === 'leaderboard' ? ' nav-trigger-active' : ''),
-        onClick: function () { closeAllDropdowns(); closeMobileNav(); renderLeaderboard(); }
-      }, '\uD83C\uDFC6 Leaders');
-      nav.appendChild(lbBtn);
-
-      var plBtn = el('button', {
-        className: 'nav-trigger' + (activeSection === 'prospect-lookup' ? ' nav-trigger-active' : ''),
-        onClick: function () { closeAllDropdowns(); closeMobileNav(); bootProspectLookup(); }
-      }, '\uD83D\uDD0D Prospects');
-      nav.appendChild(plBtn);
-
-      // Mobile equivalents
-      if (mobilePanel) {
-        if (isCompAnalysisDone()) {
-          mobilePanel.appendChild(el('button', {
-            className: 'mobile-nav-direct-btn' + (activeSection === 'arv-training' ? ' mobile-nav-trigger-active' : ''),
-            onClick: function () {
-              closeMobileNav();
-              activeSection = 'arv-training';
-              renderNav();
-              loadProperties().then(function () { renderDashboard(); }).catch(function () { renderDashboard(); });
-            }
-          }, '\uD83C\uDFE0 Dashboard'));
-        }
-        mobilePanel.appendChild(el('button', {
-          className: 'mobile-nav-direct-btn' + (activeSection === 'history' ? ' mobile-nav-trigger-active' : ''),
-          onClick: function () { closeMobileNav(); renderHistory(); }
-        }, '\uD83D\uDCCA History'));
-        mobilePanel.appendChild(el('button', {
-          className: 'mobile-nav-direct-btn' + (activeSection === 'certification' ? ' mobile-nav-trigger-active' : ''),
-          onClick: function () { closeMobileNav(); renderCertificationStatus(); }
-        }, '\uD83C\uDF93 Certification'));
-        mobilePanel.appendChild(el('button', {
-          className: 'mobile-nav-direct-btn' + (activeSection === 'leaderboard' ? ' mobile-nav-trigger-active' : ''),
-          onClick: function () { closeMobileNav(); renderLeaderboard(); }
-        }, '\uD83C\uDFC6 Leaders'));
-        mobilePanel.appendChild(el('button', {
-          className: 'mobile-nav-direct-btn' + (activeSection === 'prospect-lookup' ? ' mobile-nav-trigger-active' : ''),
-          onClick: function () { closeMobileNav(); bootProspectLookup(); }
-        }, '\uD83D\uDD0D Prospects'));
-      }
+      }, '\uD83C\uDFE0 Dashboard'));
     }
 
     // Wire hamburger
@@ -11140,7 +11024,7 @@ body {
 
   document.addEventListener('DOMContentLoaded', function () {
     renderNav();
-    renderLandingPage();
+    bootArvTraining();
   });
 
 })();
