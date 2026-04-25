@@ -652,6 +652,7 @@ function submitGate() {
   localStorage.setItem('rebuilt_email', val);
   localStorage.setItem('rebuilt_role',  currentRole);
   document.getElementById('gate-overlay').classList.add('hidden');
+  if (typeof window.rebuiltTrackPageView === 'function') window.rebuiltTrackPageView();
   initApp();
 }
 
@@ -859,5 +860,6 @@ function renderLeaderResources() {
 }
 </script>
 
+<script src="shared/tracking.js"></script>
 </body>
 </html>
