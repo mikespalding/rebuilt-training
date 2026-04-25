@@ -9,12 +9,18 @@
  * existing deployment so the /exec URL stays the same — do NOT create a
  * new deployment, because every HTML page hard-codes the current URL.
  *
- * Sheets are auto-created on first event:
- *   - "Completions" — knowledge-check submissions  (type: "KC")
- *   - "PageViews"   — page-view tracking           (type: "PV")
+ * Sheets:
+ *   - "Tracking"  — knowledge-check + OLT submissions (existing schema)
+ *                   columns: email | module_id | module_name | type |
+ *                            score_pct | passed | completed_at | role | class
+ *   - "PageViews" — page-view tracking (auto-created on first event)
+ *                   columns: client_ts | server_received_at | email | role |
+ *                            page | title | referrer
  */
 
 var SHEET_ID = '1qBOTsZpMHaZ2C5Fh_zemNONvpUzFuTg6tLvRsiqyAHg';
+var TRACKING_SHEET = 'Tracking';
+var PAGEVIEWS_SHEET = 'PageViews';
 var PASS_THRESHOLD = 0.70;
 
 // ─── Routing ────────────────────────────────────────────────────────────────
@@ -28,9 +34,10 @@ function doPost(e) {
   }
 
   switch (payload && payload.type) {
-    case 'KC': return handleKnowledgeCheck_(payload);
-    case 'PV': return handlePageView_(payload);
-    default:   return jsonOut_({ success: false, error: 'unknown_type' });
+    case 'KC':
+    case 'OLT': return handleCompletion_(payload);
+    case 'PV':  return handlePageView_(payload);
+    default:    return jsonOut_({ success: false, error: 'unknown_type' });
   }
 }
 
@@ -52,34 +59,31 @@ function doGet(e) {
     .setMimeType(ContentService.MimeType.JSON);
 }
 
-// ─── Knowledge-check submissions ────────────────────────────────────────────
+// ─── Knowledge-check + OLT submissions ──────────────────────────────────────
 
-function handleKnowledgeCheck_(p) {
-  var sheet = getOrCreateSheet_('Completions', [
-    'server_received_at',
-    'email',
-    'role',
-    'module_id',
-    'module_name',
-    'score_pct',
-    'passed'
+function handleCompletion_(p) {
+  var sheet = getOrCreateSheet_(TRACKING_SHEET, [
+    'email', 'module_id', 'module_name', 'type',
+    'score_pct', 'passed', 'completed_at', 'role', 'class'
   ]);
 
   var scorePct = Number(p.score_pct) || 0;
   sheet.appendRow([
-    new Date(),
     String(p.email || '').toLowerCase().trim(),
-    String(p.role || ''),
     String(p.module_id || ''),
     String(p.module_name || ''),
+    String(p.type || ''),
     scorePct,
-    scorePct >= (PASS_THRESHOLD * 100)
+    scorePct >= (PASS_THRESHOLD * 100),
+    new Date(),
+    String(p.role || ''),
+    ''  // class — populated manually / by other tooling
   ]);
   return jsonOut_({ success: true });
 }
 
 function getCompletionsForEmail_(email) {
-  var sheet = SpreadsheetApp.openById(SHEET_ID).getSheetByName('Completions');
+  var sheet = SpreadsheetApp.openById(SHEET_ID).getSheetByName(TRACKING_SHEET);
   if (!sheet || sheet.getLastRow() < 2) return [];
 
   var values = sheet.getDataRange().getValues();
@@ -88,19 +92,23 @@ function getCompletionsForEmail_(email) {
     email:       header.indexOf('email'),
     module_id:   header.indexOf('module_id'),
     module_name: header.indexOf('module_name'),
+    type:        header.indexOf('type'),
     score_pct:   header.indexOf('score_pct'),
     passed:      header.indexOf('passed')
   };
+  if (idx.email < 0 || idx.module_id < 0) return [];
 
   var out = [];
   for (var i = 1; i < values.length; i++) {
     var row = values[i];
     if (String(row[idx.email] || '').toLowerCase().trim() !== email) continue;
+    if (!row[idx.module_id]) continue;  // skip placeholder/empty rows
     out.push({
       module_id:   row[idx.module_id],
       module_name: row[idx.module_name],
+      type:        row[idx.type],
       score_pct:   Number(row[idx.score_pct]) || 0,
-      passed:      row[idx.passed] === true || row[idx.passed] === 'TRUE'
+      passed:      row[idx.passed] === true || String(row[idx.passed]).toUpperCase() === 'TRUE'
     });
   }
   return out;
@@ -109,14 +117,9 @@ function getCompletionsForEmail_(email) {
 // ─── Page-view tracking ─────────────────────────────────────────────────────
 
 function handlePageView_(p) {
-  var sheet = getOrCreateSheet_('PageViews', [
-    'client_ts',
-    'server_received_at',
-    'email',
-    'role',
-    'page',
-    'title',
-    'referrer'
+  var sheet = getOrCreateSheet_(PAGEVIEWS_SHEET, [
+    'client_ts', 'server_received_at', 'email', 'role',
+    'page', 'title', 'referrer'
   ]);
 
   sheet.appendRow([
