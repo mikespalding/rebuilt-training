@@ -43,11 +43,25 @@ function doPost(e) {
 
 // JSONP-only GET so the gate page can fetch a user's completions without
 // running into Apps Script's CORS redirect.
+//
+// Modes:
+//   default — pass ?email=<addr> to get that user's completions
+//   admin   — pass ?mode=admin to get every completion row (used by admin.html)
 function doGet(e) {
+  var mode  = String((e.parameter && e.parameter.mode) || '').toLowerCase().trim();
   var email = String((e.parameter && e.parameter.email) || '').toLowerCase().trim();
   var cb    = String((e.parameter && e.parameter.callback) || '');
-  var body  = { success: true, completions: email ? getCompletionsForEmail_(email) : [] };
-  var json  = JSON.stringify(body);
+
+  var completions;
+  if (mode === 'admin') {
+    completions = getAllCompletions_();
+  } else if (email) {
+    completions = getCompletionsForEmail_(email);
+  } else {
+    completions = [];
+  }
+
+  var json = JSON.stringify({ success: true, completions: completions });
 
   if (cb) {
     return ContentService
@@ -109,6 +123,46 @@ function getCompletionsForEmail_(email) {
       type:        row[idx.type],
       score_pct:   Number(row[idx.score_pct]) || 0,
       passed:      row[idx.passed] === true || String(row[idx.passed]).toUpperCase() === 'TRUE'
+    });
+  }
+  return out;
+}
+
+// Returns every completion row, with the extra fields (email, role, class)
+// the admin dashboard relies on for grouping and filtering.
+function getAllCompletions_() {
+  var sheet = SpreadsheetApp.openById(SHEET_ID).getSheetByName(TRACKING_SHEET);
+  if (!sheet || sheet.getLastRow() < 2) return [];
+
+  var values = sheet.getDataRange().getValues();
+  var header = values[0];
+  var idx = {
+    email:       header.indexOf('email'),
+    module_id:   header.indexOf('module_id'),
+    module_name: header.indexOf('module_name'),
+    type:        header.indexOf('type'),
+    score_pct:   header.indexOf('score_pct'),
+    passed:      header.indexOf('passed'),
+    role:        header.indexOf('role'),
+    cls:         header.indexOf('class')
+  };
+  if (idx.email < 0 || idx.module_id < 0) return [];
+
+  var out = [];
+  for (var i = 1; i < values.length; i++) {
+    var row = values[i];
+    var email = String(row[idx.email] || '').toLowerCase().trim();
+    if (!email) continue;
+    if (!row[idx.module_id]) continue;
+    out.push({
+      email:       email,
+      module_id:   row[idx.module_id],
+      module_name: row[idx.module_name],
+      type:        row[idx.type],
+      score_pct:   Number(row[idx.score_pct]) || 0,
+      passed:      row[idx.passed] === true || String(row[idx.passed]).toUpperCase() === 'TRUE',
+      role:        idx.role >= 0 ? String(row[idx.role] || '') : '',
+      class:       idx.cls  >= 0 ? String(row[idx.cls]  || '') : ''
     });
   }
   return out;
