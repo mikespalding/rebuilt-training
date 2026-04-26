@@ -210,7 +210,66 @@ li{margin-bottom:6px;color:var(--gray-600);}
 .mod-btn.done{color:var(--green);}
 
 /* ── CONTENT AREA ── */
-#content-area-ab{max-width:860px;margin:0 auto;padding:0;}
+#content-area-ab{max-width:860px;margin:0 auto;padding:0 0 80px;}
+
+/* ── REFERENCE DOCS DRAWER ── */
+#ref-drawer{
+  position:fixed;bottom:0;left:0;right:0;z-index:300;
+  font-family:'Montserrat',sans-serif;
+}
+#ref-drawer-tab{
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--navy);color:#fff;
+  padding:10px 20px;cursor:pointer;
+  border-top:3px solid var(--blue);
+  max-width:920px;margin:0 auto;
+  border-radius:10px 10px 0 0;
+  box-shadow:0 -4px 20px rgba(0,0,0,0.18);
+  transition:background 0.15s;
+  user-select:none;
+}
+#ref-drawer-tab:hover{background:#2a4555;}
+.ref-tab-left{display:flex;align-items:center;gap:10px;}
+.ref-tab-icon{font-size:15px;}
+.ref-tab-label{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;}
+.ref-tab-count{background:var(--blue);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;letter-spacing:0.04em;}
+.ref-tab-arrow{font-size:11px;color:rgba(255,255,255,0.5);transition:transform 0.25s;}
+.ref-tab-arrow.open{transform:rotate(180deg);}
+#ref-drawer-panel{
+  background:#fff;
+  border-top:1px solid var(--gray-200);
+  max-height:0;overflow:hidden;
+  transition:max-height 0.3s ease;
+  box-shadow:0 -2px 16px rgba(0,0,0,0.10);
+}
+#ref-drawer-panel.open{max-height:260px;}
+.ref-panel-inner{
+  max-width:920px;margin:0 auto;
+  padding:16px 20px 20px;
+  display:grid;grid-template-columns:1fr 1fr;gap:10px;
+}
+.ref-doc-card{
+  display:flex;align-items:center;gap:12px;
+  background:var(--gray-50);border:1px solid var(--gray-200);
+  border-radius:8px;padding:10px 14px;
+  text-decoration:none;color:var(--navy);
+  transition:all 0.15s;
+}
+.ref-doc-card:hover{background:var(--note-bg);border-color:var(--blue);color:var(--navy);}
+.ref-doc-icon{
+  width:32px;height:32px;border-radius:6px;
+  background:var(--blue);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;flex-shrink:0;
+}
+.ref-doc-icon.pa{background:var(--teal-dark,#0f696e);}
+.ref-doc-body{min-width:0;}
+.ref-doc-title{font-size:11px;font-weight:700;line-height:1.3;color:var(--navy);}
+.ref-doc-sub{font-size:10px;color:var(--gray-400);margin-top:2px;letter-spacing:0.02em;}
+.ref-note{
+  grid-column:1/-1;font-size:10px;color:var(--gray-400);
+  padding-top:4px;letter-spacing:0.02em;
+}
 
 </style>
 </head>
@@ -1176,6 +1235,63 @@ function showCompletionScreen() {
 updateProgress();
 </script>
 </div>
+<!-- REFERENCE DOCS DRAWER -->
+<div id="ref-drawer">
+  <div id="ref-drawer-tab" onclick="toggleRefDrawer()">
+    <div class="ref-tab-left">
+      <span class="ref-tab-icon">📄</span>
+      <span class="ref-tab-label">Reference Documents</span>
+      <span class="ref-tab-count">4 PDFs</span>
+    </div>
+    <span class="ref-tab-arrow" id="ref-arrow">▲</span>
+  </div>
+  <div id="ref-drawer-panel">
+    <div class="ref-panel-inner">
+      <a class="ref-doc-card" href="AB_v07282025_1_Signer.pdf" target="_blank" rel="noopener">
+        <div class="ref-doc-icon">📋</div>
+        <div class="ref-doc-body">
+          <div class="ref-doc-title">AB Contract — 1 Signer</div>
+          <div class="ref-doc-sub">Standard · Single seller</div>
+        </div>
+      </a>
+      <a class="ref-doc-card" href="AB_v07282025_2_Signers.pdf" target="_blank" rel="noopener">
+        <div class="ref-doc-icon">📋</div>
+        <div class="ref-doc-body">
+          <div class="ref-doc-title">AB Contract — 2 Signers</div>
+          <div class="ref-doc-sub">Standard · Married / co-owners</div>
+        </div>
+      </a>
+      <a class="ref-doc-card" href="Pennsylvania_-_AB_v07282025_1_Signer.pdf" target="_blank" rel="noopener">
+        <div class="ref-doc-icon pa">📋</div>
+        <div class="ref-doc-body">
+          <div class="ref-doc-title">PA Contract — 1 Signer</div>
+          <div class="ref-doc-sub">Pennsylvania · Single seller</div>
+        </div>
+      </a>
+      <a class="ref-doc-card" href="Pennsylvania_-_AB_v07282025_2_Signers.pdf" target="_blank" rel="noopener">
+        <div class="ref-doc-icon pa">📋</div>
+        <div class="ref-doc-body">
+          <div class="ref-doc-title">PA Contract — 2 Signers</div>
+          <div class="ref-doc-sub">Pennsylvania · Married / co-owners</div>
+        </div>
+      </a>
+      <div class="ref-note">📌 Links open the current v07282025 PDF in a new tab. Files must be in the same GitHub Pages repo as this OLT.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleRefDrawer(){
+  var panel=document.getElementById('ref-drawer-panel');
+  var arrow=document.getElementById('ref-arrow');
+  var isOpen=panel.classList.contains('open');
+  panel.classList.toggle('open',!isOpen);
+  arrow.classList.toggle('open',!isOpen);
+}
+// Start drawer closed
+document.getElementById('ref-drawer-panel').classList.remove('open');
+</script>
+
 <script src="shared/tracking.js"></script>
 </body>
 </html>
