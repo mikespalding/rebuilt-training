@@ -162,10 +162,21 @@ function getAllCompletions_() {
       score_pct:   Number(row[idx.score_pct]) || 0,
       passed:      row[idx.passed] === true || String(row[idx.passed]).toUpperCase() === 'TRUE',
       role:        idx.role >= 0 ? String(row[idx.role] || '') : '',
-      class:       idx.cls  >= 0 ? String(row[idx.cls]  || '') : ''
+      class:       idx.cls  >= 0 ? formatClassValue_(row[idx.cls]) : ''
     });
   }
   return out;
+}
+
+// Class cells may be Date objects (Sheets auto-parses things like "4/8/2026")
+// or plain strings. Normalize Dates to M/D/YYYY so the admin dropdown shows
+// a clean date instead of "Wed Apr 08 2026 00:00:00 GMT-0500 (...)".
+function formatClassValue_(v) {
+  if (v instanceof Date) {
+    var tz = Session.getScriptTimeZone() || 'America/Chicago';
+    return Utilities.formatDate(v, tz, 'M/d/yyyy');
+  }
+  return String(v || '').trim();
 }
 
 // ─── Page-view tracking ─────────────────────────────────────────────────────
