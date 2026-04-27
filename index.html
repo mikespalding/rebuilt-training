@@ -30,6 +30,8 @@
   --badge-olt-fg:   #0f696e;
   --badge-kc-bg:    rgba(31,53,64,0.08);
   --badge-kc-fg:    #5a7888;
+  --badge-resource-bg: rgba(31,53,64,0.13);
+  --badge-resource-fg: #1f3540;
 }
 
 body { font-family: var(--font); background: var(--off-white); color: var(--navy); min-height: 100vh; }
@@ -284,6 +286,7 @@ body { font-family: var(--font); background: var(--off-white); color: var(--navy
 .badge.dispo { background: var(--badge-dispo-bg);  color: var(--badge-dispo-fg); }
 .badge.olt   { background: var(--badge-olt-bg);    color: var(--badge-olt-fg); }
 .badge.kc    { background: var(--badge-kc-bg);     color: var(--badge-kc-fg); }
+.badge.resource { background: var(--badge-resource-bg); color: var(--badge-resource-fg); }
 
 .status-pill {
   font-size: 9px; font-weight: 800; letter-spacing: 0.07em;
@@ -491,6 +494,14 @@ body { font-family: var(--font); background: var(--off-white); color: var(--navy
   </div>
   <div class="module-grid" id="kc-grid"></div>
 
+  <!-- RESOURCES SECTION -->
+  <div class="section-header" id="resources-header" style="display:none;">
+    <div class="section-label">Resources</div>
+    <div class="section-line"></div>
+    <div class="section-count" id="resources-count"></div>
+  </div>
+  <div class="module-grid" id="resources-grid"></div>
+
   <!-- LEADER RESOURCES -->
   <div id="leader-section">
     <div class="leader-section-header">
@@ -607,6 +618,11 @@ const KC_MODULES = [
     desc:'The full closing process from buyer assigned through post-close, including NTS advantages, option money collection, HUD approval, and closing day.' },
   { id:'kc_c2c_acq',         name:'Contract 2 Close for Acquisition',              roles:['acq'],         questions:7, time:'~5 min',  url:'contract_2_close_acq_knowledge_check.html',
     desc:'Exit strategies, occupancy types, National Title Services, and closing day responsibilities for Acquisition.' }
+];
+
+const RESOURCES = [
+  { id:'res_acq_call_library', name:'Acq Call Library', roles:['acq'], url:'acq_call_library.html',
+    desc:'Real recorded acquisition calls with synced transcripts — searchable reference of live seller conversations and how reps handle them.' },
 ];
 
 // ── STATE ────────────────────────────────────────────────────────
@@ -781,14 +797,47 @@ function updateDashboard() {
 
 // ── RENDER GRIDS ─────────────────────────────────────────────────
 function renderGrids() {
-  const myOLTs = OLT_MODULES.filter(m => m.roles.includes(currentRole));
-  const myKCs  = KC_MODULES.filter(m  => m.roles.includes(currentRole));
+  const myOLTs      = OLT_MODULES.filter(m => m.roles.includes(currentRole));
+  const myKCs       = KC_MODULES.filter(m  => m.roles.includes(currentRole));
+  const myResources = RESOURCES.filter(m   => m.roles.includes(currentRole));
 
   document.getElementById('olt-count').textContent = myOLTs.length + ' module' + (myOLTs.length!==1?'s':'');
   document.getElementById('kc-count').textContent  = myKCs.length  + ' module' + (myKCs.length!==1?'s':'');
 
   document.getElementById('olt-grid').innerHTML = myOLTs.map(m => cardHTML(m,'OLT')).join('');
   document.getElementById('kc-grid').innerHTML  = myKCs.map(m  => cardHTML(m,'KC')).join('');
+
+  const resHeader = document.getElementById('resources-header');
+  const resGrid   = document.getElementById('resources-grid');
+  if (myResources.length === 0) {
+    resHeader.style.display = 'none';
+    resGrid.innerHTML = '';
+  } else {
+    resHeader.style.display = 'flex';
+    document.getElementById('resources-count').textContent =
+      myResources.length + ' resource' + (myResources.length!==1?'s':'');
+    resGrid.innerHTML = myResources.map(r => resourceCardHTML(r)).join('');
+  }
+}
+
+function resourceCardHTML(mod) {
+  const roleBadges = mod.roles
+    .filter(r => r === currentRole)
+    .map(r => '<span class="badge ' + r + '">' + (r==='acq'?'Acq':'Dispo') + '</span>')
+    .join('');
+  const typeBadge = '<span class="badge resource">Resource</span>';
+
+  return '<a class="module-card status-not-started" href="' + mod.url + '">' +
+    '<div class="card-top">' +
+      '<div class="card-badges">' + roleBadges + typeBadge + '</div>' +
+    '</div>' +
+    '<div class="card-title">' + mod.name + '</div>' +
+    '<div class="card-desc">'  + mod.desc  + '</div>' +
+    '<div class="card-footer">' +
+      '<div class="card-meta"></div>' +
+      '<div class="card-right"><span class="card-arrow">→</span></div>' +
+    '</div>' +
+  '</a>';
 }
 
 function cardHTML(mod, type) {
