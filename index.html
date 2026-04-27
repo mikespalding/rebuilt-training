@@ -238,25 +238,56 @@ body { font-family: var(--font); background: var(--off-white); color: var(--navy
 }
 .dash-loading { font-size: 12px; color: rgba(255,255,255,0.35); font-style: italic; }
 
-/* ── SECTION HEADER ── */
-.section-header {
-  display: flex; align-items: center; gap: 14px; margin-bottom: 16px;
+/* ── TABS ── */
+.tab-bar {
+  display: flex; gap: 4px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  scrollbar-width: none;
 }
-.section-label {
-  font-size: 10px; font-weight: 800; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--muted); white-space: nowrap;
+.tab-bar::-webkit-scrollbar { display: none; }
+
+.tab-btn {
+  background: none; border: none;
+  font-family: var(--font);
+  font-size: 11px; font-weight: 800; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--muted);
+  padding: 12px 16px; cursor: pointer;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color 0.15s, border-color 0.15s;
+  display: inline-flex; align-items: center; gap: 8px;
 }
-.section-line { flex: 1; height: 1px; background: var(--border); }
-.section-count {
-  font-size: 10px; font-weight: 700; color: var(--muted);
-  background: rgba(31,53,64,0.07); padding: 3px 10px; border-radius: 20px;
+.tab-btn:hover { color: var(--navy); }
+.tab-btn.active {
+  color: var(--teal-dark);
+  border-bottom-color: var(--teal-dark);
 }
+.tab-btn.leader.active {
+  color: var(--teal-dark);
+  border-bottom-color: var(--teal-dark);
+}
+.tab-count {
+  font-size: 9px; font-weight: 700; letter-spacing: 0;
+  color: var(--muted);
+  background: rgba(31,53,64,0.07);
+  padding: 2px 8px; border-radius: 20px;
+}
+.tab-btn.active .tab-count {
+  background: rgba(15,105,110,0.10);
+  color: var(--teal-dark);
+}
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
 
 /* ── MODULE GRID ── */
 .module-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 12px; margin-bottom: 44px;
+  gap: 12px;
 }
 
 /* ── MODULE CARD ── */
@@ -324,26 +355,10 @@ body { font-family: var(--font); background: var(--off-white); color: var(--navy
 .module-card:hover .card-arrow { transform: translateX(3px); }
 
 /* ── LEADER RESOURCES ── */
-#leader-section { display: none; }
-
-.leader-section-header {
-  display: flex; align-items: center; gap: 14px; margin-bottom: 16px;
-}
-.leader-section-label {
-  font-size: 10px; font-weight: 800; letter-spacing: 0.14em;
-  text-transform: uppercase; white-space: nowrap;
-  color: var(--teal-dark);
-}
-.leader-section-line { flex: 1; height: 1px; background: rgba(15,105,110,0.18); }
-.leader-section-count {
-  font-size: 10px; font-weight: 700; color: var(--teal-dark);
-  background: rgba(15,105,110,0.10); padding: 3px 10px; border-radius: 20px;
-}
-
 .leader-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 12px; margin-bottom: 44px;
+  gap: 12px;
 }
 
 .leader-card {
@@ -478,37 +493,33 @@ body { font-family: var(--font); background: var(--off-white); color: var(--navy
     </div>
   </div>
 
-  <!-- OLT SECTION -->
-  <div class="section-header">
-    <div class="section-label">Online Trainings</div>
-    <div class="section-line"></div>
-    <div class="section-count" id="olt-count"></div>
+  <!-- TAB BAR -->
+  <div class="tab-bar" role="tablist">
+    <button class="tab-btn" data-tab="olt" role="tab">
+      Online Trainings <span class="tab-count" id="olt-count"></span>
+    </button>
+    <button class="tab-btn" data-tab="kc" role="tab">
+      Knowledge Checks <span class="tab-count" id="kc-count"></span>
+    </button>
+    <button class="tab-btn" data-tab="resources" id="tab-resources" role="tab" style="display:none;">
+      Resources <span class="tab-count" id="resources-count"></span>
+    </button>
+    <button class="tab-btn leader" data-tab="leader" id="tab-leader" role="tab" style="display:none;">
+      Leader Resources <span class="tab-count" id="leader-count"></span>
+    </button>
   </div>
-  <div class="module-grid" id="olt-grid"></div>
 
-  <!-- KC SECTION -->
-  <div class="section-header">
-    <div class="section-label">Knowledge Checks</div>
-    <div class="section-line"></div>
-    <div class="section-count" id="kc-count"></div>
+  <!-- TAB PANELS -->
+  <div class="tab-panel" data-panel="olt" role="tabpanel">
+    <div class="module-grid" id="olt-grid"></div>
   </div>
-  <div class="module-grid" id="kc-grid"></div>
-
-  <!-- RESOURCES SECTION -->
-  <div class="section-header" id="resources-header" style="display:none;">
-    <div class="section-label">Resources</div>
-    <div class="section-line"></div>
-    <div class="section-count" id="resources-count"></div>
+  <div class="tab-panel" data-panel="kc" role="tabpanel">
+    <div class="module-grid" id="kc-grid"></div>
   </div>
-  <div class="module-grid" id="resources-grid"></div>
-
-  <!-- LEADER RESOURCES -->
-  <div id="leader-section">
-    <div class="leader-section-header">
-      <div class="leader-section-label">Leader Resources</div>
-      <div class="leader-section-line"></div>
-      <div class="leader-section-count" id="leader-count"></div>
-    </div>
+  <div class="tab-panel" data-panel="resources" role="tabpanel">
+    <div class="module-grid" id="resources-grid"></div>
+  </div>
+  <div class="tab-panel" data-panel="leader" role="tabpanel">
     <div class="leader-grid" id="leader-grid"></div>
   </div>
 
@@ -721,6 +732,7 @@ function initApp() {
 
   renderGrids();
   renderLeaderResources();
+  initTabs();
   fetchProgress();
 }
 
@@ -801,21 +813,20 @@ function renderGrids() {
   const myKCs       = KC_MODULES.filter(m  => m.roles.includes(currentRole));
   const myResources = RESOURCES.filter(m   => m.roles.includes(currentRole));
 
-  document.getElementById('olt-count').textContent = myOLTs.length + ' module' + (myOLTs.length!==1?'s':'');
-  document.getElementById('kc-count').textContent  = myKCs.length  + ' module' + (myKCs.length!==1?'s':'');
+  document.getElementById('olt-count').textContent = myOLTs.length;
+  document.getElementById('kc-count').textContent  = myKCs.length;
 
   document.getElementById('olt-grid').innerHTML = myOLTs.map(m => cardHTML(m,'OLT')).join('');
   document.getElementById('kc-grid').innerHTML  = myKCs.map(m  => cardHTML(m,'KC')).join('');
 
-  const resHeader = document.getElementById('resources-header');
-  const resGrid   = document.getElementById('resources-grid');
+  const resTab  = document.getElementById('tab-resources');
+  const resGrid = document.getElementById('resources-grid');
   if (myResources.length === 0) {
-    resHeader.style.display = 'none';
+    resTab.style.display = 'none';
     resGrid.innerHTML = '';
   } else {
-    resHeader.style.display = 'flex';
-    document.getElementById('resources-count').textContent =
-      myResources.length + ' resource' + (myResources.length!==1?'s':'');
+    resTab.style.display = 'inline-flex';
+    document.getElementById('resources-count').textContent = myResources.length;
     resGrid.innerHTML = myResources.map(r => resourceCardHTML(r)).join('');
   }
 }
@@ -885,16 +896,15 @@ function cardHTML(mod, type) {
 // ── LEADER RESOURCES ─────────────────────────────────────────────
 function renderLeaderResources() {
   const isLeader = LEADER_EMAILS.includes(currentEmail.toLowerCase().trim());
-  const section  = document.getElementById('leader-section');
+  const tab = document.getElementById('tab-leader');
 
   if (!isLeader) {
-    section.style.display = 'none';
+    tab.style.display = 'none';
     return;
   }
 
-  section.style.display = 'block';
-  document.getElementById('leader-count').textContent =
-    LEADER_RESOURCES.length + ' resource' + (LEADER_RESOURCES.length !== 1 ? 's' : '');
+  tab.style.display = 'inline-flex';
+  document.getElementById('leader-count').textContent = LEADER_RESOURCES.length;
 
   document.getElementById('leader-grid').innerHTML = LEADER_RESOURCES.map(r =>
     '<a class="leader-card" href="' + r.url + '">' +
@@ -906,6 +916,29 @@ function renderLeaderResources() {
       '<div class="leader-card-footer"><span class="leader-card-arrow">→</span></div>' +
     '</a>'
   ).join('');
+}
+
+// ── TABS ─────────────────────────────────────────────────────────
+const TAB_STORAGE_KEY = 'rb_active_tab';
+
+function activateTab(name) {
+  const btn = document.querySelector('.tab-btn[data-tab="' + name + '"]');
+  if (!btn || btn.style.display === 'none') {
+    activateTab('olt');
+    return;
+  }
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.dataset.panel === name));
+  try { localStorage.setItem(TAB_STORAGE_KEY, name); } catch (e) {}
+}
+
+function initTabs() {
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => activateTab(btn.dataset.tab));
+  });
+  let saved;
+  try { saved = localStorage.getItem(TAB_STORAGE_KEY); } catch (e) {}
+  activateTab(saved || 'olt');
 }
 </script>
 
