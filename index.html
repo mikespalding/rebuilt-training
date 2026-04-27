@@ -236,6 +236,11 @@ body { font-family: var(--font); background: var(--off-white); color: var(--navy
   font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
   text-transform: uppercase; color: rgba(255,255,255,0.35);
 }
+.stat-breakdown {
+  font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.55);
+  margin-top: 6px; letter-spacing: 0.02em;
+}
+.stat-breakdown .sep { color: rgba(255,255,255,0.25); margin: 0 6px; }
 .dash-loading { font-size: 12px; color: rgba(255,255,255,0.35); font-style: italic; }
 
 /* ── TABS ── */
@@ -477,18 +482,23 @@ body { font-family: var(--font); background: var(--off-white); color: var(--navy
       <div class="stat-card">
         <div class="stat-value"       id="stat-total">0</div>
         <div class="stat-label">My Modules</div>
+        <div class="stat-breakdown">
+          <span id="stat-total-olt">0</span> OLT<span class="sep">·</span><span id="stat-total-kc">0</span> KC
+        </div>
       </div>
       <div class="stat-card">
         <div class="stat-value blue"  id="stat-completed">0</div>
         <div class="stat-label">Completed</div>
+        <div class="stat-breakdown">
+          <span id="stat-completed-olt">0</span> OLT<span class="sep">·</span><span id="stat-completed-kc">0</span> KC
+        </div>
       </div>
       <div class="stat-card">
         <div class="stat-value green" id="stat-passed">0</div>
         <div class="stat-label">Passed</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value orange" id="stat-avg">—</div>
-        <div class="stat-label">Avg Score</div>
+        <div class="stat-breakdown">
+          <span id="stat-passed-olt">0</span> OLT<span class="sep">·</span><span id="stat-passed-kc">0</span> KC
+        </div>
       </div>
     </div>
   </div>
@@ -786,25 +796,35 @@ function handleProgress(data) {
 }
 
 // ── DASHBOARD ────────────────────────────────────────────────────
-function myModules() {
-  return [...OLT_MODULES, ...KC_MODULES].filter(m => m.roles.includes(currentRole));
-}
-
 function updateDashboard() {
-  const mods = myModules();
-  let completed=0, passed=0, scoreSum=0, scoreCount=0;
-  mods.forEach(m => {
-    const c = completionMap[m.id];
-    if (c) {
-      completed++;
-      if (c.passed) passed++;
-      if (c.score_pct > 0) { scoreSum += parseFloat(c.score_pct); scoreCount++; }
-    }
-  });
-  document.getElementById('stat-completed').textContent = completed;
-  document.getElementById('stat-total').textContent     = mods.length;
-  document.getElementById('stat-passed').textContent    = passed;
-  document.getElementById('stat-avg').textContent       = scoreCount > 0 ? Math.round(scoreSum/scoreCount) + '%' : '—';
+  const myOLTs = OLT_MODULES.filter(m => m.roles.includes(currentRole));
+  const myKCs  = KC_MODULES.filter(m  => m.roles.includes(currentRole));
+
+  const tally = (mods) => {
+    let completed = 0, passed = 0;
+    mods.forEach(m => {
+      const c = completionMap[m.id];
+      if (c) {
+        completed++;
+        if (c.passed) passed++;
+      }
+    });
+    return { total: mods.length, completed, passed };
+  };
+  const olt = tally(myOLTs);
+  const kc  = tally(myKCs);
+
+  document.getElementById('stat-total').textContent     = olt.total + kc.total;
+  document.getElementById('stat-total-olt').textContent = olt.total;
+  document.getElementById('stat-total-kc').textContent  = kc.total;
+
+  document.getElementById('stat-completed').textContent     = olt.completed + kc.completed;
+  document.getElementById('stat-completed-olt').textContent = olt.completed;
+  document.getElementById('stat-completed-kc').textContent  = kc.completed;
+
+  document.getElementById('stat-passed').textContent     = olt.passed + kc.passed;
+  document.getElementById('stat-passed-olt').textContent = olt.passed;
+  document.getElementById('stat-passed-kc').textContent  = kc.passed;
 }
 
 // ── RENDER GRIDS ─────────────────────────────────────────────────
