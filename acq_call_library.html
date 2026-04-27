@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjQ0MCAwIDU1MCA4OTAiPjxwYXRoIGQ9Im0gMzMzNy45OSwzNTQ0LjgzIDExNzkuNzksMTA3Ni43MiB2IDE5MzguMSBMIDMzMzcuOTksNTU5MC42IFYgMzU0NC44MyIgZmlsbD0iIzRlYTllMiIgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIi8+PHBhdGggZD0iTSA2MTY5LjQ4LDk5OTUuMDEgViA0NjIxLjU1IGwgMTE3OS44LC0xMDc2LjcyIHYgNTQ5MS4yOSBsIC0xMTc5LjgsOTU4Ljg5IiBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz48cGF0aCBkPSJNIDQ3NTMuNzQsNzc0NC4wNSBWIDQ4MzYuODkgbCA1ODkuODksNTM4LjM3IDU4OS45LC01MzguMzcgNC4zNywzOTczLjcyIC0xMTg0LjE2LC0xMDY2LjU2IiBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz48cGF0aCBkPSJtIDQ4MDIuMjEsMzQyNS4xOSBoIDQzMC42OSB2IDQzMC42OCBoIC00MzAuNjkgdiAtNDMwLjY4IiBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz48cGF0aCBkPSJtIDU0NDguMjQsMzQyNS4xOSBoIDQzMC43IHYgNDMwLjY4IGggLTQzMC43IHYgLTQzMC42OCIgZmlsbD0iIzRlYTllMiIgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIi8+PHBhdGggZD0ibSA1MjMyLjksNDUwMS45MSBoIC00MzAuNjkgdiAtNDMwLjY5IGggNDMwLjY5IHYgNDMwLjY5IiBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz48cGF0aCBkPSJtIDU0NDguMjQsNDUwMS45MSB2IC00MzAuNjkgaCA0MzAuNyB2IDQzMC42OSBoIC00MzAuNyIgZmlsbD0iIzRlYTllMiIgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIi8+PC9zdmc+"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Call Library — Rebuilt Training</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --navy:#1f3540; --blue:#21a9e1; --mid:#21a9e1; --sky:#64b4b7; --light:#e8f6fd;
+  --orange:#f5831f; --red:#c0392b; --green:#1A7A4A;
+  --warn-bg:#FEF2F2; --note-bg:#EFF8FF; --tip-bg:#F0FDF4;
+  --gray-50:#efedeb; --gray-100:#e8e6e4; --gray-200:rgba(31,53,64,0.12);
+  --gray-400:#5a7888; --gray-600:#5a7888; --gray-900:#1f3540;
+  --radius:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:"Montserrat",sans-serif;background:var(--gray-50);color:var(--gray-900);min-height:100vh;font-size:15px;line-height:1.65;}
+
+/* ── TOPBAR ── */
+.topbar{background:var(--navy);position:sticky;top:0;z-index:200;border-bottom:3px solid var(--blue);}
+.topbar-inner{max-width:1200px;margin:0 auto;padding:0 1.25rem;display:flex;align-items:center;gap:14px;height:56px;}
+.topbar-logo{display:flex;align-items:center;flex-shrink:0;}
+.topbar-logo img{height:28px;width:auto;filter:brightness(0) invert(1);}
+.topbar-divider{width:1px;height:22px;background:rgba(255,255,255,0.2);margin:0 4px;}
+.topbar-sub{font-size:11px;color:rgba(255,255,255,0.55);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;}
+.topbar-badge{margin-left:auto;background:var(--blue);color:#fff;font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:3px 12px;border-radius:20px;}
+.topbar-home{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.20);border-radius:6px;color:rgba(255,255,255,0.92);font-family:"Montserrat",sans-serif;font-size:11px;font-weight:700;letter-spacing:0.04em;text-decoration:none;white-space:nowrap;margin-left:10px;}
+.topbar-home:hover{background:rgba(255,255,255,0.14);}
+
+/* ── FILTER BAR ── */
+.filter-bar{background:#fff;border-bottom:1px solid var(--gray-200);padding:10px 1.25rem;position:sticky;top:59px;z-index:99;}
+.filter-bar-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.search-wrap{position:relative;flex:1;min-width:180px;max-width:300px;}
+.search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--gray-400);font-size:13px;pointer-events:none;}
+.sidebar-search{width:100%;padding:7px 12px 7px 32px;border:1.5px solid var(--gray-200);border-radius:6px;font-family:"Montserrat",sans-serif;font-size:12px;color:var(--gray-900);outline:none;transition:border 0.15s;background:var(--gray-50);}
+.sidebar-search::placeholder{color:var(--gray-400);}
+.sidebar-search:focus{border-color:var(--blue);}
+.filter-divider{width:1px;height:22px;background:var(--gray-200);}
+.filter-chips{display:flex;gap:6px;flex-wrap:wrap;}
+.filter-chip{font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:4px 12px;border-radius:20px;border:1.5px solid var(--gray-200);color:var(--gray-400);cursor:pointer;transition:all 0.15s;background:#fff;font-family:"Montserrat",sans-serif;}
+.filter-chip:hover{border-color:var(--blue);color:var(--blue);}
+.filter-chip.active{background:var(--blue);border-color:var(--blue);color:#fff;}
+.filter-count{margin-left:auto;font-size:11px;color:var(--gray-400);font-weight:500;white-space:nowrap;}
+
+/* ── BODY LAYOUT ── */
+.body-wrap{max-width:1200px;margin:0 auto;padding:24px 1.25rem 80px;display:flex;gap:20px;align-items:flex-start;}
+
+/* ── CALL LIST PANEL ── */
+.call-panel{width:296px;flex-shrink:0;position:sticky;top:130px;max-height:calc(100vh - 150px);display:flex;flex-direction:column;background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius);overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.05);}
+.call-panel-header{padding:11px 16px;border-bottom:1px solid var(--gray-200);background:var(--navy);}
+.call-panel-label{font-size:9px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.45);}
+.call-list{flex:1;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--gray-200) transparent;}
+.call-list::-webkit-scrollbar{width:4px;}
+.call-list::-webkit-scrollbar-thumb{background:var(--gray-200);border-radius:2px;}
+.call-item{padding:12px 16px;cursor:pointer;border-left:3px solid transparent;border-bottom:1px solid var(--gray-200);transition:all 0.15s;}
+.call-item:last-child{border-bottom:none;}
+.call-item:hover{background:var(--note-bg);}
+.call-item.active{background:var(--light);border-left-color:var(--blue);}
+.call-item-row1{display:flex;align-items:center;justify-content:space-between;margin-bottom:2px;}
+.call-agent{font-size:12px;font-weight:700;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.call-duration{font-size:10px;font-weight:600;color:var(--gray-400);flex-shrink:0;margin-left:8px;}
+.call-date{font-size:10px;color:var(--gray-400);margin-bottom:3px;}
+.call-address{font-size:11px;color:var(--gray-600);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:6px;}
+.call-tags{display:flex;gap:4px;flex-wrap:wrap;}
+.call-tag{font-size:9px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;padding:2px 7px;border-radius:10px;}
+.tag-offer    {background:rgba(245,131,31,0.12); color:var(--orange);}
+.tag-objection{background:rgba(100,180,183,0.15);color:var(--sky);}
+.tag-discovery{background:rgba(33,169,225,0.12); color:var(--blue);}
+.tag-close    {background:rgba(26,122,74,0.12);  color:var(--green);}
+.tag-contract {background:rgba(31,53,64,0.08);   color:var(--gray-400);}
+.badge-IB{display:inline-block;font-size:9px;font-weight:800;letter-spacing:0.07em;text-transform:uppercase;padding:2px 7px;border-radius:10px;background:rgba(26,122,74,0.14);color:var(--green);}
+.badge-OB{display:inline-block;font-size:9px;font-weight:800;letter-spacing:0.07em;text-transform:uppercase;padding:2px 7px;border-radius:10px;background:rgba(33,169,225,0.14);color:var(--blue);}
+.meta-badge-IB{font-size:10px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;padding:3px 10px;border-radius:12px;background:rgba(26,122,74,0.12);color:var(--green);}
+.meta-badge-OB{font-size:10px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;padding:3px 10px;border-radius:12px;background:rgba(33,169,225,0.12);color:var(--blue);}
+
+/* ── PLAYER PANEL ── */
+.player-panel{flex:1;min-width:0;}
+
+/* Empty state */
+.empty-state{background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius);padding:64px 40px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.05);}
+.empty-icon{font-size:44px;margin-bottom:16px;opacity:0.45;}
+.empty-state h3{font-family:"Montserrat",sans-serif;font-size:16px;font-weight:800;color:var(--navy);margin-bottom:8px;}
+.empty-state p{font-size:13px;color:var(--gray-600);max-width:280px;margin:0 auto;line-height:1.65;}
+
+/* Meta card */
+.meta-card{background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius) var(--radius) 0 0;border-bottom:none;padding:20px 24px 18px;box-shadow:0 1px 4px rgba(0,0,0,.04);}
+.meta-eyebrow{font-family:"Montserrat",sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--mid);margin-bottom:8px;}
+.meta-title{font-family:"Montserrat",sans-serif;font-size:22px;font-weight:800;color:var(--navy);line-height:1.2;margin-bottom:10px;}
+.meta-chips{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:14px;}
+.meta-chip{display:flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--gray-600);}
+.synopsis-box{background:var(--gray-50);border-left:3px solid var(--sky);border-radius:6px;padding:11px 14px;font-size:12.5px;line-height:1.65;color:var(--navy);}
+.synopsis-label{font-family:"Montserrat",sans-serif;font-size:9px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--sky);margin-bottom:5px;}
+
+/* Audio bar */
+.audio-card{background:#fff;border:1px solid var(--gray-200);border-top:none;border-bottom:none;padding:13px 24px;display:flex;align-items:center;gap:14px;}
+.play-btn{width:36px;height:36px;border-radius:50%;background:var(--blue);border:none;color:#fff;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background 0.15s,transform 0.1s;}
+.play-btn:hover:not(:disabled){background:var(--navy);transform:scale(1.05);}
+.play-btn:disabled{background:var(--gray-200);cursor:not-allowed;}
+.time-label{font-size:11px;font-weight:700;color:var(--navy);min-width:36px;flex-shrink:0;}
+.time-total{font-size:11px;color:var(--gray-400);min-width:36px;flex-shrink:0;}
+.progress-track{flex:1;height:4px;background:var(--gray-100);border-radius:2px;cursor:pointer;position:relative;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--sky));border-radius:2px;width:0%;pointer-events:none;}
+.progress-thumb{position:absolute;top:50%;transform:translate(-50%,-50%);width:11px;height:11px;background:var(--blue);border-radius:50%;left:0%;pointer-events:none;opacity:0;transition:opacity 0.15s;}
+.progress-track:hover .progress-thumb{opacity:1;}
+.speed-btn{font-size:10px;font-weight:700;color:var(--gray-400);background:var(--gray-100);border:1px solid var(--gray-200);border-radius:5px;padding:4px 9px;cursor:pointer;transition:all 0.15s;flex-shrink:0;font-family:"Montserrat",sans-serif;}
+.speed-btn:hover{border-color:var(--blue);color:var(--blue);}
+.audio-error{font-size:10px;font-weight:600;color:#c0392b;background:var(--warn-bg);border:1px solid #FECACA;border-radius:5px;padding:4px 10px;display:none;white-space:nowrap;font-family:"Montserrat",sans-serif;}
+
+/* Transcript card */
+.transcript-card{background:#fff;border:1px solid var(--gray-200);border-top:none;border-radius:0 0 var(--radius) var(--radius);overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.04);}
+.transcript-header{padding:10px 24px;border-bottom:1px solid var(--gray-200);display:flex;align-items:center;justify-content:space-between;}
+.transcript-label{font-family:"Montserrat",sans-serif;font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray-400);}
+.transcript-legend{display:flex;gap:14px;}
+.legend-item{display:flex;align-items:center;gap:5px;}
+.legend-dot{width:7px;height:7px;border-radius:50%;}
+.legend-dot-agent {background:var(--blue);}
+.legend-dot-seller{background:var(--orange);}
+.legend-text{font-family:"Montserrat",sans-serif;font-size:10px;font-weight:700;}
+.legend-agent {color:var(--blue);}
+.legend-seller{color:var(--orange);}
+.transcript-body{max-height:500px;overflow-y:auto;padding:8px 0 24px;scroll-padding-top:48px;scrollbar-width:thin;scrollbar-color:var(--gray-200) transparent;}
+.transcript-body::-webkit-scrollbar{width:4px;}
+.transcript-body::-webkit-scrollbar-thumb{background:var(--gray-200);border-radius:2px;}
+.no-audio-note{margin:12px 24px;background:var(--gray-50);border:1px dashed var(--gray-200);border-radius:6px;padding:10px 14px;font-size:11px;color:var(--gray-400);text-align:center;}
+.tl{display:flex;gap:12px;padding:7px 24px;cursor:pointer;transition:background 0.1s;}
+.tl:hover{background:var(--note-bg);}
+.tl.active{background:var(--light);}
+.tl-time{font-size:10px;font-weight:700;color:rgba(33,169,225,0.55);min-width:36px;padding-top:3px;flex-shrink:0;}
+.tl-speaker{font-size:9px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;min-width:58px;padding-top:4px;flex-shrink:0;}
+.speaker-agent {color:var(--blue);}
+.speaker-seller{color:var(--orange);}
+.tl-text{font-size:13px;line-height:1.65;color:var(--gray-600);}
+.tl.active .tl-text{color:var(--navy);font-weight:600;}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-logo">
+      <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgoKPHN2ZwogICB2ZXJzaW9uPSIxLjEiCiAgIGlkPSJzdmcxIgogICB3aWR0aD0iMTQyNC45NzMzIgogICBoZWlnaHQ9IjEzMzIuNjY2NyIKICAgdmlld0JveD0iMCAwIDE0MjQuOTczMyAxMzMyLjY2NjciCiAgIHNvZGlwb2RpOmRvY25hbWU9IkxvZ28gU3RhY2tlZC5lcHMiCiAgIHhtbG5zOmlua3NjYXBlPSJodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy9uYW1lc3BhY2VzL2lua3NjYXBlIgogICB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiCiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnMKICAgICBpZD0iZGVmczEiIC8+CiAgPHNvZGlwb2RpOm5hbWVkdmlldwogICAgIGlkPSJuYW1lZHZpZXcxIgogICAgIHBhZ2Vjb2xvcj0iI2ZmZmZmZiIKICAgICBib3JkZXJjb2xvcj0iIzAwMDAwMCIKICAgICBib3JkZXJvcGFjaXR5PSIwLjI1IgogICAgIGlua3NjYXBlOnNob3dwYWdlc2hhZG93PSIyIgogICAgIGlua3NjYXBlOnBhZ2VvcGFjaXR5PSIwLjAiCiAgICAgaW5rc2NhcGU6cGFnZWNoZWNrZXJib2FyZD0iMCIKICAgICBpbmtzY2FwZTpkZXNrY29sb3I9IiNkMWQxZDEiPgogICAgPGlua3NjYXBlOnBhZ2UKICAgICAgIHg9IjAiCiAgICAgICB5PSIwIgogICAgICAgaW5rc2NhcGU6bGFiZWw9IjEiCiAgICAgICBpZD0icGFnZTEiCiAgICAgICB3aWR0aD0iMTQyNC45NzMzIgogICAgICAgaGVpZ2h0PSIxMzMyLjY2NjciCiAgICAgICBtYXJnaW49IjAiCiAgICAgICBibGVlZD0iMCIgLz4KICA8L3NvZGlwb2RpOm5hbWVkdmlldz4KICA8ZwogICAgIGlkPSJnMSIKICAgICBpbmtzY2FwZTpncm91cG1vZGU9ImxheWVyIgogICAgIGlua3NjYXBlOmxhYmVsPSIxIj4KICAgIDxnCiAgICAgICBpZD0iZ3JvdXAtUjUiPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDIiCiAgICAgICAgIGQ9Ik0gMCw0Mi4zMzk4IFYgMTkwNS4xMiBIIDQyNi44OTUgViAxNDg1LjMgYyAxMzEuNjkxLDMxNy41MSAzNTEuNTkzLDQ2OS4yMiA2NTkuNzM1LDQ1NS4xIHYgLTQ1MS41OCBoIC0yNC42OSBjIC0xOTIuODc3LDAgLTM0Ni45NiwtNjIuOTUgLTQ2Mi4xNzQsLTE4OC43NSBDIDQ4NC41MDQsMTE3NC4yMiA0MjYuODk1LDk5MS4zNzEgNDI2Ljg5NSw3NTEuNDY5IFYgNDIuMzM5OCBIIDAiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgzIgogICAgICAgICBkPSJtIDE2ODQuMjUsMTEwNC4yNiBoIDk1Ni4xIGMgLTE0LjEyLDE0My40NCAtNjIuMzUsMjYxLjA4IC0xNDQuNjcsMzUyLjggLTgyLjM0LDkxLjczIC0xOTEuNzEsMTM3LjYgLTMyOC4wOCwxMzcuNiAtMTI5LjQsMCAtMjM3LjYxLC00NS4zMSAtMzI0LjU5LC0xMzUuODMgLTg3LjA0LC05MC41NiAtMTM5Ljk1LC0yMDguNzYgLTE1OC43NiwtMzU0LjU3IHogTSAyMjE2Ljk5LDAgQyAxOTQ0LjExLDAgMTcxNi41NSw4OS45NjA5IDE1MzQuMzIsMjY5Ljg5MSAxMzUyLjAxLDQ0OS44MiAxMjYwLjg5LDY4Mi4wNTkgMTI2MC44OSw5NjYuNjcyIHYgNy4wNTggYyAwLDI3MC40NCA4NS44Myw0OTkuNzcgMjU3LjU1LDY4Ny45NiAxNzEuNjYsMTg4LjE0IDM4OS4yMywyODIuMjUgNjUyLjY3LDI4Mi4yNSAyODIuMjYsMCA1MDEuNTMsLTk1Ljg3IDY1Ny45NywtMjg3LjU0IDE1Ni40LC0xOTEuNzMgMjM0LjYzLC00MjkuODYgMjM0LjYzLC03MTQuNDIgMCwtMjMuNTM5IC0yLjM4LC02My41MTEgLTcuMDYsLTExOS45NiBIIDE2ODcuNzggYyAyMy40OSwtMTQ4LjE2OCA4My40NiwtMjY0LjA1MSAxNzkuOTQsLTM0Ny41IDk2LjQsLTgzLjUyIDIxNS4yLC0xMjUuMjM5IDM1Ni4zMiwtMTI1LjIzOSAxODMuNDUsMCAzNTEuNTgsNzQuMDc4IDUwNC41MSwyMjIuMjU4IEwgMjk3OS4wMywzNDkuMjgxIEMgMjc4Ni4xNSwxMTYuNDIyIDI1MzIuMTMsMCAyMjE2Ljk5LDAiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg0IgogICAgICAgICBkPSJtIDQzODYuMywzNzMuOTY5IGMgMTUwLjUsMCAyNzYuOTUsNTQuNjgzIDM3OS4yOCwxNjQuMDYyIDEwMi4zLDEwOS4zNzEgMTUzLjQ2LDI1My4zOTkgMTUzLjQ2LDQzMi4xNjggdiA3LjA2MyBjIDAsMTc2LjM5OCAtNTEuNzcsMzE5LjgyOCAtMTU1LjIzLDQzMC40MTggLTEwMy41NCwxMTAuNTMgLTIyOS4zMywxNjUuODEgLTM3Ny41MSwxNjUuODEgLTE0OC4xNiwwIC0yNzUuNzgsLTU1LjkgLTM4Mi43OCwtMTY3LjU4IC0xMDcuMDUsLTExMS43NCAtMTYwLjUzLC0yNTQuNjMgLTE2MC41MywtNDI4LjY0OCB2IC03LjA2MyBjIDAsLTE3NC4wNzggNTMuNDgsLTMxNi45NTcgMTYwLjUzLC00MjguNjQ4IDEwNywtMTExLjc0MiAyMzQuNjIsLTE2Ny41ODIgMzgyLjc4LC0xNjcuNTgyIHogTSA0NDg1LjA5LDMuNTM5MDYgYyAtMjU2LjM5LDAgLTQ2Ni45MSwxMDkuMzU4OTQgLTYzMS41MSwzMjguMDgxOTQgViA0Mi4zMzk4IGggLTQyNi45IFYgMjYxNy43OSBoIDQyNi45IFYgMTU5NC42NiBjIDE2NC42LDIzMi44NCAzNzUuMTIsMzQ5LjI4IDYzMS41MSwzNDkuMjggMjM1LjE3LDAgNDM4LjYzLC04Ny42NiA2MTAuMzQsLTI2Mi44NCAxNzEuNjcsLTE3NS4yNSAyNTcuNTUsLTQwOS44NiAyNTcuNTUsLTcwMy44MzggdiAtNy4wNjMgYyAwLC0yOTQuMDI3IC04NS44OCwtNTI4LjYzNiAtMjU3LjU1LC03MDMuODI4IEMgNDkyMy43Miw5MS4xMjExIDQ3MjAuMjYsMy41MzkwNiA0NDg1LjA5LDMuNTM5MDYiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg1IgogICAgICAgICBkPSJtIDYzNjguMzQsMy41MzkwNiBjIC0yMDcsMCAtMzY5LjMsNjQuNjUyMzQgLTQ4Ni44NiwxOTQuMDMwOTQgLTExNy42NSwxMjkuMzIxIC0xNzYuNDEsMzAzLjQxIC0xNzYuNDEsNTIyLjE0MSBWIDE5MDUuMTIgaCA0MjYuODkgViA4NDYuNzE5IGMgMCwtMTQ1Ljg2IDM0LjY3LC0yNTguMTYgMTA0LjA4LC0zMzYuOTE4IDY5LjMzLC03OC44MjEgMTY3LjU3LC0xMTguMTkyIDI5NC42LC0xMTguMTkyIDEyNC42MiwwIDIyNS43OCw0MS4xMjEgMzAzLjM5LDEyMy40ODEgNzcuNjIsODIuMzEyIDExNi40MiwxOTUuMTk5IDExNi40MiwzMzguNjggdiAxMDUxLjM1IGggNDI2LjkgViA0Mi4zMzk4IGggLTQyNi45IFYgMzMxLjYyMSBDIDY4MDIuMjksMTEyLjg5OCA2NjA4LjIzLDMuNTM5MDYgNjM2OC4zNCwzLjUzOTA2IgogICAgICAgICBzdHlsZT0iZmlsbDojMjEzMDNiO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lIgogICAgICAgICB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiIC8+CiAgICAgIDxwYXRoCiAgICAgICAgIGlkPSJwYXRoNiIKICAgICAgICAgZD0iTSA3ODU1LjM3LDQyLjMzOTggViAxOTA1LjEyIGggNDI2Ljg5IFYgNDIuMzM5OCBaIE0gNzgzNy43MywyMTkwLjg5IHYgNDA1LjcyIGggNDU4LjY0IHYgLTQwNS43MiBoIC00NTguNjQiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg3IgogICAgICAgICBkPSJNIDg3NzIuMyw0Mi4zMzk4IFYgMjYxNy43OSBoIDQyNi44NyBWIDQyLjMzOTggSCA4NzcyLjMiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg4IgogICAgICAgICBkPSJtIDEwMjk1LjcsMTAuNTg5OCBjIC0zNTcuNTgsMCAtNTM2LjMsMTgyLjI1MDIgLTUzNi4zLDU0Ni44NDAyIHYgOTgwLjc4IGggLTIzNi4zNiB2IDM2Ni45MSBoIDIzNi4zNiB2IDUxMS41NiBoIDQyNi45IHYgLTUxMS41NiBoIDUwMSB2IC0zNjYuOTEgaCAtNTAxIFYgNjI0LjQ2MSBjIDAsLTE1NS4yMzEgNzYuNCwtMjMyLjg1MiAyMjkuMywtMjMyLjg1MiA5MS43LDAgMTc5LjksMjEuMTggMjY0LjYsNjMuNTEyIFYgMTA1Ljg0IGMgLTExMi45LC02My41MDAyIC0yNDEuMSwtOTUuMjUwMiAtMzg0LjUsLTk1LjI1MDIiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMyMTMwM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjcpIiAvPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDkiCiAgICAgICAgIGQ9Im0gMzMzNy45OSwzNTQ0LjgzIDExNzkuNzksMTA3Ni43MiB2IDE5MzguMSBMIDMzMzcuOTksNTU5MC42IFYgMzU0NC44MyIKICAgICAgICAgc3R5bGU9ImZpbGw6IzRlYTllMjtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZSIKICAgICAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIiAvPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDEwIgogICAgICAgICBkPSJNIDYxNjkuNDgsOTk5NS4wMSBWIDQ2MjEuNTUgbCAxMTc5LjgsLTEwNzYuNzIgdiA1NDkxLjI5IGwgLTExNzkuOCw5NTguODkiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM0ZWE5ZTI7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMTMzMzMzMzMsMCwwLC0wLjEzMzMzMzMzLDAsMTMzMi42NjY3KSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgxMSIKICAgICAgICAgZD0iTSA0NzUzLjc0LDc3NDQuMDUgViA0ODM2Ljg5IGwgNTg5Ljg5LDUzOC4zNyA1ODkuOSwtNTM4LjM3IDQuMzcsMzk3My43MiAtMTE4NC4xNiwtMTA2Ni41NiIKICAgICAgICAgc3R5bGU9ImZpbGw6IzRlYTllMjtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZSIKICAgICAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIiAvPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDEyIgogICAgICAgICBkPSJtIDQ4MDIuMjEsMzQyNS4xOSBoIDQzMC42OSB2IDQzMC42OCBoIC00MzAuNjkgdiAtNDMwLjY4IgogICAgICAgICBzdHlsZT0iZmlsbDojNGVhOWUyO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lIgogICAgICAgICB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiIC8+CiAgICAgIDxwYXRoCiAgICAgICAgIGlkPSJwYXRoMTMiCiAgICAgICAgIGQ9Im0gNTQ0OC4yNCwzNDI1LjE5IGggNDMwLjcgdiA0MzAuNjggaCAtNDMwLjcgdiAtNDMwLjY4IgogICAgICAgICBzdHlsZT0iZmlsbDojNGVhOWUyO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lIgogICAgICAgICB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiIC8+CiAgICAgIDxwYXRoCiAgICAgICAgIGlkPSJwYXRoMTQiCiAgICAgICAgIGQ9Im0gNTIzMi45LDQ1MDEuOTEgaCAtNDMwLjY5IHYgLTQzMC42OSBoIDQzMC42OSB2IDQzMC42OSIKICAgICAgICAgc3R5bGU9ImZpbGw6IzRlYTllMjtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZSIKICAgICAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIiAvPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDE1IgogICAgICAgICBkPSJtIDU0NDguMjQsNDUwMS45MSB2IC00MzAuNjkgaCA0MzAuNyB2IDQzMC42OSBoIC00MzAuNyIKICAgICAgICAgc3R5bGU9ImZpbGw6IzRlYTllMjtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZSIKICAgICAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIiAvPgogICAgPC9nPgogIDwvZz4KPC9zdmc+Cg==" alt="Rebuilt"/>
+    </div>
+    <div class="topbar-divider"></div>
+    <div class="topbar-sub">Acquisition Associate Training</div>
+    <div class="topbar-badge">Call Library</div>
+    <a href="index.html" class="topbar-home">← Training Hub</a>
+  </div>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <div class="filter-bar-inner">
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input class="sidebar-search" id="search-input" type="text" placeholder="Search agent, address…" oninput="renderList()"/>
+    </div>
+    <div class="filter-divider"></div>
+    <div class="filter-chips">
+      <button class="filter-chip active" data-tag="all"       onclick="setFilter(this)">All Calls</button>
+      <button class="filter-chip" data-tag="offer"      onclick="setFilter(this)">Offer</button>
+      <button class="filter-chip" data-tag="objection"  onclick="setFilter(this)">Objection</button>
+      <button class="filter-chip" data-tag="discovery"  onclick="setFilter(this)">Discovery</button>
+      <button class="filter-chip" data-tag="close"      onclick="setFilter(this)">Close</button>
+      <button class="filter-chip" data-tag="contract"   onclick="setFilter(this)">Contract</button>
+    </div>
+    <div class="filter-count" id="filter-count"></div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="body-wrap">
+
+  <!-- CALL LIST -->
+  <div class="call-panel">
+    <div class="call-panel-header">
+      <div class="call-panel-label">Call Library</div>
+    </div>
+    <div class="call-list" id="call-list"></div>
+  </div>
+
+  <!-- PLAYER -->
+  <div class="player-panel" id="player-panel">
+
+    <div class="empty-state" id="empty-state">
+      <div class="empty-icon">🎧</div>
+      <h3>Select a Call to Begin</h3>
+      <p>Choose a call from the list on the left to load the player and synced transcript.</p>
+    </div>
+
+    <div id="player-wrap" style="display:none;">
+
+      <div class="meta-card">
+        <div class="meta-eyebrow">Acquisition Call — Call Library</div>
+        <div class="meta-title" id="meta-title">—</div>
+        <div class="meta-chips">
+          <div class="meta-chip">👤 <span id="meta-agent">—</span></div>
+          <div class="meta-chip">📅 <span id="meta-date">—</span></div>
+          <div class="meta-chip"><span id="meta-calltype-badge"></span></div>
+          <div class="meta-chip">⏱ <span id="meta-duration">—</span></div>
+          <div class="meta-chip">📍 <span id="meta-address">—</span></div>
+        </div>
+        <div class="synopsis-box">
+          <div class="synopsis-label">Synopsis</div>
+          <div id="meta-synopsis">—</div>
+        </div>
+      </div>
+
+      <div class="audio-card">
+        <button class="play-btn" id="play-btn" onclick="togglePlay()">▶</button>
+        <span class="time-label" id="time-current">0:00</span>
+        <div class="progress-track" id="progress-track" onclick="seekTo(event)">
+          <div class="progress-fill" id="progress-fill"></div>
+          <div class="progress-thumb" id="progress-thumb"></div>
+        </div>
+        <span class="time-total" id="time-total">—</span>
+        <button class="speed-btn" id="speed-btn" onclick="cycleSpeed()">1×</button>
+        <span class="audio-error" id="audio-error">⚠ No audio linked — transcript only</span>
+      </div>
+
+      <div class="transcript-card">
+        <div class="transcript-header">
+          <div class="transcript-label">Call Transcript</div>
+          <div class="transcript-legend">
+            <div class="legend-item">
+              <div class="legend-dot legend-dot-agent"></div>
+              <span class="legend-text legend-agent">Agent</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot legend-dot-seller"></div>
+              <span class="legend-text legend-seller">Seller</span>
+            </div>
+          </div>
+        </div>
+        <div class="transcript-body" id="transcript-body"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<audio id="audio-el" preload="metadata"></audio>
+
+<script>
+// ─────────────────────────────────────────────────────────────
+//  CALL DATA
+//
+//  To add a real call:
+//  1. Upload the MP3/MP4 to Google Drive. Set sharing to
+//     "Anyone with the link."
+//  2. Copy the FILE_ID from the share URL:
+//     drive.google.com/file/d/FILE_ID/view
+//  3. Set audioUrl to:
+//     "https://drive.google.com/uc?export=download&id=FILE_ID"
+//     NOTE: For files >100 MB, Drive may throttle. Use S3 or
+//     Cloudflare R2 for more reliable streaming.
+//  4. Transcript lines: { t: seconds, speaker: "Agent"|"Seller", text: "..." }
+//     t = seconds from the start of the recording.
+//     Click any transcript line to jump to that moment.
+// ─────────────────────────────────────────────────────────────
+
+const CALLS = [
+  {
+    id: "call-001",
+    agent: "Devin Buford",
+    date: "April 20, 2026",
+    callType: "IB",
+    duration: "54:29",
+    address: "107 Havron St, McMinnville, TN 37110",
+    tags: ["discovery", "offer"],
+    synopsis: "Inbound call from Ron Wright, 70-year-old disabled seller on fixed income. Property inherited from mother who passed ~2 years ago — no will, still in mother's name, three heirs including one incarcerated brother. Complex probate/heirship situation handled well. Devin sets the stage cleanly, works through condition (3/1.5, hardwood floors, new roof, older HVAC), and closes with a verbal agreement at $75K. Good example of navigating a complex ownership situation with empathy while keeping momentum.",
+    audioUrl: "https://pub-2a4f1a740b7c44c2b5fea7c19569b242.r2.dev/c476219c-9ff6-49c7-b71c-7ee4a82f7e67.MP3",
+    transcript: [
+      { t: 0,    speaker: "Agent",  text: "Thanks for calling Rebuilt, your trusted real estate partner. This call may be recorded for quality and training purposes. This is Devin. How can I help you?" },
+      { t: 14,   speaker: "Seller", text: "Yeah, Devin, my name is Ron Wright. I live in McMinnville, Tennessee. My mother died and left me with this property." },
+      { t: 24,   speaker: "Agent",  text: "Okay." },
+      { t: 26,   speaker: "Seller", text: "I noticed y'all have sent her several letters. She's passed, so it doesn't matter, but I might be interested in selling it." },
+      { t: 38,   speaker: "Agent",  text: "Okay, well, we can certainly look into it." },
+      { t: 42,   speaker: "Seller", text: "I'm gonna see what I need to do to make that happen." },
+      { t: 48,   speaker: "Agent",  text: "All right. So certainly we can have a conversation and kind of see how things go. And if I can get this qualified to move forward, we certainly will." },
+      { t: 62,   speaker: "Agent",  text: "Just at a high level — is this still in your mom's name or did you change that over?" },
+      { t: 70,   speaker: "Seller", text: "Well, I've got two brothers. One in Nashville — Douglas Howard Wright. And then I have another brother, Barry, who's incarcerated. I'm not sure for how long." },
+      { t: 90,   speaker: "Seller", text: "As far as I know, the property is still in my mother's name. She didn't have a will." },
+      { t: 100,  speaker: "Agent",  text: "Understood. So what we can do — I'm gonna ask a few questions about the property and the situation. That'll tell me what I need to get this approved. We'll talk maybe 10 or 15 minutes, and if this looks like it's going to make sense for both of us, I'll seek an approval." },
+      { t: 122,  speaker: "Seller", text: "Okay. Right." },
+      { t: 124,  speaker: "Agent",  text: "So we got two brothers. And your name, my friend — I didn't catch it." },
+      { t: 130,  speaker: "Seller", text: "I'm Ron. I'm the firstborn." },
+      { t: 135,  speaker: "Agent",  text: "All right, Ron, firstborn. I'm gonna write that down." },
+      { t: 140,  speaker: "Seller", text: "Then my brother Douglas Howard Wright in Nashville. And my brother Barry, who's incarcerated." },
+      { t: 152,  speaker: "Agent",  text: "Locally or is he in a federal facility somewhere away?" },
+      { t: 158,  speaker: "Seller", text: "He's doing time in Manchester County Jail, Coffee County. He got himself in a mess there." },
+      { t: 168,  speaker: "Agent",  text: "Okay. I've dealt with similar situations before, so we can work with that." },
+      { t: 175,  speaker: "Agent",  text: "I'm kind of curious — what's got you thinking about selling it now?" },
+      { t: 182,  speaker: "Seller", text: "Well, I'm 70 years old, buddy, and I'm on a fixed income. I really can't keep up with the property taxes. I'm on disability, legally blind. I'm in bad health, man. And I just want to get this taken care of." },
+      { t: 210,  speaker: "Agent",  text: "I hear you. Good for you, though, still pushing forward." },
+      { t: 216,  speaker: "Seller", text: "I'm glad I'm still here. I went to a 45-year high school reunion in Nashville and looked around — the guy next to me said, Ronnie, we've outlived everybody." },
+      { t: 235,  speaker: "Agent",  text: "Oh, wow. You're made from good stock, Ron." },
+      { t: 480,  speaker: "Agent",  text: "All right, so let me back up. What was the address?" },
+      { t: 488,  speaker: "Seller", text: "107 Havron Street — H-A-V-R-O-N — in McMinnville, Tennessee. 37110." },
+      { t: 502,  speaker: "Agent",  text: "All right, let me take a look at this." },
+      { t: 515,  speaker: "Seller", text: "I'm looking at your letter y'all sent, and it was very nicely put — offered your condolences about mother. My brother in Nashville said give them a call, see what they got to say. So that's what I'm doing." },
+      { t: 535,  speaker: "Agent",  text: "How long ago did your mom pass?" },
+      { t: 540,  speaker: "Seller", text: "It's been about two years — around spring or fall of '24." },
+      { t: 550,  speaker: "Agent",  text: "Kind of fresh still. I know that's not easy." },
+      { t: 556,  speaker: "Seller", text: "Yeah. We came here and bought this house together. Mother was a real estate broker herself, so she knew property. We sold a place in Nashville and came down here and bought this one." },
+      { t: 580,  speaker: "Agent",  text: "Interesting. All right, so how many bedrooms and bathrooms?" },
+      { t: 588,  speaker: "Seller", text: "Three bedrooms. One full bath, and the master bedroom has a half bath. So one and a half total." },
+      { t: 604,  speaker: "Agent",  text: "Three bedrooms, one and a half baths. Got it. You mentioned a new roof?" },
+      { t: 612,  speaker: "Seller", text: "Brand new roof when we moved in." },
+      { t: 618,  speaker: "Agent",  text: "Okay. Does this have a central heat and air system?" },
+      { t: 625,  speaker: "Seller", text: "It's an old Frigidaire heat pump. I call it a dinosaur because it's old and green. But it still works — blows cool air, blows warm air. Frigidaires last forever." },
+      { t: 648,  speaker: "Agent",  text: "All right. When we get out there we'll have somebody put eyes on it. We'll assume it works. Did you update the kitchen or bathrooms in the last year?" },
+      { t: 662,  speaker: "Seller", text: "Have not. No, sir. But it's got hardwood floors and they're in good shape." },
+      { t: 672,  speaker: "Agent",  text: "Hardwood floors — good deal. And on the walls, is it drywall, paneling, plaster?" },
+      { t: 682,  speaker: "Seller", text: "Mostly drywall. There's some knotty pine paneling in the back room where I keep the washer and dryer. I think they may have covered some up with wallboard." },
+      { t: 698,  speaker: "Agent",  text: "Okay, got it. This looks like about 1,100 square feet or so." },
+      { t: 706,  speaker: "Seller", text: "Yes, sir, that's about right." },
+      { t: 710,  speaker: "Agent",  text: "All right. And if everything worked out, what would be a good timeframe to get this finished?" },
+      { t: 718,  speaker: "Seller", text: "Post haste would be the best thing. I'm trying to get it done before I keel over, man. I'm 70 years old." },
+      { t: 732,  speaker: "Agent",  text: "Sooner than later. No problem. I got you." },
+      { t: 1580, speaker: "Agent",  text: "Now, as for the brother who is incarcerated — that's okay too. We can send a notary into the jail for a private meeting with him. We've done that before. I've been to a jail myself in Memphis to get signatures." },
+      { t: 1600, speaker: "Seller", text: "Cool. Okay. Yes, sir." },
+      { t: 1606, speaker: "Agent",  text: "It's not a problem. We'll figure it out. All right, so let me get a number for you. You got a minute or two to hang on?" },
+      { t: 1618, speaker: "Seller", text: "I can do that. Yes, sir." },
+      { t: 1680, speaker: "Agent",  text: "All right, Ron. So first of all, this is approved to move forward. That's the first thing." },
+      { t: 1692, speaker: "Seller", text: "Okay. Good deal." },
+      { t: 1696, speaker: "Agent",  text: "They said we'd be able to help you navigate the probate situation. It's been two years, so we might only need an affidavit of heirship. We'll figure that out. They also approved working with your brother who's incarcerated." },
+      { t: 1718, speaker: "Seller", text: "I'm hoping he'll get out before long." },
+      { t: 1724, speaker: "Agent",  text: "That would be great too. Now, as for the property itself — we'd want to update the kitchen, the bathroom and a half, get the floors refinished, probably pull that paneling out. We'd be putting about 40 to 50 thousand into it. Would it surprise you to know that similar properties we've bought in this area have been ranging between 70 and 80 thousand?" },
+      { t: 1752, speaker: "Seller", text: "Yeah. That's what I'm looking at. Yeah." },
+      { t: 1758, speaker: "Agent",  text: "I'm thinking we should be able to split that right down the middle — around 75 thousand out the door, with us paying for everything." },
+      { t: 1770, speaker: "Seller", text: "Sounds good. I'm on board. I'm on board with that. My brother in Nashville is with me on what I want to do. Of course I'm the big brother and they kind of look to me to make the decisions." },
+      { t: 1800, speaker: "Agent",  text: "Okay. Next steps — talk to your brother Douglas, and then eventually get word to Barry. When do you think you might be able to get with them?" },
+      { t: 1814, speaker: "Seller", text: "I can call my brother in Nashville post haste. Right now. And my brother that's incarcerated — I think he's got a few months to do, supposed to get out in August. But maybe we can expedite things if I just tell him what I'm doing." },
+      { t: 1840, speaker: "Agent",  text: "We can work with the county to get documentation in there for him to sign. Everything would be done by the time he got out. His money would be waiting on him in escrow." },
+      { t: 1856, speaker: "Seller", text: "Oh yeah. Oh, that's extremely wonderful." },
+      { t: 1864, speaker: "Agent",  text: "We'll work with your attorney too on any documentation needed. We have our own title company so anything on the legal side, we'll figure it out." }
+    ]
+  },
+  {
+    id: "call-002",
+    agent: "Kyle Singer",
+    date: "April 20, 2026",
+    callType: "IB",
+    duration: "20:17",
+    address: "8121 Woodard Rd, Springport, MI",
+    tags: ["discovery", "offer"],
+    synopsis: "Inbound call from Matthew, a landlord looking to sell a tenant-occupied rental. Complex setup: residential lot (8121) plus an adjacent commercial lot (8123) where his garage burned down, killing his interest in owning. Kyle correctly narrows scope to residential only, works through condition (3/2, manufactured home on cement foundation, 5-year-old roof, HVAC down, flooring and drywall repairs needed), and anchors toward a $75K offer. Good example of managing a tangent-heavy seller and staying on track.",
+    audioUrl: "https://pub-2a4f1a740b7c44c2b5fea7c19569b242.r2.dev/37959d86-a8bc-43dc-ba18-d97aa238b289.MP3",
+    transcript: [
+      { t: 0,   speaker: "Agent",  text: "Thanks for calling Rebuilt, your trusted real estate partner. Good morning, this is Kyle with Rebuilt." },
+      { t: 10,  speaker: "Seller", text: "Hey Kyle. How's it going?" },
+      { t: 13,  speaker: "Agent",  text: "I'm doing well. How can I help you?" },
+      { t: 16,  speaker: "Seller", text: "So I got one of your letters in the mail and I've had it here for a while. You want me to give you the offer code on it?" },
+      { t: 25,  speaker: "Agent",  text: "Yeah, that'd be great." },
+      { t: 27,  speaker: "Seller", text: "Two, two J, G, Y, T." },
+      { t: 32,  speaker: "Agent",  text: "Is this 8121 Woodard Road? And I would imagine you are Matthew?" },
+      { t: 42,  speaker: "Agent",  text: "Well, how can I help you, Matthew? Is this something you're looking at selling?" },
+      { t: 48,  speaker: "Seller", text: "Yes, I am looking at selling. We're a little off on the price. And part of this is commercial." },
+      { t: 58,  speaker: "Agent",  text: "Oh, is it really? What's the layout of it?" },
+      { t: 63,  speaker: "Seller", text: "The house is on a residential lot and the lot next to it is commercial, already split. I have an 8121 and an 8123 address." },
+      { t: 80,  speaker: "Agent",  text: "So you're looking to sell them both together?" },
+      { t: 85,  speaker: "Seller", text: "I can do either both together or separate." },
+      { t: 91,  speaker: "Agent",  text: "We would probably just be looking at the residential. We don't buy commercial property. The 8121 Woodard Road — is that the residential property?" },
+      { t: 110, speaker: "Agent",  text: "Is the 8123 the smaller structure — almost looks like a big shed with a boat out front online?" },
+      { t: 120, speaker: "Seller", text: "Yeah. It's actually about the same size lot. There are three lots total — two got addresses. There's a little pie-shaped lot inside the commercial area." },
+      { t: 140, speaker: "Agent",  text: "The white house with the red shutters — that's the residential property. Is that what you're currently living in?" },
+      { t: 150, speaker: "Seller", text: "No, I use it as a rental house." },
+      { t: 154, speaker: "Agent",  text: "Is it currently tenant occupied?" },
+      { t: 159, speaker: "Seller", text: "It is. We can move him out or do whatever. You can even keep them." },
+      { t: 167, speaker: "Agent",  text: "Is he on a month-to-month or a physical lease?" },
+      { t: 173, speaker: "Seller", text: "Word of mouth handshake." },
+      { t: 176, speaker: "Agent",  text: "Typically when we buy rentals we're going to renovate them, so we'd want to give the tenant a 30 to 45 day notice to find something new. Would that be okay?" },
+      { t: 196, speaker: "Seller", text: "That's absolutely fine." },
+      { t: 200, speaker: "Agent",  text: "Are they aware you've been potentially looking at selling?" },
+      { t: 206, speaker: "Seller", text: "Absolutely." },
+      { t: 208, speaker: "Agent",  text: "Good. And I have a mortgage on that residential side — I think I owe like 61 on it. Taxes are all current. No second mortgage, no issues." },
+      { t: 215, speaker: "Agent",  text: "What's got you interested in selling in the first place?" },
+      { t: 222, speaker: "Seller", text: "I used to have a commercial building there — a big beautiful garage, 80 feet long and 40 feet wide. My renter let another guy in who started making improvements, and he ended up burning my garage down." },
+      { t: 245, speaker: "Agent",  text: "Oh my goodness. That was the commercial side?" },
+      { t: 250, speaker: "Seller", text: "Yes. After he burnt it down I lost all interest in owning the property. Then a store was going to buy it, but they kept offering lower and lower. I got mad at them. I'm done with those guys." },
+      { t: 275, speaker: "Agent",  text: "So you're pretty much just done with that area. Let me just get some information on the property condition and then I can get you an offer. If it makes sense, great. If not, no worries." },
+      { t: 295, speaker: "Seller", text: "Go ahead." },
+      { t: 297, speaker: "Agent",  text: "I have this as a three bed, two bath — is that correct?" },
+      { t: 304, speaker: "Seller", text: "Yes." },
+      { t: 306, speaker: "Agent",  text: "How old is the roof?" },
+      { t: 310, speaker: "Seller", text: "Replaced about five years ago. Zero leaks. It's perfect." },
+      { t: 320, speaker: "Agent",  text: "Does the property have central heat and air?" },
+      { t: 325, speaker: "Seller", text: "It has hookup for that. The central air quit working. It does have natural gas." },
+      { t: 335, speaker: "Agent",  text: "Any major renovations to the interior?" },
+      { t: 340, speaker: "Seller", text: "No. Just painting. It has tile floor and spots in the tile are bad — you'd have to fix that." },
+      { t: 354, speaker: "Agent",  text: "Typically we're going to redo the flooring anyway to modernize it. Any renovation upgrades to the bathrooms or kitchen recently?" },
+      { t: 370, speaker: "Seller", text: "A tour would be a better way to come see it." },
+      { t: 375, speaker: "Agent",  text: "We're not going to come out unless we come to an agreement on price. It sounds like everything is functional — just not top-of-the-line on the kitchen and bathrooms. That's the type of property we work with most." },
+      { t: 400, speaker: "Seller", text: "The cabinets are actually top-line. It's a double wide on a steel frame. No holes in the floor, drywall is all in good shape." },
+      { t: 418, speaker: "Agent",  text: "So this is a manufactured home — interesting. What kind of foundation is it on?" },
+      { t: 428, speaker: "Seller", text: "Cement all the way around it." },
+      { t: 432, speaker: "Agent",  text: "Any other issues with the property?" },
+      { t: 437, speaker: "Seller", text: "Flooring in three bedrooms and the kitchen needs to be redone. Living room is fine. Some drywall work needed in the master bathroom. And a few windows need to be replaced." },
+      { t: 458, speaker: "Agent",  text: "From a residential standpoint, based on comparable properties in this type of condition, we'd probably be a lot closer to your mortgage payoff on an offer. Does that surprise you?" },
+      { t: 480, speaker: "Seller", text: "I think I can do better than payoff. Maybe at 75 I could let it go." },
+      { t: 490, speaker: "Agent",  text: "Okay. I need to get this to my financial and underwriting team — I'll tell them we need to be closer to 75 to 80 and see what a max offer looks like. You're certain the mortgage is around 60?" },
+      { t: 508, speaker: "Seller", text: "61 I think. Feel free to check into it." },
+      { t: 515, speaker: "Agent",  text: "My sheet is actually showing closer to $25,739 as the estimated balance — but I'd take your word over my computer. You'd just have to call your mortgage company and ask for the outstanding balance." },
+      { t: 540, speaker: "Seller", text: "Well, I'll investigate that because now I'm curious." },
+      { t: 548, speaker: "Agent",  text: "In the meantime I'll speak to my team. I'm going to send you a text from my direct 727 line so you have it. When I call back this morning or afternoon with an offer, it'll come from that number. If you can text me what your outstanding mortgage balance is, that'll help my team too." },
+      { t: 580, speaker: "Seller", text: "Okay, I'll do that Kyle." },
+      { t: 584, speaker: "Agent",  text: "Perfect. As far as getting access to the property if we do come to an agreement — the tenant wouldn't have any issues with our photographer or investment partners coming through?" },
+      { t: 600, speaker: "Seller", text: "No, not at all." },
+      { t: 603, speaker: "Agent",  text: "Good. I'll get this to my team right now and call you back as soon as I have an answer." },
+      { t: 612, speaker: "Seller", text: "All right, thanks Kyle." },
+      { t: 615, speaker: "Agent",  text: "Absolutely. We'll be in touch." }
+    ]
+  },
+  {
+    id: "call-003",
+    agent: "Luis Guzman",
+    date: "April 21, 2026",
+    callType: "IB",
+    duration: "44:28",
+    address: "3166 Santa Clara Cir, Jackson, MS",
+    tags: ["discovery", "offer"],
+    synopsis: "Inbound call from Michael Smith, 61-year-old seller with a stroke history who owns the property free and clear but is about 2 years behind on taxes (~$900/yr). Property needs a full roof replacement (20-30 years old), no central HVAC (furnace + attic fan only), sheetrock damage in back entertainment room from a leak, and flooring work throughout. Seller has no mortgage — just wants to walk away. Luis works through condition, explains the process clearly, and lands at $12K after seller counters from $10K. Contract mailed due to seller having no internet and a broken phone screen. Good example of managing a low-value distressed property and a seller with communication limitations.",
+    audioUrl: "https://pub-2a4f1a740b7c44c2b5fea7c19569b242.r2.dev/a85b5d19-ac19-418b-8f53-3bdbed3ed11b.MP3",
+    transcript: [
+      { t: 0,   speaker: "Agent",  text: "Thanks for calling Rebuilt, your trusted real estate partner. This call may be recorded for quality and training purposes. This is Lewis, how can I help you?" },
+      { t: 12,  speaker: "Seller", text: "How you doing Lewis? I'm calling in reference to code number 2 5L 82N." },
+      { t: 20,  speaker: "Agent",  text: "That's 2 5L 82N as in Nancy. And would this be in reference to the property at 3166 Santa Clara Circle, Jackson, Mississippi?" },
+      { t: 34,  speaker: "Seller", text: "Yes." },
+      { t: 36,  speaker: "Agent",  text: "All right. So what has you giving us a call about this property today?" },
+      { t: 44,  speaker: "Seller", text: "I'm interested in selling. You sent a check saying you're ready to turn this into a live check — and I am too. I'm gonna be 62 in May and I got other things I'm trying to do." },
+      { t: 60,  speaker: "Agent",  text: "Sounds like you have a plan for those funds. Here's how these calls usually go — only takes about 10 minutes or so. I'll get some general information on the condition of the house, build a renovation budget, take a look at similar properties in the area, and provide you with an offer today. Sound good?" },
+      { t: 82,  speaker: "Seller", text: "That'll work." },
+      { t: 84,  speaker: "Agent",  text: "All right. I'm speaking with Mr. Michael Smith?" },
+      { t: 89,  speaker: "Seller", text: "Correct." },
+      { t: 91,  speaker: "Agent",  text: "Mr. Smith, once I provide you with an offer — what do the next steps look like for you? Are you ready to go, or do I need to speak with anybody else on your behalf regarding the sale?" },
+      { t: 106, speaker: "Seller", text: "No, it's just me." },
+      { t: 109, speaker: "Agent",  text: "Just you. Talking to the man in charge. Can you confirm the bedroom and bathroom count?" },
+      { t: 118, speaker: "Seller", text: "Three bedrooms, two full baths." },
+      { t: 123, speaker: "Agent",  text: "Three bedrooms, two full baths. Square footage looks like about 1,200. And is this your primary home?" },
+      { t: 134, speaker: "Seller", text: "I stay in it right now but I do have another house. I'm sick of trying to keep up two places at one time. Plus it's a fixer upper — it needs a roof and stuff like that. I'm just going to my other house." },
+      { t: 158, speaker: "Agent",  text: "I hear you. Let's start on the outside. I'm looking at what looks like a white house — does that sound right?" },
+      { t: 168, speaker: "Seller", text: "Yeah, white house. And I've got a two-car garage — two garage door openings on one side and a carport on the other." },
+      { t: 182, speaker: "Agent",  text: "Okay, I see the double driveway now. So you mentioned the roof needs to be replaced — do you know how old it is?" },
+      { t: 194, speaker: "Seller", text: "I've been here over 15 years and never put a roof on it. I'd say at least 20, maybe 25 or 30 years. It needs a roof." },
+      { t: 212, speaker: "Agent",  text: "Yeah, 20 to 30 years — it's about that time even if it's in good shape. Does the house have central heat and air?" },
+      { t: 224, speaker: "Seller", text: "Never had central. It's got furnaces for the wintertime and a big attic fan you can cut on and off. So it don't have central." },
+      { t: 240, speaker: "Agent",  text: "Gotcha. Any renovations to the interior — new cabinets, flooring, anything like that?" },
+      { t: 250, speaker: "Seller", text: "No. It's going to need some sheetrock work in one part of the house. The back end — it was leaking over there. The bedrooms and kitchen side are livable and nice, but that back entertainment room area where it was leaking, the sheetrock is falling in back there. It's on a whole other side of the house." },
+      { t: 290, speaker: "Agent",  text: "I gotcha. So it sounds like the house overall just needs to be fully repaired — new roof, interior work in that back section. Any concerns with electrical, plumbing, or foundation?" },
+      { t: 308, speaker: "Seller", text: "No. Like I said, I'm living in it — it's functional. The foundation is good, plumbing and electrical are fine. It's just that back section with the sheetrock damage." },
+      { t: 326, speaker: "Agent",  text: "All right. Let me tell you a little about the company. We're a property investment firm. We purchase as-is — whatever condition the property is in. Our process typically takes 30 to 45 days. We do all the heavy lifting on the back end, open title work, and cover all traditional closing costs. The only things deducted from your offer at closing would be any back taxes or liens." },
+      { t: 360, speaker: "Seller", text: "I might be behind maybe a year or two on taxes. That's it. I own it free and clear — no mortgage, none of that." },
+      { t: 374, speaker: "Agent",  text: "Okay, so no mortgage — that's good. The taxes just come out of the offer at closing. Looks like property taxes here are coming in at about $900. Does that sound right?" },
+      { t: 390, speaker: "Seller", text: "Yes, that's about right." },
+      { t: 394, speaker: "Agent",  text: "Okay. And you said it might be about two years behind?" },
+      { t: 400, speaker: "Seller", text: "It might be two. I had a stroke about five years ago and my short-term memory isn't great. But yeah, something like that." },
+      { t: 416, speaker: "Agent",  text: "Understood. All right, let me take a look at what we can offer you. The mailer gives a general number without knowing the specifics of your house. Give me one second." },
+      { t: 432, speaker: "Seller", text: "All right." },
+      { t: 530, speaker: "Agent",  text: "All right, Mr. Smith — so looking at similar houses sold in the area, I spoke to my market manager. I got them to go up and make you an official offer at $10,000 at this time." },
+      { t: 548, speaker: "Seller", text: "I can work with that. Well actually — I want to walk away with a little extra after the taxes come out. If you could do 12, because I've got to pay the taxes off and all that." },
+      { t: 568, speaker: "Agent",  text: "I'll go ahead and authorize it here on my end for the 12. We'll move forward. As long as the photos look okay it'll be fine. What's the best email for you?" },
+      { t: 585, speaker: "Seller", text: "MsCooking23 — M-S-C-O-O-K-I-N-G-2-3 — the number at gmail dot com." },
+      { t: 600, speaker: "Agent",  text: "Got it. Now will you be pulling up the agreement on your phone or do you have a computer available?" },
+      { t: 610, speaker: "Seller", text: "I broke my phone a couple days ago and my internet's been down. I don't have a way to do it electronically right now." },
+      { t: 625, speaker: "Agent",  text: "No problem. I can mail it to you with a FedEx return label. Once you fill it out, just drop it at your local FedEx location and we'll get it back from there." },
+      { t: 642, speaker: "Seller", text: "You come out better mailing it to me." },
+      { t: 648, speaker: "Agent",  text: "Done. There's a FedEx office on 226 East Capitol Street — that's downtown, about 12 minutes from you. Or you can hand it to your mailman directly — sometimes they'll take it for you." },
+      { t: 672, speaker: "Seller", text: "I know East Capitol. That's downtown. I'll find it. And I go to Walgreens today to pick up my prescriptions anyway." },
+      { t: 688, speaker: "Agent",  text: "Perfect. The mail should get to you tomorrow or Thursday. Once you fill it out, send it right back and we'll take it from there." },
+      { t: 702, speaker: "Seller", text: "Okay. And how long did you say it takes to close? Could we close by my birthday — May 5th?" },
+      { t: 715, speaker: "Agent",  text: "May 5th would be a little tight — that's just around the corner. We typically need 30 to 45 days once everything is signed. We'll do our best but no guarantees on that timeline." },
+      { t: 733, speaker: "Seller", text: "Yeah, that's too soon. But that's fine. I'll be looking for that paperwork. Appreciate you, Lewis." },
+      { t: 745, speaker: "Agent",  text: "Yes sir. I'll give you a call once it's delivered so you know it's on the way. Talk to you soon, Mr. Smith." },
+      { t: 758, speaker: "Seller", text: "All right. Appreciate you. Bye bye." }
+    ]
+  },
+  {
+    id: "call-004",
+    agent: "Luis Guzman",
+    date: "April 20, 2026",
+    callType: "IB",
+    duration: "27:41",
+    address: "816 Mabel St, Richmond, TX",
+    tags: ["discovery", "offer"],
+    synopsis: "Inbound call from John, sole owner of JD Interest LLC, calling about a vacant 2/1 rental in Richmond, TX. Property is free and clear, built in 1949, fully dated interior needing complete remodel, unknown roof age, no condenser/HVAC. Seller counters the $54K mailer at $70K and is open to a same-day decision. Luis works through condition cleanly, explains the cash process, and is transparent that there's not enough comp data to confirm the $70K — commits to a manager callback with a firm offer. Good example of handling a seller who has a competing plan (demo and rebuild) and managing expectations on price with limited market data.",
+    audioUrl: "https://pub-2a4f1a740b7c44c2b5fea7c19569b242.r2.dev/52589ca5-5f49-44cc-8bf6-6d57b64142d4.MP3",
+    transcript: [
+      { t: 0,   speaker: "Agent",  text: "Thanks for calling Rebuilt, your trusted real estate partner. Good afternoon. This is Louis, how can I help you?" },
+      { t: 12,  speaker: "Seller", text: "Hey Louis. I received a letter in the mail from you regarding purchasing a property that I have." },
+      { t: 20,  speaker: "Agent",  text: "All right sir, what is the mailer ID code there?" },
+      { t: 26,  speaker: "Seller", text: "25 9P 2019." },
+      { t: 32,  speaker: "Agent",  text: "All right. And would this be for the property at 816 Mabel Street in Richmond, Texas?" },
+      { t: 40,  speaker: "Seller", text: "Yes." },
+      { t: 42,  speaker: "Agent",  text: "I see this is under an LLC. What is your name, sir?" },
+      { t: 48,  speaker: "Seller", text: "John." },
+      { t: 50,  speaker: "Agent",  text: "John. And are you the sole owner of this LLC, or is there anybody else we should be talking to?" },
+      { t: 58,  speaker: "Seller", text: "Yes, just me." },
+      { t: 61,  speaker: "Agent",  text: "Just you. All right John, sounds like you're interested in at least receiving an offer?" },
+      { t: 68,  speaker: "Seller", text: "Yeah, but I'd like to counteroffer on that." },
+      { t: 74,  speaker: "Agent",  text: "Sure. What I'll do is get a better idea of how the house sits, take a look at market data, and see what offer we can make. We sent you an offer of about $54,000 — what were you thinking on your end?" },
+      { t: 92,  speaker: "Seller", text: "70." },
+      { t: 95,  speaker: "Agent",  text: "I'll write that down. And keep in mind, John — this is a cash offer. We don't take any percentage off the top. The only thing you'd be responsible for is any mortgage, taxes, or lien-related items. So it's not 70 minus 10% or anything like that." },
+      { t: 118, speaker: "Agent",  text: "Let's get into it. Two bedrooms, one bathroom, about 768 square feet — sound about right? And this was built back in 1949." },
+      { t: 130, speaker: "Seller", text: "Yeah." },
+      { t: 132, speaker: "Agent",  text: "What has you considering selling this property?" },
+      { t: 138, speaker: "Seller", text: "Just looking to do other things at this time." },
+      { t: 144, speaker: "Agent",  text: "Is this a rental property for you?" },
+      { t: 148, speaker: "Seller", text: "No. Nobody's there right now. Actually, I plan to demo the house and build a new unit if I don't get what I'm looking for. The surrounding houses are being built right now and pretty much done already." },
+      { t: 168, speaker: "Agent",  text: "Okay, so you're thinking about demolishing and building a bigger house to meet the market trend in the area?" },
+      { t: 178, speaker: "Seller", text: "Yeah, so I can get everything up to code and have a bigger house. It's just an idea though — I'm not certain on what I'm going to do." },
+      { t: 192, speaker: "Agent",  text: "Got it. Well it's always good to have options. We're just trying to see if we're the best option for what you're trying to accomplish. Let's talk about the house. How old is the roof?" },
+      { t: 208, speaker: "Seller", text: "Unknown. I'm not certain." },
+      { t: 214, speaker: "Agent",  text: "Okay, unsure on that. Does the house have heating and air?" },
+      { t: 220, speaker: "Seller", text: "I think so, but it doesn't have the condenser outside." },
+      { t: 228, speaker: "Agent",  text: "Okay. And inside — have you done anything, or what's the condition?" },
+      { t: 236, speaker: "Seller", text: "It needs to be completely remodeled. Can't save anything." },
+      { t: 244, speaker: "Agent",  text: "Okay. And when you say full renovation — is it gutted, or is everything still there but just dated?" },
+      { t: 256, speaker: "Seller", text: "Everything's still there. It needs to be remodeled and taken out. It's dated." },
+      { t: 268, speaker: "Agent",  text: "Got it. Any other concerns — electrical, plumbing, foundation?" },
+      { t: 276, speaker: "Seller", text: "Not that I'm aware of." },
+      { t: 280, speaker: "Agent",  text: "Okay. So unknown roof age, no condenser outside, and a fully dated interior that needs a complete remodel. That's what we're working with. Let me tell you a bit about how we work." },
+      { t: 296, speaker: "Agent",  text: "We're a property investment firm. Properties like this that need work are exactly what we look for. We make it a hands-free process — we open title, do all the back-end work, and the goal is to close in 30 days. Could take up to 45. We partner with local individual investors in that area as well. Once an offer is provided, what do next steps look like for you — can you make a decision today?" },
+      { t: 342, speaker: "Seller", text: "I can make a decision today." },
+      { t: 346, speaker: "Agent",  text: "All right. Bear with me, let me take a look at the data and see what we can offer you. I'm going to put you on a brief hold and I'll be right back." },
+      { t: 362, speaker: "Seller", text: "Yes." },
+      { t: 480, speaker: "Agent",  text: "John, you still there? Okay. So this is an area where we've done business before but it's been a while. I see you've owned it about four years. Do you owe any mortgage on it?" },
+      { t: 498, speaker: "Seller", text: "No." },
+      { t: 500, speaker: "Agent",  text: "Free and clear. Good. Here's the honest situation — there's just not enough comp data on my end right now to confirm whether we can get to $70,000. It looks like it might be closer to the $54K from the mailer. If the offer comes back at 54, are you open to it?" },
+      { t: 526, speaker: "Seller", text: "Yeah, absolutely. Real estate is real estate. Let me know what you come back with and it'll be a yes or no." },
+      { t: 542, speaker: "Agent",  text: "I appreciate that. I'm going to talk with my market manager for this location and give you a call back today from my direct line — it starts with 352, so watch for that number." },
+      { t: 560, speaker: "Seller", text: "All right. Thank you." },
+      { t: 564, speaker: "Agent",  text: "All right, thank you. Talk to you shortly." }
+    ]
+  },
+  {
+    id: "call-005",
+    agent: "Shon Yoshida",
+    date: "April 21, 2026",
+    callType: "IB",
+    duration: "36:05",
+    address: "245 & 255 N Burnett Rd, Cocoa, FL",
+    tags: ["discovery"],
+    synopsis: "Inbound call from Ken Talbert, a senior seller and his wife looking to sell two adjacent inherited properties together — 245 N Burnett (2/1, vacant, older home) and 255 N Burnett (3/1.5, their primary residence, built 1961). Properties are surrounded by commercial buyers (Kia dealership, United Rentals, a rehab facility) who have shown interest but haven't committed. Seller opened at $300K for both; Shon educates him clearly that residential comps (~$150K each renovated) make that impossible at a cash investor price. Shon recommends they pursue the commercial angle instead. Great example of honest price expectation-setting, handling a two-property situation, and knowing when to walk away gracefully.",
+    audioUrl: "https://pub-2a4f1a740b7c44c2b5fea7c19569b242.r2.dev/6cd8a885-b550-45ba-9474-0616e6a709a0.MP3",
+    transcript: [
+      { t: 0,   speaker: "Agent",  text: "Thanks for calling Rebuilt, your trusted real estate partner. This is Sean with Rebuilt. How can I help you?" },
+      { t: 12,  speaker: "Seller", text: "Yes, my name is Ken Talbert. I received a postcard a while back about buying houses for cash. My wife and I are ready to sell. I don't have the date on the card — we got a whole bunch of letters from different folks. But we own both houses: 245 North Burnett Road and the house next to it, 255 North Burnett Road. We thought we'd start calling people and see if anyone's still interested." },
+      { t: 48,  speaker: "Agent",  text: "We're still buying — we closed on nearly 670 properties last year. Our corporate is in Nashville but we're a nationwide buyer. We work with local partners in each area to fix and flip or hold for rental. I'd love to learn a little more about you, the properties, and your goals to see if we're a good fit." },
+      { t: 72,  speaker: "Seller", text: "We have two houses side by side. We're planning to sell both at the same time to one person. They're on close to an acre of property behind them." },
+      { t: 88,  speaker: "Agent",  text: "Both properties have houses on them — okay. We would evaluate both individually and could potentially put them both under contract. Though having two separate buyers is also an option, since they're individually parceled. A package deal typically comes with a price cut, so individual offers are usually better for you." },
+      { t: 118, speaker: "Seller", text: "Well, there's one thing I'm a little concerned about. The property line — the carport on one of the houses, I think the property line goes right through the middle of it. They weren't concerned about that back in the 50s and 60s because it was all the same family." },
+      { t: 142, speaker: "Agent",  text: "That's actually not that big of a deal — it would just take maybe a hundred dollars or less to go to the county and have the land resurveyed and move the property line. Much more interesting to me is: 245 looks like it's sitting almost on top of the property line between the two lots. I can see it crossing the line on the parcel map." },
+      { t: 168, speaker: "Seller", text: "Yeah, well, my wife's grandparents lived in one house and they lived in the other. They really weren't worried about where the property line was. They just built the houses right next to each other." },
+      { t: 188, speaker: "Agent",  text: "Got it. Now, the one at 255 — that's where you live. And 245 is vacant right now?" },
+      { t: 198, speaker: "Seller", text: "Yes. We had some relatives living in there. They passed and we haven't done anything with it since." },
+      { t: 210, speaker: "Agent",  text: "Understood. So the smaller one at 245 is a two bedroom, one bath. And 255 is a three bedroom — is that a full bath plus a half bath upstairs?" },
+      { t: 224, speaker: "Seller", text: "Yes, full bath downstairs and a half bath upstairs. And the house at 245 is actually a three bedroom, one bath." },
+      { t: 236, speaker: "Agent",  text: "Okay, three bed one bath over there. Internally I'd market this three ways: individually for each house and as a package deal, so our investor partners have all the options. Have you gotten to a number yet on what you'd be looking for?" },
+      { t: 256, speaker: "Seller", text: "We haven't nailed it down exactly. We were thinking people would do their due diligence, inspect, and make an offer. Then we'd know whether we're on target or way apart." },
+      { t: 274, speaker: "Agent",  text: "I hear you — but that mindset is a little challenging. If you're waiting for investors to name their number first, they're going to come in as low as they can. I need a number to pitch to them so we can find a middle ground. In order for me to get you a win, I need to know what a win looks like for you." },
+      { t: 302, speaker: "Seller", text: "Hold on just one second. I just talked to my wife — we were thinking $300,000 for the acre property and both houses." },
+      { t: 318, speaker: "Agent",  text: "Okay, $300,000. You're probably not far off what everything would be worth retail after renovation — each house might resell around $150K fully renovated. But here's the math: if I buy them for $300K, I still have to pay closing costs, realtor fees, and commissions on both ends — buying and selling. And that's assuming I can get both to $150K, which requires a full renovation. I'd be losing money. Turnkey condition might be close to $300K total, but these aren't in turnkey condition." },
+      { t: 368, speaker: "Seller", text: "You're right about that. And I understand. For some reason a lot across the street — not as good as ours — just sold for over a million dollars. A car dealership bought it. When you see that, $300K doesn't seem bad." },
+      { t: 392, speaker: "Agent",  text: "That lot had a commercial play — that's the difference. Yours doesn't have a commercial zoning angle yet. I'm limited to residential value only, which means I have to base it on what a renovated three-two or three-one sells for within a mile of you. And being surrounded by industrial and commercial properties actually makes residential comps lower, not higher." },
+      { t: 430, speaker: "Seller", text: "Yeah. And there's the Kia dealership across the street, United Rentals on our back property line — they actually own the little road that runs by our house — and a rehab facility on the other side. All three have shown interest but nobody has pulled out their wallet yet." },
+      { t: 458, speaker: "Agent",  text: "That's actually really telling. Those commercial buyers would pay you a lot more than I ever could. My advice honestly — don't go to a cash buyer like us looking to do residential flips. Your maximum return is going to come from those commercial neighbors. United Rentals owns the access road next to your property, right? That makes your land extremely valuable to them — they need it for access and expansion. I'd focus your energy there." },
+      { t: 498, speaker: "Seller", text: "Yeah, the guy that owns the equipment rental has his access road running right through there. He's very interested but has some situations he's dealing with right now. We've got that as a back burner. We just started calling people off these old letters to see who's still interested." },
+      { t: 524, speaker: "Agent",  text: "I appreciate you calling and I want to be straight with you — for what I do, we're probably too far apart on price. If you were talking closer to $150K for both, I'd be more interested. But your real play is the commercial angle with those neighbors. If that falls through and you ever want to revisit the residential offer, feel free to call back." },
+      { t: 552, speaker: "Seller", text: "I appreciate your honesty and straightforwardness. That's what we needed to know. You've educated me pretty well on this situation." },
+      { t: 566, speaker: "Agent",  text: "Of course. Good luck with it — I genuinely think you're sitting on something valuable over there. The commercial interest is real. Just be patient and let it come to you." }
+    ]
+  }
+,
+  {
+    id: "call-006",
+    agent: "Shon Yoshida",
+    date: "April 23, 2026",
+    callType: "IB",
+    duration: "29:42",
+    address: "143 Hickory Oaks Dr SE, Cleveland, TN",
+    tags: ["discovery", "offer"],
+    synopsis: "Inbound call from Dalen Brumley, owner of a free-and-clear 2002 double-wide manufactured home (3/2, 1,500 sq ft) on septic. Property is well-maintained — newer AC (inside and outside units), replaced water lines, cleaned ductwork, one roof replacement — but has soft spots in the kitchen floor from a past water leak. Seller is motivated to move to Mississippi to care for his brother and wants to close by mid-May. Shon walks through comps transparently (nearby sales at $85K as-is, $179K renovated), builds the renovation budget ($40-50K), and presents a range of $75-81K. Seller is shopping — has another buyer coming that afternoon — but commits to a decision within a week. Good example of detailed comp walk-through, transparent offer math, and handling a competitive situation without pressure.",
+    audioUrl: "https://pub-2a4f1a740b7c44c2b5fea7c19569b242.r2.dev/2376c72c-f5a5-4708-aa6d-06813b74db53.MP3",
+    transcript: [
+      { t: 0,   speaker: "Agent",  text: "Thanks for calling Rebuilt, your trusted real estate partner. Good afternoon, this is Sean with Rebuilt. How can I help you?" },
+      { t: 12,  speaker: "Seller", text: "Yeah, this is Dalen Brumley. I was calling about — I have a mobile home for sale." },
+      { t: 20,  speaker: "Agent",  text: "All right, pleasure to meet you. Do you have an offer code with you or an address I can reference?" },
+      { t: 28,  speaker: "Seller", text: "Offer code is 259 MYT." },
+      { t: 34,  speaker: "Agent",  text: "Okay — so that's 143 Hickory Oaks Drive Southeast, Cleveland, Tennessee. Dalen and Monica Brumley. Appreciate you reaching out. Is there any specific reason you're interested in selling?" },
+      { t: 50,  speaker: "Seller", text: "I need to move to Mississippi to help take care of my brother. Iuka — right up in the northeast corner." },
+      { t: 62,  speaker: "Agent",  text: "Okay, I'm familiar with that area. Well, let's see what we can do to help get you there. I'll ask some questions about the property and your timeline, and if it's a good fit we'll get you an offer. Is this where you're currently living?" },
+      { t: 82,  speaker: "Seller", text: "Yeah, I'm living in it." },
+      { t: 86,  speaker: "Agent",  text: "Okay. If we were your buyer, the window from contract to close is about 45 days or less. Could you be out and have it vacant by then?" },
+      { t: 100, speaker: "Seller", text: "Yeah." },
+      { t: 102, speaker: "Agent",  text: "All right. How many beds and baths?" },
+      { t: 108, speaker: "Seller", text: "Three bedroom, two bath." },
+      { t: 112, speaker: "Agent",  text: "Okay, three and two. Built around 2002, about 1,500 square feet. This is a manufactured home — double wide?" },
+      { t: 122, speaker: "Seller", text: "Right. Double wide." },
+      { t: 125, speaker: "Agent",  text: "Are you on septic or city sewer?" },
+      { t: 130, speaker: "Seller", text: "I'm on septic. No issues." },
+      { t: 135, speaker: "Agent",  text: "Good. How old is the roof — is it original?" },
+      { t: 140, speaker: "Seller", text: "We moved in around 2009 and the roof was replaced shortly after. It's asphalt shingle." },
+      { t: 152, speaker: "Agent",  text: "Okay, so it's gone through one replacement. Any current issues with it?" },
+      { t: 158, speaker: "Seller", text: "No. Since we've lived here I've replaced the AC inside and outside units, the hot water heater, all the piping underneath the house. They said they put in the best quality they had. And last year we had the ductwork cleaned out." },
+      { t: 180, speaker: "Agent",  text: "Do you owe anything on the property? Any back taxes, mortgage, liens?" },
+      { t: 188, speaker: "Seller", text: "No, it's all paid off." },
+      { t: 192, speaker: "Agent",  text: "Free and clear. Good. Have you done anything to the interior — kitchen, bathrooms, flooring?" },
+      { t: 202, speaker: "Seller", text: "I've got a couple of soft spots in the kitchen floor. It's three-quarter inch pressed wood and I came in from work one morning and the kitchen floor was floating in water from a leak. I repaired one spot in the washer room but my legs got so bad I can't get up and down to fix the ones in the kitchen. I also have front and rear decks, a two-car carport, and a large storage shed out back." },
+      { t: 238, speaker: "Agent",  text: "All right. Let me pull up the comps here. I can see two recent sales near you that are really relevant. One at 187 Hickory Oaks — three two, fully updated, someone went in and put in new flooring, cabinets, looks almost brand new. And then 153 Hickory Oaks, right next door to you — your old neighbor who moved out in 2024." },
+      { t: 268, speaker: "Seller", text: "Yeah, 153. I think the interior is exactly like mine." },
+      { t: 276, speaker: "Agent",  text: "That's exactly what I needed to know. So looking at what these bought for versus what they sold for after renovation — I'm not seeing anything that justifies a purchase price much higher than maybe 70 to 80 thousand for a cash sale. There's one here that sold for $85K as-is, but it didn't need much — it's just dated. After someone updated it, the resale was $179K. Similar year to yours, 2003 versus your 2002." },
+      { t: 318, speaker: "Seller", text: "80 would be good. 85 being better." },
+      { t: 324, speaker: "Agent",  text: "I hear you. The 85 is possible, but that one that was bought for 85 — it really didn't need much. Your soft spots in the kitchen floor are going to be a factor. Here's the math I'm running: if the renovation budget is $40K, the offer would be around $81,494. If it runs to $50K, it comes down to about $75,336. Those are the two numbers I'm working between." },
+      { t: 362, speaker: "Seller", text: "Yeah." },
+      { t: 364, speaker: "Agent",  text: "I'd say $75K is the safer number — lower chance we have to revisit price after due diligence. At $80K I think it's worth a shot, but just be aware there's more risk we'd need to have another conversation about the price once someone physically evaluates it." },
+      { t: 390, speaker: "Seller", text: "You don't want to send anybody out to look at it?" },
+      { t: 396, speaker: "Agent",  text: "We do — that's actually the next step. But we need an accepted offer first before we send someone out for due diligence. That's just how the process works. You say yes to a number, then we come out and verify everything." },
+      { t: 416, speaker: "Seller", text: "I've got someone coming this afternoon to look at it, so I'll have to call you back." },
+      { t: 426, speaker: "Agent",  text: "Of course. How soon are you looking to make a decision?" },
+      { t: 432, speaker: "Seller", text: "Probably within a week. I need to be moved out by mid-May." },
+      { t: 440, speaker: "Agent",  text: "Got it. Quick question — if all things are equal and you have two offers at the same number, how are you deciding between buyers?" },
+      { t: 452, speaker: "Seller", text: "The one I talked to said they'd take care of anything I leave behind after I move." },
+      { t: 460, speaker: "Agent",  text: "That's pretty standard — any investor renovating a house is going to have a roll-off dumpster on site and the entire kitchen ends up in it anyway. Not much of a differentiator, but we'd offer the same thing. We also work with Habitat for Humanity and similar organizations to donate usable furniture to people in need if you'd prefer that route." },
+      { t: 488, speaker: "Seller", text: "I've got a Habitat pickup scheduled for May 15th for some dressers and stuff." },
+      { t: 498, speaker: "Agent",  text: "Perfect. I'll text you from my direct number so you have it. When you've made a decision, just reach out and I'll put our offer in writing and we'll go from there. I'll also follow up in about a week if I haven't heard from you." },
+      { t: 518, speaker: "Seller", text: "All right. Sounds good. Thanks." },
+      { t: 524, speaker: "Agent",  text: "All right, talk to you soon." }
+    ]
+  },
+  {
+    id: "call-007",
+    agent: "Devin Buford",
+    date: "March 27, 2026",
+    callType: "IB",
+    duration: "25:48",
+    address: "729 E Gardendale Dr, Montgomery, AL",
+    tags: ["discovery", "objection"],
+    synopsis: "Inbound call from Jeanette Marks, looking to sell her brick 3/2 primary residence and move back to Troy, AL to be near family. Well-maintained home: brand new $15K roof (April 2025), 5-year-old HVAC, hardwood and laminate floors, gas fireplace, screened porch. Free and clear — husband recently approved for 100% VA disability, qualifying them for property tax exemption. Devin opens at $90K; seller has a competing cash offer at $123K and wants $150K. Devin handles it with total honesty — walks through the net math on a $150K listing (~$135K after fees, possibly less), explains buyer contingencies and timeline risk, and ultimately tells her the $123K cash offer in 30 days may be her best move. A standout example of transparent, seller-first advising even when it means walking away.",
+    audioUrl: "https://pub-2a4f1a740b7c44c2b5fea7c19569b242.r2.dev/ebe1b1a6-6f3b-487b-9973-b8930f08995e.MP3",
+    transcript: [
+      { t: 0,   speaker: "Agent",  text: "Thanks for calling Rebuilt, your trusted real estate partner. This is Devin. How can I help you?" },
+      { t: 10,  speaker: "Seller", text: "Yes. I got a postcard that says cash for your house. I'm at 729 East Gardendale Drive, Montgomery, Alabama." },
+      { t: 22,  speaker: "Agent",  text: "Okay. I'll ask a few questions, get it approved and qualified, and if everything works out I'll tell you what range we can be in. If it works for you, great — if not, at least we'll give it our best try. Is that fair?" },
+      { t: 40,  speaker: "Seller", text: "Yeah, that'll be fine." },
+      { t: 44,  speaker: "Agent",  text: "Is this a house you live in or is it an extra property?" },
+      { t: 50,  speaker: "Seller", text: "I live in it." },
+      { t: 53,  speaker: "Agent",  text: "I've got it pulled up — brick house with blue shutters. What's your name?" },
+      { t: 60,  speaker: "Seller", text: "Jeanette Marks." },
+      { t: 64,  speaker: "Agent",  text: "Jeanette, what's got you thinking about selling?" },
+      { t: 70,  speaker: "Seller", text: "I want to move home. I'm originally from Troy and I want to move back to be near my sisters and brothers. I've been in Montgomery since I was 19 and I'm just tired of it." },
+      { t: 88,  speaker: "Agent",  text: "Troy, Alabama — about 50 miles away. Is it just you on the deed or is someone else involved?" },
+      { t: 98,  speaker: "Seller", text: "My husband Roy." },
+      { t: 102, speaker: "Agent",  text: "And he's on board with selling?" },
+      { t: 106, speaker: "Seller", text: "Yeah. He said if we can sell and put a good down payment on the house we buy, he's willing to move." },
+      { t: 118, speaker: "Agent",  text: "How's the roof?" },
+      { t: 122, speaker: "Seller", text: "Brand new — a $15,000 roof. They took the chimney off, replaced the boards, redid the air ventilation system. Put in a ridge vent instead of the attic fan. The whole roof face is brand new. Done April 26th of last year." },
+      { t: 148, speaker: "Agent",  text: "Okay, great. Any other exterior updates?" },
+      { t: 154, speaker: "Seller", text: "We have a 10 by 10 screened-in back porch." },
+      { t: 160, speaker: "Agent",  text: "How soon do you want to have it closed?" },
+      { t: 166, speaker: "Seller", text: "Not more than two months." },
+      { t: 170, speaker: "Agent",  text: "Okay. Central heat and air?" },
+      { t: 174, speaker: "Seller", text: "Yes, only five years old." },
+      { t: 178, speaker: "Agent",  text: "What kind of floors are in the house?" },
+      { t: 183, speaker: "Seller", text: "Living room and dining room have tongue-and-groove laminate. Kitchen and breakfast nook are tile. The hallway, two front bedrooms, and master bath have carpet. The master bedroom has hardwood floors. And we have a gas fireplace." },
+      { t: 212, speaker: "Agent",  text: "Any upgrades to the kitchen or bathrooms besides the floors?" },
+      { t: 218, speaker: "Seller", text: "No." },
+      { t: 220, speaker: "Agent",  text: "Let me tell you a bit about how we work. We're investors — we buy properties to fix up and sell to new families, or sometimes rent them out. We can close in as little as two to three weeks or push out to two months — we're flexible. No formal appraisals or inspections from our side. We cover all closing costs. The number we give you is what you walk away with, minus any mortgages or liens. No commissions." },
+      { t: 262, speaker: "Seller", text: "We don't pay property taxes this year. My husband just got approved for 100% VA disability three months ago, so he qualified for the exemption. $700 a year — that's a lot on a fixed income." },
+      { t: 284, speaker: "Agent",  text: "That's great news. Okay, let me speak to my underwriter and I'll be right back." },
+      { t: 380, speaker: "Agent",  text: "All right, Miss Jeanette — three bedrooms, two bathrooms, correct?" },
+      { t: 388, speaker: "Seller", text: "Yes sir." },
+      { t: 390, speaker: "Agent",  text: "Okay. So I did get approval to move forward. I'll be honest — we're investors, we have to plan for putting work in. To pay you out the door with no other fees, we'd probably be around $90,000." },
+      { t: 410, speaker: "Seller", text: "No — I have another company willing to give me $123,000. He started at $100K and went to $123 when he found out about the screened porch. But I want $150,000." },
+      { t: 430, speaker: "Agent",  text: "I understand. $150,000 — and this is a great neighborhood, I can tell." },
+      { t: 438, speaker: "Seller", text: "This is the best neighborhood you'll ever find. No loud noise, no dogs barking. 20 years I've been here. Whoever gets this house will love it." },
+      { t: 454, speaker: "Agent",  text: "I believe you. Here's what I'll say honestly — if you want $150K, you might need to go on the market. And I think the house could probably sell for that. But after closing costs and agent commissions, a $150K sale probably nets you about $135K. And in today's market, buyers have leverage — they might ask you to come down to $140K and throw in a new refrigerator. By the time that's done you're looking at $124K net. And that could take four or five months, plus inspection contingencies and financing risk." },
+      { t: 510, speaker: "Seller", text: "Yeah, that's what I'm wondering — how long it would take." },
+      { t: 516, speaker: "Agent",  text: "I'm thinking at least three to four months on market. Now — the $123K cash offer in 30 days with no fees coming out? Honestly, if he puts that in writing and follows through, you should seriously consider it. I'm just being straight with you." },
+      { t: 540, speaker: "Seller", text: "He said 30 days, cash." },
+      { t: 544, speaker: "Agent",  text: "Then that might be your best move. You could chase $150K on the market and maybe get there, but the math on your net after fees and time and risk — the $123K cash offer isn't far off. If anything changes or you have questions, my name is Devin. I'm here." },
+      { t: 572, speaker: "Seller", text: "Okay. Thank you very much." },
+      { t: 576, speaker: "Agent",  text: "Yes ma'am. Best of luck. You have a good day." }
+    ]
+  }
+];
+
+// ─────────────────────────────────────────────
+//  STATE
+// ─────────────────────────────────────────────
+var activeCall = null;
+var activeFilter = "all";
+var audioReady = false;
+var speeds = [0.75, 1, 1.25, 1.5, 2];
+var speedIdx = 1;
+var audioEl = document.getElementById("audio-el");
+
+// ─────────────────────────────────────────────
+//  RENDER LIST
+// ─────────────────────────────────────────────
+function renderList() {
+  var q = document.getElementById("search-input").value.toLowerCase();
+  var list = document.getElementById("call-list");
+  list.innerHTML = "";
+
+  var filtered = CALLS.filter(function(c) {
+    var matchTag = activeFilter === "all" || c.tags.indexOf(activeFilter) >= 0;
+    var matchQ = !q || c.agent.toLowerCase().indexOf(q) >= 0 || c.address.toLowerCase().indexOf(q) >= 0 || c.synopsis.toLowerCase().indexOf(q) >= 0;
+    return matchTag && matchQ;
+  });
+
+  filtered.forEach(function(c) {
+    var div = document.createElement("div");
+    div.className = "call-item" + (activeCall && activeCall.id === c.id ? " active" : "");
+    div.onclick = function() { loadCall(c); };
+    div.innerHTML =
+      "<div class='call-item-row1'>" +
+        "<div class='call-agent'>" + c.agent + "</div>" +
+        "<div class='call-duration'>" + c.duration + "</div>" +
+      "</div>" +
+      "<div class='call-date'>" + c.date + " &nbsp;<span class='badge-" + (c.callType||"OB") + "'>" + (c.callType||"OB") + "</span></div>" +
+      "<div class='call-address'>" + c.address + "</div>" +
+      "<div class='call-tags'>" + c.tags.map(function(t) { return "<span class='call-tag tag-" + t + "'>" + t + "</span>"; }).join("") + "</div>";
+    list.appendChild(div);
+  });
+
+  document.getElementById("filter-count").textContent =
+    filtered.length === CALLS.length ? CALLS.length + " calls" : filtered.length + " of " + CALLS.length + " calls";
+}
+
+function setFilter(btn) {
+  document.querySelectorAll(".filter-chip").forEach(function(b) { b.classList.remove("active"); });
+  btn.classList.add("active");
+  activeFilter = btn.dataset.tag;
+  renderList();
+}
+
+// ─────────────────────────────────────────────
+//  LOAD CALL
+// ─────────────────────────────────────────────
+function loadCall(call) {
+  if (activeCall && activeCall.id === call.id) return;
+  audioEl.pause();
+  document.getElementById("play-btn").textContent = "▶";
+  activeCall = call;
+  renderList();
+  window.scrollTo({ top: 0, behavior: "instant" });
+
+  document.getElementById("empty-state").style.display = "none";
+  document.getElementById("player-wrap").style.display = "block";
+
+  document.getElementById("meta-title").textContent = call.address;
+  document.getElementById("meta-agent").textContent = call.agent;
+  document.getElementById("meta-date").textContent = call.date;
+  var ct = call.callType || "OB";
+  document.getElementById("meta-calltype-badge").className = "meta-badge-" + ct;
+  document.getElementById("meta-calltype-badge").textContent = ct;
+  document.getElementById("meta-duration").textContent = call.duration;
+  document.getElementById("meta-address").textContent = call.address;
+  document.getElementById("meta-synopsis").textContent = call.synopsis;
+
+  audioReady = false;
+  var errEl = document.getElementById("audio-error");
+  var playBtn = document.getElementById("play-btn");
+  if (call.audioUrl) {
+    audioEl.src = call.audioUrl;
+    audioEl.load();
+    errEl.style.display = "none";
+    playBtn.disabled = false;
+    audioReady = true;
+  } else {
+    audioEl.src = "";
+    errEl.style.display = "inline-block";
+    playBtn.disabled = true;
+  }
+  document.getElementById("progress-fill").style.width = "0%";
+  document.getElementById("progress-thumb").style.left = "0%";
+  document.getElementById("time-current").textContent = "0:00";
+  document.getElementById("time-total").textContent = call.duration;
+
+  renderTranscript(call);
+}
+
+// ─────────────────────────────────────────────
+//  TRANSCRIPT
+// ─────────────────────────────────────────────
+function renderTranscript(call) {
+  var body = document.getElementById("transcript-body");
+  body.innerHTML = "";
+  if (!call.audioUrl) {
+    var note = document.createElement("div");
+    note.className = "no-audio-note";
+    note.textContent = "No audio URL linked for this call. Add a URL in the CALLS array to enable click-to-seek and synchronized highlighting.";
+    body.appendChild(note);
+  }
+  call.transcript.forEach(function(line, idx) {
+    var div = document.createElement("div");
+    div.className = "tl";
+    div.dataset.idx = idx;
+    div.dataset.t = line.t;
+    div.onclick = function() {
+      if (!audioReady) return;
+      audioEl.currentTime = line.t;
+      if (audioEl.paused) { audioEl.play(); document.getElementById("play-btn").textContent = "⏸"; }
+    };
+    var spClass = line.speaker === "Agent" ? "speaker-agent" : "speaker-seller";
+    div.innerHTML =
+      "<span class='tl-time'>" + fmt(line.t) + "</span>" +
+      "<span class='tl-speaker " + spClass + "'>" + line.speaker + "</span>" +
+      "<span class='tl-text'>" + line.text + "</span>";
+    body.appendChild(div);
+  });
+}
+
+function fmt(s) {
+  return Math.floor(s / 60) + ":" + String(Math.floor(s % 60)).padStart(2, "0");
+}
+
+// ─────────────────────────────────────────────
+//  AUDIO EVENTS
+// ─────────────────────────────────────────────
+audioEl.addEventListener("timeupdate", function() {
+  if (!activeCall) return;
+  var ct = audioEl.currentTime;
+  var dur = audioEl.duration || 1;
+  var pct = (ct / dur) * 100;
+  document.getElementById("progress-fill").style.width = pct + "%";
+  document.getElementById("progress-thumb").style.left = pct + "%";
+  document.getElementById("time-current").textContent = fmt(ct);
+
+  var lines = activeCall.transcript;
+  var ai = 0;
+  for (var i = 0; i < lines.length; i++) { if (lines[i].t <= ct) ai = i; else break; }
+
+  var body = document.getElementById("transcript-body");
+  body.querySelectorAll(".tl").forEach(function(el, i) {
+    if (i === ai && !el.classList.contains("active")) {
+      el.classList.add("active");
+      // Measure el's top relative to transcript-body's scroll container
+      var elOffsetInBody = el.getBoundingClientRect().top - body.getBoundingClientRect().top + body.scrollTop;
+      body.scrollTop = elOffsetInBody - (body.clientHeight / 2) + (el.offsetHeight / 2);
+    } else if (i !== ai) {
+      el.classList.remove("active");
+    }
+  });
+});
+
+audioEl.addEventListener("loadedmetadata", function() {
+  document.getElementById("time-total").textContent = fmt(audioEl.duration);
+});
+audioEl.addEventListener("ended", function() { document.getElementById("play-btn").textContent = "▶"; });
+audioEl.addEventListener("error", function() {
+  document.getElementById("audio-error").style.display = "inline-block";
+  document.getElementById("play-btn").disabled = true;
+  audioReady = false;
+});
+
+// ─────────────────────────────────────────────
+//  CONTROLS
+// ─────────────────────────────────────────────
+function togglePlay() {
+  if (!audioReady) return;
+  if (audioEl.paused) { audioEl.play(); document.getElementById("play-btn").textContent = "⏸"; }
+  else { audioEl.pause(); document.getElementById("play-btn").textContent = "▶"; }
+}
+
+function seekTo(e) {
+  if (!audioReady || !audioEl.duration) return;
+  var track = document.getElementById("progress-track");
+  var rect = track.getBoundingClientRect();
+  var pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+  audioEl.currentTime = pct * audioEl.duration;
+}
+
+function cycleSpeed() {
+  speedIdx = (speedIdx + 1) % speeds.length;
+  var s = speeds[speedIdx];
+  audioEl.playbackRate = s;
+  document.getElementById("speed-btn").textContent = s + "×";
+}
+
+// ─────────────────────────────────────────────
+//  INIT
+// ─────────────────────────────────────────────
+renderList();
+</script>
+</body>
+</html>
