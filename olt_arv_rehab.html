@@ -6306,7 +6306,18 @@ body {
   // ---------------------------------------------------------------------------
 
   function getEmail() {
-    try { return localStorage.getItem(STORAGE_EMAIL) || ''; } catch (_) { return ''; }
+    try {
+      var email = localStorage.getItem(STORAGE_EMAIL);
+      if (email) return email;
+      // Fall back to the shared hub email so users coming from index.html
+      // aren't asked to enter it again. Persist it under the ARV key too.
+      var shared = localStorage.getItem('rebuilt_email');
+      if (shared) {
+        try { localStorage.setItem(STORAGE_EMAIL, shared); } catch (_) {}
+        return shared;
+      }
+      return '';
+    } catch (_) { return ''; }
   }
 
   function setEmail(email) {

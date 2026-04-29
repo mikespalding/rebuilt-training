@@ -245,8 +245,14 @@ function submitGate() {
   document.getElementById('email-gate').style.display = 'none';
 }
 window.addEventListener('DOMContentLoaded', function() {
-  var saved = localStorage.getItem('rebuilt_email');
+  var saved  = localStorage.getItem('rebuilt_email');
+  var domain = [114,101,98,117,105,108,116].map(function(c){return String.fromCharCode(c);}).join('');
+  var savedValid = saved && new RegExp('^[a-z0-9._%+\\-]+@' + domain + '\\.com$','i').test(saved);
   if (saved) document.getElementById('gate-email').value = saved;
+  if (savedValid) {
+    userEmail = saved;
+    document.getElementById('email-gate').style.display = 'none';
+  }
   document.getElementById('gate-email').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') submitGate();
   });

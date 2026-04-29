@@ -37,6 +37,16 @@
     if (saved && $('inputEmail')) $('inputEmail').value = saved;
   }
 
+  function autoStartIfEmailSaved() {
+    const saved = (localStorage.getItem('rebuilt_email') || '').trim();
+    if (!saved || !validateEmail(saved)) return;
+    userEmail = saved.toLowerCase();
+    userName  = userEmail.split('@')[0].replace(/[._]/g, ' ').replace(/(^\w|\s\w)/g, m => m.toUpperCase());
+    startTime = Date.now();
+    showScreen('screenQuiz');
+    renderQuestion();
+  }
+
   function wireMaterialLinks() {
     if (!MATERIAL_URL) return;
     ['materialLink', 'footerMaterialLink'].forEach(id => {
@@ -189,5 +199,6 @@
   document.addEventListener('DOMContentLoaded', function () {
     prefillEmail();
     wireMaterialLinks();
+    autoStartIfEmailSaved();
   });
 })();

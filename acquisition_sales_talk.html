@@ -1536,10 +1536,19 @@ document.getElementById('gate-email').addEventListener('input', () => {
   document.getElementById('gate-email').classList.remove('error');
   document.getElementById('gate-error').classList.remove('show');
 });
-// Pre-fill from hub session
+// Pre-fill from hub session — auto-skip the gate if a valid email is stored
 (function() {
-  var saved = localStorage.getItem('rebuilt_email');
+  var saved  = localStorage.getItem('rebuilt_email');
   if (saved) { document.getElementById('gate-email').value = saved; }
+  var _d = [114,101,98,117,105,108,116].map(c=>String.fromCharCode(c)).join('')+[46,99,111,109].map(c=>String.fromCharCode(c)).join('');
+  if (saved && new RegExp('^[a-z0-9._%+\\-]+@' + _d + '$', 'i').test(saved)) {
+    userEmail = saved;
+    document.getElementById('gate').style.display = 'none';
+    document.getElementById('sc-email').textContent = userEmail;
+    document.getElementById('sc-btn').classList.add('show');
+    trainingStarted = true;
+    updateScorecard();
+  }
 })();
 
 // ── Module navigation ──────────────────────────────────────────────────────
