@@ -578,6 +578,14 @@ var allData       = [];   // raw completions from sheet
 var repMap        = {};  // email → { name, role, completions: {mod_id: record} }
 var currentFilter = 'all';
 
+// ── HELPERS ──────────────────────────────────────────────────
+function formatClassDate(cls) {
+  if (!cls) return '';
+  var d = new Date(cls);
+  if (isNaN(d)) return cls;
+  return (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear();
+}
+
 // ── LOAD ─────────────────────────────────────────────────────
 function loadData() {
   document.getElementById('table-container').innerHTML =
@@ -685,7 +693,7 @@ function processData(data) {
   classVals.forEach(function(cls) {
     var opt = document.createElement('option');
     opt.value = cls;
-    opt.textContent = cls;
+    opt.textContent = formatClassDate(cls);
     if (cls === currentClass) opt.selected = true;
     classSel.appendChild(opt);
   });
@@ -911,7 +919,7 @@ function openRepModal(email) {
 
   // Set header info
   document.getElementById('modal-rep-name').textContent = rep.name;
-  document.getElementById('modal-class-date').textContent = rep.cls || 'Not assigned';
+  document.getElementById('modal-class-date').textContent = rep.cls ? formatClassDate(rep.cls) : 'Not assigned';
   
   var funcHtml = '<span class="rep-role ' + rep.role + '">' + 
                  (rep.role === 'acq' ? 'Acquisition' : 'Disposition') + 
