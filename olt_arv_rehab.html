@@ -5846,7 +5846,6 @@ body {
     { id: 'size_diff',       label: 'Too different in size (>20% sq ft variance)' },
     { id: 'too_far',         label: 'Too far away (>1/2 mile or different neighborhood)' },
     { id: 'sale_too_old',    label: 'Sale too old (>4 months ago)' },
-    { id: 'diff_style',      label: 'Different style or construction' },
     { id: 'active_listing',  label: 'Active listing, not a sold comp' },
     { id: 'ext_obsolescence', label: 'External obsolescence (highway, commercial, etc.)' },
     { id: 'lot_size_diff',   label: 'Significantly different lot size' },
@@ -5982,7 +5981,7 @@ body {
           beds: 3, baths: 2, sqft: 1600, yearBuilt: 1975,
           houseType: 'Split-Level', hasGarage: true, hasBasement: true, lotSqft: 9500,
           soldPrice: 240000, soldDate: '2025-09-20', distance: 0.1,
-          issues: ['diff_style', 'size_diff'],
+          issues: ['size_diff'],
         },
         {
           address: '980 Elm St, Columbus, OH',
@@ -6073,7 +6072,7 @@ body {
           beds: 4, baths: 3, sqft: 2800, yearBuilt: 2015,
           houseType: 'Brick Colonial', hasGarage: true, hasBasement: true, lotSqft: 12000,
           soldPrice: 450000, soldDate: '2025-12-01', distance: 0.4,
-          issues: ['diff_style', 'size_diff', 'lot_size_diff'],
+          issues: ['size_diff', 'lot_size_diff'],
         },
         {
           address: '738 Peachtree Ln, Atlanta, GA',
