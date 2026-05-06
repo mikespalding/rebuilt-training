@@ -166,6 +166,12 @@ body{font-family:"Montserrat",sans-serif;background:var(--gray-50);color:var(--g
       <button class="filter-chip" data-tag="close"      onclick="setFilter(this)">Close</button>
       <button class="filter-chip" data-tag="contract"   onclick="setFilter(this)">Contract</button>
     </div>
+    <div class="filter-divider"></div>
+    <div class="filter-chips">
+      <button class="filter-chip type-chip active" data-type="all" onclick="setTypeFilter(this)">All Types</button>
+      <button class="filter-chip type-chip" data-type="IB" onclick="setTypeFilter(this)">IB</button>
+      <button class="filter-chip type-chip" data-type="OB" onclick="setTypeFilter(this)">OB</button>
+    </div>
     <div class="filter-count" id="filter-count"></div>
   </div>
 </div>
@@ -1089,6 +1095,7 @@ const CALLS = [
 // ─────────────────────────────────────────────
 var activeCall = null;
 var activeFilter = "all";
+var activeTypeFilter = "all";
 var audioReady = false;
 var speeds = [0.75, 1, 1.25, 1.5, 2];
 var speedIdx = 1;
@@ -1104,8 +1111,9 @@ function renderList() {
 
   var filtered = CALLS.filter(function(c) {
     var matchTag = activeFilter === "all" || c.tags.indexOf(activeFilter) >= 0;
+    var matchType = activeTypeFilter === "all" || (c.callType || "OB") === activeTypeFilter;
     var matchQ = !q || c.agent.toLowerCase().indexOf(q) >= 0 || c.address.toLowerCase().indexOf(q) >= 0 || c.synopsis.toLowerCase().indexOf(q) >= 0;
-    return matchTag && matchQ;
+    return matchTag && matchType && matchQ;
   });
 
   filtered.forEach(function(c) {
@@ -1128,9 +1136,16 @@ function renderList() {
 }
 
 function setFilter(btn) {
-  document.querySelectorAll(".filter-chip").forEach(function(b) { b.classList.remove("active"); });
+  document.querySelectorAll(".filter-chip:not(.type-chip)").forEach(function(b) { b.classList.remove("active"); });
   btn.classList.add("active");
   activeFilter = btn.dataset.tag;
+  renderList();
+}
+
+function setTypeFilter(btn) {
+  document.querySelectorAll(".filter-chip.type-chip").forEach(function(b) { b.classList.remove("active"); });
+  btn.classList.add("active");
+  activeTypeFilter = btn.dataset.type;
   renderList();
 }
 
