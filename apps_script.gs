@@ -23,6 +23,17 @@ var TRACKING_SHEET = 'Tracking';
 var PAGEVIEWS_SHEET = 'PageViews';
 var PASS_THRESHOLD = 0.70;
 
+// ─── Acquisition Skills Practice — attendance tracking ─────────────────────
+// Roster lives in a separate workbook owned by ops; the deploying user
+// must have at least Viewer access to ROSTER_SHEET_ID for reads to succeed.
+var ROSTER_SHEET_ID            = '1_eC6wN-PKDZCHy89uoXZYYQp7W2dbitEwuRRmMriTkA';
+var ROSTER_TAB                 = 'ActiveEmployees';
+var SKILLS_ATTENDANCE_SHEET    = 'SkillsAttendance';
+var SKILLS_SESSIONS_SHEET      = 'SkillsSessions';
+// Legacy attendance workbook (the original Tue/Thu Google Sheet) — read once
+// during a manual migration via migrateLegacySkillsAttendance_().
+var LEGACY_ATTENDANCE_SHEET_ID = '1x9QESI4TGuhw8Ijk1-5ihr7exyZFN4sDLZck9HwHNpc';
+
 // ─── Routing ────────────────────────────────────────────────────────────────
 
 function doPost(e) {
@@ -35,9 +46,11 @@ function doPost(e) {
 
   switch (payload && payload.type) {
     case 'KC':
-    case 'OLT': return handleCompletion_(payload);
-    case 'PV':  return handlePageView_(payload);
-    default:    return jsonOut_({ success: false, error: 'unknown_type' });
+    case 'OLT':         return handleCompletion_(payload);
+    case 'PV':          return handlePageView_(payload);
+    case 'ATT_SET':     return handleAttendanceSet_(payload);
+    case 'ATT_ADD_DATE':return handleAttendanceAddDate_(payload);
+    default:            return jsonOut_({ success: false, error: 'unknown_type' });
   }
 }
 
@@ -45,12 +58,24 @@ function doPost(e) {
 // running into Apps Script's CORS redirect.
 //
 // Modes:
-//   default — pass ?email=<addr> to get that user's completions
-//   admin   — pass ?mode=admin to get every completion row (used by admin.html)
+//   default            — pass ?email=<addr> to get that user's completions
+//   admin              — pass ?mode=admin to get every completion row (admin.html)
+//   skills_attendance  — pass ?mode=skills_attendance to load roster + sessions
+//                        + attendance marks (acq_skills_practice.html)
 function doGet(e) {
   var mode  = String((e.parameter && e.parameter.mode) || '').toLowerCase().trim();
   var email = String((e.parameter && e.parameter.email) || '').toLowerCase().trim();
   var cb    = String((e.parameter && e.parameter.callback) || '');
+
+  if (mode === 'skills_attendance') {
+    var payload;
+    try {
+      payload = { success: true, data: getSkillsAttendance_() };
+    } catch (err) {
+      payload = { success: false, error: String(err && err.message || err) };
+    }
+    return jsonpOrJson_(payload, cb);
+  }
 
   var completions;
   if (mode === 'admin') {
@@ -61,8 +86,11 @@ function doGet(e) {
     completions = [];
   }
 
-  var json = JSON.stringify({ success: true, completions: completions });
+  return jsonpOrJson_({ success: true, completions: completions }, cb);
+}
 
+function jsonpOrJson_(obj, cb) {
+  var json = JSON.stringify(obj);
   if (cb) {
     return ContentService
       .createTextOutput(cb + '(' + json + ');')
@@ -197,6 +225,313 @@ function handlePageView_(p) {
     String(p.referrer || '')
   ]);
   return jsonOut_({ success: true });
+}
+
+// ─── Acq Skills Practice — attendance ───────────────────────────────────────
+//
+// Storage model (long-format, one row per mark):
+//   SkillsAttendance: employee_key | employee_name | session_date | present
+//                     | recorded_at | recorded_by
+//   SkillsSessions:   session_date | created_at | created_by | notes
+//
+// session_date is normalized to YYYY-MM-DD on the way in. employee_key is the
+// roster row's email when present, otherwise a slug of the name.
+//
+// Reads aggregate the latest mark per (employee_key, session_date) so toggles
+// can be append-only (no row mutation) and stay race-free under concurrent
+// writes.
+
+function getSkillsAttendance_() {
+  return {
+    roster:   readAcqRoster_(),
+    sessions: readSkillsSessions_(),
+    marks:    readLatestSkillsMarks_(),
+    fetched_at: new Date().toISOString()
+  };
+}
+
+function readAcqRoster_() {
+  var ss;
+  try {
+    ss = SpreadsheetApp.openById(ROSTER_SHEET_ID);
+  } catch (err) {
+    throw new Error('Cannot open roster sheet — ensure the deploying user has Viewer access to ' + ROSTER_SHEET_ID + '. Underlying: ' + err);
+  }
+  var sheet = ss.getSheetByName(ROSTER_TAB);
+  if (!sheet) throw new Error('Roster tab "' + ROSTER_TAB + '" not found in roster workbook.');
+  if (sheet.getLastRow() < 2) return [];
+
+  var values = sheet.getDataRange().getValues();
+  var header = values[0].map(function(h){ return String(h || '').trim().toLowerCase(); });
+
+  function findCol() {
+    for (var a = 0; a < arguments.length; a++) {
+      var i = header.indexOf(String(arguments[a]).toLowerCase());
+      if (i >= 0) return i;
+    }
+    return -1;
+  }
+  var iName  = findCol('employee name', 'name', 'full name');
+  var iEmail = findCol('email', 'work email', 'rebuilt email', 'company email');
+  var iTeam  = findCol('team', 'department', 'function');
+  var iRole  = findCol('role', 'title', 'position');
+  var iActive= findCol('active', 'status', 'employment status');
+
+  if (iName < 0)  throw new Error('Roster missing an "Employee Name" column.');
+  if (iTeam < 0)  throw new Error('Roster missing a "Team" column.');
+
+  var seen = {};
+  var out  = [];
+  for (var r = 1; r < values.length; r++) {
+    var row  = values[r];
+    var team = String(row[iTeam] || '').trim().toLowerCase();
+    if (team !== 'acquisition') continue;
+
+    if (iActive >= 0) {
+      var status = String(row[iActive] || '').trim().toLowerCase();
+      if (status && status !== 'active' && status !== 'true' && status !== 'yes') continue;
+    }
+
+    var name  = String(row[iName] || '').trim();
+    if (!name) continue;
+    var email = iEmail >= 0 ? String(row[iEmail] || '').toLowerCase().trim() : '';
+    var key   = email || slugifyName_(name);
+    if (seen[key]) continue;
+    seen[key] = true;
+
+    out.push({
+      key:   key,
+      name:  name,
+      email: email,
+      role:  iRole >= 0 ? String(row[iRole] || '').trim() : ''
+    });
+  }
+  out.sort(function(a, b) { return a.name.localeCompare(b.name); });
+  return out;
+}
+
+function readSkillsSessions_() {
+  var sheet = getOrCreateSheet_(SKILLS_SESSIONS_SHEET, [
+    'session_date', 'created_at', 'created_by', 'notes'
+  ]);
+  if (sheet.getLastRow() < 2) return [];
+  var values = sheet.getDataRange().getValues();
+  var seen = {};
+  var out  = [];
+  for (var i = 1; i < values.length; i++) {
+    var d = normalizeDateStr_(values[i][0]);
+    if (!d || seen[d]) continue;
+    seen[d] = true;
+    out.push({
+      session_date: d,
+      created_by:   String(values[i][2] || ''),
+      notes:        String(values[i][3] || '')
+    });
+  }
+  out.sort(function(a, b) { return a.session_date < b.session_date ? -1 : a.session_date > b.session_date ? 1 : 0; });
+  return out;
+}
+
+// Returns one record per (employee_key, session_date) — the most recent mark
+// wins. Sessions referenced only in attendance (not yet in SkillsSessions) are
+// still surfaced so the UI can render them as columns.
+function readLatestSkillsMarks_() {
+  var sheet = getOrCreateSheet_(SKILLS_ATTENDANCE_SHEET, [
+    'employee_key', 'employee_name', 'session_date', 'present',
+    'recorded_at', 'recorded_by'
+  ]);
+  if (sheet.getLastRow() < 2) return [];
+  var values = sheet.getDataRange().getValues();
+
+  // Bucket rows by (key, date), keeping the row with the latest recorded_at.
+  var bucket = {};
+  for (var i = 1; i < values.length; i++) {
+    var row = values[i];
+    var key = String(row[0] || '').toLowerCase().trim();
+    var d   = normalizeDateStr_(row[2]);
+    if (!key || !d) continue;
+    var ts  = parseTs_(row[4]);
+    var bk  = key + '|' + d;
+    var prev = bucket[bk];
+    if (!prev || ts >= prev.ts) {
+      bucket[bk] = {
+        key:    key,
+        name:   String(row[1] || ''),
+        date:   d,
+        present:row[3] === true || String(row[3]).toLowerCase() === 'true',
+        ts:     ts
+      };
+    }
+  }
+  return Object.keys(bucket).map(function(k) {
+    var b = bucket[k];
+    return {
+      key:          b.key,
+      employee_name:b.name,
+      session_date: b.date,
+      present:      b.present
+    };
+  });
+}
+
+function handleAttendanceSet_(p) {
+  var key  = String(p.key  || p.email_key || '').toLowerCase().trim();
+  var name = String(p.name || p.employee_name || '').trim();
+  var date = normalizeDateStr_(p.session_date);
+  var present = p.present === true || String(p.present).toLowerCase() === 'true';
+  var by   = String(p.recorded_by || '').toLowerCase().trim();
+
+  if (!key || !date) return jsonOut_({ success: false, error: 'missing_key_or_date' });
+
+  var sheet = getOrCreateSheet_(SKILLS_ATTENDANCE_SHEET, [
+    'employee_key', 'employee_name', 'session_date', 'present',
+    'recorded_at', 'recorded_by'
+  ]);
+  sheet.appendRow([key, name, date, present, new Date(), by]);
+
+  // Implicit session creation: if marking a new date, also register it as a
+  // session so the column persists even after the mark is toggled off.
+  ensureSession_(date, by);
+
+  return jsonOut_({ success: true });
+}
+
+function handleAttendanceAddDate_(p) {
+  var date = normalizeDateStr_(p.session_date);
+  var by   = String(p.recorded_by || '').toLowerCase().trim();
+  if (!date) return jsonOut_({ success: false, error: 'invalid_date' });
+  ensureSession_(date, by, String(p.notes || ''));
+  return jsonOut_({ success: true, session_date: date });
+}
+
+function ensureSession_(date, by, notes) {
+  var sheet = getOrCreateSheet_(SKILLS_SESSIONS_SHEET, [
+    'session_date', 'created_at', 'created_by', 'notes'
+  ]);
+  if (sheet.getLastRow() >= 2) {
+    var values = sheet.getRange(2, 1, sheet.getLastRow() - 1, 1).getValues();
+    for (var i = 0; i < values.length; i++) {
+      if (normalizeDateStr_(values[i][0]) === date) return;
+    }
+  }
+  sheet.appendRow([date, new Date(), by || '', notes || '']);
+}
+
+// ─── Date helpers ───────────────────────────────────────────────────────────
+function normalizeDateStr_(v) {
+  if (!v) return '';
+  if (v instanceof Date && !isNaN(v.getTime())) return formatYmd_(v);
+  var s = String(v).trim();
+  if (!s) return '';
+  if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return s;
+  var d = new Date(s);
+  if (!isNaN(d.getTime())) return formatYmd_(d);
+  return '';
+}
+function formatYmd_(d) {
+  var tz = Session.getScriptTimeZone() || 'America/Chicago';
+  return Utilities.formatDate(d, tz, 'yyyy-MM-dd');
+}
+function parseTs_(v) {
+  if (v instanceof Date) return v.getTime();
+  var n = Date.parse(String(v));
+  return isNaN(n) ? 0 : n;
+}
+function slugifyName_(name) {
+  return String(name).toLowerCase().trim()
+    .replace(/[^a-z0-9]+/g, '.')
+    .replace(/^\.+|\.+$/g, '');
+}
+
+// ─── One-time legacy import ─────────────────────────────────────────────────
+// Run manually from the Apps Script editor after the new sheets exist:
+//   1. Open Apps Script → select migrateLegacySkillsAttendance_ → Run.
+//   2. Approve the Drive scope prompt the first time.
+// Idempotent: rows from a prior import are tagged recorded_by='legacy_import'
+// and the function refuses to re-import if any such row already exists.
+function migrateLegacySkillsAttendance_() {
+  var dst = getOrCreateSheet_(SKILLS_ATTENDANCE_SHEET, [
+    'employee_key', 'employee_name', 'session_date', 'present',
+    'recorded_at', 'recorded_by'
+  ]);
+  if (dst.getLastRow() >= 2) {
+    var existing = dst.getRange(2, 6, dst.getLastRow() - 1, 1).getValues();
+    for (var i = 0; i < existing.length; i++) {
+      if (String(existing[i][0]) === 'legacy_import') {
+        throw new Error('Legacy import already ran. Clear SkillsAttendance rows where recorded_by=legacy_import and re-run.');
+      }
+    }
+  }
+
+  var src = SpreadsheetApp.openById(LEGACY_ATTENDANCE_SHEET_ID);
+  var sheets = src.getSheets();
+  var imported = 0;
+  var rosterByName = {};
+  readAcqRoster_().forEach(function(r) {
+    rosterByName[r.name.toLowerCase()] = r;
+  });
+
+  for (var s = 0; s < sheets.length; s++) {
+    var sheet = sheets[s];
+    if (sheet.getLastRow() < 2 || sheet.getLastColumn() < 2) continue;
+
+    var values = sheet.getDataRange().getValues();
+    var header = values[0];
+
+    // Find the name column (heuristic: leftmost cell whose lowered header
+    // looks like "name", "employee", or "associate"; falls back to col 0).
+    var nameCol = 0;
+    for (var c = 0; c < header.length; c++) {
+      var h = String(header[c] || '').toLowerCase().trim();
+      if (h === 'name' || h === 'employee' || h === 'employee name' || h === 'associate' || h === 'rep') {
+        nameCol = c;
+        break;
+      }
+    }
+
+    // Date columns: any header that parses as a Date.
+    var dateCols = [];
+    for (var c2 = 0; c2 < header.length; c2++) {
+      if (c2 === nameCol) continue;
+      var v = header[c2];
+      var d = (v instanceof Date) ? v : new Date(v);
+      if (v && !isNaN(d.getTime())) {
+        dateCols.push({ col: c2, date: formatYmd_(d) });
+      }
+    }
+    if (dateCols.length === 0) continue;
+
+    for (var r = 1; r < values.length; r++) {
+      var row  = values[r];
+      var name = String(row[nameCol] || '').trim();
+      if (!name) continue;
+
+      var roster = rosterByName[name.toLowerCase()];
+      var key    = roster ? roster.key : slugifyName_(name);
+
+      for (var k = 0; k < dateCols.length; k++) {
+        var cell = row[dateCols[k].col];
+        var present = isPresentTruthy_(cell);
+        if (present) {
+          dst.appendRow([key, roster ? roster.name : name, dateCols[k].date, true, new Date(), 'legacy_import']);
+          imported++;
+        }
+      }
+      // Also register every encountered date as a session.
+      for (var k2 = 0; k2 < dateCols.length; k2++) {
+        ensureSession_(dateCols[k2].date, 'legacy_import');
+      }
+    }
+  }
+
+  return imported;
+}
+function isPresentTruthy_(v) {
+  if (v === true) return true;
+  if (typeof v === 'number') return v !== 0;
+  var s = String(v || '').trim().toLowerCase();
+  if (!s) return false;
+  return s === 'x' || s === '✓' || s === 'y' || s === 'yes' || s === 'p' || s === 'present' || s === '1' || s === 'true';
 }
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
