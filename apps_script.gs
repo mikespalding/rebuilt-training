@@ -445,10 +445,39 @@ function slugifyName_(name) {
 
 // ─── One-time legacy import ─────────────────────────────────────────────────
 // Run manually from the Apps Script editor after the new sheets exist:
-//   1. Open Apps Script → select migrateLegacySkillsAttendance_ → Run.
+//   1. In the function dropdown, pick migrateLegacySkillsAttendance → Run.
 //   2. Approve the Drive scope prompt the first time.
 // Idempotent: rows from a prior import are tagged recorded_by='legacy_import'
 // and the function refuses to re-import if any such row already exists.
+//
+// If this returns 0, run inspectLegacyAttendance (also in the dropdown) to
+// see what the legacy sheet's header row actually looks like — the heuristic
+// expects a "Name"-ish first column and date-parseable column headers.
+function migrateLegacySkillsAttendance() {
+  return migrateLegacySkillsAttendance_();
+}
+function inspectLegacyAttendance() {
+  var src = SpreadsheetApp.openById(LEGACY_ATTENDANCE_SHEET_ID);
+  var report = src.getSheets().map(function(sheet) {
+    var lastRow = sheet.getLastRow();
+    var lastCol = sheet.getLastColumn();
+    if (lastRow === 0 || lastCol === 0) {
+      return { tab: sheet.getName(), empty: true };
+    }
+    var rows = Math.min(lastRow, 5);
+    var cols = Math.min(lastCol, 8);
+    var sample = sheet.getRange(1, 1, rows, cols).getValues().map(function(r) {
+      return r.map(function(v) {
+        if (v instanceof Date) return 'Date(' + Utilities.formatDate(v, Session.getScriptTimeZone() || 'America/Chicago', 'yyyy-MM-dd') + ')';
+        return v;
+      });
+    });
+    return { tab: sheet.getName(), rows: lastRow, cols: lastCol, sample: sample };
+  });
+  Logger.log(JSON.stringify(report, null, 2));
+  return report;
+}
+
 function migrateLegacySkillsAttendance_() {
   var dst = getOrCreateSheet_(SKILLS_ATTENDANCE_SHEET, [
     'employee_key', 'employee_name', 'session_date', 'present',
