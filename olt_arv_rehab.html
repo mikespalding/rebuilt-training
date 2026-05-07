@@ -9397,9 +9397,8 @@ body {
         u.displayName = name;
         users.push(u);
       }
-      // Sort: most modules completed first, then alphabetical
+      // Sort alphabetically by name
       users.sort(function (a, b) {
-        if (a.passedCount !== b.passedCount) return b.passedCount - a.passedCount;
         return a.displayName.localeCompare(b.displayName);
       });
 
