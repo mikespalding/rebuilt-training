@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Rebuilt Training — Acq Skills Practice Roll</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjQ0MCAwIDU1MCA4OTAiPgogIDxwYXRoIGQ9Im0gMzMzNy45OSwzNTQ0LjgzIDExNzkuNzksMTA3Ni43MiB2IDE5MzguMSBMIDMzMzcuOTksNTU5MC42IFYgMzU0NC44MyIgZmlsbD0iIzRlYTllMiIgdHJhbnNmb3JtPSJtYXRyaXgoMC4xMzMzMzMzMywwLDAsLTAuMTMzMzMzMzMsMCwxMzMyLjY2NjcpIi8+CiAgPHBhdGggZD0iTSA2MTY5LjQ4LDk5OTUuMDEgViA0NjIxLjU1IGwgMTE3OS44LC0xMDc2LjcyIHYgNTQ5MS4yOSBsIC0xMTc5LjgsOTU4Ljg5IiBmaWxsPSIjNGVhOWUyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjEzMzMzMzMzLDAsMCwtMC4xMzMzMzMzMywwLDEzMzIuNjY2NykiLz4KPC9zdmc+"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --blue:      #21a9e1;
+  --teal-dark: #0f696e;
+  --orange:    #f5831f;
+  --navy:      #1f3540;
+  --off-white: #efedeb;
+  --white:     #ffffff;
+  --muted:     #5a7888;
+  --border:    rgba(31,53,64,0.10);
+  --pass:      #2ecc71;
+  --fail:      #e74c3c;
+  --warn:      #f5a524;
+  --font:      'Montserrat', sans-serif;
+}
+body { font-family: var(--font); background: var(--off-white); color: var(--navy); min-height: 100vh; }
+
+/* ── HEADER ── */
+.site-header {
+  background: var(--navy); height: 72px; padding: 0 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.22);
+}
+.header-logo { display: flex; align-items: center; gap: 16px; }
+.header-divider { width: 1px; height: 32px; background: rgba(255,255,255,0.15); }
+.header-title { display: flex; flex-direction: column; gap: 1px; }
+.header-title-main { font-size: 15px; font-weight: 800; color: white; line-height: 1; }
+.header-title-sub { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.40); letter-spacing: 0.12em; text-transform: uppercase; line-height: 1; }
+.header-right { display: flex; align-items: center; gap: 12px; }
+.facilitator-badge {
+  font-size: 10px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 4px 12px; border-radius: 20px;
+  background: rgba(33,169,225,0.15); color: var(--blue);
+}
+.btn {
+  font-size: 11px; font-weight: 700; padding: 7px 14px;
+  border-radius: 6px; cursor: pointer;
+  font-family: var(--font); transition: background 0.2s;
+  border: 1px solid transparent;
+}
+.btn-primary {
+  background: rgba(33,169,225,0.15); border-color: rgba(33,169,225,0.3);
+  color: var(--blue);
+}
+.btn-primary:hover { background: rgba(33,169,225,0.25); }
+.btn-light {
+  background: var(--white); border-color: var(--border); color: var(--navy);
+}
+.btn-light:hover { border-color: var(--blue); }
+.btn-back {
+  font-size: 11px; font-weight: 700; padding: 6px 12px;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 6px; color: rgba(255,255,255,0.85);
+  cursor: pointer; font-family: var(--font); text-decoration: none;
+}
+.btn-back:hover { background: rgba(255,255,255,0.15); }
+
+/* ── MAIN ── */
+.main-wrap { max-width: 1500px; margin: 0 auto; padding: 28px 24px 80px; }
+.page-title-row { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 6px; }
+.page-title { font-size: 22px; font-weight: 800; color: var(--navy); }
+.page-sub   { font-size: 11px; color: var(--muted); margin-bottom: 22px; }
+
+/* ── CONTROLS ── */
+.controls {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 18px; flex-wrap: wrap;
+}
+.controls .filler { flex: 1; }
+.add-date-wrap {
+  display: flex; align-items: center; gap: 6px;
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: 8px; padding: 4px 6px 4px 12px;
+}
+.add-date-wrap input[type=date] {
+  border: none; outline: none; font-family: var(--font);
+  font-size: 12px; color: var(--navy); background: transparent;
+}
+.add-date-wrap label {
+  font-size: 10px; font-weight: 800; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted);
+}
+.last-updated { font-size: 10px; color: var(--muted); margin-top: 8px; text-align: right; }
+
+/* ── TABLE ── */
+.table-wrap {
+  background: var(--white); border-radius: 12px;
+  border: 1px solid var(--border); overflow: auto;
+  max-height: 70vh;
+}
+table { width: 100%; border-collapse: collapse; font-size: 11px; }
+thead tr { background: var(--navy); }
+th {
+  padding: 10px 12px; text-align: left;
+  font-size: 9px; font-weight: 800; letter-spacing: 0.08em;
+  text-transform: uppercase; color: rgba(255,255,255,0.65);
+  white-space: nowrap; position: sticky; top: 0; z-index: 1;
+  background: var(--navy);
+}
+th.rep-col {
+  color: white; min-width: 220px;
+  position: sticky; top: 0; left: 0; z-index: 3;
+  box-shadow: 2px 0 0 rgba(255,255,255,0.08);
+}
+th.summary-col {
+  position: sticky; top: 0; left: 220px; z-index: 3;
+  min-width: 130px;
+  box-shadow: 2px 0 6px rgba(0,0,0,0.18);
+  text-align: center;
+}
+th.date-col {
+  text-align: center; min-width: 72px; max-width: 84px;
+  padding: 8px 6px;
+  cursor: default;
+}
+th.date-col .date-day { display: block; font-size: 11px; color: white; font-weight: 800; letter-spacing: 0.04em; }
+th.date-col .date-dow { display: block; font-size: 8px; color: rgba(255,255,255,0.5); font-weight: 700; margin-top: 2px; letter-spacing: 0.1em; }
+
+tbody tr { border-bottom: 1px solid rgba(31,53,64,0.06); }
+tbody tr:hover { background: rgba(33,169,225,0.04); }
+tbody tr:hover td.rep-cell,
+tbody tr:hover td.summary-cell { background: #eaf7fd; }
+tbody tr:last-child { border-bottom: none; }
+
+td { padding: 8px 12px; vertical-align: middle; }
+td.rep-cell {
+  min-width: 220px;
+  position: sticky; left: 0; z-index: 2;
+  background: var(--white);
+  box-shadow: 2px 0 0 rgba(31,53,64,0.06);
+}
+.rep-name { font-size: 12px; font-weight: 700; color: var(--navy); }
+.rep-key  { font-size: 10px; color: var(--muted); margin-top: 1px; }
+
+td.summary-cell {
+  min-width: 130px;
+  position: sticky; left: 220px; z-index: 2;
+  background: var(--white);
+  box-shadow: 2px 0 6px rgba(31,53,64,0.08);
+}
+.pct-bar-wrap {
+  height: 6px; background: rgba(31,53,64,0.08);
+  border-radius: 99px; overflow: hidden; margin-bottom: 3px;
+}
+.pct-bar-fill { height: 100%; border-radius: 99px; background: var(--pass); }
+.pct-bar-fill.warn { background: var(--warn); }
+.pct-bar-fill.bad  { background: var(--fail); }
+.pct-text { font-size: 10px; font-weight: 700; color: var(--muted); display: flex; justify-content: space-between; }
+.pct-text .pct-num { color: var(--navy); }
+
+td.mark-cell { text-align: center; padding: 6px 4px; cursor: pointer; user-select: none; }
+.mark-bubble {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 30px; height: 30px; border-radius: 8px; transition: all 0.12s;
+  font-size: 14px; font-weight: 800;
+}
+.mark-bubble.present {
+  background: rgba(46,204,113,0.15); border: 1.5px solid rgba(46,204,113,0.4);
+  color: #18924d;
+}
+.mark-bubble.absent {
+  background: rgba(31,53,64,0.04); border: 1.5px solid rgba(31,53,64,0.10);
+  color: rgba(31,53,64,0.25);
+}
+td.mark-cell:hover .mark-bubble {
+  border-color: var(--blue);
+  background: rgba(33,169,225,0.08);
+}
+.mark-bubble.saving { opacity: 0.5; }
+
+/* ── AT-RISK PANEL ── */
+.panel-section { margin-top: 28px; }
+.section-title {
+  font-size: 11px; font-weight: 800; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--muted);
+  margin-bottom: 10px; display: flex; align-items: center; gap: 10px;
+}
+.section-title .count-pill {
+  background: rgba(231,76,60,0.12); color: var(--fail);
+  padding: 2px 10px; border-radius: 99px; font-size: 10px; letter-spacing: 0.05em;
+}
+.section-title .count-pill.ok { background: rgba(46,204,113,0.12); color: #18924d; }
+.atrisk-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+.atrisk-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-left: 4px solid var(--fail);
+  border-radius: 10px; padding: 14px 16px;
+}
+.atrisk-card.warn { border-left-color: var(--warn); }
+.atrisk-name { font-size: 14px; font-weight: 800; color: var(--navy); }
+.atrisk-reason {
+  font-size: 10px; color: var(--muted);
+  margin-top: 2px; letter-spacing: 0.04em; font-weight: 600;
+}
+.atrisk-stats {
+  display: flex; gap: 14px; margin-top: 10px;
+  font-size: 10px; color: var(--muted);
+}
+.atrisk-stat-num { font-size: 16px; font-weight: 800; color: var(--navy); display: block; }
+.atrisk-stat-num.bad { color: var(--fail); }
+.atrisk-stat-label { font-size: 8px; letter-spacing: 0.1em; text-transform: uppercase; }
+.atrisk-streak {
+  display: flex; gap: 3px; margin-top: 8px;
+}
+.atrisk-streak .dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: rgba(31,53,64,0.10);
+}
+.atrisk-streak .dot.present { background: var(--pass); }
+.atrisk-streak .dot.absent  { background: var(--fail); opacity: 0.7; }
+.atrisk-streak .dot.unknown { background: rgba(31,53,64,0.10); }
+
+.empty-good {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 24px; text-align: center;
+  color: var(--muted); font-size: 12px; font-style: italic;
+}
+
+/* ── STATES ── */
+.state-msg {
+  text-align: center; padding: 60px 24px;
+  font-size: 13px; color: var(--muted); font-style: italic;
+}
+.spinner-wrap { display: flex; align-items: center; justify-content: center; gap: 10px; }
+.spinner {
+  width: 20px; height: 20px; border: 2px solid rgba(31,53,64,0.15);
+  border-top-color: var(--blue); border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.toast-wrap { position: fixed; bottom: 24px; right: 24px; z-index: 500; display: flex; flex-direction: column; gap: 8px; }
+.toast {
+  background: var(--navy); color: white; padding: 10px 16px;
+  border-radius: 8px; font-size: 12px; font-weight: 600;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  animation: slideUp 0.2s ease;
+}
+.toast.error { background: var(--fail); }
+@keyframes slideUp { from { transform: translateY(10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+/* ── GATE ── */
+#gate-overlay {
+  position: fixed; inset: 0; background: rgba(10,22,28,0.93);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000; backdrop-filter: blur(6px);
+}
+#gate-overlay.hidden { display: none; }
+.gate-box {
+  background: var(--white); border-radius: 14px;
+  padding: 36px 40px; max-width: 440px; width: 92%; text-align: center;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.40);
+}
+.gate-box h2 { font-size: 18px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+.gate-box p  { font-size: 12px; color: var(--muted); line-height: 1.6; margin-bottom: 18px; }
+.gate-box a  { color: var(--blue); text-decoration: none; font-weight: 700; }
+
+/* ── FOOTER ── */
+.site-footer { text-align: center; padding: 24px; font-size: 11px; color: var(--muted); border-top: 1px solid var(--border); }
+
+@media (max-width: 700px) {
+  .main-wrap { padding: 16px 10px 60px; }
+  .site-header { padding: 0 16px; }
+  th.rep-col, td.rep-cell { min-width: 160px; }
+  th.summary-col, td.summary-cell { left: 160px; min-width: 110px; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-logo">
+    <div class="header-title">
+      <span class="header-title-main">Acquisition Skills Practice</span>
+      <span class="header-title-sub">Tue / Thu Roll</span>
+    </div>
+  </div>
+  <div class="header-right">
+    <span class="facilitator-badge">Facilitator</span>
+    <a class="btn-back" href="index.html">← Hub</a>
+    <button class="btn btn-primary" onclick="loadAttendance()">↻ Refresh</button>
+  </div>
+</header>
+
+<main class="main-wrap" id="main-wrap" style="display:none;">
+
+  <div class="page-title-row">
+    <div>
+      <div class="page-title">Skills Practice Attendance</div>
+      <div class="page-sub" id="page-sub">Loading…</div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <div class="add-date-wrap">
+      <label for="new-date-input">Add Session Date</label>
+      <input type="date" id="new-date-input"/>
+      <button class="btn btn-light" onclick="addSessionDate()">Add</button>
+    </div>
+    <div class="filler"></div>
+  </div>
+
+  <!-- TABLE -->
+  <div class="table-wrap">
+    <div id="table-container">
+      <div class="state-msg">
+        <div class="spinner-wrap"><div class="spinner"></div><span>Loading roster &amp; attendance…</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="last-updated" id="last-updated"></div>
+
+  <!-- AT-RISK -->
+  <div class="panel-section">
+    <div class="section-title">
+      At-Risk
+      <span class="count-pill" id="atrisk-count">—</span>
+    </div>
+    <div id="atrisk-content"></div>
+  </div>
+
+</main>
+
+<!-- GATE -->
+<div id="gate-overlay">
+  <div class="gate-box">
+    <h2>Leader Access Required</h2>
+    <p>This page is for facilitators only. Sign in on the <a href="index.html">main hub</a> with an authorized email to access skills-practice attendance.</p>
+  </div>
+</div>
+
+<div class="toast-wrap" id="toast-wrap"></div>
+
+<footer class="site-footer">
+  © Rebuilt Offers, LLC · Acq Skills Practice Roll
+</footer>
+
+<script>
+// ── CONFIG ──────────────────────────────────────────────────────
+const APPS_URL = 'https://script.google.com/macros/s/AKfycbyRSuUKBjwlPZiY8E7IZZUEQ8u-uwwuTXZnQ0nTPqtfk-bu3zyAa6RKZYw7687arJVs/exec';
+const LEADER_EMAILS = [
+  'mike.spalding@rebuilt.com',
+  'patrick.solomon@rebuilt.com',
+  'al@rebuilt.com',
+  'scott@rebuilt.com',
+  'brandon@rebuilt.com',
+  'aj@rebuilt.com',
+  'shon.yoshida@rebuilt.com',
+  'luis.guzman@rebuilt.com',
+  'kyle.singer@rebuilt.com',
+  'devin.buford@rebuilt.com',
+  'dianne.mode@rebuilt.com',
+  'rob.gorski@rebuilt.com',
+  'maegan.grace@rebuilt.com',
+  'alec.prieto@rebuilt.com',
+  'kassidy.hogan@rebuilt.com',
+  'jessica.kinder@rebuilt.com'
+];
+
+// At-risk thresholds
+const RECENT_WINDOW   = 4;     // sessions to look back for "recent" miss streak
+const RECENT_MISSES   = 2;     // # of recent misses to flag
+const OVERALL_MIN_PCT = 0.70;  // overall attendance threshold (70%)
+
+// ── STATE ───────────────────────────────────────────────────────
+let currentEmail = '';
+let roster   = [];     // [{ key, name, email, role }]
+let sessions = [];     // [{ session_date, ... }] sorted oldest → newest
+let marks    = {};     // marks[key][session_date] = { present }
+let pendingTogglesByCell = {};  // de-dupes rapid clicks per cell
+
+// ── GATE ────────────────────────────────────────────────────────
+function readEmail() {
+  try { return (localStorage.getItem('rebuilt_email') || '').toLowerCase().trim(); }
+  catch (e) { return ''; }
+}
+function checkAccess() {
+  currentEmail = readEmail();
+  const ok = currentEmail && LEADER_EMAILS.indexOf(currentEmail) >= 0;
+  document.getElementById('gate-overlay').classList.toggle('hidden', !!ok);
+  document.getElementById('main-wrap').style.display = ok ? '' : 'none';
+  return ok;
+}
+
+// ── LOAD ────────────────────────────────────────────────────────
+function loadAttendance() {
+  document.getElementById('table-container').innerHTML =
+    '<div class="state-msg"><div class="spinner-wrap"><div class="spinner"></div><span>Loading…</span></div></div>';
+  document.getElementById('atrisk-content').innerHTML = '';
+  document.getElementById('atrisk-count').textContent = '—';
+
+  const cbName = 'sp_cb_' + Date.now();
+  const timer = setTimeout(function() {
+    delete window[cbName];
+    const s = document.getElementById('s_' + cbName);
+    if (s) s.remove();
+    document.getElementById('table-container').innerHTML =
+      '<div class="state-msg">Could not load data — check the Apps Script deployment.</div>';
+  }, 12000);
+
+  window[cbName] = function(resp) {
+    clearTimeout(timer);
+    delete window[cbName];
+    const s = document.getElementById('s_' + cbName);
+    if (s) s.remove();
+
+    if (!resp || resp.success === false) {
+      document.getElementById('table-container').innerHTML =
+        '<div class="state-msg">Error: ' + ((resp && resp.error) || 'unknown') + '</div>';
+      return;
+    }
+    processData(resp.data || {});
+  };
+
+  const tag = document.createElement('script');
+  tag.id = 's_' + cbName;
+  tag.src = APPS_URL + '?mode=skills_attendance&callback=' + cbName;
+  tag.onerror = function() {
+    clearTimeout(timer);
+    document.getElementById('table-container').innerHTML =
+      '<div class="state-msg">Failed to reach Apps Script.</div>';
+  };
+  document.head.appendChild(tag);
+}
+
+function processData(data) {
+  roster   = data.roster   || [];
+  sessions = data.sessions || [];
+
+  // Surface session dates that have marks but no SkillsSessions row, so a date
+  // imported from the legacy sheet still appears as a column.
+  const sessionSet = {};
+  sessions.forEach(s => sessionSet[s.session_date] = true);
+  (data.marks || []).forEach(m => {
+    if (!sessionSet[m.session_date]) {
+      sessions.push({ session_date: m.session_date });
+      sessionSet[m.session_date] = true;
+    }
+  });
+  sessions.sort((a, b) => a.session_date < b.session_date ? -1 : 1);
+
+  marks = {};
+  (data.marks || []).forEach(m => {
+    if (!marks[m.key]) marks[m.key] = {};
+    marks[m.key][m.session_date] = { present: !!m.present };
+  });
+
+  document.getElementById('page-sub').textContent =
+    roster.length + ' Acquisition reps · ' + sessions.length + ' session(s) on record';
+  document.getElementById('last-updated').textContent =
+    'Last refreshed: ' + new Date().toLocaleTimeString();
+
+  renderTable();
+  renderAtRisk();
+}
+
+// ── RENDER GRID ─────────────────────────────────────────────────
+function renderTable() {
+  if (roster.length === 0) {
+    document.getElementById('table-container').innerHTML =
+      '<div class="state-msg">No Acquisition reps in the roster yet. Confirm the ActiveEmployees sheet has Team=Acquisition rows and the Apps Script user has access.</div>';
+    return;
+  }
+
+  let html = '<table><thead><tr>';
+  html += '<th class="rep-col">Rep</th>';
+  html += '<th class="summary-col">Attendance</th>';
+  sessions.forEach(s => {
+    const d = parseYmd(s.session_date);
+    html += '<th class="date-col" title="' + s.session_date + '">' +
+      '<span class="date-day">' + (d ? formatShortDate(d) : s.session_date) + '</span>' +
+      '<span class="date-dow">' + (d ? formatDow(d) : '') + '</span>' +
+    '</th>';
+  });
+  html += '</tr></thead><tbody>';
+
+  roster.forEach(rep => {
+    const stats = computeStats(rep.key);
+    html += '<tr data-key="' + escapeAttr(rep.key) + '">';
+    html += '<td class="rep-cell">' +
+      '<div class="rep-name">' + escapeHtml(rep.name) + '</div>' +
+      (rep.email ? '<div class="rep-key">' + escapeHtml(rep.email) + '</div>' : '') +
+    '</td>';
+    html += '<td class="summary-cell">' + summaryHTML(stats) + '</td>';
+
+    sessions.forEach(s => {
+      const m = marks[rep.key] && marks[rep.key][s.session_date];
+      const present = !!(m && m.present);
+      html += '<td class="mark-cell" data-date="' + escapeAttr(s.session_date) + '" onclick="toggleMark(this)">' +
+        '<div class="mark-bubble ' + (present ? 'present' : 'absent') + '">' +
+          (present ? '✓' : '·') +
+        '</div>' +
+      '</td>';
+    });
+    html += '</tr>';
+  });
+
+  html += '</tbody></table>';
+  document.getElementById('table-container').innerHTML = html;
+}
+
+function summaryHTML(stats) {
+  if (stats.total === 0) {
+    return '<div class="pct-text"><span>—</span><span class="pct-num">0/0</span></div>';
+  }
+  const pct = stats.pct;
+  const cls = pct < 0.5 ? 'bad' : pct < OVERALL_MIN_PCT ? 'warn' : '';
+  return '<div class="pct-bar-wrap"><div class="pct-bar-fill ' + cls + '" style="width:' + Math.round(pct * 100) + '%"></div></div>' +
+    '<div class="pct-text"><span>' + Math.round(pct * 100) + '%</span><span class="pct-num">' + stats.attended + '/' + stats.total + '</span></div>';
+}
+
+function computeStats(key) {
+  let attended = 0;
+  sessions.forEach(s => {
+    const m = marks[key] && marks[key][s.session_date];
+    if (m && m.present) attended++;
+  });
+  return {
+    attended: attended,
+    total: sessions.length,
+    pct: sessions.length === 0 ? 0 : attended / sessions.length
+  };
+}
+
+// ── TOGGLE ──────────────────────────────────────────────────────
+function toggleMark(td) {
+  const tr   = td.closest('tr');
+  const key  = tr.getAttribute('data-key');
+  const date = td.getAttribute('data-date');
+  const cellId = key + '|' + date;
+  if (pendingTogglesByCell[cellId]) return;
+
+  const rep  = roster.find(r => r.key === key);
+  if (!rep) return;
+
+  const wasPresent = !!(marks[key] && marks[key][date] && marks[key][date].present);
+  const nowPresent = !wasPresent;
+
+  // Optimistic update.
+  if (!marks[key]) marks[key] = {};
+  marks[key][date] = { present: nowPresent };
+  const bubble = td.querySelector('.mark-bubble');
+  bubble.className = 'mark-bubble ' + (nowPresent ? 'present' : 'absent') + ' saving';
+  bubble.textContent = nowPresent ? '✓' : '·';
+
+  // Update the rep's summary cell only.
+  const summaryTd = tr.querySelector('td.summary-cell');
+  if (summaryTd) summaryTd.innerHTML = summaryHTML(computeStats(key));
+
+  pendingTogglesByCell[cellId] = true;
+  postJSON({
+    type: 'ATT_SET',
+    key: key,
+    name: rep.name,
+    session_date: date,
+    present: nowPresent,
+    recorded_by: currentEmail
+  }).then(function() {
+    bubble.classList.remove('saving');
+  }).catch(function() {
+    // Revert on failure.
+    marks[key][date] = { present: wasPresent };
+    bubble.className = 'mark-bubble ' + (wasPresent ? 'present' : 'absent');
+    bubble.textContent = wasPresent ? '✓' : '·';
+    if (summaryTd) summaryTd.innerHTML = summaryHTML(computeStats(key));
+    showToast('Could not save — try again', true);
+  }).then(function() {
+    delete pendingTogglesByCell[cellId];
+    renderAtRisk();
+  });
+}
+
+function addSessionDate() {
+  const input = document.getElementById('new-date-input');
+  const v = input.value;
+  if (!v) { showToast('Pick a date first', true); return; }
+  if (sessions.find(s => s.session_date === v)) {
+    showToast('Date already on the grid', true);
+    return;
+  }
+
+  // Optimistic insert.
+  sessions.push({ session_date: v });
+  sessions.sort((a, b) => a.session_date < b.session_date ? -1 : 1);
+  renderTable();
+  input.value = '';
+
+  postJSON({
+    type: 'ATT_ADD_DATE',
+    session_date: v,
+    recorded_by: currentEmail
+  }).catch(function() {
+    sessions = sessions.filter(s => s.session_date !== v);
+    renderTable();
+    showToast('Could not add session — try again', true);
+  });
+}
+
+// ── AT-RISK PANEL ───────────────────────────────────────────────
+function renderAtRisk() {
+  const container = document.getElementById('atrisk-content');
+  const pill      = document.getElementById('atrisk-count');
+
+  if (sessions.length === 0) {
+    container.innerHTML = '<div class="empty-good">No sessions logged yet — add a session date above to start taking roll.</div>';
+    pill.textContent = '0';
+    pill.className = 'count-pill ok';
+    return;
+  }
+
+  const recentWindow = sessions.slice(-RECENT_WINDOW);
+
+  const flagged = roster.map(rep => {
+    const stats  = computeStats(rep.key);
+    const recent = recentWindow.map(s => {
+      const m = marks[rep.key] && marks[rep.key][s.session_date];
+      return m ? (m.present ? 'present' : 'absent') : 'unknown';
+    });
+    const recentMisses = recent.filter(x => x === 'absent').length;
+    const reasons = [];
+    if (recentMisses >= RECENT_MISSES) reasons.push('Missed ' + recentMisses + ' of last ' + recentWindow.length);
+    if (stats.total >= 3 && stats.pct < OVERALL_MIN_PCT) reasons.push('Overall ' + Math.round(stats.pct * 100) + '%');
+
+    return { rep, stats, recent, recentMisses, reasons };
+  }).filter(x => x.reasons.length > 0);
+
+  if (flagged.length === 0) {
+    container.innerHTML = '<div class="empty-good">No reps currently at risk — everyone is showing up. ✓</div>';
+    pill.textContent = '0';
+    pill.className = 'count-pill ok';
+    return;
+  }
+
+  // Sort: most recent misses first, then lowest overall %.
+  flagged.sort((a, b) => {
+    if (b.recentMisses !== a.recentMisses) return b.recentMisses - a.recentMisses;
+    return a.stats.pct - b.stats.pct;
+  });
+
+  pill.textContent = flagged.length;
+  pill.className = 'count-pill';
+
+  container.innerHTML = '<div class="atrisk-grid">' + flagged.map(f => {
+    const severity = f.recentMisses >= 3 || f.stats.pct < 0.5 ? '' : 'warn';
+    return '<div class="atrisk-card ' + severity + '">' +
+      '<div class="atrisk-name">' + escapeHtml(f.rep.name) + '</div>' +
+      '<div class="atrisk-reason">' + f.reasons.join(' · ') + '</div>' +
+      '<div class="atrisk-stats">' +
+        '<div><span class="atrisk-stat-num bad">' + f.recentMisses + '</span><span class="atrisk-stat-label">Recent Misses</span></div>' +
+        '<div><span class="atrisk-stat-num">' + Math.round(f.stats.pct * 100) + '%</span><span class="atrisk-stat-label">Overall</span></div>' +
+        '<div><span class="atrisk-stat-num">' + f.stats.attended + '/' + f.stats.total + '</span><span class="atrisk-stat-label">Sessions</span></div>' +
+      '</div>' +
+      '<div class="atrisk-streak" title="Last ' + recentWindow.length + ' sessions">' +
+        f.recent.map(r => '<span class="dot ' + r + '"></span>').join('') +
+      '</div>' +
+    '</div>';
+  }).join('') + '</div>';
+}
+
+// ── HTTP ────────────────────────────────────────────────────────
+function postJSON(payload) {
+  // Apps Script web apps don't return CORS headers on POST, so we use no-cors
+  // (fire-and-forget). Failure is detected only via fetch network errors.
+  return fetch(APPS_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+    keepalive: true
+  });
+}
+
+// ── HELPERS ─────────────────────────────────────────────────────
+function parseYmd(s) {
+  if (!s || !/^\d{4}-\d{2}-\d{2}$/.test(s)) return null;
+  const [y, m, d] = s.split('-').map(Number);
+  return new Date(y, m - 1, d);
+}
+function formatShortDate(d) {
+  return (d.getMonth() + 1) + '/' + d.getDate();
+}
+function formatDow(d) {
+  return ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][d.getDay()];
+}
+function escapeHtml(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+function escapeAttr(s) { return escapeHtml(s); }
+
+function showToast(msg, isError) {
+  const wrap = document.getElementById('toast-wrap');
+  const div = document.createElement('div');
+  div.className = 'toast' + (isError ? ' error' : '');
+  div.textContent = msg;
+  wrap.appendChild(div);
+  setTimeout(() => div.remove(), 3500);
+}
+
+// ── DEFAULT NEW-DATE PICKER (next Tue or Thu) ───────────────────
+function setDefaultDate() {
+  const today = new Date();
+  const dow = today.getDay();
+  let add = 0;
+  if (dow === 2 || dow === 4) add = 0;            // already a session day
+  else if (dow === 0 || dow === 1) add = 2 - dow; // forward to Tue
+  else if (dow === 3) add = 1;                    // forward to Thu
+  else add = (4 - dow + 7) % 7;                   // forward to next Thu
+  const d = new Date(today.getFullYear(), today.getMonth(), today.getDate() + add);
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const dd = String(d.getDate()).padStart(2, '0');
+  document.getElementById('new-date-input').value = y + '-' + m + '-' + dd;
+}
+
+// ── INIT ────────────────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', function() {
+  if (!checkAccess()) return;
+  setDefaultDate();
+  loadAttendance();
+});
+</script>
+
+<script src="shared/tracking.js"></script>
+</body>
+</html>
