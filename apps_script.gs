@@ -37,6 +37,13 @@ var ACQ_ROSTER_EXCLUDE = [
   'patrick.solomon@rebuilt.com',
   'patrick solomon'
 ];
+// Emails allowed to remove session dates from the skills practice roll.
+// Removal is destructive (deletes the SkillsSessions row plus every mark
+// recorded on that date), so it's restricted to acq leadership.
+var SESSION_ADMIN_EMAILS = [
+  'mike.spalding@rebuilt.com',
+  'patrick.solomon@rebuilt.com'
+];
 // Legacy attendance workbook (the original Tue/Thu Google Sheet) — read once
 // during a manual migration via migrateLegacySkillsAttendance_().
 var LEGACY_ATTENDANCE_SHEET_ID = '1x9QESI4TGuhw8Ijk1-5ihr7exyZFN4sDLZck9HwHNpc';
@@ -55,9 +62,10 @@ function doPost(e) {
     case 'KC':
     case 'OLT':         return handleCompletion_(payload);
     case 'PV':          return handlePageView_(payload);
-    case 'ATT_SET':     return handleAttendanceSet_(payload);
-    case 'ATT_ADD_DATE':return handleAttendanceAddDate_(payload);
-    default:            return jsonOut_({ success: false, error: 'unknown_type' });
+    case 'ATT_SET':       return handleAttendanceSet_(payload);
+    case 'ATT_ADD_DATE':  return handleAttendanceAddDate_(payload);
+    case 'ATT_REMOVE_DATE': return handleAttendanceRemoveDate_(payload);
+    default:              return jsonOut_({ success: false, error: 'unknown_type' });
   }
 }
 
@@ -446,6 +454,57 @@ function handleAttendanceAddDate_(p) {
   if (!date) return jsonOut_({ success: false, error: 'invalid_date' });
   ensureSession_(date, by, String(p.notes || ''));
   return jsonOut_({ success: true, session_date: date });
+}
+
+// Hard-deletes the SkillsSessions row for `date` and every SkillsAttendance
+// row stamped with that date. Restricted to SESSION_ADMIN_EMAILS — clients
+// also gate the UI, but this server-side check is the actual enforcement
+// point for a destructive op.
+function handleAttendanceRemoveDate_(p) {
+  var date = normalizeDateStr_(p.session_date);
+  var by   = String(p.recorded_by || '').toLowerCase().trim();
+  if (!date) return jsonOut_({ success: false, error: 'invalid_date' });
+  if (SESSION_ADMIN_EMAILS.indexOf(by) < 0) {
+    return jsonOut_({ success: false, error: 'unauthorized' });
+  }
+
+  var removedSessions = 0;
+  var removedMarks    = 0;
+
+  var sess = getOrCreateSheet_(SKILLS_SESSIONS_SHEET, [
+    'session_date', 'created_at', 'created_by', 'notes'
+  ]);
+  if (sess.getLastRow() >= 2) {
+    var sv = sess.getDataRange().getValues();
+    // Walk bottom-up so deleteRow doesn't shift unscanned rows.
+    for (var i = sv.length - 1; i >= 1; i--) {
+      if (normalizeDateStr_(sv[i][0]) === date) {
+        sess.deleteRow(i + 1);
+        removedSessions++;
+      }
+    }
+  }
+
+  var att = getOrCreateSheet_(SKILLS_ATTENDANCE_SHEET, [
+    'employee_key', 'employee_name', 'session_date', 'present',
+    'recorded_at', 'recorded_by'
+  ]);
+  if (att.getLastRow() >= 2) {
+    var av = att.getDataRange().getValues();
+    for (var j = av.length - 1; j >= 1; j--) {
+      if (normalizeDateStr_(av[j][2]) === date) {
+        att.deleteRow(j + 1);
+        removedMarks++;
+      }
+    }
+  }
+
+  return jsonOut_({
+    success: true,
+    session_date: date,
+    removed_sessions: removedSessions,
+    removed_marks: removedMarks
+  });
 }
 
 function ensureSession_(date, by, notes) {

@@ -123,9 +123,19 @@ th.date-col {
   text-align: center; min-width: 72px; max-width: 84px;
   padding: 8px 6px;
   cursor: default;
+  position: relative;
 }
 th.date-col .date-day { display: block; font-size: 11px; color: white; font-weight: 800; letter-spacing: 0.04em; }
 th.date-col .date-dow { display: block; font-size: 8px; color: rgba(255,255,255,0.5); font-weight: 700; margin-top: 2px; letter-spacing: 0.1em; }
+th.date-col .date-remove {
+  position: absolute; top: 2px; right: 2px;
+  background: transparent; border: none; padding: 0;
+  width: 16px; height: 16px; border-radius: 4px;
+  font-family: var(--font); font-size: 11px; font-weight: 800; line-height: 1;
+  color: rgba(255,255,255,0.30);
+  cursor: pointer; transition: color 0.15s, background 0.15s;
+}
+th.date-col .date-remove:hover { color: var(--fail); background: rgba(231,76,60,0.18); }
 
 tbody tr { border-bottom: 1px solid rgba(31,53,64,0.06); }
 tbody tr:hover { background: rgba(33,169,225,0.04); }
@@ -360,6 +370,12 @@ td.mark-cell:hover .mark-bubble {
 <script>
 // ── CONFIG ──────────────────────────────────────────────────────
 const APPS_URL = 'https://script.google.com/macros/s/AKfycbyRSuUKBjwlPZiY8E7IZZUEQ8u-uwwuTXZnQ0nTPqtfk-bu3zyAa6RKZYw7687arJVs/exec';
+// Subset of LEADER_EMAILS allowed to delete session dates (destructive op).
+// Keep in sync with SESSION_ADMIN_EMAILS in apps_script.gs.
+const SESSION_ADMIN_EMAILS = [
+  'mike.spalding@rebuilt.com',
+  'patrick.solomon@rebuilt.com'
+];
 const LEADER_EMAILS = [
   'mike.spalding@rebuilt.com',
   'patrick.solomon@rebuilt.com',
@@ -487,11 +503,16 @@ function renderTable() {
   let html = '<table><thead><tr>';
   html += '<th class="rep-col">Rep</th>';
   html += '<th class="summary-col">Attendance</th>';
+  const showRemove = canRemoveSession();
   sessions.forEach(s => {
     const d = parseYmd(s.session_date);
+    const removeBtn = showRemove
+      ? '<button class="date-remove" title="Remove this session date" onclick="removeSessionDate(\'' + escapeAttr(s.session_date) + '\')">✕</button>'
+      : '';
     html += '<th class="date-col" title="' + s.session_date + '">' +
       '<span class="date-day">' + (d ? formatShortDate(d) : s.session_date) + '</span>' +
       '<span class="date-dow">' + (d ? formatDow(d) : '') + '</span>' +
+      removeBtn +
     '</th>';
   });
   html += '</tr></thead><tbody>';
@@ -615,6 +636,61 @@ function addSessionDate() {
     sessions = sessions.filter(s => s.session_date !== v);
     renderTable();
     showToast('Could not add session — try again', true);
+  });
+}
+
+function canRemoveSession() {
+  return SESSION_ADMIN_EMAILS.indexOf(currentEmail) >= 0;
+}
+
+function removeSessionDate(date) {
+  if (!canRemoveSession()) return;
+  const idx = sessions.findIndex(s => s.session_date === date);
+  if (idx < 0) return;
+
+  // Snapshot marks for this date so we can revert if the server call fails.
+  const markSnapshot = {};
+  let presentCount = 0;
+  Object.keys(marks).forEach(k => {
+    if (marks[k][date]) {
+      markSnapshot[k] = marks[k][date];
+      if (marks[k][date].present) presentCount++;
+    }
+  });
+
+  let msg = 'Remove session ' + date + ' from the roll?';
+  if (presentCount > 0) {
+    msg += '\n\n' + presentCount + ' present mark' + (presentCount === 1 ? '' : 's') + ' will be permanently deleted.';
+  }
+  if (!confirm(msg)) return;
+
+  // Optimistic remove.
+  const removedSession = sessions[idx];
+  sessions.splice(idx, 1);
+  Object.keys(markSnapshot).forEach(k => { delete marks[k][date]; });
+  renderTable();
+  renderAtRisk();
+  document.getElementById('page-sub').textContent =
+    roster.length + ' Acquisition reps · ' + sessions.length + ' session(s) on record';
+
+  postJSON({
+    type: 'ATT_REMOVE_DATE',
+    session_date: date,
+    recorded_by: currentEmail
+  }).then(function() {
+    showToast('Removed ' + date);
+  }).catch(function() {
+    // Revert on network failure. (no-cors POSTs only fail on network errors,
+    // so an unauthorized-from-server response won't trigger this — but the
+    // server still rejects the write, which is the actual safeguard.)
+    sessions.splice(idx, 0, removedSession);
+    sessions.sort((a, b) => a.session_date < b.session_date ? -1 : 1);
+    Object.keys(markSnapshot).forEach(k => { marks[k][date] = markSnapshot[k]; });
+    renderTable();
+    renderAtRisk();
+    document.getElementById('page-sub').textContent =
+      roster.length + ' Acquisition reps · ' + sessions.length + ' session(s) on record';
+    showToast('Could not remove — try again', true);
   });
 }
 
