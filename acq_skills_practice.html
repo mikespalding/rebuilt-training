@@ -121,18 +121,17 @@ th.summary-col {
 }
 th.date-col {
   text-align: center; min-width: 72px; max-width: 84px;
-  padding: 8px 6px;
+  padding: 6px 6px 8px;
   cursor: default;
-  position: relative;
 }
 th.date-col .date-day { display: block; font-size: 11px; color: white; font-weight: 800; letter-spacing: 0.04em; }
 th.date-col .date-dow { display: block; font-size: 8px; color: rgba(255,255,255,0.5); font-weight: 700; margin-top: 2px; letter-spacing: 0.1em; }
 th.date-col .date-remove {
-  position: absolute; top: 2px; right: 2px;
-  background: transparent; border: none; padding: 0;
-  width: 16px; height: 16px; border-radius: 4px;
+  display: block; margin: 0 auto 3px;
+  background: transparent; border: none; padding: 1px 6px;
+  border-radius: 4px;
   font-family: var(--font); font-size: 11px; font-weight: 800; line-height: 1;
-  color: rgba(255,255,255,0.30);
+  color: rgba(255,255,255,0.35);
   cursor: pointer; transition: color 0.15s, background 0.15s;
 }
 th.date-col .date-remove:hover { color: var(--fail); background: rgba(231,76,60,0.18); }
@@ -510,9 +509,9 @@ function renderTable() {
       ? '<button class="date-remove" title="Remove this session date" onclick="removeSessionDate(\'' + escapeAttr(s.session_date) + '\')">✕</button>'
       : '';
     html += '<th class="date-col" title="' + s.session_date + '">' +
+      removeBtn +
       '<span class="date-day">' + (d ? formatShortDate(d) : s.session_date) + '</span>' +
       '<span class="date-dow">' + (d ? formatDow(d) : '') + '</span>' +
-      removeBtn +
     '</th>';
   });
   html += '</tr></thead><tbody>';
