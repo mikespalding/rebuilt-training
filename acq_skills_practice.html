@@ -108,12 +108,12 @@ th {
   background: var(--navy);
 }
 th.rep-col {
-  color: white; min-width: 220px;
+  color: white; min-width: 280px;
   position: sticky; top: 0; left: 0; z-index: 3;
   box-shadow: 2px 0 0 rgba(255,255,255,0.08);
 }
 th.summary-col {
-  position: sticky; top: 0; left: 220px; z-index: 3;
+  position: sticky; top: 0; left: 280px; z-index: 3;
   min-width: 130px;
   box-shadow: 2px 0 6px rgba(0,0,0,0.18);
   text-align: center;
@@ -134,17 +134,23 @@ tbody tr:last-child { border-bottom: none; }
 
 td { padding: 8px 12px; vertical-align: middle; }
 td.rep-cell {
-  min-width: 220px;
+  min-width: 280px;
   position: sticky; left: 0; z-index: 2;
   background: var(--white);
   box-shadow: 2px 0 0 rgba(31,53,64,0.06);
 }
 .rep-name { font-size: 12px; font-weight: 700; color: var(--navy); }
-.rep-key  { font-size: 10px; color: var(--muted); margin-top: 1px; }
+.rep-meta {
+  font-size: 10px; color: var(--muted); margin-top: 2px;
+  display: flex; flex-wrap: wrap; gap: 4px 8px; line-height: 1.3;
+}
+.rep-meta .meta-sep { color: rgba(31,53,64,0.25); }
+.rep-meta .meta-mgr { color: var(--navy); font-weight: 600; }
+.rep-meta .meta-tenure { color: var(--teal-dark); font-weight: 700; }
 
 td.summary-cell {
   min-width: 130px;
-  position: sticky; left: 220px; z-index: 2;
+  position: sticky; left: 280px; z-index: 2;
   background: var(--white);
   box-shadow: 2px 0 6px rgba(31,53,64,0.08);
 }
@@ -273,8 +279,9 @@ td.mark-cell:hover .mark-bubble {
 @media (max-width: 700px) {
   .main-wrap { padding: 16px 10px 60px; }
   .site-header { padding: 0 16px; }
-  th.rep-col, td.rep-cell { min-width: 160px; }
-  th.summary-col, td.summary-cell { left: 160px; min-width: 110px; }
+  th.rep-col, td.rep-cell { min-width: 200px; }
+  th.summary-col, td.summary-cell { left: 200px; min-width: 110px; }
+  .rep-meta { font-size: 9px; }
 }
 </style>
 </head>
@@ -491,7 +498,7 @@ function renderTable() {
     html += '<tr data-key="' + escapeAttr(rep.key) + '">';
     html += '<td class="rep-cell">' +
       '<div class="rep-name">' + escapeHtml(rep.name) + '</div>' +
-      (rep.email ? '<div class="rep-key">' + escapeHtml(rep.email) + '</div>' : '') +
+      repMetaHTML(rep) +
     '</td>';
     html += '<td class="summary-cell">' + summaryHTML(stats) + '</td>';
 
@@ -693,6 +700,40 @@ function formatShortDate(d) {
 }
 function formatDow(d) {
   return ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][d.getDay()];
+}
+function formatHireDate(ymd) {
+  const d = parseYmd(ymd);
+  if (!d) return '';
+  return (d.getMonth() + 1) + '/' + d.getDate() + '/' + String(d.getFullYear()).slice(-2);
+}
+function formatTenure(ymd) {
+  const d = parseYmd(ymd);
+  if (!d) return '';
+  const today = new Date();
+  let months = (today.getFullYear() - d.getFullYear()) * 12 + (today.getMonth() - d.getMonth());
+  if (today.getDate() < d.getDate()) months--;
+  if (months < 0) return '';
+  if (months < 1) return '<1mo';
+  if (months < 12) return months + 'mo';
+  const years = Math.floor(months / 12);
+  const rem = months % 12;
+  return rem === 0 ? years + 'y' : years + 'y ' + rem + 'mo';
+}
+function repMetaHTML(rep) {
+  const parts = [];
+  const hire = formatHireDate(rep.hire_date);
+  const tenure = formatTenure(rep.hire_date);
+  if (hire) {
+    parts.push('<span title="Hire date">Hired ' + escapeHtml(hire) + '</span>');
+  }
+  if (tenure) {
+    parts.push('<span class="meta-tenure" title="Tenure">' + escapeHtml(tenure) + '</span>');
+  }
+  if (rep.manager) {
+    parts.push('<span class="meta-mgr" title="Manager">' + escapeHtml(rep.manager) + '</span>');
+  }
+  if (parts.length === 0) return '';
+  return '<div class="rep-meta">' + parts.join('<span class="meta-sep">·</span>') + '</div>';
 }
 function escapeHtml(s) {
   return String(s == null ? '' : s)
