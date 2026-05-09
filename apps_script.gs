@@ -271,11 +271,13 @@ function readAcqRoster_() {
     }
     return -1;
   }
-  var iName  = findCol('employee name', 'name', 'full name');
-  var iEmail = findCol('email', 'work email', 'rebuilt email', 'company email');
-  var iTeam  = findCol('team', 'department', 'function');
-  var iRole  = findCol('role', 'title', 'position');
-  var iActive= findCol('active', 'status', 'employment status');
+  var iName    = findCol('employee name', 'name', 'full name');
+  var iEmail   = findCol('email', 'work email', 'rebuilt email', 'company email');
+  var iTeam    = findCol('team', 'department', 'function');
+  var iRole    = findCol('role', 'title', 'position');
+  var iActive  = findCol('active', 'status', 'employment status');
+  var iHire    = findCol('hire date', 'start date', 'date of hire', 'hired', 'hire_date', 'start_date');
+  var iManager = findCol('manager', 'reports to', 'direct manager', 'supervisor', 'reports_to');
 
   if (iName < 0)  throw new Error('Roster missing an "Employee Name" column.');
   if (iTeam < 0)  throw new Error('Roster missing a "Team" column.');
@@ -300,10 +302,12 @@ function readAcqRoster_() {
     seen[key] = true;
 
     out.push({
-      key:   key,
-      name:  name,
-      email: email,
-      role:  iRole >= 0 ? String(row[iRole] || '').trim() : ''
+      key:       key,
+      name:      name,
+      email:     email,
+      role:      iRole >= 0 ? String(row[iRole] || '').trim() : '',
+      hire_date: iHire >= 0 ? normalizeDateStr_(row[iHire]) : '',
+      manager:   iManager >= 0 ? String(row[iManager] || '').trim() : ''
     });
   }
   out.sort(function(a, b) { return a.name.localeCompare(b.name); });
