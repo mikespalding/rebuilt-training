@@ -30,6 +30,13 @@ var ROSTER_SHEET_ID            = '1_eC6wN-PKDZCHy89uoXZYYQp7W2dbitEwuRRmMriTkA';
 var ROSTER_TAB                 = 'ActiveEmployees';
 var SKILLS_ATTENDANCE_SHEET    = 'SkillsAttendance';
 var SKILLS_SESSIONS_SHEET      = 'SkillsSessions';
+// People tagged Team=Acquisition in the roster but who shouldn't appear on
+// the skills practice roll (e.g. acq leaders who manage the org but don't
+// take attendance themselves). Lower-case email or full name.
+var ACQ_ROSTER_EXCLUDE = [
+  'patrick.solomon@rebuilt.com',
+  'patrick solomon'
+];
 // Legacy attendance workbook (the original Tue/Thu Google Sheet) — read once
 // during a manual migration via migrateLegacySkillsAttendance_().
 var LEGACY_ATTENDANCE_SHEET_ID = '1x9QESI4TGuhw8Ijk1-5ihr7exyZFN4sDLZck9HwHNpc';
@@ -271,13 +278,44 @@ function readAcqRoster_() {
     }
     return -1;
   }
+  // Fuzzy fallback — return the first header that includes `needle` and none
+  // of the `exclude` substrings (e.g. avoid grabbing "Manager Email" when
+  // we want the manager's display name).
+  function findColContaining(needle, exclude) {
+    var ex = exclude || [];
+    for (var i = 0; i < header.length; i++) {
+      var h = header[i];
+      if (h.indexOf(needle) < 0) continue;
+      var skip = false;
+      for (var k = 0; k < ex.length; k++) {
+        if (h.indexOf(ex[k]) >= 0) { skip = true; break; }
+      }
+      if (!skip) return i;
+    }
+    return -1;
+  }
   var iName    = findCol('employee name', 'name', 'full name');
   var iEmail   = findCol('email', 'work email', 'rebuilt email', 'company email');
   var iTeam    = findCol('team', 'department', 'function');
   var iRole    = findCol('role', 'title', 'position');
   var iActive  = findCol('active', 'status', 'employment status');
-  var iHire    = findCol('hire date', 'start date', 'date of hire', 'hired', 'hire_date', 'start_date');
-  var iManager = findCol('manager', 'reports to', 'direct manager', 'supervisor', 'reports_to');
+  var iHire    = findCol(
+    'hire date', 'hire_date', 'hiredate', 'hired',
+    'start date', 'start_date', 'startdate',
+    'date of hire', 'date hired', 'employment start date', 'employment start',
+    'original hire date'
+  );
+  if (iHire < 0) iHire = findColContaining('hire', ['anniversary']);
+  var iManager = findCol(
+    'manager', 'manager name', 'managers name', "manager's name",
+    'reports to', 'reports_to', 'reportsto',
+    'direct manager', 'direct supervisor', 'supervisor',
+    'reporting manager',
+    'employee manager', 'current manager', 'people manager'
+  );
+  if (iManager < 0) iManager = findColContaining('manager', ['email', ' id', '_id', 'phone']);
+  if (iManager < 0) iManager = findColContaining('reports to', []);
+  if (iManager < 0) iManager = findColContaining('supervisor', ['email', ' id', '_id']);
 
   if (iName < 0)  throw new Error('Roster missing an "Employee Name" column.');
   if (iTeam < 0)  throw new Error('Roster missing a "Team" column.');
@@ -297,6 +335,8 @@ function readAcqRoster_() {
     var name  = String(row[iName] || '').trim();
     if (!name) continue;
     var email = iEmail >= 0 ? String(row[iEmail] || '').toLowerCase().trim() : '';
+    if (ACQ_ROSTER_EXCLUDE.indexOf(email) >= 0) continue;
+    if (ACQ_ROSTER_EXCLUDE.indexOf(name.toLowerCase()) >= 0) continue;
     var key   = email || slugifyName_(name);
     if (seen[key]) continue;
     seen[key] = true;
