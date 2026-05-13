@@ -602,6 +602,60 @@ function inspectLegacyAttendance() {
   return report;
 }
 
+// Diagnostic: prints the ActiveEmployees tab's header row plus 3 sample
+// Acquisition rows so we can see which column is the manager column. Run
+// from the Apps Script editor → Run dropdown → check Execution log.
+function inspectRoster() {
+  var ss = SpreadsheetApp.openById(ROSTER_SHEET_ID);
+  var sheet = ss.getSheetByName(ROSTER_TAB);
+  if (!sheet) {
+    Logger.log('Tab "' + ROSTER_TAB + '" not found.');
+    return null;
+  }
+  var lastCol = sheet.getLastColumn();
+  var header = sheet.getRange(1, 1, 1, lastCol).getValues()[0];
+  Logger.log('HEADERS (' + lastCol + '):');
+  for (var i = 0; i < header.length; i++) {
+    Logger.log('  [' + i + '] ' + JSON.stringify(header[i]));
+  }
+
+  var values = sheet.getDataRange().getValues();
+  var teamCol = -1;
+  for (var c = 0; c < header.length; c++) {
+    var h = String(header[c] || '').toLowerCase().trim();
+    if (h === 'team' || h === 'department' || h === 'function') { teamCol = c; break; }
+  }
+
+  var samples = [];
+  for (var r = 1; r < values.length && samples.length < 3; r++) {
+    var team = teamCol >= 0 ? String(values[r][teamCol] || '').toLowerCase().trim() : '';
+    if (teamCol < 0 || team === 'acquisition') {
+      var row = {};
+      for (var c2 = 0; c2 < header.length; c2++) {
+        var key = String(header[c2] || ('col' + c2));
+        row[key] = values[r][c2];
+      }
+      samples.push(row);
+    }
+  }
+  Logger.log('SAMPLE ACQ ROWS (' + samples.length + '):');
+  Logger.log(JSON.stringify(samples, null, 2));
+
+  // Also report which column readAcqRoster_ currently picks as manager.
+  try {
+    var roster = readAcqRoster_();
+    var withMgr = roster.filter(function(r){ return r.manager; }).length;
+    Logger.log('readAcqRoster_ returned ' + roster.length + ' reps; ' + withMgr + ' have a manager value populated.');
+    if (roster.length > 0) {
+      Logger.log('First rep sample: ' + JSON.stringify(roster[0], null, 2));
+    }
+  } catch (err) {
+    Logger.log('readAcqRoster_ failed: ' + err);
+  }
+
+  return { headers: header, samples: samples };
+}
+
 function migrateLegacySkillsAttendance_() {
   var dst = getOrCreateSheet_(SKILLS_ATTENDANCE_SHEET, [
     'employee_key', 'employee_name', 'session_date', 'present',
