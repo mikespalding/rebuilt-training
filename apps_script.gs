@@ -468,36 +468,20 @@ function handleAttendanceRemoveDate_(p) {
     return jsonOut_({ success: false, error: 'unauthorized' });
   }
 
-  var removedSessions = 0;
-  var removedMarks    = 0;
-
+  // Rewrite each sheet in one pass instead of looping deleteRow(). With
+  // thousands of rows in SkillsAttendance (post legacy import), row-by-row
+  // delete is O(n²) and trips the 6-minute Apps Script timeout, leaving
+  // orphan marks behind that resurrect the column on the next page load.
   var sess = getOrCreateSheet_(SKILLS_SESSIONS_SHEET, [
     'session_date', 'created_at', 'created_by', 'notes'
   ]);
-  if (sess.getLastRow() >= 2) {
-    var sv = sess.getDataRange().getValues();
-    // Walk bottom-up so deleteRow doesn't shift unscanned rows.
-    for (var i = sv.length - 1; i >= 1; i--) {
-      if (normalizeDateStr_(sv[i][0]) === date) {
-        sess.deleteRow(i + 1);
-        removedSessions++;
-      }
-    }
-  }
+  var removedSessions = rewriteWithoutDate_(sess, date, 0);
 
   var att = getOrCreateSheet_(SKILLS_ATTENDANCE_SHEET, [
     'employee_key', 'employee_name', 'session_date', 'present',
     'recorded_at', 'recorded_by'
   ]);
-  if (att.getLastRow() >= 2) {
-    var av = att.getDataRange().getValues();
-    for (var j = av.length - 1; j >= 1; j--) {
-      if (normalizeDateStr_(av[j][2]) === date) {
-        att.deleteRow(j + 1);
-        removedMarks++;
-      }
-    }
-  }
+  var removedMarks = rewriteWithoutDate_(att, date, 2);
 
   return jsonOut_({
     success: true,
@@ -505,6 +489,33 @@ function handleAttendanceRemoveDate_(p) {
     removed_sessions: removedSessions,
     removed_marks: removedMarks
   });
+}
+
+// Rewrite `sheet` in place, dropping every row whose `dateCol` cell matches
+// `date` (YYYY-MM-DD). Returns the number of rows dropped. Header row is
+// preserved.
+function rewriteWithoutDate_(sheet, date, dateCol) {
+  var lastRow = sheet.getLastRow();
+  var lastCol = sheet.getLastColumn();
+  if (lastRow < 2 || lastCol < 1) return 0;
+
+  var values = sheet.getRange(1, 1, lastRow, lastCol).getValues();
+  var header = values[0];
+  var keep   = [];
+  for (var i = 1; i < values.length; i++) {
+    if (normalizeDateStr_(values[i][dateCol]) !== date) {
+      keep.push(values[i]);
+    }
+  }
+  var dropped = (values.length - 1) - keep.length;
+  if (dropped === 0) return 0;
+
+  // Clear everything below the header, then write the survivors back.
+  sheet.getRange(2, 1, lastRow - 1, lastCol).clearContent();
+  if (keep.length > 0) {
+    sheet.getRange(2, 1, keep.length, lastCol).setValues(keep);
+  }
+  return dropped;
 }
 
 function ensureSession_(date, by, notes) {
@@ -600,6 +611,60 @@ function inspectLegacyAttendance() {
   });
   Logger.log(JSON.stringify(report, null, 2));
   return report;
+}
+
+// Diagnostic: prints the ActiveEmployees tab's header row plus 3 sample
+// Acquisition rows so we can see which column is the manager column. Run
+// from the Apps Script editor → Run dropdown → check Execution log.
+function inspectRoster() {
+  var ss = SpreadsheetApp.openById(ROSTER_SHEET_ID);
+  var sheet = ss.getSheetByName(ROSTER_TAB);
+  if (!sheet) {
+    Logger.log('Tab "' + ROSTER_TAB + '" not found.');
+    return null;
+  }
+  var lastCol = sheet.getLastColumn();
+  var header = sheet.getRange(1, 1, 1, lastCol).getValues()[0];
+  Logger.log('HEADERS (' + lastCol + '):');
+  for (var i = 0; i < header.length; i++) {
+    Logger.log('  [' + i + '] ' + JSON.stringify(header[i]));
+  }
+
+  var values = sheet.getDataRange().getValues();
+  var teamCol = -1;
+  for (var c = 0; c < header.length; c++) {
+    var h = String(header[c] || '').toLowerCase().trim();
+    if (h === 'team' || h === 'department' || h === 'function') { teamCol = c; break; }
+  }
+
+  var samples = [];
+  for (var r = 1; r < values.length && samples.length < 3; r++) {
+    var team = teamCol >= 0 ? String(values[r][teamCol] || '').toLowerCase().trim() : '';
+    if (teamCol < 0 || team === 'acquisition') {
+      var row = {};
+      for (var c2 = 0; c2 < header.length; c2++) {
+        var key = String(header[c2] || ('col' + c2));
+        row[key] = values[r][c2];
+      }
+      samples.push(row);
+    }
+  }
+  Logger.log('SAMPLE ACQ ROWS (' + samples.length + '):');
+  Logger.log(JSON.stringify(samples, null, 2));
+
+  // Also report which column readAcqRoster_ currently picks as manager.
+  try {
+    var roster = readAcqRoster_();
+    var withMgr = roster.filter(function(r){ return r.manager; }).length;
+    Logger.log('readAcqRoster_ returned ' + roster.length + ' reps; ' + withMgr + ' have a manager value populated.');
+    if (roster.length > 0) {
+      Logger.log('First rep sample: ' + JSON.stringify(roster[0], null, 2));
+    }
+  } catch (err) {
+    Logger.log('readAcqRoster_ failed: ' + err);
+  }
+
+  return { headers: header, samples: samples };
 }
 
 function migrateLegacySkillsAttendance_() {
