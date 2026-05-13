@@ -194,57 +194,6 @@ td.mark-cell:hover .mark-bubble {
 }
 .mark-bubble.saving { opacity: 0.5; }
 
-/* ── AT-RISK PANEL ── */
-.panel-section { margin-top: 28px; }
-.section-title {
-  font-size: 11px; font-weight: 800; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--muted);
-  margin-bottom: 10px; display: flex; align-items: center; gap: 10px;
-}
-.section-title .count-pill {
-  background: rgba(231,76,60,0.12); color: var(--fail);
-  padding: 2px 10px; border-radius: 99px; font-size: 10px; letter-spacing: 0.05em;
-}
-.section-title .count-pill.ok { background: rgba(46,204,113,0.12); color: #18924d; }
-.atrisk-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 12px;
-}
-.atrisk-card {
-  background: var(--white); border: 1px solid var(--border);
-  border-left: 4px solid var(--fail);
-  border-radius: 10px; padding: 14px 16px;
-}
-.atrisk-card.warn { border-left-color: var(--warn); }
-.atrisk-name { font-size: 14px; font-weight: 800; color: var(--navy); }
-.atrisk-reason {
-  font-size: 10px; color: var(--muted);
-  margin-top: 2px; letter-spacing: 0.04em; font-weight: 600;
-}
-.atrisk-stats {
-  display: flex; gap: 14px; margin-top: 10px;
-  font-size: 10px; color: var(--muted);
-}
-.atrisk-stat-num { font-size: 16px; font-weight: 800; color: var(--navy); display: block; }
-.atrisk-stat-num.bad { color: var(--fail); }
-.atrisk-stat-label { font-size: 8px; letter-spacing: 0.1em; text-transform: uppercase; }
-.atrisk-streak {
-  display: flex; gap: 3px; margin-top: 8px;
-}
-.atrisk-streak .dot {
-  width: 12px; height: 12px; border-radius: 50%;
-  background: rgba(31,53,64,0.10);
-}
-.atrisk-streak .dot.present { background: var(--pass); }
-.atrisk-streak .dot.absent  { background: var(--fail); opacity: 0.7; }
-.atrisk-streak .dot.unknown { background: rgba(31,53,64,0.10); }
-
-.empty-good {
-  background: var(--white); border: 1px solid var(--border);
-  border-radius: 10px; padding: 24px; text-align: center;
-  color: var(--muted); font-size: 12px; font-style: italic;
-}
-
 /* ── STATES ── */
 .state-msg {
   text-align: center; padding: 60px 24px;
@@ -341,14 +290,6 @@ td.mark-cell:hover .mark-bubble {
   </div>
   <div class="last-updated" id="last-updated"></div>
 
-  <!-- AT-RISK -->
-  <div class="panel-section">
-    <div class="section-title">
-      At-Risk
-      <span class="count-pill" id="atrisk-count">—</span>
-    </div>
-    <div id="atrisk-content"></div>
-  </div>
 
 </main>
 
@@ -394,10 +335,8 @@ const LEADER_EMAILS = [
   'jessica.kinder@rebuilt.com'
 ];
 
-// At-risk thresholds
-const RECENT_WINDOW   = 4;     // sessions to look back for "recent" miss streak
-const RECENT_MISSES   = 2;     // # of recent misses to flag
-const OVERALL_MIN_PCT = 0.70;  // overall attendance threshold (70%)
+// Attendance bar coloring threshold — bars under this turn yellow, under 50% red.
+const OVERALL_MIN_PCT = 0.70;
 
 // ── STATE ───────────────────────────────────────────────────────
 let currentEmail = '';
@@ -423,8 +362,6 @@ function checkAccess() {
 function loadAttendance() {
   document.getElementById('table-container').innerHTML =
     '<div class="state-msg"><div class="spinner-wrap"><div class="spinner"></div><span>Loading…</span></div></div>';
-  document.getElementById('atrisk-content').innerHTML = '';
-  document.getElementById('atrisk-count').textContent = '—';
 
   const cbName = 'sp_cb_' + Date.now();
   const timer = setTimeout(function() {
@@ -488,7 +425,6 @@ function processData(data) {
     'Last refreshed: ' + new Date().toLocaleTimeString();
 
   renderTable();
-  renderAtRisk();
 }
 
 // ── RENDER GRID ─────────────────────────────────────────────────
@@ -608,7 +544,6 @@ function toggleMark(td) {
     showToast('Could not save — try again', true);
   }).then(function() {
     delete pendingTogglesByCell[cellId];
-    renderAtRisk();
   });
 }
 
@@ -668,7 +603,6 @@ function removeSessionDate(date) {
   sessions.splice(idx, 1);
   Object.keys(markSnapshot).forEach(k => { delete marks[k][date]; });
   renderTable();
-  renderAtRisk();
   document.getElementById('page-sub').textContent =
     roster.length + ' Acquisition reps · ' + sessions.length + ' session(s) on record';
 
@@ -686,72 +620,10 @@ function removeSessionDate(date) {
     sessions.sort((a, b) => a.session_date < b.session_date ? -1 : 1);
     Object.keys(markSnapshot).forEach(k => { marks[k][date] = markSnapshot[k]; });
     renderTable();
-    renderAtRisk();
     document.getElementById('page-sub').textContent =
       roster.length + ' Acquisition reps · ' + sessions.length + ' session(s) on record';
     showToast('Could not remove — try again', true);
   });
-}
-
-// ── AT-RISK PANEL ───────────────────────────────────────────────
-function renderAtRisk() {
-  const container = document.getElementById('atrisk-content');
-  const pill      = document.getElementById('atrisk-count');
-
-  if (sessions.length === 0) {
-    container.innerHTML = '<div class="empty-good">No sessions logged yet — add a session date above to start taking roll.</div>';
-    pill.textContent = '0';
-    pill.className = 'count-pill ok';
-    return;
-  }
-
-  const recentWindow = sessions.slice(-RECENT_WINDOW);
-
-  const flagged = roster.map(rep => {
-    const stats  = computeStats(rep.key);
-    const recent = recentWindow.map(s => {
-      const m = marks[rep.key] && marks[rep.key][s.session_date];
-      return m ? (m.present ? 'present' : 'absent') : 'unknown';
-    });
-    const recentMisses = recent.filter(x => x === 'absent').length;
-    const reasons = [];
-    if (recentMisses >= RECENT_MISSES) reasons.push('Missed ' + recentMisses + ' of last ' + recentWindow.length);
-    if (stats.total >= 3 && stats.pct < OVERALL_MIN_PCT) reasons.push('Overall ' + Math.round(stats.pct * 100) + '%');
-
-    return { rep, stats, recent, recentMisses, reasons };
-  }).filter(x => x.reasons.length > 0);
-
-  if (flagged.length === 0) {
-    container.innerHTML = '<div class="empty-good">No reps currently at risk — everyone is showing up. ✓</div>';
-    pill.textContent = '0';
-    pill.className = 'count-pill ok';
-    return;
-  }
-
-  // Sort: most recent misses first, then lowest overall %.
-  flagged.sort((a, b) => {
-    if (b.recentMisses !== a.recentMisses) return b.recentMisses - a.recentMisses;
-    return a.stats.pct - b.stats.pct;
-  });
-
-  pill.textContent = flagged.length;
-  pill.className = 'count-pill';
-
-  container.innerHTML = '<div class="atrisk-grid">' + flagged.map(f => {
-    const severity = f.recentMisses >= 3 || f.stats.pct < 0.5 ? '' : 'warn';
-    return '<div class="atrisk-card ' + severity + '">' +
-      '<div class="atrisk-name">' + escapeHtml(f.rep.name) + '</div>' +
-      '<div class="atrisk-reason">' + f.reasons.join(' · ') + '</div>' +
-      '<div class="atrisk-stats">' +
-        '<div><span class="atrisk-stat-num bad">' + f.recentMisses + '</span><span class="atrisk-stat-label">Recent Misses</span></div>' +
-        '<div><span class="atrisk-stat-num">' + Math.round(f.stats.pct * 100) + '%</span><span class="atrisk-stat-label">Overall</span></div>' +
-        '<div><span class="atrisk-stat-num">' + f.stats.attended + '/' + f.stats.total + '</span><span class="atrisk-stat-label">Sessions</span></div>' +
-      '</div>' +
-      '<div class="atrisk-streak" title="Last ' + recentWindow.length + ' sessions">' +
-        f.recent.map(r => '<span class="dot ' + r + '"></span>').join('') +
-      '</div>' +
-    '</div>';
-  }).join('') + '</div>';
 }
 
 // ── HTTP ────────────────────────────────────────────────────────
