@@ -559,6 +559,27 @@ function slugifyName_(name) {
 function migrateLegacySkillsAttendance() {
   return migrateLegacySkillsAttendance_();
 }
+// Clears any rows previously written by migrateLegacySkillsAttendance so the
+// import can be re-run from a clean slate. Manual-only — never invoked from
+// the web app.
+function resetLegacySkillsImport() {
+  var ss = SpreadsheetApp.openById(SHEET_ID);
+  var sheet = ss.getSheetByName(SKILLS_ATTENDANCE_SHEET);
+  if (!sheet || sheet.getLastRow() < 2) {
+    Logger.log('Nothing to reset.');
+    return 0;
+  }
+  var values = sheet.getDataRange().getValues();
+  var removed = 0;
+  for (var r = values.length - 1; r >= 1; r--) {
+    if (String(values[r][5] || '') === 'legacy_import') {
+      sheet.deleteRow(r + 1);
+      removed++;
+    }
+  }
+  Logger.log('Removed ' + removed + ' legacy_import rows.');
+  return removed;
+}
 function inspectLegacyAttendance() {
   var src = SpreadsheetApp.openById(LEGACY_ATTENDANCE_SHEET_ID);
   var report = src.getSheets().map(function(sheet) {
@@ -596,67 +617,178 @@ function migrateLegacySkillsAttendance_() {
   }
 
   var src = SpreadsheetApp.openById(LEGACY_ATTENDANCE_SHEET_ID);
+  Logger.log('LEGACY IMPORT — source workbook: ' + src.getName());
+
   var sheets = src.getSheets();
-  var imported = 0;
-  var rosterByName = {};
+  Logger.log('  Tabs found: ' + sheets.map(function(s){return s.getName();}).join(', '));
+
+  var rosterByName = {};   // exact-name match
+  var rosterByLast = {};   // fallback: last token
   readAcqRoster_().forEach(function(r) {
-    rosterByName[r.name.toLowerCase()] = r;
+    rosterByName[normalizeName_(r.name)] = r;
+    var parts = r.name.trim().split(/\s+/);
+    if (parts.length > 0) {
+      var last = parts[parts.length - 1].toLowerCase();
+      if (!rosterByLast[last]) rosterByLast[last] = r;
+    }
   });
+  Logger.log('  Roster: ' + Object.keys(rosterByName).length + ' Acquisition reps loaded');
+
+  var imported = 0;
+  var unmatched = {};
 
   for (var s = 0; s < sheets.length; s++) {
     var sheet = sheets[s];
-    if (sheet.getLastRow() < 2 || sheet.getLastColumn() < 2) continue;
+    var tabName = sheet.getName();
+    var lastRow = sheet.getLastRow();
+    var lastCol = sheet.getLastColumn();
+    Logger.log('  Tab "' + tabName + '": ' + lastRow + ' rows × ' + lastCol + ' cols');
+    if (lastRow < 2 || lastCol < 2) { Logger.log('    skipped (too small)'); continue; }
 
     var values = sheet.getDataRange().getValues();
-    var header = values[0];
 
-    // Find the name column (heuristic: leftmost cell whose lowered header
-    // looks like "name", "employee", or "associate"; falls back to col 0).
-    var nameCol = 0;
-    for (var c = 0; c < header.length; c++) {
-      var h = String(header[c] || '').toLowerCase().trim();
-      if (h === 'name' || h === 'employee' || h === 'employee name' || h === 'associate' || h === 'rep') {
-        nameCol = c;
-        break;
-      }
+    // Auto-detect the header row by scanning the first 8 rows for the one
+    // with the most date-parseable cells (≥ 2 dates required).
+    var headerInfo = findHeaderRow_(values);
+    if (!headerInfo) {
+      Logger.log('    no header row with ≥ 2 date columns found — skipping');
+      continue;
     }
+    Logger.log('    header row: index ' + headerInfo.row + ' (' + headerInfo.dateCols.length + ' date columns)');
+    Logger.log('    header preview: ' + JSON.stringify(values[headerInfo.row].slice(0, 12).map(formatCellForLog_)));
 
-    // Date columns: any header that parses as a Date.
-    var dateCols = [];
-    for (var c2 = 0; c2 < header.length; c2++) {
-      if (c2 === nameCol) continue;
-      var v = header[c2];
-      var d = (v instanceof Date) ? v : new Date(v);
-      if (v && !isNaN(d.getTime())) {
-        dateCols.push({ col: c2, date: formatYmd_(d) });
-      }
-    }
-    if (dateCols.length === 0) continue;
+    var nameCol  = headerInfo.nameCol;
+    var dateCols = headerInfo.dateCols;
+    Logger.log('    name column index: ' + nameCol);
+    Logger.log('    detected dates: ' + dateCols.map(function(d){return d.date;}).join(', '));
 
-    for (var r = 1; r < values.length; r++) {
+    var tabImported = 0;
+    for (var r = headerInfo.row + 1; r < values.length; r++) {
       var row  = values[r];
       var name = String(row[nameCol] || '').trim();
       if (!name) continue;
 
-      var roster = rosterByName[name.toLowerCase()];
-      var key    = roster ? roster.key : slugifyName_(name);
+      var roster = lookupRoster_(name, rosterByName, rosterByLast);
+      if (!roster) {
+        unmatched[name] = (unmatched[name] || 0) + 1;
+      }
+      var key = roster ? roster.key : slugifyName_(name);
 
       for (var k = 0; k < dateCols.length; k++) {
         var cell = row[dateCols[k].col];
-        var present = isPresentTruthy_(cell);
-        if (present) {
+        if (isPresentTruthy_(cell)) {
           dst.appendRow([key, roster ? roster.name : name, dateCols[k].date, true, new Date(), 'legacy_import']);
           imported++;
+          tabImported++;
         }
       }
-      // Also register every encountered date as a session.
-      for (var k2 = 0; k2 < dateCols.length; k2++) {
-        ensureSession_(dateCols[k2].date, 'legacy_import');
-      }
+    }
+    Logger.log('    imported from this tab: ' + tabImported);
+
+    for (var k2 = 0; k2 < dateCols.length; k2++) {
+      ensureSession_(dateCols[k2].date, 'legacy_import');
     }
   }
 
+  var unmatchedNames = Object.keys(unmatched);
+  if (unmatchedNames.length > 0) {
+    Logger.log('Unmatched names (used slug fallback): ' + unmatchedNames.slice(0, 30).join(' | '));
+  }
+  Logger.log('TOTAL IMPORTED: ' + imported);
   return imported;
+}
+
+// Scan the first 8 rows for the row most likely to be the header — the one
+// with the most date-parseable cells (Date instances or strings the strict
+// parser accepts), requiring ≥ 2 dates so noise rows are rejected.
+function findHeaderRow_(values) {
+  var maxRows = Math.min(values.length, 8);
+  var best = null;
+  for (var r = 0; r < maxRows; r++) {
+    var row = values[r];
+    var dateCols = [];
+    var nameCol = -1;
+    for (var c = 0; c < row.length; c++) {
+      var v = row[c];
+      var d = strictParseDate_(v);
+      if (d) {
+        dateCols.push({ col: c, date: d });
+      } else if (nameCol < 0) {
+        var h = String(v || '').toLowerCase().trim();
+        if (h === 'name' || h === 'employee' || h === 'employee name' ||
+            h === 'associate' || h === 'rep' || h === 'team member') {
+          nameCol = c;
+        }
+      }
+    }
+    if (dateCols.length >= 2) {
+      if (nameCol < 0) {
+        // No explicit name header; pick the first non-date column as the name
+        // column (typically col A holds names in these sheets).
+        for (var c2 = 0; c2 < row.length; c2++) {
+          var isDateCol = dateCols.some(function(dc){ return dc.col === c2; });
+          if (!isDateCol) { nameCol = c2; break; }
+        }
+        if (nameCol < 0) nameCol = 0;
+      }
+      if (!best || dateCols.length > best.dateCols.length) {
+        best = { row: r, nameCol: nameCol, dateCols: dateCols };
+      }
+    }
+  }
+  return best;
+}
+
+// Stricter than `new Date(v)` — only accepts genuine Date objects or strings
+// that match a date-like pattern. Rejects words like "May" that JS would
+// otherwise coerce into a date.
+function strictParseDate_(v) {
+  if (v instanceof Date && !isNaN(v.getTime())) return formatYmd_(v);
+  var s = String(v == null ? '' : v).trim();
+  if (!s) return '';
+  // Require M/D, M-D, M/D/YY, M/D/YYYY, or YYYY-MM-DD shapes (optionally with
+  // a leading day-of-week prefix like "Tue 5/7").
+  var m = s.match(/^(?:(?:mon|tue|wed|thu|fri|sat|sun)\w*\s+)?(\d{1,2})[\/\-](\d{1,2})(?:[\/\-](\d{2,4}))?$/i);
+  if (m) {
+    var mo = parseInt(m[1], 10);
+    var da = parseInt(m[2], 10);
+    var yr = m[3] ? parseInt(m[3], 10) : new Date().getFullYear();
+    if (yr < 100) yr += 2000;
+    if (mo >= 1 && mo <= 12 && da >= 1 && da <= 31) {
+      return formatYmd_(new Date(yr, mo - 1, da));
+    }
+  }
+  if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return s;
+  return '';
+}
+
+function normalizeName_(name) {
+  return String(name || '').toLowerCase().trim().replace(/\s+/g, ' ');
+}
+
+// Match by exact normalized name; if no hit, try "Last, First" → "First Last";
+// finally try last-token match (e.g. legacy "Caceres" matches "Andrew Caceres").
+function lookupRoster_(name, rosterByName, rosterByLast) {
+  var norm = normalizeName_(name);
+  if (rosterByName[norm]) return rosterByName[norm];
+
+  var comma = norm.match(/^([^,]+),\s*(.+)$/);
+  if (comma) {
+    var flipped = (comma[2] + ' ' + comma[1]).trim();
+    if (rosterByName[flipped]) return rosterByName[flipped];
+  }
+
+  var parts = norm.split(/\s+/);
+  if (parts.length > 0) {
+    var last = parts[parts.length - 1];
+    if (rosterByLast[last]) return rosterByLast[last];
+  }
+  return null;
+}
+
+function formatCellForLog_(v) {
+  if (v instanceof Date) return 'Date(' + formatYmd_(v) + ')';
+  return v;
 }
 function isPresentTruthy_(v) {
   if (v === true) return true;
