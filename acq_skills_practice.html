@@ -399,18 +399,11 @@ function loadAttendance() {
 
 function processData(data) {
   roster   = data.roster   || [];
-  sessions = data.sessions || [];
-
-  // Surface session dates that have marks but no SkillsSessions row, so a date
-  // imported from the legacy sheet still appears as a column.
-  const sessionSet = {};
-  sessions.forEach(s => sessionSet[s.session_date] = true);
-  (data.marks || []).forEach(m => {
-    if (!sessionSet[m.session_date]) {
-      sessions.push({ session_date: m.session_date });
-      sessionSet[m.session_date] = true;
-    }
-  });
+  sessions = (data.sessions || []).slice();
+  // SkillsSessions is the sole source of truth for which dates render as
+  // columns. We deliberately do not surface dates from orphan marks — that
+  // used to resurrect columns the user had just removed when the server's
+  // row-by-row delete timed out before clearing every mark.
   sessions.sort((a, b) => a.session_date < b.session_date ? -1 : 1);
 
   marks = {};
