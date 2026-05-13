@@ -194,6 +194,29 @@ td.mark-cell:hover .mark-bubble {
 }
 .mark-bubble.saving { opacity: 0.5; }
 
+td.mark-cell.pre-hire { cursor: not-allowed; }
+.mark-bubble.pre-hire {
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(31,53,64,0.04),
+    rgba(31,53,64,0.04) 4px,
+    rgba(31,53,64,0.10) 4px,
+    rgba(31,53,64,0.10) 8px
+  );
+  border: 1.5px dashed rgba(31,53,64,0.18);
+  color: rgba(31,53,64,0.20);
+}
+td.mark-cell.pre-hire:hover .mark-bubble {
+  border-color: rgba(31,53,64,0.30);
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(31,53,64,0.04),
+    rgba(31,53,64,0.04) 4px,
+    rgba(31,53,64,0.10) 4px,
+    rgba(31,53,64,0.10) 8px
+  );
+}
+
 /* ── STATES ── */
 .state-msg {
   text-align: center; padding: 60px 24px;
@@ -446,7 +469,7 @@ function renderTable() {
   html += '</tr></thead><tbody>';
 
   roster.forEach(rep => {
-    const stats = computeStats(rep.key);
+    const stats = computeStats(rep);
     html += '<tr data-key="' + escapeAttr(rep.key) + '">';
     html += '<td class="rep-cell">' +
       '<div class="rep-name">' + escapeHtml(rep.name) + '</div>' +
@@ -455,13 +478,21 @@ function renderTable() {
     html += '<td class="summary-cell">' + summaryHTML(stats) + '</td>';
 
     sessions.forEach(s => {
+      const preHire = isBeforeHire(rep, s.session_date);
       const m = marks[rep.key] && marks[rep.key][s.session_date];
       const present = !!(m && m.present);
-      html += '<td class="mark-cell" data-date="' + escapeAttr(s.session_date) + '" onclick="toggleMark(this)">' +
-        '<div class="mark-bubble ' + (present ? 'present' : 'absent') + '">' +
-          (present ? '✓' : '·') +
-        '</div>' +
-      '</td>';
+      if (preHire) {
+        html += '<td class="mark-cell pre-hire" data-date="' + escapeAttr(s.session_date) + '" ' +
+          'title="Before hire date (' + escapeAttr(rep.hire_date) + ')">' +
+          '<div class="mark-bubble pre-hire">·</div>' +
+        '</td>';
+      } else {
+        html += '<td class="mark-cell" data-date="' + escapeAttr(s.session_date) + '" onclick="toggleMark(this)">' +
+          '<div class="mark-bubble ' + (present ? 'present' : 'absent') + '">' +
+            (present ? '✓' : '·') +
+          '</div>' +
+        '</td>';
+      }
     });
     html += '</tr>';
   });
@@ -480,17 +511,26 @@ function summaryHTML(stats) {
     '<div class="pct-text"><span>' + Math.round(pct * 100) + '%</span><span class="pct-num">' + stats.attended + '/' + stats.total + '</span></div>';
 }
 
-function computeStats(key) {
-  let attended = 0;
+// Attendance is measured only across sessions on or after the rep's hire
+// date — sessions before they started don't count for or against them.
+// Reps with no hire date fall back to all sessions.
+function computeStats(rep) {
+  const hire = rep && rep.hire_date ? rep.hire_date : '';
+  let total = 0, attended = 0;
   sessions.forEach(s => {
-    const m = marks[key] && marks[key][s.session_date];
+    if (hire && s.session_date < hire) return;
+    total++;
+    const m = marks[rep.key] && marks[rep.key][s.session_date];
     if (m && m.present) attended++;
   });
   return {
     attended: attended,
-    total: sessions.length,
-    pct: sessions.length === 0 ? 0 : attended / sessions.length
+    total: total,
+    pct: total === 0 ? 0 : attended / total
   };
+}
+function isBeforeHire(rep, sessionDate) {
+  return !!(rep && rep.hire_date && sessionDate < rep.hire_date);
 }
 
 // ── TOGGLE ──────────────────────────────────────────────────────
@@ -503,6 +543,10 @@ function toggleMark(td) {
 
   const rep  = roster.find(r => r.key === key);
   if (!rep) return;
+  if (isBeforeHire(rep, date)) {
+    showToast(rep.name + ' was hired ' + formatHireDate(rep.hire_date) + ' — can\'t mark prior sessions', true);
+    return;
+  }
 
   const wasPresent = !!(marks[key] && marks[key][date] && marks[key][date].present);
   const nowPresent = !wasPresent;
@@ -516,7 +560,7 @@ function toggleMark(td) {
 
   // Update the rep's summary cell only.
   const summaryTd = tr.querySelector('td.summary-cell');
-  if (summaryTd) summaryTd.innerHTML = summaryHTML(computeStats(key));
+  if (summaryTd) summaryTd.innerHTML = summaryHTML(computeStats(rep));
 
   pendingTogglesByCell[cellId] = true;
   postJSON({
@@ -533,7 +577,7 @@ function toggleMark(td) {
     marks[key][date] = { present: wasPresent };
     bubble.className = 'mark-bubble ' + (wasPresent ? 'present' : 'absent');
     bubble.textContent = wasPresent ? '✓' : '·';
-    if (summaryTd) summaryTd.innerHTML = summaryHTML(computeStats(key));
+    if (summaryTd) summaryTd.innerHTML = summaryHTML(computeStats(rep));
     showToast('Could not save — try again', true);
   }).then(function() {
     delete pendingTogglesByCell[cellId];
